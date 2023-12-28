@@ -1,0 +1,7 @@
+h1, p {
+    font-family: 'Space Mono', monospace;
+}
+
+.header {
+    text-transform: uppercase;
+}

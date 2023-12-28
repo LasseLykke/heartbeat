@@ -11,7 +11,7 @@
 
 <body>
 
-    <form action="register_checkup.php" method="POST">
+    <form action="reg_check.php" method="POST">
         <h2>Register</h2>
         <?php if (isset($_GET['error'])) { ?>
             <p class="error">

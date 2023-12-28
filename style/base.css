@@ -1,3 +1,12 @@
-:root {
+* {
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
+
+:root {
+    --background: #191A19;
+    --offwhite: #f2f2f2;
+
+}
+

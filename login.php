@@ -31,7 +31,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
             if ($row['user_name'] === $uname && $row['password'] === $pass) {
                 $_SESSION['user_name'] = $row['user_name'];
                 $_SESSION['name'] = $row['name'];
-                $_SESSION['users_id'] = $row['users_id'];
+                $_SESSION['user_id'] = $row['user_id'];
                 header("Location: forside.php"); /*sender bruger til velkommen siden.*/
                 exit();
             } else {

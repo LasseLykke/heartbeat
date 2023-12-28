@@ -1,0 +1,9 @@
+.loginWrapper {
+    background-color: var(--background);
+    height: 100vh;
+}
+
+.logo {
+    height: 100px;
+    width: 100px;
+}

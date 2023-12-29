@@ -12,7 +12,8 @@ include 'header.php';
 <body>
     <div class="loginWrapper">
     <form class="loginform" action="login.php" method="POST">
-        <img src="/img/logo.png" alt="logo" class="logo">
+        <div class="centerImg">
+        <img src="/img/logo.png" alt="logo" class="logo"></div>
         <h1 class="header">Heartbeat</h1>
     
     <?php /*Udgiver fejlmedelelse */

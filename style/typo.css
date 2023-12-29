@@ -4,4 +4,9 @@ h1, p {
 
 .header {
     text-transform: uppercase;
+    text-align: center;
+    color: var(--offwhite);
+    letter-spacing: 5px;
+    font-size: 10px;
+    padding-bottom: 40px;
 }

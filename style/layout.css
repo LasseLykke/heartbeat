@@ -1,9 +1,18 @@
 .loginWrapper {
     background-color: var(--background);
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-
+.centerImg {
+    display: flex;
+    justify-content: center;
+    height: auto;
+}
 .logo {
     height: 100px;
     width: 100px;
+    margin: 0 auto;
 }

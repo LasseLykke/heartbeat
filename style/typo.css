@@ -1,12 +1,32 @@
 h1, p {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Space Mono', monospace; /* Har både 400 og 700*/
 }
 
 .header {
     text-transform: uppercase;
     text-align: center;
-    color: var(--offwhite);
+    color: var(--softwhite);
     letter-spacing: 5px;
     font-size: 10px;
     padding-bottom: 40px;
+    font-weight: 400;
+}
+
+.user-name input, .user-pass input {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--softwhite);
+}
+
+.user-name input::placeholder, .user-pass input::placeholder {
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.loginBtn {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-transform: uppercase;
 }

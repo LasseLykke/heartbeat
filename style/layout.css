@@ -16,3 +16,39 @@
     width: 100px;
     margin: 0 auto;
 }
+
+.loginarea {
+    background-color: var(--background);
+    display: inline-block;
+}
+
+.user-name, .user-pass  {
+    display: inline-block;
+}
+
+.user-name input, .user-pass input {
+    cursor: text;
+    padding: 5px 0;
+    color: var(--softwhite);
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid var(--softwhite);
+    outline: none;
+    background: transparent;
+}
+.user-name input:hover, .user-pass input:hover {
+    border-bottom: 1px solid var(--pink);
+}
+
+.user-name label, .user-pass label {
+    display: none;
+}
+
+.loginBtn {
+    display: flex;
+    margin: 0 auto;
+    padding: 4px 10px;
+    border: 1px solid var(--softwhite);
+    border-radius: 2px;
+}
+

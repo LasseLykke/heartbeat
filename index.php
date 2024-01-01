@@ -22,14 +22,20 @@ include 'header.php';
 
     <?php }?>
 
-        <label for="">Brugernavn</label>
-        <input type="text" name="uname" placeholder="Brugernavn"></br>
-        <label for="">Password</label>
-        <input type="password" name="password" placeholder="Password"></br>
-        <button class="loginBtn" type="submit">Login</button><br>
-        <a href="register.php" class="ca">Opret konto</a>
-    </form>
 
+    <div class="loginarea">
+        <div class="user-name">
+            <label for="">BRUGERNAVN</label>
+            <input type="text" name="uname" placeholder="Brugernavn">
+        </div>
+        <div class="user-pass">
+            <label for="">PASSWORD</label>
+            <input type="password" name="password" placeholder="Password">
+        </div>
     </div>
+    <button class="loginBtn" type="submit">Login</button><br>
+        </form>
+    </div>
+     
 </body>
 </html>

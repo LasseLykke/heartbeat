@@ -25,7 +25,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 echo $_SESSION['name'];
                 ?> 👋🏻</h1>
                 </div>
-<p>test of git</p>
 
 </body>
 

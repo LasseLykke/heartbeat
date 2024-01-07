@@ -26,6 +26,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 ?> 👋🏻</h1>
                 </div>
 
+                <a href="painForm.php">
+                    <button>Hovedpine Form</button>
+                </a>
+
 </body>
 
 </html>

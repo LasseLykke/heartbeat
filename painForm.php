@@ -1,78 +1,81 @@
 <?php 
-session_start();
 include 'header.php';
 
-// Enable error reporting for development
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-// Function to sanitize and validate input
-function sanitizeInput($input) {
-    // Trim whitespace
-    $input = trim($input);
-    // Remove HTML and PHP tags
-    $input = strip_tags($input);
-    // Escape special characters to prevent SQL injection
-    $input = htmlspecialchars($input, ENT_QUOTES, 'UTF-8');
-    return $input;
-}
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Henter data fra form og trækker det over i db via POST
-    $dates = sanitizeInput($_POST["dato"]);
-    $sværhedsgrad = sanitizeInput($_POST["sværhedsgrad"]);
-    $type = sanitizeInput($_POST["type"]);
-    $bemærkning = sanitizeInput($_POST["bemærkning"]);
+    $dates = $_POST["dato"];
+    $painState = $_POST["painState"];
+    $painLevel = $_POST["painLevel"];
+    $painType = $_POST["painType"];
+    $bemærkning = $_POST["bemærkning"];
+
+    $mysqli->begin_transaction();
+
+    $sql = "INSERT INTO pain (dates, painState, painLevel, painType, bemærkning) VALUES (?,?,?,?,?)";
+
+    $stmt = $mysqli->prepare($sql);
+
+    if ($stmt === false) {
+        die("Error: " . $mysqli->error);
+    }
+
+    $stmt->bind_param("ssiss", $dates, $painState, $painLevel, $paintType, $bemærkning);
+    $stmt->execute();
+
+    // Commit the transaction if the first statement executed successfully
+    $mysqli->commit();
+
+    // Close the statement
+    $stmt->close();
+    
+    // Close the database connection
+    $mysqli->close();
 }
-
-$mysqli->begin_transaction();
-
-// Definere SQL queries som placeholder for hver table
-$sql ="INSERT INTO pain (dates, sværhedsgrad, type, bemærkning) VALUES (?,?,?,?)";
-
-// Laver en forberedende statement for hver query
-$stmt = $mysqli->prepare($sql);
-
-if ($stmt === false) {
-    die("Error: " . $mysqli->error);
-}
-
-// Binder parameter og values sammen.
-$stmt->bind_param("siss", $dates, $sværhedsgrad, $type, $bemærkning);
-
-// Error check 
-if ($stmt->errno) {
-    $mysqli->rollback();
-    die("Error: " . $stmt->error);
-}
-
-$mysqli->commit();
-
-// lukker statements og forbindelse til database.
-$stmt->close();
-$mysqli->close();
-
-
-
 ?>
+
 
 <!DOCTYPE html>
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>H E A R T B E A T || Pain </title>  <!-- Også det filen hedder -->
+        <title>H E A R T B E A T || Pain </title>
     </head>
     <body>
 
     <?php
-// Viser success eller fejl meddelelse
-if (isset($_SESSION["message"])) {
-    echo "<p>{$_SESSION["message"]}</p>";
-    unset($_SESSION["message"]);
-} 
-?>
+        // Viser success eller fejl meddelelse
+        if (isset($_SESSION["message"])) {
+        echo "<p>{$_SESSION["message"]}</p>";
+        unset($_SESSION["message"]);
+        } 
+    ?>
 
-        <h1>Pain header</h1>
+        <div class="painWrapper">
+            <form class="painForm" action="" method="POST">
+                <h2>Hovedpine form</h2>
+
+                <label for="dates">Dato</label>
+                <input type="date" id="dato" name="dato">
+
+                <p> har du hovedpine?</p>
+                <input type="radio" id="painState_ja" name="painState" value="Ja">
+                <label for="pain_ja">Ja</label> 
+                <input type="radio" id="painState_nej" name="painState" value="Nej">
+                <label for="pain_nej">Nej</label>
+
+
+                <label for="painLevel">Sværhedsgrad</label>
+                <input type="number" id="painLevel" name="painLevel">
+
+                <label for="painType">Type</label>
+                <input type="text" id="painType" name="painType">
+
+                <label for="bemærkning">Bemærkning</label>
+                <input type="text" id="bemærkning" name="bemærkning">
+
+                <button class="submit">save</button>
+            </form>
+        </div>
+        
 
     </body>
 </html>

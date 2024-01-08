@@ -2,17 +2,17 @@
 include 'header.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $dates = htmlspecialchars($_POST["dato"]);
+    $painDates = htmlspecialchars($_POST["dato"]);
     $painState = htmlspecialchars($_POST["painState"]);
     $painLevel = htmlspecialchars($_POST["painLevel"]);
     $painType = htmlspecialchars($_POST["painType"]);
-    $bemærkning = htmlspecialchars($_POST["bemærkning"]);
+    $painNotes = htmlspecialchars($_POST["painNotes"]);
     
-    if ($dates && $painState && $painLevel !== null && $painType && $bemærkning) {
+    if ($painDates && $painState && $painLevel !== null && $painType && $painNotes) {
         $mysqli->begin_transaction();
 
 
-    $sql = "INSERT INTO pain (dates, painState, painLevel, painType, bemærkning) VALUES (?,?,?,?,?)";
+    $sql = "INSERT INTO pain (painDates, painState, painLevel, painType, painNotes) VALUES (?,?,?,?,?)";
 
     $stmt = $mysqli->prepare($sql);
 
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Error: " . $mysqli->error);
     }
 
-    $stmt->bind_param("sssss", $dates, $painState, $painLevel, $painType, $bemærkning);
+    $stmt->bind_param("sssss", $painDates, $painState, $painLevel, $painType, $painNotes);
     $stmt->execute();
 
     // Commit the transaction if the first statement executed successfully
@@ -55,8 +55,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form class="painForm" action="" method="POST">
                 <h2>Hovedpine form</h2>
 
-                <label for="dates">Dato</label>
-                <input type="date" id="dates" name="dato">
+                <label for="painDates">Dato</label>
+                <input type="date" id="painDates" name="dato">
 
                 <p> har du hovedpine?</p>
                 <input type="radio" id="painState_ja" name="painState" value="Ja">
@@ -71,8 +71,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="painType">Type</label>
                 <input type="text" id="painType" name="painType">
 
-                <label for="bemærkning">Bemærkning</label>
-                <input type="text" id="bemærkning" name="bemærkning">
+                <label for="painNotes">Bemærkning</label>
+                <input type="text" id="painNotes" name="painNotes">
     
                 <button class="submit">save</button>
             </form>

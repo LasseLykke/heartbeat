@@ -2,13 +2,15 @@
 include 'header.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $dates = $_POST["dato"];
-    $painState = $_POST["painState"];
-    $painLevel = $_POST["painLevel"];
-    $painType = $_POST["painType"];
-    $bemærkning = $_POST["bemærkning"];
+    $dates = htmlspecialchars($_POST["dato"]);
+    $painState = htmlspecialchars($_POST["painState"]);
+    $painLevel = htmlspecialchars($_POST["painLevel"]);
+    $painType = htmlspecialchars($_POST["painType"]);
+    $bemærkning = htmlspecialchars($_POST["bemærkning"]);
+    
+    if ($dates && $painState && $painLevel !== null && $painType && $bemærkning) {
+        $mysqli->begin_transaction();
 
-    $mysqli->begin_transaction();
 
     $sql = "INSERT INTO pain (dates, painState, painLevel, painType, bemærkning) VALUES (?,?,?,?,?)";
 
@@ -18,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Error: " . $mysqli->error);
     }
 
-    $stmt->bind_param("ssiss", $dates, $painState, $painLevel, $paintType, $bemærkning);
+    $stmt->bind_param("sssss", $dates, $painState, $painLevel, $painType, $bemærkning);
     $stmt->execute();
 
     // Commit the transaction if the first statement executed successfully
@@ -29,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Close the database connection
     $mysqli->close();
-}
+}}
 ?>
 
 
@@ -54,13 +56,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <h2>Hovedpine form</h2>
 
                 <label for="dates">Dato</label>
-                <input type="date" id="dato" name="dato">
+                <input type="date" id="dates" name="dato">
 
                 <p> har du hovedpine?</p>
                 <input type="radio" id="painState_ja" name="painState" value="Ja">
-                <label for="pain_ja">Ja</label> 
+                <label for="painState_ja">Ja</label> 
                 <input type="radio" id="painState_nej" name="painState" value="Nej">
-                <label for="pain_nej">Nej</label>
+                <label for="painState_nej">Nej</label>
 
 
                 <label for="painLevel">Sværhedsgrad</label>
@@ -71,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <label for="bemærkning">Bemærkning</label>
                 <input type="text" id="bemærkning" name="bemærkning">
-
+    
                 <button class="submit">save</button>
             </form>
         </div>

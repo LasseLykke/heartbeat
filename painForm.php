@@ -1,4 +1,7 @@
 <?php 
+session_start();
+
+if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 include 'header.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -31,6 +34,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Close the database connection
     $mysqli->close();
+
+        //  Går tilbage til bekræftelses side fra form.
+        header("Location: forside.php");
+        exit();
 }}
 ?>
 
@@ -81,3 +88,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     </body>
 </html>
+<?php
+/* Hvis ikke logget ind bliver man sendt tilbage til login skærm */
+} else {
+    header("Location: index.php");
+    exit();
+}
+?>

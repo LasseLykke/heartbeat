@@ -5,14 +5,19 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 include 'header.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $painDates = htmlspecialchars($_POST["dato"]);
+    $workoutDates = htmlspecialchars($_POST["dato"]);
+    $cykelTid = htmlspecialchars($_POST["cykelTid"]);
+    $cykelBelastning = htmlspecialchars($_POST["cykelBelastning"]);
+    $pulldownRep = htmlspecialchars($_POST["pulldownRep"]);
+    $pulldownKilo = floatval($_POST["pulldownKilo"]);
     
     
-    if ($painDates) {
+    if ($workoutDates) {
         $mysqli->begin_transaction();
 
+       
 
-    $sql = "INSERT INTO pain (painDates,) VALUES (?,)";
+    $sql = "INSERT INTO workout (workoutDates, cykelTid, cykelBelastning, pulldownRep, pulldownKilo) VALUES (?,?,?,?,?)";
 
     $stmt = $mysqli->prepare($sql);
 
@@ -20,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Error: " . $mysqli->error);
     }
 
-    $stmt->bind_param("s", $painDates);
+    $stmt->bind_param("ssssd", $workoutDates, $cykelTid, $cykelBelastning, $pulldownRep, $pulldownKilo);
     $stmt->execute();
 
     // Commit the transaction if the first statement executed successfully
@@ -59,8 +64,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form class="træningsForm" action="" method="POST">
                 <h2>Trænings log</h2>
 
-                <label for="painDates">Dato</label>
-                <input type="date" id="painDates" name="dato">
+                <label for="workoutDates">Dato</label>
+                <input type="date" id="workoutDates" name="dato">
+
+                <!-- CYKEL -->
+                <label for="cykelTid">Cykel Tid</label>
+                <input type="number" id="cykelTid" name="cykelTid">
+
+                <label for="cykelBelastning">Belastning</label>
+                <input type="number" id="cykelBelastning" name="cykelBelastning">
+
+                <!-- PULLDOWN -->
+                <label for="pulldownRep">Pull Down Rep.</label>
+                <input type="number" id="pulldownRep" name="pulldownRep">
+
+                <label for="pulldownKilo">Pull Down Kilo</label>
+                <input type="number" id="pulldownKilo" name="pulldownKilo">
+
+
 
                 
     

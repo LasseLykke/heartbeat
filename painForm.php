@@ -9,13 +9,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $painState = htmlspecialchars($_POST["painState"]);
     $painLevel = htmlspecialchars($_POST["painLevel"]);
     $painType = htmlspecialchars($_POST["painType"]);
+    $painKillers = htmlspecialchars($_POST["painKillers"]);
     $painNotes = htmlspecialchars($_POST["painNotes"]);
     
-    if ($painDates && $painState && $painLevel !== null && $painType && $painNotes) {
+    if ($painDates && $painState && $painLevel !== null && $painType && $painKillers && $painNotes) {
         $mysqli->begin_transaction();
 
 
-    $sql = "INSERT INTO pain (painDates, painState, painLevel, painType, painNotes) VALUES (?,?,?,?,?)";
+    $sql = "INSERT INTO pain (painDates, painState, painLevel, painType, painKillers, painNotes) VALUES (?,?,?,?,?,?)";
 
     $stmt = $mysqli->prepare($sql);
 
@@ -23,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Error: " . $mysqli->error);
     }
 
-    $stmt->bind_param("sssss", $painDates, $painState, $painLevel, $painType, $painNotes);
+    $stmt->bind_param("ssssss", $painDates, $painState, $painLevel, $painType, $painKillers, $painNotes);
     $stmt->execute();
 
     // Commit the transaction if the first statement executed successfully
@@ -78,8 +79,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="painType">Type</label>
                 <input type="text" id="painType" name="painType">
 
+                <p>Piller</p>
+                <input type="radio" id="painKillers_ja" name="painKillers" value="Ja">
+                <label for="painKillers_ja">Ja</label> 
+                <input type="radio" id="painKillers_nej" name="painKillers" value="Nej">
+                <label for="painKillers_nej">Nej</label>
+
                 <label for="painNotes">Bemærkning</label>
-                <input type="text" id="painNotes" name="painNotes">
+                <textarea id="painNotes" placeholder="Indsæt bemærkning" name="painNotes"></textarea>
     
                 <button class="submit">save</button>
             </form>

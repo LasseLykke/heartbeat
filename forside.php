@@ -30,6 +30,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <button>Hovedpine Form</button>
                 </a>
 
+                <a href="træningsForm.php">
+                    <button>Træning</button>
+                </a>
+
 </body>
 
 </html>

@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cykelTid = htmlspecialchars($_POST["cykelTid"]);
     $cykelBelastning = htmlspecialchars($_POST["cykelBelastning"]);
     $pulldownRep = htmlspecialchars($_POST["pulldownRep"]);
-    $pulldownKilo = floatval($_POST["pulldownKilo"]);
+    $pulldownKilo = htmlspecialchars($_POST["pulldownKilo"]);
     
     
     if ($workoutDates) {
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Error: " . $mysqli->error);
     }
 
-    $stmt->bind_param("ssssd", $workoutDates, $cykelTid, $cykelBelastning, $pulldownRep, $pulldownKilo);
+    $stmt->bind_param("sssss", $workoutDates, $cykelTid, $cykelBelastning, $pulldownRep, $pulldownKilo);
     $stmt->execute();
 
     // Commit the transaction if the first statement executed successfully
@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="number" id="pulldownRep" name="pulldownRep">
 
                 <label for="pulldownKilo">Pull Down Kilo</label>
-                <input type="number" id="pulldownKilo" name="pulldownKilo">
+                <input type="text" id="pulldownKilo" name="pulldownKilo">
 
 
 

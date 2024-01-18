@@ -79,6 +79,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="painType">Type</label>
                 <input type="text" id="painType" name="painType">
 
+
+                /* Pain type*/
+                <input type="radio" id="8001" name="passepartoutFarve" value="8001">
+                <label for="profil_8001">Hvidt med hvid kerne</label><br>
+                <input type="radio" id="8213" name="passepartoutFarve" value="8213">
+                <label for="profil_8213">Knækket hvid med hvid kerne</label><br>
+                <input type="radio" id="profil_8011" name="passepartoutFarve" value="8011">
+                <label for="profil_8011">Sort med hvid kerne</label><br>
+                <input type="radio" id="7011" name="passepartoutFarve" value="7011">
+                <label for="profil_7011">Sort med sort kerne</label><br>
+
                 <p>Piller</p>
                 <input type="radio" id="painKillers_ja" name="painKillers" value="Ja">
                 <label for="painKillers_ja">Ja</label> 

@@ -10,6 +10,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cykelBelastning = htmlspecialchars($_POST["cykelBelastning"]);
     $pulldownRep = htmlspecialchars($_POST["pulldownRep"]);
     $pulldownKilo = htmlspecialchars($_POST["pulldownKilo"]);
+    $rygbøjningRep = htmlspecialchars($_POST["rygbøjningRep"]);
+    $rygbøjningKilo = htmlspecialchars($_POST["rygbøjningKilo"]);
+    $abcrunchRep = htmlspecialchars($_POST["abcrunchRep"]);
+    $abcrunchKilo = htmlspecialchars($_POST["abcrunchKilo"]);
     
     
     if ($workoutDates) {
@@ -17,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
        
 
-    $sql = "INSERT INTO workout (workoutDates, cykelTid, cykelBelastning, pulldownRep, pulldownKilo) VALUES (?,?,?,?,?)";
+    $sql = "INSERT INTO workout (workoutDates, cykelTid, cykelBelastning, pulldownRep, pulldownKilo, rygbøjningRep, rygbøjningKilo, abcrunchRep, abcrunchKilo) VALUES (?,?,?,?,?,?,?,?,?)";
 
     $stmt = $mysqli->prepare($sql);
 
@@ -25,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Error: " . $mysqli->error);
     }
 
-    $stmt->bind_param("sssss", $workoutDates, $cykelTid, $cykelBelastning, $pulldownRep, $pulldownKilo);
+    $stmt->bind_param("sssssssss", $workoutDates, $cykelTid, $cykelBelastning, $pulldownRep, $pulldownKilo, $rygbøjningRep, $rygbøjningKilo, $abcrunchRep, $abcrunchKilo);
     $stmt->execute();
 
     // Commit the transaction if the first statement executed successfully
@@ -80,6 +84,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <label for="pulldownKilo">Pull Down Kilo</label>
                 <input type="text" id="pulldownKilo" name="pulldownKilo">
+
+                <!-- RYGBØJNING --> 
+                <label for="rygbøjningRep">Rygbøjning Rep.</label>
+                <input type="number" id="rygbøjningRep" name="rygbøjningRep">
+
+                <label for="rygbøjningKilo">Rygbøjning Kilo</label>
+                <input type="text" id="rygbøjningKilo" name="rygbøjningKilo">
+                
+                <!-- ABCRUNCH --> 
+                <label for="abcrunchRep">Abcrunch Rep.</label>
+                <input type="number" id="abcrunchRep" name="abcrunchRep">
+
+                <label for="abcrunchKilo">Abcrunch Kilo</label>
+                <input type="text" id="abcrunchKilo" name="abcrunchKilo">
 
 
 

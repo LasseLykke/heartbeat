@@ -12,7 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $painKillers = htmlspecialchars($_POST["painKillers"]);
     $painNotes = htmlspecialchars($_POST["painNotes"]);
     
-    if ($painDates && $painState && $painLevel !== null && $painType && $painKillers && $painNotes) {
+    if ($painDates && $painState && $painLevel !== null || $painType && $painKillers && $painNotes) 
+        {
         $mysqli->begin_transaction();
 
 
@@ -76,19 +77,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="painLevel">Sværhedsgrad</label>
                 <input type="number" id="painLevel" name="painLevel">
 
-                <label for="painType">Type</label>
-                <input type="text" id="painType" name="painType">
 
 
-                /* Pain type*/
-                <input type="radio" id="8001" name="passepartoutFarve" value="8001">
-                <label for="profil_8001">Hvidt med hvid kerne</label><br>
-                <input type="radio" id="8213" name="passepartoutFarve" value="8213">
-                <label for="profil_8213">Knækket hvid med hvid kerne</label><br>
-                <input type="radio" id="profil_8011" name="passepartoutFarve" value="8011">
-                <label for="profil_8011">Sort med hvid kerne</label><br>
-                <input type="radio" id="7011" name="passepartoutFarve" value="7011">
-                <label for="profil_7011">Sort med sort kerne</label><br>
+                <!-- Pain type --><br>
+                <input type="radio" id="spænding" name="painType" value="Spænding">
+                <label for="spænding">Spændingshovedpine</label><br>
+                <input type="radio" id="migræne" name="painType" value="Migræne">
+                <label for="migræne">Migræne</label><br>
+                <input type="radio" id="sygdom" name="painType" value="Sygdom">
+                <label for="sygdom">Sygdom</label><br>
+                <input type="radio" id="andet" name="painType" value="Andet">
+                <label for="andet">Andet</label><br>
 
                 <p>Piller</p>
                 <input type="radio" id="painKillers_ja" name="painKillers" value="Ja">

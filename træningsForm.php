@@ -18,6 +18,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $brystpresKilo = htmlspecialchars($_POST["brystpresKilo"]);
     $legpressRep = htmlspecialchars($_POST["legpressRep"]);
     $legpressKilo = htmlspecialchars($_POST["legpressKilo"]);
+    $legcurlRep = htmlspecialchars($_POST["legcurlRep"]);
+    $legcurlKilo = htmlspecialchars($_POST["legcurlKilo"]);
+    $legextensionRep = htmlspecialchars($_POST["legextensionRep"]);
+    $legextensionKilo = htmlspecialchars($_POST["legextensionKilo"]);
     
     
     if ($workoutDates) {
@@ -25,7 +29,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
        
 
-    $sql = "INSERT INTO workout (workoutDates, cykelTid, cykelBelastning, pulldownRep, pulldownKilo, rygbøjningRep, rygbøjningKilo, abcrunchRep, abcrunchKilo, brystpresRep, brystpresKilo, legpressRep, legpressKilo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    $sql = "INSERT INTO workout 
+    (workoutDates, cykelTid, cykelBelastning, pulldownRep, pulldownKilo, rygbøjningRep, rygbøjningKilo, abcrunchRep,
+     abcrunchKilo, brystpresRep, brystpresKilo, legpressRep, legpressKilo, legcurlRep, legcurlKilo, legextensionRep, legextensionKilo) 
+     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     $stmt = $mysqli->prepare($sql);
 
@@ -33,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Error: " . $mysqli->error);
     }
 
-    $stmt->bind_param("sssssssssssss", $workoutDates, $cykelTid, $cykelBelastning, $pulldownRep, $pulldownKilo, $rygbøjningRep, $rygbøjningKilo, $abcrunchRep, $abcrunchKilo, $brystpresRep, $brystpresKilo, $legpressRep, $legpressKilo);
+    $stmt->bind_param("sssssssssssssssss", $workoutDates, $cykelTid, $cykelBelastning, $pulldownRep, $pulldownKilo, $rygbøjningRep, $rygbøjningKilo, $abcrunchRep, $abcrunchKilo, $brystpresRep, $brystpresKilo, $legpressRep, $legpressKilo, $legcurlRep, $legcurlKilo, $legextensionRep, $legextensionKilo);
     $stmt->execute();
 
     // Commit the transaction if the first statement executed successfully
@@ -116,6 +123,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <label for="legpressKilo">Legpress Kilo</label>
                 <input type="text" id="legpressKilo" name="legpressKilo">
+                
+                <!-- LEGCURL --> 
+                <label for="legcurlRep">Legcurl Rep.</label>
+                <input type="number" id="legcurlRep" name="legcurlRep">
+
+                <label for="legpressKilo">Legcurl Kilo</label>
+                <input type="text" id="legpcurlKilo" name="legcurlKilo">
+                
+                <!-- LEGEXTENSION --> 
+                <label for="legextensionRep">Legextension Rep.</label>
+                <input type="number" id="legextensionRep" name="legextensionRep">
+
+                <label for="legpressKilo">Legextension Kilo</label>
+                <input type="text" id="legpextensionKilo" name="legextensionKilo">
 
 
 

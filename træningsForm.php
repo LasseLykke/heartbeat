@@ -14,6 +14,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $rygbøjningKilo = htmlspecialchars($_POST["rygbøjningKilo"]);
     $abcrunchRep = htmlspecialchars($_POST["abcrunchRep"]);
     $abcrunchKilo = htmlspecialchars($_POST["abcrunchKilo"]);
+    $brystpresRep = htmlspecialchars($_POST["brystpresRep"]);
+    $brystpresKilo = htmlspecialchars($_POST["brystpresKilo"]);
+    $legpressRep = htmlspecialchars($_POST["legpressRep"]);
+    $legpressKilo = htmlspecialchars($_POST["legpressKilo"]);
     
     
     if ($workoutDates) {
@@ -21,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
        
 
-    $sql = "INSERT INTO workout (workoutDates, cykelTid, cykelBelastning, pulldownRep, pulldownKilo, rygbøjningRep, rygbøjningKilo, abcrunchRep, abcrunchKilo) VALUES (?,?,?,?,?,?,?,?,?)";
+    $sql = "INSERT INTO workout (workoutDates, cykelTid, cykelBelastning, pulldownRep, pulldownKilo, rygbøjningRep, rygbøjningKilo, abcrunchRep, abcrunchKilo, brystpresRep, brystpresKilo, legpressRep, legpressKilo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     $stmt = $mysqli->prepare($sql);
 
@@ -29,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Error: " . $mysqli->error);
     }
 
-    $stmt->bind_param("sssssssss", $workoutDates, $cykelTid, $cykelBelastning, $pulldownRep, $pulldownKilo, $rygbøjningRep, $rygbøjningKilo, $abcrunchRep, $abcrunchKilo);
+    $stmt->bind_param("sssssssssssss", $workoutDates, $cykelTid, $cykelBelastning, $pulldownRep, $pulldownKilo, $rygbøjningRep, $rygbøjningKilo, $abcrunchRep, $abcrunchKilo, $brystpresRep, $brystpresKilo, $legpressRep, $legpressKilo);
     $stmt->execute();
 
     // Commit the transaction if the first statement executed successfully
@@ -98,6 +102,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <label for="abcrunchKilo">Abcrunch Kilo</label>
                 <input type="text" id="abcrunchKilo" name="abcrunchKilo">
+                
+                <!-- BRYSTPRES --> 
+                <label for="brystpresRep">Brystpres Rep.</label>
+                <input type="number" id="brystpresRep" name="brystpresRep">
+
+                <label for="brystpresKilo">Brystpres Kilo</label>
+                <input type="text" id="brystpresKilo" name="brystpresKilo">
+                
+                <!-- LEGPRESS --> 
+                <label for="legpressRep">Legpress Rep.</label>
+                <input type="number" id="legpressRep" name="legpressRep">
+
+                <label for="legpressKilo">Legpress Kilo</label>
+                <input type="text" id="legpressKilo" name="legpressKilo">
 
 
 

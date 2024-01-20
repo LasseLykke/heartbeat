@@ -22,6 +22,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $legcurlKilo = htmlspecialchars($_POST["legcurlKilo"]);
     $legextensionRep = htmlspecialchars($_POST["legextensionRep"]);
     $legextensionKilo = htmlspecialchars($_POST["legextensionKilo"]);
+    $bicepsRep = htmlspecialchars($_POST["bicepsRep"]);
+    $bicepsKilo = htmlspecialchars($_POST["bicepsKilo"]);
+    $buttupsRep = htmlspecialchars($_POST["buttupsRep"]);
+    $pullupsRep = htmlspecialchars($_POST["pullupsRep"]);
+    $pullupsKilo = htmlspecialchars($_POST["pullupsKilo"]);
+    $løbTid = htmlspecialchars($_POST["løbTid"]);
+    $løbBelastning = htmlspecialchars($_POST["løbBelastning"]);
+    $rystemaskineTid = htmlspecialchars($_POST["rystemaskineTid"]);
+    $musik = htmlspecialchars($_POST["musik"]);
+    $vand = htmlspecialchars($_POST["vand"]);
+    $vægt = htmlspecialchars($_POST["vægt"]);
     
     
     if ($workoutDates) {
@@ -31,8 +42,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $sql = "INSERT INTO workout 
     (workoutDates, cykelTid, cykelBelastning, pulldownRep, pulldownKilo, rygbøjningRep, rygbøjningKilo, abcrunchRep,
-     abcrunchKilo, brystpresRep, brystpresKilo, legpressRep, legpressKilo, legcurlRep, legcurlKilo, legextensionRep, legextensionKilo) 
-     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+     abcrunchKilo, brystpresRep, brystpresKilo, legpressRep, legpressKilo, legcurlRep, legcurlKilo, legextensionRep, legextensionKilo, bicepsRep, bicepsKilo, buttupsRep, pullupsRep, pullupsKilo, 
+     løbTid, løbBelastning, rystemaskineTid, musik, vand, vægt) 
+     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     $stmt = $mysqli->prepare($sql);
 
@@ -40,7 +52,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Error: " . $mysqli->error);
     }
 
-    $stmt->bind_param("sssssssssssssssss", $workoutDates, $cykelTid, $cykelBelastning, $pulldownRep, $pulldownKilo, $rygbøjningRep, $rygbøjningKilo, $abcrunchRep, $abcrunchKilo, $brystpresRep, $brystpresKilo, $legpressRep, $legpressKilo, $legcurlRep, $legcurlKilo, $legextensionRep, $legextensionKilo);
+    $stmt->bind_param("ssssssssssssssssssssssssssss", $workoutDates, $cykelTid, $cykelBelastning, $pulldownRep, $pulldownKilo, $rygbøjningRep, $rygbøjningKilo, $abcrunchRep, $abcrunchKilo, 
+    $brystpresRep, $brystpresKilo, $legpressRep, $legpressKilo, $legcurlRep, $legcurlKilo, $legextensionRep, $legextensionKilo, $bicepsRep, $bicepsKilo, $buttupsRep, $pullupsRep, $pullupsKilo, 
+    $løbTid, $løbBelastning, $rystemaskineTid, $musik, $vand, $vægt);
     $stmt->execute();
 
     // Commit the transaction if the first statement executed successfully
@@ -137,6 +151,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <label for="legpressKilo">Legextension Kilo</label>
                 <input type="text" id="legpextensionKilo" name="legextensionKilo">
+                
+                <!-- BICEPS --> 
+                <label for="bicepsRep">Biceps Rep.</label>
+                <input type="number" id="bicepsRep" name="bicepsRep">
+
+                <label for="bicepsKilo">Biceps Kilo</label>
+                <input type="text" id="bicepsKilo" name="bicepsKilo">
+                
+                <!-- BUTTUPS --> 
+                <label for="buttupsRep">Buttups Rep.</label>
+                <input type="number" id="buttupsRep" name="buttupsRep">
+                
+                <!-- PULLUPS --> 
+                <label for="pullupsRep">Pullups Rep.</label>
+                <input type="number" id="pullupsRep" name="pullupsRep">
+                
+                <label for="pullupsKilo">Pullups Kilo</label>
+                <input type="number" id="pullupskilo" name="pullupsKilo">
+                
+                <!-- LØB --> 
+                <label for="løbTid">Løb Tid</label>
+                <input type="number" id="løbTid" name="løbTid">
+                
+                <label for="løbBelastning">Løb Belastning</label>
+                <input type="number" id="løbBelastning" name="løbBelastning">
+
+                <!-- RYSTEMASKINE --> 
+                <label for="rystemaskineTid">Rystemaskine</label>
+                <input type="number" id="rystemaskineTid" name="rystemaskineTid">
+                
+                <!-- MUSIK & GENRE --> 
+                <input type="radio" id="podcast" name="musik" value="Podcast">
+                <label for="podcast">Podcast</label><br>
+                <input type="radio" id="rock" name="musik" value="Rock">
+                <label for="rock">Rock // Metalcore</label><br>
+                <input type="radio" id="intet" name="musik" value="intet">
+                <label for="intet">Intet // TV i centeret</label><br>
+
+                <!-- VAND --> 
+                <label for="vand">Drukket vand?</label>
+                <input type="text" id="vand" name="vand">
+                
+                <!-- VÆGT --> 
+                <label for="vægt">Vægt</label>
+                <input type="text" id="vægt" name="vægt">
+
 
 
 

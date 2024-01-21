@@ -33,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $musik = htmlspecialchars($_POST["musik"]);
     $vand = htmlspecialchars($_POST["vand"]);
     $vægt = htmlspecialchars($_POST["vægt"]);
+    $bemærkning = htmlspecialchars($_POST["bemærkning"]);
     
     
     if ($workoutDates) {
@@ -43,8 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO workout 
     (workoutDates, cykelTid, cykelBelastning, pulldownRep, pulldownKilo, rygbøjningRep, rygbøjningKilo, abcrunchRep,
      abcrunchKilo, brystpresRep, brystpresKilo, legpressRep, legpressKilo, legcurlRep, legcurlKilo, legextensionRep, legextensionKilo, bicepsRep, bicepsKilo, buttupsRep, pullupsRep, pullupsKilo, 
-     løbTid, løbBelastning, rystemaskineTid, musik, vand, vægt) 
-     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+     løbTid, løbBelastning, rystemaskineTid, musik, vand, vægt, bemærkning) 
+     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     $stmt = $mysqli->prepare($sql);
 
@@ -52,9 +53,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Error: " . $mysqli->error);
     }
 
-    $stmt->bind_param("ssssssssssssssssssssssssssss", $workoutDates, $cykelTid, $cykelBelastning, $pulldownRep, $pulldownKilo, $rygbøjningRep, $rygbøjningKilo, $abcrunchRep, $abcrunchKilo, 
+    $stmt->bind_param("sssssssssssssssssssssssssssss", $workoutDates, $cykelTid, $cykelBelastning, $pulldownRep, $pulldownKilo, $rygbøjningRep, $rygbøjningKilo, $abcrunchRep, $abcrunchKilo, 
     $brystpresRep, $brystpresKilo, $legpressRep, $legpressKilo, $legcurlRep, $legcurlKilo, $legextensionRep, $legextensionKilo, $bicepsRep, $bicepsKilo, $buttupsRep, $pullupsRep, $pullupsKilo, 
-    $løbTid, $løbBelastning, $rystemaskineTid, $musik, $vand, $vægt);
+    $løbTid, $løbBelastning, $rystemaskineTid, $musik, $vand, $vægt, $bemærkning);
     $stmt->execute();
 
     // Commit the transaction if the first statement executed successfully
@@ -196,6 +197,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <!-- VÆGT --> 
                 <label for="vægt">Vægt</label>
                 <input type="text" id="vægt" name="vægt">
+
+                <!-- BEMÆRKNING -->
+                <label for="bemærkning">Bemærkning</label>
+                <textarea id="bemærkning" placeholder="Indsæt bemærkning" name="bemærkning"></textarea>
 
 
 

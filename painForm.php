@@ -62,24 +62,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div class="painWrapper">
             <form class="painForm" action="" method="POST">
-                <h2>Hovedpine form</h2>
-
+                <h1>Hovedpine form</h1>
+                
+                <!-- DATO -->
+                <div class="painDate">
                 <label for="painDates">Dato</label>
                 <input type="date" id="painDates" name="dato">
+                </div>
 
-                <p> har du hovedpine?</p>
+                <!-- HAFT HOVEDPINE -->
+                <div class="painState">
+                <h3> Har du haft hovedpine?</h3>
                 <input type="radio" id="painState_ja" name="painState" value="Ja">
                 <label for="painState_ja">Ja</label> 
                 <input type="radio" id="painState_nej" name="painState" value="Nej">
                 <label for="painState_nej">Nej</label>
+                </div>
+
+                <!-- SVÆRHEDSGRAD -->
+                <div class="painLevel">
+                <h3>Sværhedsgrad</h3>
+                <input type="radio" id="1" name="painLevel" value="1">
+                <label for="1">1</label>
+                <input type="radio" id="2" name="painLevel" value="2">
+                <label for="2">2</label>
+                <input type="radio" id="3" name="painLevel" value="3">
+                <label for="3">3</label>
+                <input type="radio" id="4" name="painLevel" value="4">
+                <label for="4">4</label>
+                <input type="radio" id="5" name="painLevel" value="5">
+                <label for="5">5</label>
+                </div>
 
 
-                <label for="painLevel">Sværhedsgrad</label>
-                <input type="number" id="painLevel" name="painLevel">
 
-
-
-                <!-- Pain type --><br>
+                <!-- Pain type -->
+                <div class="painType">
+                <h3>Hovedpine type</h3>
                 <input type="radio" id="spænding" name="painType" value="Spænding">
                 <label for="spænding">Spændingshovedpine</label><br>
                 <input type="radio" id="migræne" name="painType" value="Migræne">
@@ -88,17 +107,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="sygdom">Sygdom</label><br>
                 <input type="radio" id="andet" name="painType" value="Andet">
                 <label for="andet">Andet</label><br>
+                </div>
 
-                <p>Piller</p>
-                <input type="radio" id="painKillers_ja" name="painKillers" value="Ja">
-                <label for="painKillers_ja">Ja</label> 
-                <input type="radio" id="painKillers_nej" name="painKillers" value="Nej">
-                <label for="painKillers_nej">Nej</label>
+                <!-- EKSTRA MEDICIN -->
+                <div class="painKillers">
+                <h3>Ekstra medicin</h3>
+                <input type="radio" id="0" name="painKillers" value="0">
+                <label for="0">0</label>
+                <input type="radio" id="1" name="painKillers" value="1">
+                <label for="1">1</label>
+                <input type="radio" id="2" name="painKillers" value="2">
+                <label for="2">2</label>
+                <input type="radio" id="3" name="painKillers" value="3">
+                <label for="3">3</label>
+                </div>
 
+                <!-- BEMÆRKNING -->
+                <div class="painNotes">
                 <label for="painNotes">Bemærkning</label>
                 <textarea id="painNotes" placeholder="Indsæt bemærkning" name="painNotes"></textarea>
+                </div>
     
-                <button class="submit">save</button>
+                <button class="submit">Gem</button>
             </form>
         </div>
         

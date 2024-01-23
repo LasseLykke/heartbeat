@@ -111,3 +111,13 @@
     justify-content: center;
     align-items: center;
 }
+
+.painDate, .painState, .painLevel, .painType, .painKillers, .painNotes {
+    padding: 10px 0px 10px 0px;
+    text-align: center;
+}
+
+.painNotes label {
+    display: block;
+}
+

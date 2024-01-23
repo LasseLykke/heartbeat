@@ -98,3 +98,16 @@
     color: var(--background);
     border: 1px solid var(--background);
 }
+
+
+/* PAIN FORM */
+
+.painWrapper {
+    background-color: var(--background);
+    color: var(--softwhite);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

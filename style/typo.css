@@ -2,6 +2,11 @@ h1, h2, h3, p {
     font-family: 'PT Serif', serif; /* Har både 400 og 700*/
 }
 
+label {
+    font-family: 'PT Serif', serif;
+    font-size: 0.9rem;
+}
+
 .header {
     text-transform: uppercase;
     text-align: center;

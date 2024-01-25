@@ -1,5 +1,5 @@
-h1, h2, p {
-    font-family: 'Roboto Mono', monospace; /* Har både 400 og 700*/
+h1, h2, h3, p {
+    font-family: 'PT Serif', serif; /* Har både 400 og 700*/
 }
 
 .header {
@@ -7,13 +7,13 @@ h1, h2, p {
     text-align: center;
     color: var(--softwhite);
     letter-spacing: 5px;
-    font-size: 10px;
+    font-size: 16px;
     padding-bottom: 40px;
     font-weight: 400;
 }
 
 .user-name input, .user-pass input {
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'PT Serif', serif;
     font-size: 12px;
     color: var(--softwhite);
 }
@@ -29,7 +29,7 @@ h1, h2, p {
 }
 
 .loginBtn {
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'PT Serif', serif;
     font-size: 11px;
     letter-spacing: 2px;
     font-weight: 400;

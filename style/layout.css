@@ -103,18 +103,20 @@
 /* PAIN FORM */
 
 .painWrapper {
-    background-color: var(--background);
-    color: var(--softwhite);
-    height: 100vh;
+    background-color: var(--offwhite);
+    color: var(--darkgrey);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    max-width: 600px;
+    margin-inline: auto;
+    margin: 100px 30px;
 }
 
 .painDate, .painState, .painLevel, .painType, .painKillers, .painNotes {
     padding: 10px 0px 10px 0px;
-    text-align: center;
+    text-align: left;
 }
 
 .painNotes label {

@@ -60,28 +60,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } 
     ?>
 
-        <div class="painWrapper">
+        <div class="formWrapper">
             <form class="painForm" action="" method="POST">
                 <h1>Hovedpine form</h1>
                 
                 <!-- DATO -->
                 <div class="painDate">
                 <label for="painDates">Dato</label>
-                <input type="date" id="painDates" name="dato">
+                <input type="date" id="painDates" name="dato" required>
                 </div>
 
                 <!-- HAFT HOVEDPINE -->
                 <div class="painState">
-                <h3> Har du haft hovedpine?</h3>
-                <input type="radio" id="painState_ja" name="painState" value="Ja">
+                <h3>Haft hovedpine?</h3>
+                <input type="radio" id="painState_ja" name="painState" value="Ja" required>
                 <label for="painState_ja">Ja</label> 
-                <input type="radio" id="painState_nej" name="painState" value="Nej">
+                <input type="radio" id="painState_nej" name="painState" value="Nej" required>
                 <label for="painState_nej">Nej</label>
                 </div>
 
                 <!-- SVÆRHEDSGRAD -->
                 <div class="painLevel">
-                <h3>Sværhedsgrad</h3>
+                <h3>Sværhedsgrad:</h3>
+                <input type="radio" id="0" name="painLevel" value="0" checked>
+                <label for="0">0</label>
                 <input type="radio" id="1" name="painLevel" value="1">
                 <label for="1">1</label>
                 <input type="radio" id="2" name="painLevel" value="2">
@@ -98,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <!-- Pain type -->
                 <div class="painType">
-                <h3>Hovedpine type</h3>
+                <h3>Type:</h3>
                 <input type="radio" id="spænding" name="painType" value="Spænding">
                 <label for="spænding">Spændingshovedpine</label><br>
                 <input type="radio" id="migræne" name="painType" value="Migræne">
@@ -112,13 +114,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <!-- EKSTRA MEDICIN -->
                 <div class="painKillers">
                 <h3>Ekstra medicin</h3>
-                <input type="radio" id="0" name="painKillers" value="0">
+                <input type="radio" id="0" name="painKillers" value="0" checked required>
                 <label for="0">0</label>
-                <input type="radio" id="1" name="painKillers" value="1">
+                <input type="radio" id="1" name="painKillers" value="1" required>
                 <label for="1">1</label>
-                <input type="radio" id="2" name="painKillers" value="2">
+                <input type="radio" id="2" name="painKillers" value="2" required>
                 <label for="2">2</label>
-                <input type="radio" id="3" name="painKillers" value="3">
+                <input type="radio" id="3" name="painKillers" value="3" required>
                 <label for="3">3</label>
                 </div>
 

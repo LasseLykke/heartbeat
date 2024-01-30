@@ -115,14 +115,25 @@
     box-shadow: 0px 2px 16px -10px rgba(0,0,0,0.88);
     border-radius: 10px;
     color: var(--darkgrey);
+    height: 90vh;
+    width: 600px;
+    max-width: 90%;
+    padding: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 600px;
+    
+    
+    /*display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin-inline: auto;
-    margin: 100px 30px;
-    padding: 20px;
+    margin: 60px 20px 40px 20px;*/
 }
 
 .painDate, .painState, .painLevel, .painType, .painKillers, .painNotes {
@@ -132,5 +143,32 @@
 
 .painNotes label {
     display: block;
+}
+
+
+textarea {
+    resize: none;
+    padding: 10px 15px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border-color: var(--grey);
+    outline: none;
+}
+
+.painDate input, .painDuration input {
+    outline: 1px solid var(--grey);
+    border: none;
+    border-radius: 4px;
+    padding: 5px;
+    margin-top: 5px;
+    display: block;
+}
+input:focus {
+    outline: 1px solid var(--background);
+    border: none;
+}
+
+.painState input[type="radio"] {
+    accent-color: var(--background);
 }
 

@@ -10,14 +10,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $painLevel = htmlspecialchars($_POST["painLevel"]);
     $painType = htmlspecialchars($_POST["painType"]);
     $painKillers = htmlspecialchars($_POST["painKillers"]);
+    $painDuration = htmlspecialchars($_POST["painDuration"]);
     $painNotes = htmlspecialchars($_POST["painNotes"]);
     
-    if ($painDates && $painState && $painLevel !== null || $painType && $painKillers && $painNotes) 
+    if ($painDates && $painState && $painLevel !== null || $painType && $painKillers && $painDuration && $painNotes) 
         {
         $mysqli->begin_transaction();
 
 
-    $sql = "INSERT INTO pain (painDates, painState, painLevel, painType, painKillers, painNotes) VALUES (?,?,?,?,?,?)";
+    $sql = "INSERT INTO pain (painDates, painState, painLevel, painType, painKillers, painDuration, painNotes) VALUES (?,?,?,?,?,?,?)";
 
     $stmt = $mysqli->prepare($sql);
 
@@ -25,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Error: " . $mysqli->error);
     }
 
-    $stmt->bind_param("ssssss", $painDates, $painState, $painLevel, $painType, $painKillers, $painNotes);
+    $stmt->bind_param("sssssss", $painDates, $painState, $painLevel, $painType, $painKillers, $painDuration, $painNotes);
     $stmt->execute();
 
     // Commit the transaction if the first statement executed successfully
@@ -66,7 +67,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
                 <!-- DATO -->
                 <div class="painDate">
-                <label for="painDates">Dato</label>
+                    <h3>Dato:</h3>
+                <label for="painDates"></label>
                 <input type="date" id="painDates" name="dato" required>
                 </div>
 
@@ -113,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <!-- EKSTRA MEDICIN -->
                 <div class="painKillers">
-                <h3>Ekstra medicin</h3>
+                <h3>Ekstra medicin:</h3>
                 <input type="radio" id="0" name="painKillers" value="0" checked required>
                 <label for="0">0</label>
                 <input type="radio" id="1" name="painKillers" value="1" required>
@@ -124,9 +126,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="3">3</label>
                 </div>
 
+                <div class="painDuration">
+                    <h3>Varighed:</h3>
+                    <label for="painDuration"></label>
+                    <input type="number" id="painDuration" name="painDuration" placeholder="Angiv i timer">
+                </div>
+
                 <!-- BEMÆRKNING -->
                 <div class="painNotes">
-                <label for="painNotes">Bemærkning</label>
+                    <h3>Bemærkning:</h3>
+                <label for="painNotes"></label>
                 <textarea id="painNotes" placeholder="Indsæt bemærkning" name="painNotes"></textarea>
                 </div>
     

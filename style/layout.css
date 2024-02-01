@@ -115,7 +115,7 @@
     box-shadow: 0px 2px 16px -10px rgba(0,0,0,0.88);
     border-radius: 10px;
     color: var(--darkgrey);
-    height: 90vh;
+    min-height: 90vh;
     width: 600px;
     max-width: 90%;
     padding: 30px;
@@ -126,14 +126,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
-    
-    /*display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-inline: auto;
-    margin: 60px 20px 40px 20px;*/
 }
 
 .painDate, .painState, .painLevel, .painType, .painKillers, .painNotes {

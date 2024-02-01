@@ -90,124 +90,180 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } 
     ?>
 
-        <div class="workoutWrapper">
+        <div class="formWrapper">
             <form class="træningsForm" action="" method="POST">
-                <h2>Trænings log</h2>
+                <h1>Trænings log</h1>
 
-                <label for="workoutDates">Dato</label>
+                <!-- DATE -->
+                <div class="workoutDate">
+                    <h3>Dato:</h3>
+                <label for="workoutDates"></label>
                 <input type="date" id="workoutDates" name="dato">
+                </div>
 
                 <!-- CYKEL -->
-                <label for="cykelTid">Cykel Tid</label>
-                <input type="number" id="cykelTid" name="cykelTid">
+                <div class="workoutCykel">
+                    <h3>Cykling:</h3>
+                <label for="cykelTid"></label>
+                <input type="number" id="cykelTid" name="cykelTid" placeholder="Tid:">
 
-                <label for="cykelBelastning">Belastning</label>
-                <input type="number" id="cykelBelastning" name="cykelBelastning">
+                <label for="cykelBelastning"></label>
+                <input type="number" id="cykelBelastning" name="cykelBelastning" placeholder="Belastning">
+                </div>
 
                 <!-- PULLDOWN -->
-                <label for="pulldownRep">Pull Down Rep.</label>
-                <input type="number" id="pulldownRep" name="pulldownRep">
+                <div class="workoutPulldown">
+                    <h3>PullDown:</h3>
+                <label for="pulldownRep"></label>
+                <input type="number" id="pulldownRep" name="pulldownRep" placeholder="Rep">
+                
 
-                <label for="pulldownKilo">Pull Down Kilo</label>
-                <input type="text" id="pulldownKilo" name="pulldownKilo">
+                <label for="pulldownKilo"></label>
+                <input type="text" id="pulldownKilo" name="pulldownKilo" placeholder="Kilo">
+                </div>
 
                 <!-- RYGBØJNING --> 
-                <label for="rygbøjningRep">Rygbøjning Rep.</label>
-                <input type="number" id="rygbøjningRep" name="rygbøjningRep">
+                <div class="workoutRygbøjning">
+                    <h3>Rygbøjning:</h3>
+                <label for="rygbøjningRep"></label>
+                <input type="number" id="rygbøjningRep" name="rygbøjningRep" placeholder="Rep">
+                
 
-                <label for="rygbøjningKilo">Rygbøjning Kilo</label>
-                <input type="text" id="rygbøjningKilo" name="rygbøjningKilo">
+                <label for="rygbøjningKilo"></label>
+                <input type="text" id="rygbøjningKilo" name="rygbøjningKilo" placeholder="Kilo">
+                </div>
                 
                 <!-- ABCRUNCH --> 
-                <label for="abcrunchRep">Abcrunch Rep.</label>
-                <input type="number" id="abcrunchRep" name="abcrunchRep">
+                <div class="workoutAbs">
+                    <h3>Abcrunch:</h3>
+                <label for="abcrunchRep"></label>
+                <input type="number" id="abcrunchRep" name="abcrunchRep" placeholder="Rep">
 
-                <label for="abcrunchKilo">Abcrunch Kilo</label>
-                <input type="text" id="abcrunchKilo" name="abcrunchKilo">
-                
+                <label for="abcrunchKilo"></label>
+                <input type="text" id="abcrunchKilo" name="abcrunchKilo" placeholder="Kilo">
+                </div>
+
                 <!-- BRYSTPRES --> 
-                <label for="brystpresRep">Brystpres Rep.</label>
-                <input type="number" id="brystpresRep" name="brystpresRep">
-
-                <label for="brystpresKilo">Brystpres Kilo</label>
-                <input type="text" id="brystpresKilo" name="brystpresKilo">
+                <div class="workoutBrystpres">
+                    <h3>Brystpres:</h3>
+                <label for="brystpresRep"></label>
+                <input type="number" id="brystpresRep" name="brystpresRep" placeholder="Rep">
                 
+
+                <label for="brystpresKilo"></label>
+                <input type="text" id="brystpresKilo" name="brystpresKilo" placeholder="Kilo">
+                </div>
+
                 <!-- LEGPRESS --> 
-                <label for="legpressRep">Legpress Rep.</label>
-                <input type="number" id="legpressRep" name="legpressRep">
+                <div class="workoutLegpress">
+                    <h3>Legpress:</h3>
+                <label for="legpressRep"></label>
+                <input type="number" id="legpressRep" name="legpressRep" placeholder="Rep">
 
-                <label for="legpressKilo">Legpress Kilo</label>
-                <input type="text" id="legpressKilo" name="legpressKilo">
-                
+                <label for="legpressKilo"></label>
+                <input type="text" id="legpressKilo" name="legpressKilo" placeholder="Kilo">
+                </div>
+
                 <!-- LEGCURL --> 
-                <label for="legcurlRep">Legcurl Rep.</label>
-                <input type="number" id="legcurlRep" name="legcurlRep">
+                <div class="workoutLegcurl">
+                    <h3>Legcurl:</h3>
+                <label for="legcurlRep"></label>
+                <input type="number" id="legcurlRep" name="legcurlRep" placeholder="Rep">
 
-                <label for="legpressKilo">Legcurl Kilo</label>
-                <input type="text" id="legpcurlKilo" name="legcurlKilo">
+                <label for="legpressKilo"></label>
+                <input type="text" id="legpcurlKilo" name="legcurlKilo" placeholder="Kilo">
+                </div>
                 
                 <!-- LEGEXTENSION --> 
-                <label for="legextensionRep">Legextension Rep.</label>
-                <input type="number" id="legextensionRep" name="legextensionRep">
+                <div class="workoutLegextension">
+                    <h3>Legextension:</h3>
+                <label for="legextensionRep"></label>
+                <input type="number" id="legextensionRep" name="legextensionRep" placeholder="Rep">
 
-                <label for="legpressKilo">Legextension Kilo</label>
-                <input type="text" id="legpextensionKilo" name="legextensionKilo">
-                
+                <label for="legpressKilo"></label>
+                <input type="text" id="legpextensionKilo" name="legextensionKilo" placeholder="Kilo">
+                </div>
+
                 <!-- BICEPS --> 
-                <label for="bicepsRep">Biceps Rep.</label>
-                <input type="number" id="bicepsRep" name="bicepsRep">
+                <div class="workoutBiceps">
+                    <h3>Biceps:</h3>
+                <label for="bicepsRep"></label>
+                <input type="number" id="bicepsRep" name="bicepsRep" placeholder="Rep">
 
-                <label for="bicepsKilo">Biceps Kilo</label>
-                <input type="text" id="bicepsKilo" name="bicepsKilo">
-                
+                <label for="bicepsKilo"></label>
+                <input type="text" id="bicepsKilo" name="bicepsKilo" placeholder="Kilo">
+                </div>
+
                 <!-- BUTTUPS --> 
-                <label for="buttupsRep">Buttups Rep.</label>
-                <input type="number" id="buttupsRep" name="buttupsRep">
+                <div class="workoutButtups">
+                    <h3>ButtUps:</h3>
+                <label for="buttupsRep"></label>
+                <input type="number" id="buttupsRep" name="buttupsRep" placeholder="Rep">
+                </div>
                 
                 <!-- PULLUPS --> 
-                <label for="pullupsRep">Pullups Rep.</label>
-                <input type="number" id="pullupsRep" name="pullupsRep">
+                <div class="workoutPullups">
+                    <h3>PullUps:</h3>
+                <label for="pullupsRep"></label>
+                <input type="number" id="pullupsRep" name="pullupsRep" placeholder="Rep">
                 
-                <label for="pullupsKilo">Pullups Kilo</label>
-                <input type="number" id="pullupskilo" name="pullupsKilo">
-                
+                <label for="pullupsKilo"></label>
+                <input type="number" id="pullupskilo" name="pullupsKilo" placeholder="Kilo">
+                </div>
+
                 <!-- LØB --> 
-                <label for="løbTid">Løb Tid</label>
-                <input type="number" id="løbTid" name="løbTid">
+                <div class="workoutLøb">
+                    <h3>Løb:</h3>
+                <label for="løbTid"></label>
+                <input type="number" id="løbTid" name="løbTid" placeholder="Tid">
                 
-                <label for="løbBelastning">Løb Belastning</label>
-                <input type="number" id="løbBelastning" name="løbBelastning">
+                <label for="løbBelastning"></label>
+                <input type="number" id="løbBelastning" name="løbBelastning" placeholder="Belastning">
+                </div>
 
                 <!-- RYSTEMASKINE --> 
-                <label for="rystemaskineTid">Rystemaskine</label>
-                <input type="number" id="rystemaskineTid" name="rystemaskineTid">
+                <div class="workoutRyst">
+                    <h3>Rystemaskine:</h3>
+                <label for="rystemaskineTid"></label>
+                <input type="number" id="rystemaskineTid" name="rystemaskineTid" placeholder="Tid">
+                </div>
                 
                 <!-- MUSIK & GENRE --> 
+                <div class="workoutMusik">
+                    <h3>Musik Genre:</h3>
                 <input type="radio" id="podcast" name="musik" value="Podcast">
                 <label for="podcast">Podcast</label><br>
                 <input type="radio" id="rock" name="musik" value="Rock">
                 <label for="rock">Rock // Metalcore</label><br>
                 <input type="radio" id="intet" name="musik" value="intet">
                 <label for="intet">Intet // TV i centeret</label><br>
+                </div>
 
                 <!-- VAND --> 
-                <label for="vand">Drukket vand?</label>
-                <input type="text" id="vand" name="vand">
+                <div class="workoutVandOgVægt">
+                <h3>Vand:</h3>
+                
+                <input type="text" id="vand" name="vand" placeholder="Drukket vand?">
                 
                 <!-- VÆGT --> 
-                <label for="vægt">Vægt</label>
-                <input type="text" id="vægt" name="vægt">
+                <h3>Vægt:</h3>
+                
+                <input type="text" id="vægt" name="vægt" placeholder="Vægt">
+                </div>
 
                 <!-- BEMÆRKNING -->
-                <label for="bemærkning">Bemærkning</label>
+                <div class="workoutBemærkning">
+                    <h3>Bemærkning:</h3>
+                <label for="bemærkning"></label>
                 <textarea id="bemærkning" placeholder="Indsæt bemærkning" name="bemærkning"></textarea>
+                </div>
 
 
 
 
                 
     
-                <button class="submit">save</button>
+                <button class="submit">Gem</button>
             </form>
         </div>
         

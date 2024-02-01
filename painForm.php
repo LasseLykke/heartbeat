@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div class="formWrapper">
             <form class="painForm" action="" method="POST">
-                <h1>Hovedpine form</h1>
+                <h1>Hovedpine:</h1>
                 
                 <!-- DATO -->
                 <div class="painDate">

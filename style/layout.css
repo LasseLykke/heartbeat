@@ -128,7 +128,9 @@
     align-items: center;
 }
 
-.painDate, .painState, .painLevel, .painType, .painKillers, .painNotes {
+.painDate, .painState, .painLevel, .painType, .painKillers, .painNotes, .workoutDate, .workoutCykel,
+.workoutPulldown, .workoutRygbøjning, .workoutAbs, .workoutBrystpres, .workoutLegpress, .workoutLegcurl, .workoutLegextension, .workoutBiceps,
+.workoutButtups, .workoutPullups, .workoutLøb, .workoutRyst, .workoutMusik, .workoutVandOgVægt, .workoutBemærkning {
     padding: 10px 0px 10px 0px;
     text-align: left;
 }
@@ -140,7 +142,7 @@
 
 textarea {
     resize: none;
-    padding: 10px 15px;
+    padding: 7px 10px;
     margin-top: 5px;
     border-radius: 4px;
     border-color: var(--grey);
@@ -164,3 +166,13 @@ input:focus {
     accent-color: var(--background);
 }
 
+.workoutVandOgVægt {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.workoutMusik input[type="radio"] {
+    display: inline;
+    margin-right: 3px;
+}

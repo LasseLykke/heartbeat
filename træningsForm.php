@@ -6,34 +6,35 @@ include 'header.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $workoutDates = htmlspecialchars($_POST["dato"]);
-    $cykelTid = htmlspecialchars($_POST["cykelTid"]);
-    $cykelBelastning = htmlspecialchars($_POST["cykelBelastning"]);
-    $pulldownRep = htmlspecialchars($_POST["pulldownRep"]);
-    $pulldownKilo = htmlspecialchars($_POST["pulldownKilo"]);
-    $rygbøjningRep = htmlspecialchars($_POST["rygbøjningRep"]);
-    $rygbøjningKilo = htmlspecialchars($_POST["rygbøjningKilo"]);
-    $abcrunchRep = htmlspecialchars($_POST["abcrunchRep"]);
-    $abcrunchKilo = htmlspecialchars($_POST["abcrunchKilo"]);
-    $brystpresRep = htmlspecialchars($_POST["brystpresRep"]);
-    $brystpresKilo = htmlspecialchars($_POST["brystpresKilo"]);
-    $legpressRep = htmlspecialchars($_POST["legpressRep"]);
-    $legpressKilo = htmlspecialchars($_POST["legpressKilo"]);
-    $legcurlRep = htmlspecialchars($_POST["legcurlRep"]);
-    $legcurlKilo = htmlspecialchars($_POST["legcurlKilo"]);
-    $legextensionRep = htmlspecialchars($_POST["legextensionRep"]);
-    $legextensionKilo = htmlspecialchars($_POST["legextensionKilo"]);
-    $bicepsRep = htmlspecialchars($_POST["bicepsRep"]);
-    $bicepsKilo = htmlspecialchars($_POST["bicepsKilo"]);
-    $buttupsRep = htmlspecialchars($_POST["buttupsRep"]);
-    $pullupsRep = htmlspecialchars($_POST["pullupsRep"]);
-    $pullupsKilo = htmlspecialchars($_POST["pullupsKilo"]);
-    $løbTid = htmlspecialchars($_POST["løbTid"]);
-    $løbBelastning = htmlspecialchars($_POST["løbBelastning"]);
-    $rystemaskineTid = htmlspecialchars($_POST["rystemaskineTid"]);
-    $musik = htmlspecialchars($_POST["musik"]);
-    $vand = htmlspecialchars($_POST["vand"]);
-    $vægt = htmlspecialchars($_POST["vægt"]);
-    $bemærkning = htmlspecialchars($_POST["bemærkning"]);
+    $cykelTid = isset($_POST["cykelTid"]) ? intval($_POST["cykelTid"]) : 0;
+    $cykelBelastning = isset($_POST["cykelBelastning"]) ? intval($_POST["cykelBelastning"]) : 0;
+    $pulldownRep = isset($_POST["pulldownRep"]) ? intval($_POST["pulldownRep"]) : 0;
+    $pulldownKilo = isset($_POST["pulldownKilo"]) ? intval($_POST["pulldownKilo"]) : 0;
+    $rygbøjningRep = isset($_POST["rygbøjningRep"]) ? intval($_POST["rygbøjningRep"]) : 0;
+    $rygbøjningKilo = isset($_POST["rygbøjningKilo"]) ? intval($_POST["rygbøjningKilo"]) : 0;
+    $abcrunchRep = isset($_POST["abcrunchRep"]) ? intval($_POST["abcrunchRep"]) : 0;
+    $abcrunchKilo = isset($_POST["abcrunchKilo"]) ? intval($_POST["abcrunchKilo"]) : 0;
+    $brystpresRep = isset($_POST["brystpresRep"]) ? intval($_POST["brystpresRep"]) : 0;
+    $brystpresKilo = isset($_POST["brystpresKilo"]) ? intval($_POST["brystpresKilo"]) : 0;
+    $legpressRep = isset($_POST["legpressRep"]) ? intval($_POST["legpressRep"]) : 0;
+    $legpressKilo = isset($_POST["legpressKilo"]) ? intval($_POST["legpressKilo"]) : 0;
+    $legcurlRep = isset($_POST["legcurlRep"]) ? intval($_POST["legcurlRep"]) : 0;
+    $legcurlKilo = isset($_POST["legcurlKilo"]) ? intval($_POST["legcurlKilo"]) : 0;
+    $legextensionRep = isset($_POST["legextensionRep"]) ? intval($_POST["legextensionRep"]) : 0;
+    $legextensionKilo = isset($_POST["legextensionKilo"]) ? intval($_POST["legextensionKilo"]) : 0;
+    $bicepsRep = isset($_POST["bicepsRep"]) ? intval($_POST["bicepsRep"]) : 0;
+    $bicepsKilo = isset($_POST["bicepsKilo"]) ? intval($_POST["bicepsKilo"]) : 0;
+    $buttupsRep = isset($_POST["buttupsRep"]) ? intval($_POST["buttupsRep"]) : 0;
+    $pullupsRep = isset($_POST["pullupsRep"]) ? intval($_POST["pullupsRep"]) : 0;
+    $pullupsKilo = isset($_POST["pullupsKilo"]) ? intval($_POST["pullupsKilo"]) : 0;
+    $løbTid = isset($_POST["løbTid"]) ? intval($_POST["løbTid"]) : 0;
+    $løbBelastning = isset($_POST["løbBelastning"]) ? intval($_POST["løbBelastning"]) : 0;
+    $rystemaskineTid = isset($_POST["rystemaskineTid"]) ? intval($_POST["rystemaskineTid"]) : 0;
+    $musik = isset($_POST["musik"]) ? htmlspecialchars($_POST["musik"]) : '';
+    $vand = isset($_POST["vand"]) ? htmlspecialchars($_POST["vand"]) : '';
+    $vægt = isset($_POST["vægt"]) ? htmlspecialchars($_POST["vægt"]) : '';
+    $bemærkning = isset($_POST["bemærkning"]) ? htmlspecialchars($_POST["bemærkning"]) : '';
+    
     
     
     if ($workoutDates) {
@@ -232,23 +233,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="workoutMusik">
                     <h3>Musik Genre:</h3>
                 <input type="radio" id="podcast" name="musik" value="Podcast">
-                <label for="podcast">Podcast</label><br>
+                <label for="podcast">Podcast</label>
                 <input type="radio" id="rock" name="musik" value="Rock">
-                <label for="rock">Rock // Metalcore</label><br>
+                <label for="rock">Rock // Metalcore</label>
                 <input type="radio" id="intet" name="musik" value="intet">
-                <label for="intet">Intet // TV i centeret</label><br>
+                <label for="intet">Intet // TV i centeret</label>
                 </div>
 
                 <!-- VAND --> 
                 <div class="workoutVandOgVægt">
+                <div>
                 <h3>Vand:</h3>
                 
-                <input type="text" id="vand" name="vand" placeholder="Drukket vand?">
-                
+                    <input type="text" id="vand" name="vand" placeholder="Drukket vand?">
+                </div>
                 <!-- VÆGT --> 
+                <div>
                 <h3>Vægt:</h3>
                 
-                <input type="text" id="vægt" name="vægt" placeholder="Vægt">
+                    <input type="text" id="vægt" name="vægt" placeholder="Vægt">
+                </div>
                 </div>
 
                 <!-- BEMÆRKNING -->

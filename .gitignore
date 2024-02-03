@@ -20,4 +20,5 @@
 ehthumbs.db
 Thumbs.db
 
+#Remove of Connection file
 connection.php

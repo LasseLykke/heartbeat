@@ -12,3 +12,5 @@ $mysqli = new mysqli("localhost", "root", "root", "heartbeat");
 if (!$conn) {
     echo "Connection failed!" . mysqli_connect_error();
 }
+
+/* TEST*/

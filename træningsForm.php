@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mysqli->close();
 
         //  Går tilbage til bekræftelses side fra form.
-        header("Location: forside.php");
+        header("Location: success.php");
         exit();
 }}
 ?>

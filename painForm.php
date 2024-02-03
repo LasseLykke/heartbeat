@@ -11,14 +11,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $painType = htmlspecialchars($_POST["painType"]);
     $painKillers = htmlspecialchars($_POST["painKillers"]);
     $painDuration = htmlspecialchars($_POST["painDuration"]);
+    $painWorkout = htmlspecialchars($_POST["painWorkout"]);
     $painNotes = htmlspecialchars($_POST["painNotes"]);
     
-    if ($painDates && $painState && $painLevel !== null || $painType && $painKillers && $painDuration && $painNotes) 
+    if ($painDates && $painState && $painLevel !== null || $painType && $painKillers && $painDuration && $painWorkout && $painNotes) 
         {
         $mysqli->begin_transaction();
 
 
-    $sql = "INSERT INTO pain (painDates, painState, painLevel, painType, painKillers, painDuration, painNotes) VALUES (?,?,?,?,?,?,?)";
+    $sql = "INSERT INTO pain (painDates, painState, painLevel, painType, painKillers, painDuration, painWorkout, painNotes) VALUES (?,?,?,?,?,?,?,?)";
 
     $stmt = $mysqli->prepare($sql);
 
@@ -26,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Error: " . $mysqli->error);
     }
 
-    $stmt->bind_param("sssssss", $painDates, $painState, $painLevel, $painType, $painKillers, $painDuration, $painNotes);
+    $stmt->bind_param("ssssssss", $painDates, $painState, $painLevel, $painType, $painKillers, $painDuration, $painWorkout, $painNotes);
     $stmt->execute();
 
     // Commit the transaction if the first statement executed successfully
@@ -39,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mysqli->close();
 
         //  Går tilbage til bekræftelses side fra form.
-        header("Location: forside.php");
+        header("Location: success.php");
         exit();
 }}
 ?>
@@ -130,6 +131,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <h3>Varighed:</h3>
                     <label for="painDuration"></label>
                     <input type="number" id="painDuration" name="painDuration" placeholder="Angiv i timer">
+                </div>
+
+                <!-- TRÆNET DAGEN FØR? -->
+                <div class="painWorkout">
+                <h3>Trænet dagen før?</h3>
+                <input type="radio" id="painWorkout_ja" name="painWorkout" value="Ja" required>
+                <label for="painState_ja">Ja</label> 
+                <input type="radio" id="painWorkout_nej" name="painWorkout" value="Nej" checked required>
+                <label for="painWorkout_nej">Nej</label>
                 </div>
 
                 <!-- BEMÆRKNING -->

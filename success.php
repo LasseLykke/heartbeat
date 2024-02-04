@@ -8,7 +8,7 @@ include 'header.php';
 <html lang="en">
 
 <head>
-
+<meta http-equiv = "refresh" content = "3; url = https://www.lasselykke.com/forside.php" />
 
 
     <title>HEARTBEAT || SUCCESS</title>
@@ -41,7 +41,7 @@ include 'header.php';
 <?php
 /* Hvis ikke logget ind bliver man sendt tilbage til login skærm */
 } else {
-    header("Location: forside.php");
+    header("Location: index.php");
     exit();
 }
 ?>

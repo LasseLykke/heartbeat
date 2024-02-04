@@ -1,3 +1,11 @@
+<?php 
+session_start();
+
+if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
+include 'header.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="dk">
 
@@ -47,3 +55,11 @@
 </body>
 
 </html>
+
+<?php
+/* Hvis ikke logget ind bliver man sendt tilbage til login skærm */
+} else {
+    header("Location: index.php");
+    exit();
+}
+?>

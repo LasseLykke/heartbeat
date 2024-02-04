@@ -1,3 +1,15 @@
+.frontWrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.git {
+  color: var(--background);
+}
+
 .loginWrapper {
     background-color: var(--background);
     height: 100vh;

@@ -60,4 +60,3 @@ if (
     header("Location: reg.php");
     exit();
 }
-?>

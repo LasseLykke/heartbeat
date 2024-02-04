@@ -1,4 +1,5 @@
 <?php 
+ob_start();
 session_start();
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
@@ -72,6 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: success.php");
         exit();
 }}
+ob_end_flush();
 ?>
 
 
@@ -79,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>H E A R T B E A T || WorkOut Log </title>
+        <title>H E A R T B E A T || Work Out </title>
     </head>
     <body>
 

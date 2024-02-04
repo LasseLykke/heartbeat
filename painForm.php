@@ -1,8 +1,9 @@
 <?php 
+ob_start();
 session_start();
-
-if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 include 'header.php';
+if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $painDates = htmlspecialchars($_POST["dato"]);
@@ -41,27 +42,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         //  Går tilbage til bekræftelses side fra form.
         header("Location: success.php");
-        exit();
-}}
+        exit(); 
+    }}
+    ob_end_flush();
 ?>
-
-
 <!DOCTYPE html>
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <title>H E A R T B E A T || Pain </title>
     </head>
     <body>
-
-    <?php
+<?php
         // Viser success eller fejl meddelelse
         if (isset($_SESSION["message"])) {
         echo "<p>{$_SESSION["message"]}</p>";
         unset($_SESSION["message"]);
         } 
-    ?>
-
+?>
         <div class="formWrapper">
             <form class="painForm" action="" method="POST">
                 <h1>Hovedpine:</h1>

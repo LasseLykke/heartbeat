@@ -35,4 +35,3 @@ if (isset($_POST['submit'])) {
         echo "Kan ikke uploade denne filtype";
     }
 };
-?>

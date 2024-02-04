@@ -1,13 +1,14 @@
 <?php 
 session_start();
+include 'header.php';
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
-include 'header.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+<meta charset="UTF-8" />
 <meta http-equiv = "refresh" content = "3; url = https://www.lasselykke.com/forside.php" />
 
 
@@ -38,6 +39,7 @@ include 'header.php';
 </body>
 
 </html>
+
 <?php
 /* Hvis ikke logget ind bliver man sendt tilbage til login skærm */
 } else {

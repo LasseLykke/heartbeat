@@ -49,7 +49,7 @@ include 'header.php';
         <label for="">Re password</label>
         <input type="password" name="re_password" placeholder="Re_Password"><br>
         <button type="submit">Register</button>
-        <a href="index.php" class="ca">Already have an account?</a>
+        <a href="heartbeat.php" class="ca">Already have an account?</a>
     </form>
 
 </body>

@@ -9,8 +9,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <html>
 
     <head>
-<title>HEARTBEAT || FORSIDE</title>
-    <link rel="shortcut icon" href="" type="image/x-icon"/>
+        <!-- Logger ud efter 15min -->
+        <meta http-equiv="refresh" content="1500;url=logout.php" />
+        <title>HEARTBEAT || FORSIDE</title>
+        <link rel="shortcut icon" href="" type="image/x-icon"/>
     </head>
 
     <body>

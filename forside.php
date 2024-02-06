@@ -29,11 +29,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
 
                 <a href="painForm.php">
-                    <button>Hovedpine Form</button>
+                    <button class="submit">Hovedpine Form</button>
                 </a>
 
                 <a href="træningsForm.php">
-                    <button>Træning</button>
+                    <button class="submit">Træning</button>
                 </a>
 
 </body>

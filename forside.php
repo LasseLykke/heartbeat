@@ -16,9 +16,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     </head>
 
     <body>
-        <nav class="nav">
-            <a href="logout.php"><button class="signOut" alt="LogOut"></button>
-        </a>
+    <div class="forsideWrapper">
         </nav>
         <div class="header">
             <h1>Hej 
@@ -26,16 +24,25 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 /* Trækker login bruger ind*/
                 echo $_SESSION['name'];
                 ?> 👋🏻</h1>
-                </div>
-
-                <a href="painForm.php">
-                    <button class="submit">Hovedpine Form</button>
-                </a>
-
-                <a href="træningsForm.php">
-                    <button class="submit">Træning</button>
-                </a>
-
+        </div>
+        <div class="formContainer">
+            <h2>Forms:</h2>
+            <a href="painForm.php"><button class="submit">Hovedpine Form</button></a>
+            <a href="træningsForm.php"><button class="submit">Workout Form</button></a>
+        </div>
+        
+        <div class="dataContainer">
+            <h2>Data:</h2>
+        <a href="painForm.php"><button class="submit">Hovedpine</button></a>
+        <a href="painForm.php"><button class="submit">Workouts</button></a>
+        <a href="painForm.php"><button class="submit">Hovedpine X Workout</button></a>
+        </div>
+                <footer>
+            <nav class="nav">
+            <a href="logout.php"><button class="signOut" alt="LogOut">Log ud</button>
+        </a>
+        </footer>
+        </div>
 </body>
 
 </html>

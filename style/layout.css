@@ -1,3 +1,24 @@
+body {
+  background-color: var(--offwhite);
+}
+
+/* FRONT PAGES */
+
+.frontpageWrapper {
+    padding: 1em;
+    max-width: 45rem;
+    margin-inline: auto;
+    padding-top: 100px;
+  }
+
+
+.splashContent {
+    min-height: calc(50vh);
+    background-color: var(--offwhite);
+}
+
+
+/* HEARTBEAT */
 .loginWrapper {
     background-color: var(--background);
     height: 100vh;
@@ -81,6 +102,8 @@
     display: none;
 }
 
+/* BTN */
+
 .loginBtn {
     display: flex;
     margin: 0 auto;
@@ -91,6 +114,11 @@
     color: var(--softwhite);
     transition: 250ms;
     transition-timing-function: ease-in-out;
+    font-family: 'Mulish' sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 400;
+    text-transform: uppercase;
 }
 
 .loginBtn:hover {
@@ -100,12 +128,42 @@
 }
 
 .submit {
-    background-color: var(--background);
-    color: var(--softwhite);
+    background-color: var(--offwhite);
+    color: var(--background);
     border: none;
     border-radius: 3px;
     padding: 10px 20px;
+    margin-top: 10px;
 }
+
+.signOut {
+  background-color: var(--offwhite);
+  color: var(--background);
+  border: none;
+  border-radius: 3px;
+  padding: 10px 20px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.forsideWrapper {
+  background-color: var(--background);
+  height: 100vh;
+  /*max-width: 45rem;*/
+  margin-inline: auto;
+  padding-top: 100px;
+}
+
+.formContainer {
+  text-align: center;
+  padding: 30px;
+}
+
+.dataContainer {
+  text-align: center;
+  padding: 30px;
+}
+
 
 
 /* PAIN FORM */

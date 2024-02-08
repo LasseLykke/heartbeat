@@ -240,6 +240,8 @@ ob_end_flush();
                 <label for="podcast">Podcast</label>
                 <input type="radio" id="rock" name="musik" value="Rock">
                 <label for="rock">Rock // Metalcore</label>
+                <input type="radio" id="elektronisk" name="musik" value="Elektronisk">
+                <label for="rock">Elektronisk</label>
                 <input type="radio" id="intet" name="musik" value="intet">
                 <label for="intet">Intet // TV i centeret</label>
                 </div>

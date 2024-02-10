@@ -12,7 +12,7 @@ include 'header.php';
 <body>
     <div class="loginWrapper">
     <form class="loginform" action="login.php" method="POST">
-        <div class="centerImg">
+        <div class="centerLogo">
         <img src="/img/logo.png" alt="logo" class="logo"></div>
         <h1 class="header">Heartbeat</h1>
     

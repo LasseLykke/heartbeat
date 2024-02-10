@@ -1,107 +1,194 @@
-body {
-  background-color: var(--offwhite);
-}
-
-/* FRONT PAGES */
-
+/* PORTFOLIO */
 .frontpageWrapper {
-    padding: 1em;
-    max-width: 45rem;
-    margin-inline: auto;
-    padding-top: 100px;
-  }
+  padding: 1em;
+  max-width: 45rem;
+  margin-inline: auto;
+  padding-top: 100px;
+}
 
 
 .splashContent {
-    min-height: calc(50vh);
+  min-height: calc(50vh);
 }
 
-
-/* HEARTBEAT */
+/* HEARTBEAT LOGIN */
 .loginWrapper {
-    background-color: var(--background);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  background-color: var(--background);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .centerImg {
-    display: flex;
-    justify-content: center;
-    height: auto;
+  display: flex;
+  justify-content: center;
+  height: auto;
 }
 .logo {
-    height: 100px;
-    width: 100px;
-    margin: 0 auto;
-    animation: pulse 1.5s ease-in-out infinite both;
+  height: 100px;
+  width: 100px;
+  margin: 0 auto;
+  animation: pulse 1.5s ease-in-out infinite both;
 }
 
 @keyframes pulse {
-    from {
-      -webkit-transform: scale(1);
-              transform: scale(1);
-      -webkit-transform-origin: center center;
-              transform-origin: center center;
-      -webkit-animation-timing-function: ease-out;
-              animation-timing-function: ease-out;
-    }
-    10% {
-      -webkit-transform: scale(0.91);
-              transform: scale(0.91);
-      -webkit-animation-timing-function: ease-in;
-              animation-timing-function: ease-in;
-    }
-    17% {
-      -webkit-transform: scale(0.98);
-              transform: scale(0.98);
-      -webkit-animation-timing-function: ease-out;
-              animation-timing-function: ease-out;
-    }
-    33% {
-      -webkit-transform: scale(0.87);
-              transform: scale(0.87);
-      -webkit-animation-timing-function: ease-in;
-              animation-timing-function: ease-in;
-    }
-    45% {
-      -webkit-transform: scale(1);
-              transform: scale(1);
-      -webkit-animation-timing-function: ease-out;
-              animation-timing-function: ease-out;
-    }
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-transform-origin: center center;
+            transform-origin: center center;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
   }
-  
+  10% {
+    -webkit-transform: scale(0.91);
+            transform: scale(0.91);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  17% {
+    -webkit-transform: scale(0.98);
+            transform: scale(0.98);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  33% {
+    -webkit-transform: scale(0.87);
+            transform: scale(0.87);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  45% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+}
+
 
 .loginarea {
-    background-color: var(--background);
-    display: inline-block;
+  background-color: var(--background);
+  display: inline-block;
 }
 
 .user-name, .user-pass  {
-    display: inline-block;
+  display: inline-block;
 }
 
 .user-name input, .user-pass input {
-    cursor: text;
-    padding: 5px 0;
-    color: var(--softwhite);
-    margin-bottom: 30px;
-    border: none;
-    border-bottom: 1px solid var(--softwhite);
-    outline: none;
-    background: transparent;
+  cursor: text;
+  padding: 5px 0;
+  color: var(--softwhite);
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid var(--softwhite);
+  outline: none;
+  background: transparent;
 }
 .user-name input:hover, .user-pass input:hover {
-    border-bottom: 1px solid var(--pink);
+  border-bottom: 1px solid var(--pink);
 }
 
 .user-name label, .user-pass label {
-    display: none;
+  display: none;
 }
 
-/* BTN */
+/* HEARTBEAT FORSIDE */
+.forsideWrapper {
+  background-color: var(--background);
+  height: 100vh;
+  /*max-width: 45rem;*/
+  margin-inline: auto;
+  padding-top: 100px;
+}
+
+.formContainer {
+  text-align: center;
+  padding: 30px;
+}
+
+.dataContainer {
+  text-align: center;
+  padding: 30px;
+}
+
+/* FORMS */
+/* PAIN FORM */
+
+.formWrapper {
+  background-color: white;
+  box-shadow: 0px 2px 16px -10px rgba(0,0,0,0.88);
+  border-radius: 10px;
+  color: var(--darkgrey);
+  min-height: 90vh;
+  width: 600px;
+  max-width: 90%;
+  padding: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.painDate, .painState, .painLevel, .painType, .painKillers, .painNotes, .workoutDate, .workoutCykel,
+.workoutPulldown, .workoutRygbøjning, .workoutAbs, .workoutBrystpres, .workoutLegpress, .workoutLegcurl, .workoutLegextension, .workoutBiceps,
+.workoutButtups, .workoutPullups, .workoutLøb, .workoutRyst, .workoutMusik, .workoutVandOgVægt, .workoutBemærkning {
+  padding: 10px 0px 10px 0px;
+  text-align: left;
+}
+
+.painNotes label {
+  display: block;
+}
+
+.painDate input, .painDuration input {
+  outline: 1px solid var(--grey);
+  border: none;
+  border-radius: 4px;
+  padding: 5px;
+  margin-top: 5px;
+  display: block;
+}
+input:focus {
+  outline: 1px solid var(--background);
+  border: none;
+}
+
+textarea {
+  resize: none;
+  padding: 7px 10px;
+  margin-top: 5px;
+  border-radius: 4px;
+  border-color: var(--grey);
+  outline: none;
+}
+
+
+.painState input[type="radio"] {
+  accent-color: var(--background);
+}
+
+.workoutVandOgVægt {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.workoutMusik input[type="radio"] {
+  display: inline;
+  margin-right: 3px;
+}
+
+/* DATA UDTRÆK */
+
+
+
+/* BUTTONS */
 
 .loginBtn {
     display: flex;
@@ -118,6 +205,7 @@ body {
     letter-spacing: 2px;
     font-weight: 400;
     text-transform: uppercase;
+    font-family: 'Mulish', sans-serif;
 }
 
 .loginBtn:hover {
@@ -145,100 +233,11 @@ body {
   text-align: center;
 }
 
-.forsideWrapper {
-  background-color: var(--background);
-  height: 100vh;
-  /*max-width: 45rem;*/
-  margin-inline: auto;
-  padding-top: 100px;
-}
-
-.formContainer {
-  text-align: center;
-  padding: 30px;
-}
-
-.dataContainer {
-  text-align: center;
-  padding: 30px;
-}
-
-
-
-/* PAIN FORM */
-
-.formWrapper {
-    background-color: white;
-    box-shadow: 0px 2px 16px -10px rgba(0,0,0,0.88);
-    border-radius: 10px;
-    color: var(--darkgrey);
-    min-height: 90vh;
-    width: 600px;
-    max-width: 90%;
-    padding: 30px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.painDate, .painState, .painLevel, .painType, .painKillers, .painNotes, .workoutDate, .workoutCykel,
-.workoutPulldown, .workoutRygbøjning, .workoutAbs, .workoutBrystpres, .workoutLegpress, .workoutLegcurl, .workoutLegextension, .workoutBiceps,
-.workoutButtups, .workoutPullups, .workoutLøb, .workoutRyst, .workoutMusik, .workoutVandOgVægt, .workoutBemærkning {
-    padding: 10px 0px 10px 0px;
-    text-align: left;
-}
-
-.painNotes label {
-    display: block;
-}
-
-
-textarea {
-    resize: none;
-    padding: 7px 10px;
-    margin-top: 5px;
-    border-radius: 4px;
-    border-color: var(--grey);
-    outline: none;
-}
-
-.painDate input, .painDuration input {
-    outline: 1px solid var(--grey);
-    border: none;
-    border-radius: 4px;
-    padding: 5px;
-    margin-top: 5px;
-    display: block;
-}
-input:focus {
-    outline: 1px solid var(--background);
-    border: none;
-}
-
-.painState input[type="radio"] {
-    accent-color: var(--background);
-}
-
-.workoutVandOgVægt {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-}
-
-.workoutMusik input[type="radio"] {
-    display: inline;
-    margin-right: 3px;
-}
-
 
 
 /* SUCCESS */
 .success-wrapper {
-	background-color: var(--grey);
+	background-color: var(--offwhite);
 	height: 100vh;
 	display: flex;
 	flex-direction: column;

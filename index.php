@@ -42,6 +42,12 @@ include 'header.php';
                 <h3 class="projectName">Salongitte.dk</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus expedita, aspernatur id quos natus quo et itaque optio delectus voluptas officia porro autem, odit minima aut officiis, repellat at ullam.</p>
             </div>
-</div>
+
+            <div class="connectWrapper">
+                <br> <!-- FJERN DENNE MED EN PADDING ISTEDET!-->
+                <h1>Let's connect!</h1><br>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quibusdam eos quia labore, corporis atque possimus in officiis odit ipsa.</p>
+            </div>
+        </div>
     </body>
 </html>

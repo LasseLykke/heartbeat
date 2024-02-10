@@ -18,7 +18,7 @@
 }
 
 body {
-    background-color: #fbfbfb;
+    background-color: var(--offwhite);
 }
 
 input {
@@ -30,7 +30,7 @@ input {
     accent-color: var(--background);
 }
 
-input:focus {
-    /*outline: 1px solid var(--background);*/
+input:active {
     border: none;
+    outline: none;
 }

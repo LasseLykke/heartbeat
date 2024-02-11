@@ -95,22 +95,25 @@
   display: none;
 }
 
-/* HEARTBEAT FORSIDE */
+/* HEARTBEAT // FORSIDE */
 .forsideWrapper {
-  background-color: var(--background);
-  height: 100vh;
-  /*max-width: 45rem;*/
+  background-color: #fff;
+  max-width: 45rem;
   margin-inline: auto;
+  margin-top: 20px;
   padding-top: 100px;
+  min-height: 90vh;
+  border-radius: 10px;
+  box-shadow: 0px 2px 16px -10px rgba(0,0,0,0.48);
 }
 
 .formContainer {
-  text-align: center;
+  text-align: left;
   padding: 30px;
 }
 
 .dataContainer {
-  text-align: center;
+  text-align: left;
   padding: 30px;
 }
 
@@ -119,7 +122,7 @@
 
 .formWrapper {
   background-color: white;
-  box-shadow: 0px 2px 16px -10px rgba(0,0,0,0.88);
+  box-shadow: 0px 2px 16px -10px rgba(0,0,0,0.48);
   border-radius: 10px;
   color: var(--darkgrey);
   min-height: 90vh;
@@ -129,13 +132,9 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
-.painDate, .painState, .painLevel, .painType, .painKillers, .painNotes, .workoutDate, .workoutCykel,
+.painDate, .painState, .painLevel, .painType, .painKillers, .painDuration, .painWorkout, .painNotes, .workoutDate, .workoutCykel,
 .workoutPulldown, .workoutRygbøjning, .workoutAbs, .workoutBrystpres, .workoutLegpress, .workoutLegcurl, .workoutLegextension, .workoutBiceps,
 .workoutButtups, .workoutPullups, .workoutLøb, .workoutRyst, .workoutMusik, .workoutVandOgVægt, .workoutBemærkning {
   padding: 10px 0px 10px 0px;
@@ -157,6 +156,10 @@
 input:focus {
   outline: 1px solid var(--background);
   border: none;
+}
+
+.painState input, .painLevel input, .painType input, .painKillers input, .painWorkout input {
+  display: inline-block;
 }
 
 textarea {
@@ -183,6 +186,11 @@ textarea {
   display: inline;
   margin-right: 3px;
 }
+
+.workoutBemærkning label {
+  display: block;
+}
+
 
 /* DATA UDTRÆK */
 
@@ -215,8 +223,8 @@ textarea {
 }
 
 .submit {
-    background-color: var(--offwhite);
-    color: var(--background);
+    background-color: var(--darkgrey);
+    color: var(--offwhite);
     border: none;
     border-radius: 3px;
     padding: 10px 20px;
@@ -224,8 +232,8 @@ textarea {
 }
 
 .signOut {
-  background-color: var(--offwhite);
-  color: var(--background);
+  background-color: var(--darkgrey);
+  color: var(--offwhite);
   border: none;
   border-radius: 3px;
   padding: 10px 20px;

@@ -18,7 +18,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <body>
     <div class="forsideWrapper">
         </nav>
-        <div class="header">
+        <div class="hello">
             <h1>Hej 
                 <?php
                 /* Trækker login bruger ind*/
@@ -26,13 +26,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 ?> 👋🏻</h1>
         </div>
         <div class="formContainer">
-            <h2>Forms:</h2>
+            <h2 class="formHeader">Forms:</h2>
             <a href="painForm.php"><button class="submit">Hovedpine Form</button></a>
             <a href="træningsForm.php"><button class="submit">Workout Form</button></a>
         </div>
         
         <div class="dataContainer">
-            <h2>Data:</h2>
+            <h2 class="formHeader">Data Summary:</h2>
         <a href="painForm.php"><button class="submit">Hovedpine</button></a>
         <a href="painForm.php"><button class="submit">Workouts</button></a>
         <a href="painForm.php"><button class="submit">Hovedpine X Workout</button></a>

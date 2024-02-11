@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <!-- HAFT HOVEDPINE -->
                 <div class="painState">
-                <h3>Haft hovedpine?</h3>
+                <h3>Haft hovedpine?</h3><br>
                 <input type="radio" id="painState_ja" name="painState" value="Ja" required>
                 <label for="painState_ja">Ja</label> 
                 <input type="radio" id="painState_nej" name="painState" value="Nej" required>
@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <!-- SVÆRHEDSGRAD -->
                 <div class="painLevel">
-                <h3>Sværhedsgrad:</h3>
+                <h3>Sværhedsgrad:</h3><br>
                 <input type="radio" id="0" name="painLevel" value="0" checked>
                 <label for="0">0</label>
                 <input type="radio" id="1" name="painLevel" value="1">
@@ -107,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <!-- Pain type -->
                 <div class="painType">
-                <h3>Type:</h3>
+                <h3>Type:</h3><br>
                 <input type="radio" id="spænding" name="painType" value="Spænding">
                 <label for="spænding">Spændingshovedpine</label><br>
                 <input type="radio" id="migræne" name="painType" value="Migræne">
@@ -120,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <!-- EKSTRA MEDICIN -->
                 <div class="painKillers">
-                <h3>Ekstra medicin:</h3>
+                <h3>Ekstra medicin:</h3><br>
                 <input type="radio" id="0" name="painKillers" value="0" checked required>
                 <label for="0">0</label>
                 <input type="radio" id="1" name="painKillers" value="1" required>
@@ -139,7 +139,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <!-- TRÆNET DAGEN FØR? -->
                 <div class="painWorkout">
-                <h3>Trænet dagen før?</h3>
+                <h3>Trænet dagen før?</h3><br>
                 <input type="radio" id="painWorkout_ja" name="painWorkout" value="Ja" required>
                 <label for="painState_ja">Ja</label> 
                 <input type="radio" id="painWorkout_nej" name="painWorkout" value="Nej" checked required>

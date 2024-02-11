@@ -36,6 +36,20 @@ label {
     padding-right: 10px;
 }
 
+.hello {
+    color: var(--background);
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 5px;
+    font-size: 16px;
+    padding-bottom: 40px;
+    font-weight: 1000;
+}
+
+.formHeader {
+    color: var(--darkgrey);
+}
+
 /* LOGIN HEADER */
 .header {
     text-transform: uppercase;

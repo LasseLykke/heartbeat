@@ -82,7 +82,7 @@ ob_end_flush();
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Logger ud efter 15min -->
-        <meta http-equiv="refresh" content="1500;url=logout.php" />
+        <meta http-equiv="refresh" content="4500;url=logout.php" />
         <title>H E A R T B E A T || Work Out </title>
     </head>
     <body>
@@ -235,7 +235,7 @@ ob_end_flush();
                 
                 <!-- MUSIK & GENRE --> 
                 <div class="workoutMusik">
-                    <h3>Musik Genre:</h3>
+                    <h3>Musik Genre:</h3><br>
                 <input type="radio" id="podcast" name="musik" value="Podcast">
                 <label for="podcast">Podcast</label>
                 <input type="radio" id="rock" name="musik" value="Rock">

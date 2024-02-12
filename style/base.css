@@ -5,6 +5,16 @@
 }
 
 :root {
+    --grey: #f2f2f2;
+    --dark: #191a19;
+    --white: #ffffff;
+    --feat: #EA0300;
+    --black: #000000;
+
+    --b-shadow-xs: 0px 3px 9px -4px rgba(0,0,0,0.21);
+    --b-shadow-s: 0px 3px 18px -4px rgba(0,0,0,0.24);
+
+
     --background: #191A19;
     --softwhite: #f2f2f2;
     --pink: #fc93ad;

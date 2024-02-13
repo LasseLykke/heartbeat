@@ -13,7 +13,7 @@
 
 /* HEARTBEAT LOGIN */
 .loginWrapper {
-  background-color: var(--background);
+  background-color: var(--dark);
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -69,7 +69,7 @@
 
 
 .loginarea {
-  background-color: var(--background);
+  background-color: var(--dark);
   display: inline-block;
 }
 
@@ -80,15 +80,15 @@
 .user-name input, .user-pass input {
   cursor: text;
   padding: 5px 0;
-  color: var(--softwhite);
+  color: var(--grey);
   margin-bottom: 30px;
   border: none;
-  border-bottom: 1px solid var(--softwhite);
+  border-bottom: 1px solid var(--grey);
   outline: none;
   background: transparent;
 }
 .user-name input:hover, .user-pass input:hover {
-  border-bottom: 1px solid var(--pink);
+  border-bottom: 1px solid var(--red);
 }
 
 .user-name label, .user-pass label {
@@ -97,14 +97,14 @@
 
 /* HEARTBEAT // FORSIDE */
 .forsideWrapper {
-  background-color: #fff;
+  background-color: var(--white);
   max-width: 45rem;
   margin-inline: auto;
   margin-top: 20px;
   padding-top: 100px;
   min-height: 90vh;
   border-radius: 10px;
-  box-shadow: 0px 2px 16px -10px rgba(0,0,0,0.48);
+  box-shadow: var(--b-shadow-xs);
 }
 
 .formContainer {
@@ -121,10 +121,9 @@
 /* PAIN FORM */
 
 .formWrapper {
-  background-color: white;
-  box-shadow: 0px 2px 16px -10px rgba(0,0,0,0.48);
+  background-color: var(--white);
+  box-shadow: var(--b-shadow-xs);
   border-radius: 10px;
-  color: var(--darkgrey);
   min-height: 90vh;
   width: 600px;
   max-width: 90%;
@@ -146,7 +145,7 @@
 }
 
 .painDate input, .painDuration input {
-  outline: 1px solid var(--grey);
+  outline: 0.5px solid var(--grey-xs);
   border: none;
   border-radius: 4px;
   padding: 5px;
@@ -154,7 +153,6 @@
   display: block;
 }
 input:focus {
-  outline: 1px solid var(--background);
   border: none;
 }
 
@@ -173,7 +171,7 @@ textarea {
 
 
 .painState input[type="radio"] {
-  accent-color: var(--background);
+  accent-color: var(--dark);
 }
 
 .workoutVandOgVægt {
@@ -202,10 +200,10 @@ textarea {
     display: flex;
     margin: 0 auto;
     padding: 5px 15px;
-    border: 1px solid var(--softwhite);
+    border: 1px solid var(--grey);
     border-radius: 2px;
-    background-color: var(--background);
-    color: var(--softwhite);
+    background-color: var(--dark);
+    color: var(--grey);
     transition: 250ms;
     transition-timing-function: ease-in-out;
     font-family: 'Mulish' sans-serif;
@@ -213,27 +211,37 @@ textarea {
     letter-spacing: 2px;
     font-weight: 400;
     text-transform: uppercase;
-    font-family: 'Mulish', sans-serif;
 }
 
 .loginBtn:hover {
-    background-color: var(--softwhite);
-    color: var(--background);
-    border: 1px solid var(--background);
+    background-color: var(--grey);
+    color: var(--dark);
+    border: 1px solid var(--grey);
+}
+
+.formBtn {
+  background-color: var(--dark);
+  color: var(--grey);
+  border: none;
+  border-radius: 3px;
+  padding: 10px 20px;
+  font-weight: 700;
 }
 
 .submit {
-    background-color: var(--darkgrey);
-    color: var(--offwhite);
+    background-color: var(--feat);
+    color: var(--grey);
     border: none;
     border-radius: 3px;
-    padding: 10px 20px;
+    padding: 15px 30px;
     margin-top: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
 }
 
 .signOut {
-  background-color: var(--darkgrey);
-  color: var(--offwhite);
+  background-color: var(--dark);
+  color: var(--grey);
   border: none;
   border-radius: 3px;
   padding: 10px 20px;
@@ -245,7 +253,7 @@ textarea {
 
 /* SUCCESS */
 .success-wrapper {
-	background-color: var(--offwhite);
+	background-color: var(--grey);
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -291,7 +299,7 @@ textarea {
 	content: "";
 	height: 100px;
 	position: absolute;
-	background: var(--bg);
+	background: var(--grey);
 	transform: rotate(-45deg);
   }
   .success-checkmark .check-icon .icon-line {
@@ -335,7 +343,7 @@ textarea {
 	height: 85px;
 	position: absolute;
 	transform: rotate(-45deg);
-	background-color: var(--bg);
+	background-color: var(--grey);
   }
   
   @keyframes rotate-circle {

@@ -2,6 +2,7 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-family: 'Mulish', sans-serif;
 }
 
 :root {
@@ -10,11 +11,12 @@
     --white: #ffffff;
     --feat: #EA0300;
     --black: #000000;
+    --grey-xs: #dbdbdb;
 
     --b-shadow-xs: 0px 3px 9px -4px rgba(0,0,0,0.21);
     --b-shadow-s: 0px 3px 18px -4px rgba(0,0,0,0.24);
 
-
+/*
     --background: #191A19;
     --softwhite: #f2f2f2;
     --pink: #fc93ad;
@@ -24,7 +26,7 @@
     --grey:#dbdbdb;
     --red: #f83735;
 
-
+*/
 }
 
 body {
@@ -32,16 +34,25 @@ body {
 }
 
 input {
-    outline: 1px solid var(--grey);
+    outline: 0.5px solid var(--grey-xs);
     border: none;
     border-radius: 4px;
     padding: 5px;
     margin-top: 5px;
-    accent-color: var(--background);
+    accent-color: var(--dark);
     display: block;
 }
+
+input:focus {
+    border: none;
+  }
 
 input:active {
     border: none;
     outline: none;
 }
+
+input[type="radio"] {
+    outline: 0;
+}
+

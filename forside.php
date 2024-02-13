@@ -27,15 +27,15 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         </div>
         <div class="formContainer">
             <h2 class="formHeader">Forms:</h2>
-            <a href="painForm.php"><button class="submit">Hovedpine Form</button></a>
-            <a href="træningsForm.php"><button class="submit">Workout Form</button></a>
+            <a href="painForm.php"><button class="formBtn">Hovedpine Form</button></a>
+            <a href="træningsForm.php"><button class="formBtn">Workout Form</button></a>
         </div>
         
         <div class="dataContainer">
             <h2 class="formHeader">Data Summary:</h2>
-        <a href="painForm.php"><button class="submit">Hovedpine</button></a>
-        <a href="painForm.php"><button class="submit">Workouts</button></a>
-        <a href="painForm.php"><button class="submit">Hovedpine X Workout</button></a>
+        <a href="painForm.php"><button class="formBtn">Hovedpine</button></a>
+        <a href="painForm.php"><button class="formBtn">Workouts</button></a>
+        <a href="painForm.php"><button class="formBtn">Hovedpine X Workout</button></a>
         </div>
                 <footer>
             <nav class="nav">

@@ -11,7 +11,7 @@ h1 {
 
 h2 {
     text-transform: uppercase;
-    color: var(--offwhite);
+    color: var(--dark);
 }
 
 h3 {
@@ -30,14 +30,14 @@ label {
 
 
 .projectName {
-    border-bottom: 5px solid var(--red);
+    border-bottom: 5px solid var(--feat);
     margin-bottom: 10px;
     margin-top: 10px;
     padding-right: 10px;
 }
 
 .hello {
-    color: var(--background);
+    color: var(--dark);
     text-transform: uppercase;
     text-align: center;
     letter-spacing: 5px;
@@ -47,14 +47,14 @@ label {
 }
 
 .formHeader {
-    color: var(--darkgrey);
+    color: var(--dark);
 }
 
 /* LOGIN HEADER */
 .header {
     text-transform: uppercase;
     text-align: center;
-    color: var(--softwhite);
+    color: var(--grey);
     letter-spacing: 5px;
     font-size: 16px;
     padding-bottom: 40px;
@@ -63,12 +63,12 @@ label {
 
 .user-name input, .user-pass input {
     font-size: 12px;
-    color: var(--softwhite);
+    color: var(--grey);
 }
 
 .user-name input::after, .user-pass input::after {
-    background-color: pink;
-    color: var(--softwhite);
+    background-color: var(--feat);
+    color: var(--grey);
 }
 
 .user-name input::placeholder, .user-pass input::placeholder {

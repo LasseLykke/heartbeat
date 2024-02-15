@@ -254,7 +254,7 @@ ob_end_flush();
                     <input type="text" id="vand" name="vand" placeholder="Drukket vand?">
                 </div>
                 <!-- VÆGT --> 
-                <div>
+                <div> <br>
                 <h3>Vægt:</h3>
                 
                     <input type="text" id="vægt" name="vægt" placeholder="Vægt">

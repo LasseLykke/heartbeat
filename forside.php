@@ -34,9 +34,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         
         
         <div class="dataContainer">
-
         <?php 
-        // Step 2: Execute SQL Query
         $sql1 = "SELECT workoutID FROM workout";
         $result1 = $conn->query($sql1);
 
@@ -44,17 +42,16 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         $result2 = $conn->query($sql2);
         ?>
     
-        
         <h2 class="formHeader">Data Summary:</h2>
         
         <div class="cartWrapper">
             <div class="cart">
-                <h3>Workouts:</h3>
+                <h3 class="cartheader">Workouts:</h3>
                 <a href="træningsform.php"><button class="cartBtn">
                 <h1 class="test">
                     <?php 
                     if ($result1->num_rows > 0) {
-                        // Fetch the first row
+                        // Display workoutID
                             $row1 = $result1->fetch_assoc();
                             echo "<div id='cartBtn'>";
                             echo "<h3>" . $row1["workoutID"] . "</h3>";
@@ -67,8 +64,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </button></a>
             </div>
 
+
             <div class="cart">
-                <h3>Pain:</h3>
+                <h3 class="cartheader">Hovedpine:</h3>
                 <a href="painForm.php"><button class="cartBtn">
                 <h1 class="test">
                     <?php 
@@ -76,7 +74,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         $row2 = $result2->fetch_assoc();
                         $count = $row2['num_rows'];
                     
-                        // Display the count in HTML
+                        // Display the count
                         echo "<div id='cart'>";
                         echo "<h3>" . $count . "</h3>";
                         echo "</div>";
@@ -89,20 +87,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             </div>
         </div>
             
-        <!-- 
-        <a href="træningsForm.php"><button class="cart">
-                <h4 class="name">Workout's</h4>
-                <p>data point</p></button></a>
-
-            <a href="painForm.php"><button class="cart">
-                <div class="name">
-                    <h4>Workout's</h4>
-                </div>
-                <div class="data">
-                    <p>data point</p>
-                </div>
-            </button></a>
--->
         </div>
                 <footer>
             <nav class="nav">

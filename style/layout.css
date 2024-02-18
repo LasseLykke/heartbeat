@@ -252,14 +252,15 @@ textarea {
   text-align: center;
 }
 
+
+/* GIV NYT NAVN + ER DET EN BUTTON?*/
 .cart {
   background-color: var(--white);
   box-shadow: var(--b-shadow-xs);
   color: var(--dark);
 
   border: none;
-  max-width: 150px;
-  min-width: 100px;
+  max-width: 250px;
   max-height: 150px;
   min-height: 100px;
   border-radius:15px;
@@ -267,22 +268,29 @@ textarea {
   padding: 10px;
   margin-right: 50px;
 }
-
+/* GIV NYT NAVN*/
 .cartBtn {
   display: flex;
   flex-direction: column;
   justify-content: center;
   border: none;
+  background-color: transparent;
+}
+/* GIV NYT NAVN*/
+.cartheader {
+  font-size: 0.90rem;
 }
 
+/* GIV NYT NAVN*/
 .test {
   text-align: center;
   text-transform: uppercase;
   line-height: 1;
   letter-spacing: normal;
-  margin-top: 15px;
-  margin-left: 40px;
-  font-size: 2.5em;
+  align-items: center;
+  /*margin-top: 15px;
+  margin-left: 40px;*/
+  font-size: 2.3em;
 }
 
 .name {

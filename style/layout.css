@@ -116,8 +116,12 @@
 .dataContainer {
   text-align: left;
   padding: 30px;
+}
+
+.cartWrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 
 /* FORMS */
@@ -254,15 +258,31 @@ textarea {
   color: var(--dark);
 
   border: none;
+  max-width: 150px;
   min-width: 100px;
-  min-height: 150px;
+  max-height: 150px;
+  min-height: 100px;
   border-radius:15px;
   text-align: left;
-  padding: 3px;
+  padding: 10px;
+  margin-right: 50px;
+}
 
+.cartBtn {
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: center;
+  border: none;
+}
+
+.test {
+  text-align: center;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: normal;
+  margin-top: 15px;
+  margin-left: 40px;
+  font-size: 2.5em;
 }
 
 .name {

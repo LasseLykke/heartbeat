@@ -47,7 +47,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         
         <div class="cartWrapper">
             <div class="cart">
-                <h3 class="cartheader">Workouts:</h3>
+                <h3 class="cartheader">Workouts</h3>
                 <a href="træningsform.php"><button class="cartBtn">
                 <h1 class="test">
                     <?php 
@@ -67,7 +67,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
 
             <div class="cart">
-                <h3 class="cartheader">Hovedpine:</h3>
+                <h3 class="cartheader">Hovedpiner</h3>
                 <a href="painForm.php"><button class="cartBtn">
                 <h1 class="test">
                     <?php 

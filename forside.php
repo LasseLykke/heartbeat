@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 
 
@@ -35,7 +36,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         
         <div class="dataContainer">
         <?php 
-        $sql1 = "SELECT workoutID FROM workout";
+        $sql1 = "SELECT COUNT(workoutID) AS totalWorkouts FROM workout";
         $result1 = $conn->query($sql1);
 
         $sql2 = "SELECT COUNT(*) AS num_rows FROM pain WHERE painState = 'Ja'";
@@ -51,14 +52,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 <h1 class="test">
                     <?php 
                     if ($result1->num_rows > 0) {
-                        // Display workoutID
-                            $row1 = $result1->fetch_assoc();
-                            echo "<div id='cartBtn'>";
-                            echo "<h3>" . $row1["workoutID"] . "</h3>";
-                            echo "</div>";
-                        } else {
-                            echo "0";
-                        }
+                        $row1 = $result1->fetch_assoc();
+                        $totalWorkouts = $row1["totalWorkouts"];
+                        echo "<div id='cartBtn'>";
+                        echo "<h3>" . $totalWorkouts . "</h3>";
+                        echo "</div>";
+                    } else {
+                        echo "0";
+                    }
                     ?>
                 </h1>
                 </button></a>
@@ -81,6 +82,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     } else {
                         echo "Ingen resultater fundet";
                     }
+                    ob_end_flush();
                     ?>
                 </h1>
                 </button></a>

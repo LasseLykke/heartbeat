@@ -31,22 +31,22 @@ include 'header.php';
                     Developed using PHP and backed by MySQL, it offers a tailored solution for individual needs. 
                     By meticulously recording my training progress and headache occurrences within this private platform, I can analyze potential correlations and gain insights into my health and fitness journey. 
                     This personalized approach ensures confidentiality and security, as the data is solely accessible to me. 
-                    With Project Heartbeat, I have a powerful tool at my disposal to monitor and manage your well-being effectively.</p>
+                    With Project Heartbeat, I have a powerful tool at my disposal to monitor and manage your well-being effectively.</p><br>
 
                 <h3 class="projectName">Holmfoto.dk</h3>
                 <p>I have recently completed the development of an e-commerce website utilizing WordPress as the platform and incorporating custom CSS & PHP for tailored design elements. 
                     The motivation behind this project stemmed from the need to establish a strong online presence for the business. 
-                    By venturing into the digital realm, we aimed to broaden the companys market reach and enhance accessibility to it's products and services.</p>
+                    By venturing into the digital realm, we aimed to broaden the companys market reach and enhance accessibility to it's products and services.</p><br>
 
                 <h3 class="projectName">Donnés</h3>
                 <p>Donnés is a customer management program designed to run locally on a LAMP STACK server.<br>
                     Developed out of the necessity for a simple yet efficient solution to handle customer orders within my day job, Donnés provides a streamlined approach to order management without the need for complex software suites.<br>
-                    Built using PHP, Donnés seamlessly communicates with a SQL database, which is hosted locally on the server. This setup ensures data security and allows for efficient data processing and retrieval.</p>
+                    Built using PHP, Donnés seamlessly communicates with a SQL database, which is hosted locally on the server. This setup ensures data security and allows for efficient data processing and retrieval.</p><br>
 
                 <h3 class="projectName">Salongitte.dk</h3>
                 <p>Salon Gitte's website has been crafted using HTML and SASS. When my friend, a hairdresser, needed an update to her website, I took the opportunity to assist.<br>
                 The primary objective for the website was to be static, requiring no frequent updates, as her clients primarily engage with her business through Facebook. The website serves as a point of reference, displaying crucial information such as Salon Gitte's opening hours and providing a simple and accessible way for potential clients to get in touch.<br>
-                In addition to the static content, I optimized the meta-tags to enhance Salon Gitte's visibility on Google, ensuring that her business stands out online and attracts more potential clients.</p>
+                In addition to the static content, I optimized the meta-tags to enhance Salon Gitte's visibility on Google, ensuring that her business stands out online and attracts more potential clients.</p><br>
             </div>
 
             <!--

@@ -28,7 +28,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 ?> 👋🏻</h1>
         </div>
         <div class="formContainer">
-            <h2 class="formHeader">Forms:</h2>
+            <h2 class="formHeader">Input:</h2>
             <a href="painForm.php"><button class="formBtn">Hovedpine Form</button></a>
             <a href="træningsForm.php"><button class="formBtn">Workout Form</button></a>
         </div>
@@ -46,10 +46,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <h2 class="formHeader">Data Summary:</h2>
         
         <div class="cartWrapper">
-            <div class="cart">
+            <div class="cart-xs">
                 <h3 class="cartheader">Workouts</h3>
                 <a href="træningsform.php"><button class="cartBtn">
-                <h1 class="test">
+                <h1 class="cartNumber">
                     <?php 
                     if ($result1->num_rows > 0) {
                         $row1 = $result1->fetch_assoc();
@@ -65,37 +65,44 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </button></a>
             </div>
 
-
-            <div class="cart">
+            <div class="cart-xs">
                 <h3 class="cartheader">Hovedpiner</h3>
                 <a href="painForm.php"><button class="cartBtn">
-                <h1 class="test">
+                <h1 class="cartNumber">
                     <?php 
                     if ($result2->num_rows > 0) {
                         $row2 = $result2->fetch_assoc();
                         $count = $row2['num_rows'];
                     
                         // Display the count
-                        echo "<div id='cart'>";
+                        echo "<div id='cart-xs'>";
                         echo "<h3>" . $count . "</h3>";
                         echo "</div>";
                     } else {
                         echo "Ingen resultater fundet";
                     }
-                    ob_end_flush();
                     ?>
                 </h1>
                 </button></a>
             </div>
         </div>
-            
+
+<!-- TEST AF LARGE CART -->
+        <div class="cartWrapper">
+            <div class="cart-s">
+            <h3 class="cartheader">Hovedpiner</h3>
+                <a href="painForm.php"><button class="cartBtn">
+                <h1 class="cartNumber">
+                    
+                </h1>
+                </button></a>
+            </div>
         </div>
-                <footer>
-            <nav class="nav">
-            <a href="logout.php"><button class="signOut" alt="LogOut">Log ud</button>
-        </a>
-            </nav>
-        </footer>
+
+        </div>
+        <div class="footer">
+            <a href="logout.php"><button class="signOut" alt="LogOut">Log ud</button></a>
+                </div>
         </div>
 </body>
 

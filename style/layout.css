@@ -129,11 +129,12 @@
 }
 
 .footer {
-  max-width: 600px;
-  width: 100%;
-  position: fixed;
-  bottom: 100px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
 }
 
 /* FORMS */
@@ -284,6 +285,11 @@ textarea {
   text-align: left;
   padding: 10px;
   margin-right: 50px;
+}
+
+.cart-xs:hover {
+  box-shadow: var(--b-shadow-s);
+  transition: 300ms ease-in-out;
 }
 
 .cart-s {

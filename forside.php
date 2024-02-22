@@ -100,6 +100,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         </div>
 
         </div>
+    </div>
         <div class="footer">
             <a href="logout.php"><button class="signOut" alt="LogOut">Log ud</button></a>
                 </div>

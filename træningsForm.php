@@ -34,6 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $musik = isset($_POST["musik"]) ? htmlspecialchars($_POST["musik"]) : '';
     $vand = isset($_POST["vand"]) ? htmlspecialchars($_POST["vand"]) : '';
     $vægt = isset($_POST["vægt"]) ? htmlspecialchars($_POST["vægt"]) : '';
+    $workoutVarighed = isset($_POST["workoutVarighed"]) ? htmlspecialchars($_POST["workoutVarighed"]) : '';
     $bemærkning = isset($_POST["bemærkning"]) ? htmlspecialchars($_POST["bemærkning"]) : '';
     
     
@@ -46,8 +47,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO workout 
     (workoutDates, cykelTid, cykelBelastning, pulldownRep, pulldownKilo, rygbøjningRep, rygbøjningKilo, abcrunchRep,
      abcrunchKilo, brystpresRep, brystpresKilo, legpressRep, legpressKilo, legcurlRep, legcurlKilo, legextensionRep, legextensionKilo, bicepsRep, bicepsKilo, buttupsRep, pullupsRep, pullupsKilo, 
-     løbTid, løbBelastning, rystemaskineTid, musik, vand, vægt, bemærkning) 
-     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+     løbTid, løbBelastning, rystemaskineTid, musik, vand, vægt, workoutVarighed, bemærkning) 
+     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     $stmt = $mysqli->prepare($sql);
 
@@ -55,9 +56,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Error: " . $mysqli->error);
     }
 
-    $stmt->bind_param("sssssssssssssssssssssssssssss", $workoutDates, $cykelTid, $cykelBelastning, $pulldownRep, $pulldownKilo, $rygbøjningRep, $rygbøjningKilo, $abcrunchRep, $abcrunchKilo, 
+    $stmt->bind_param("ssssssssssssssssssssssssssssss", $workoutDates, $cykelTid, $cykelBelastning, $pulldownRep, $pulldownKilo, $rygbøjningRep, $rygbøjningKilo, $abcrunchRep, $abcrunchKilo, 
     $brystpresRep, $brystpresKilo, $legpressRep, $legpressKilo, $legcurlRep, $legcurlKilo, $legextensionRep, $legextensionKilo, $bicepsRep, $bicepsKilo, $buttupsRep, $pullupsRep, $pullupsKilo, 
-    $løbTid, $løbBelastning, $rystemaskineTid, $musik, $vand, $vægt, $bemærkning);
+    $løbTid, $løbBelastning, $rystemaskineTid, $musik, $vand, $vægt, $workoutVarighed, $bemærkning);
     $stmt->execute();
 
     // Commit the transaction if the first statement executed successfully
@@ -259,6 +260,13 @@ ob_end_flush();
                 
                     <input type="text" id="vægt" name="vægt" placeholder="Vægt">
                 </div>
+                </div>
+
+                <!-- Workout Varighed --> 
+                <div class="workoutVarighed">
+                    <h3>Varighed:</h3>
+                <label for="workoutVarighed"></label>
+                <input type="text" id="workoutVarighed" name="workoutVarighed" placeholder="Tid i minutter">
                 </div>
 
                 <!-- BEMÆRKNING -->

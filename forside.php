@@ -29,8 +29,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         </div>
         <div class="formContainer">
             <h2 class="formHeader">Input:</h2>
-            <a href="painForm.php"><button class="formBtn">Hovedpine Form</button></a>
-            <a href="træningsForm.php"><button class="formBtn">Workout Form</button></a>
+            <a href="painForm.php"><button class="formBtn">Daglig log</button></a>
+            <a href="træningsForm.php"><button class="formBtn">Workout's</button></a>
         </div>
         
         
@@ -48,7 +48,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <div class="cartWrapper">
             <div class="cart-xs">
                 <h3 class="cartheader">Workouts</h3>
-                <a href="træningsform.php"><button class="cartBtn">
+                <a href="træningsForm.php"><button class="cartBtn">
                 <h1 class="cartNumber">
                     <?php 
                     if ($result1->num_rows > 0) {

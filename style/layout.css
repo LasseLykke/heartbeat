@@ -155,12 +155,12 @@
 
 .painDate, .painState, .painLevel, .painType, .painKillers, .painDuration, .painWorkout, .painNotes, .workoutDate, .workoutCykel,
 .workoutPulldown, .workoutRygbøjning, .workoutAbs, .workoutBrystpres, .workoutLegpress, .workoutLegcurl, .workoutLegextension, .workoutBiceps,
-.workoutButtups, .workoutPullups, .workoutLøb, .workoutRyst, .workoutMusik, .workoutVandOgVægt, .workoutBemærkning {
+.workoutButtups, .workoutPullups, .workoutLøb, .workoutRyst, .workoutMusik, .workoutVandOgVægt, .workoutBemærkning, .dailyJob, .dailyAktivitet, .dailyAktivitetNotes {
   padding: 10px 0px 10px 0px;
   text-align: left;
 }
 
-.painNotes label {
+.painNotes label, .dailyAktivitetNotes label {
   display: block;
 }
 
@@ -176,7 +176,7 @@ input:focus {
   border: none;
 }
 
-.painState input, .painLevel input, .painType input, .painKillers input, .painWorkout input {
+.painState input, .painLevel input, .painType input, .painKillers input, .painWorkout input, .dailyJob input, .dailyAktivitet input {
   display: inline-block;
 }
 

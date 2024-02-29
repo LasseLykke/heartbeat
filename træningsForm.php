@@ -83,8 +83,8 @@ ob_end_flush();
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Logger ud efter 15min -->
-        <meta http-equiv="refresh" content="4500;url=logout.php" />
+        <!-- Logger ud efter halvanden time -->
+        <meta http-equiv="refresh" content="5400;url=logout.php" />
         <title>H E A R T B E A T || Work Out </title>
     </head>
     <body>

@@ -7,6 +7,7 @@ include 'header.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $workoutDates = htmlspecialchars($_POST["dato"]);
+    $workoutSkade = isset($_POST["workoutSkade"]) ? htmlspecialchars($_POST["workoutSkade"]) : '';
     $cykelTid = isset($_POST["cykelTid"]) ? intval($_POST["cykelTid"]) : 0;
     $cykelBelastning = isset($_POST["cykelBelastning"]) ? intval($_POST["cykelBelastning"]) : 0;
     $pulldownRep = isset($_POST["pulldownRep"]) ? intval($_POST["pulldownRep"]) : 0;
@@ -45,10 +46,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
        
 
     $sql = "INSERT INTO workout 
-    (workoutDates, cykelTid, cykelBelastning, pulldownRep, pulldownKilo, rygbøjningRep, rygbøjningKilo, abcrunchRep,
+    (workoutDates, workoutSkade, cykelTid, cykelBelastning, pulldownRep, pulldownKilo, rygbøjningRep, rygbøjningKilo, abcrunchRep,
      abcrunchKilo, brystpresRep, brystpresKilo, legpressRep, legpressKilo, legcurlRep, legcurlKilo, legextensionRep, legextensionKilo, bicepsRep, bicepsKilo, buttupsRep, pullupsRep, pullupsKilo, 
      løbTid, løbBelastning, rystemaskineTid, musik, vand, vægt, workoutVarighed, bemærkning) 
-     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     $stmt = $mysqli->prepare($sql);
 
@@ -56,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Error: " . $mysqli->error);
     }
 
-    $stmt->bind_param("ssssssssssssssssssssssssssssss", $workoutDates, $cykelTid, $cykelBelastning, $pulldownRep, $pulldownKilo, $rygbøjningRep, $rygbøjningKilo, $abcrunchRep, $abcrunchKilo, 
+    $stmt->bind_param("sssssssssssssssssssssssssssssss", $workoutDates, $workoutSkade, $cykelTid, $cykelBelastning, $pulldownRep, $pulldownKilo, $rygbøjningRep, $rygbøjningKilo, $abcrunchRep, $abcrunchKilo, 
     $brystpresRep, $brystpresKilo, $legpressRep, $legpressKilo, $legcurlRep, $legcurlKilo, $legextensionRep, $legextensionKilo, $bicepsRep, $bicepsKilo, $buttupsRep, $pullupsRep, $pullupsKilo, 
     $løbTid, $løbBelastning, $rystemaskineTid, $musik, $vand, $vægt, $workoutVarighed, $bemærkning);
     $stmt->execute();
@@ -105,6 +106,13 @@ ob_end_flush();
                     <h3>Dato:</h3>
                 <label for="workoutDates"></label>
                 <input type="date" id="workoutDates" name="dato">
+                </div>
+
+                <!-- Skadet --> 
+                <div class="workoutSkade">
+                    <h3>Skadet:</h3>
+                <label for="workoutSkade"></label>
+                <input type="text" id="workoutSkade" name="workoutSkade" placeholder="Beskriv skade">
                 </div>
 
                 <!-- CYKEL -->

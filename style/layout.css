@@ -207,6 +207,22 @@ textarea {
 
 
 /* DATA UDTRÆK */
+.dataWrapper {
+  background-color: var(--white);
+  max-width: 45rem;
+  margin-inline: auto;
+  margin-top: 20px;
+  padding-top: 100px;
+  min-height: 90vh;
+  border-radius: 10px;
+  box-shadow: var(--b-shadow-xs);
+}
+
+.dataResultat {
+  margin: 30px;
+}
+/*Single page udtræk*/
+
 
 
 

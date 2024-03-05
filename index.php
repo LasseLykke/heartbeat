@@ -18,9 +18,8 @@ include 'header.php';
             <div class="splashContent">
             <h1>Hello</h1><br>
             <h1>I'm Lasse Lykke 👋🏻</h1><br>
-            <p>a Danish professional with a dual identity: by day, I navigate the world of sales, but by night, I'm immersed in the art of web development and technology.<br> From Denmark's vibrant landscape, I draw inspiration and a unique perspective that infuses my work with innovation and creativity.
-            In the realm of sales, I excel in communication and persuasion, driving tangible results. However, it's during my free time that I truly thrive, pouring my passion into building websites and staying at the forefront of technological advancements.
-            Join me on this journey where technology and creativity intersect, and together, let's craft digital experiences that resonate and endure.
+            <p>By day, I navigate the realm of sales, but by night, I transform into a self-taught web developer, fueled by my love for coffee. <br>
+                With each sip, I dive into coding, crafting tools that empower and assist others. My passion for creation knows no bounds, as I seamlessly blend the worlds of commerce and technology, leaving a digital mark on those I serve.
             </p>
             </div>
 

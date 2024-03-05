@@ -7,6 +7,9 @@ include 'header.php';
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8" />
+        <meta name="description" content="Explore the portfolio of Lasse Lykke, showcasing his creative projects and professional work.">
+        <meta name="keywords" content="Lasse Lykke, portfolio, projects, creative, sales, design, development">
+        <meta name="author" content="Lasse Lykke">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <title>lasselykke DOT com </title>
     </head>
@@ -31,37 +34,37 @@ include 'header.php';
                     Developed using PHP and backed by MySQL, it offers a tailored solution for individual needs. 
                     By meticulously recording my training progress and headache occurrences within this private platform, I can analyze potential correlations and gain insights into my health and fitness journey. 
                     This personalized approach ensures confidentiality and security, as the data is solely accessible to me. 
-                    With Project Heartbeat, I have a powerful tool at my disposal to monitor and manage your well-being effectively.</p>
-                    <a class="links" target="_blank" href="https://github.com/LasseLykke/heartbeat">Github Repo</a>
-                    <br>
+                    With Project Heartbeat, I have a powerful tool at my disposal to monitor and manage your well-being effectively.</p><br>
+                    <a class="links" target="_blank" href="https://github.com/LasseLykke/heartbeat">Github Repo<img src="img/github.svg" class="icons" alt="icon"></a>
+                    <br><br>
 
                 <h3 class="projectName">Holmfoto.dk</h3>
                 <p>I have recently completed the development of an e-commerce website utilizing WordPress as the platform and incorporating custom CSS & PHP for tailored design elements. 
                     The motivation behind this project stemmed from the need to establish a strong online presence for the business. 
-                    By venturing into the digital realm, we aimed to broaden the companys market reach and enhance accessibility to it's products and services.</p>
-                    <a class="links" target="_blank" href="https://www.holmfoto.dk">Live site</a>
-                    <br>
+                    By venturing into the digital realm, we aimed to broaden the companys market reach and enhance accessibility to it's products and services.</p><br>
+                    <a class="links" target="_blank" href="https://www.holmfoto.dk">Live site<img src="img/linkout.svg" class="icons" alt="icon"></a>
+                    <br><br>
 
                 <h3 class="projectName">Donnés</h3>
                 <p>Donnés is a customer management program designed to run locally on a LAMP STACK server.<br>
                     Developed out of the necessity for a simple yet efficient solution to handle customer orders within my day job, Donnés provides a streamlined approach to order management without the need for complex software suites.<br>
-                    Built using PHP, Donnés seamlessly communicates with a SQL database, which is hosted locally on the server. This setup ensures data security and allows for efficient data processing and retrieval.</p>
-                    <a class="links" target="_blank" href="https://github.com/LasseLykke/Donnes">Github Repo</a>
-                    <br>
+                    Built using PHP, Donnés seamlessly communicates with a SQL database, which is hosted locally on the server. This setup ensures data security and allows for efficient data processing and retrieval.</p><br>
+                    <a class="links" target="_blank" href="https://github.com/LasseLykke/Donnes">Github Repo<img src="img/github.svg" class="icons" alt="icon"></a>
+                    <br><br>
 
                 <h3 class="projectName">Salongitte.dk</h3>
                 <p>Salon Gitte's website has been crafted using HTML and SASS. When my friend, a hairdresser, needed an update to her website, I took the opportunity to assist.<br>
                 The primary objective for the website was to be static, requiring no frequent updates, as her clients primarily engage with her business through Facebook. The website serves as a point of reference, displaying crucial information such as Salon Gitte's opening hours and providing a simple and accessible way for potential clients to get in touch.<br>
-                In addition to the static content, I optimized the meta-tags to enhance Salon Gitte's visibility on Google, ensuring that her business stands out online and attracts more potential clients.</p>
-                <a class="links" target="_blank" href="http://www.salongitte.dk/">Live site</a>
-                <br>
+                In addition to the static content, I optimized the meta-tags to enhance Salon Gitte's visibility on Google, ensuring that her business stands out online and attracts more potential clients.</p><br>
+                <a class="links" target="_blank" href="http://www.salongitte.dk/">Live site<img src="img/linkout.svg" class="icons" alt="icon"></a>
+                <br><br>
 
                 <h3 class="projectName">Møllegaardkeramik.dk</h3>
                 <p>Møllegaardkeramik's online shop is like a virtual gallery, made using WordPress with a personal touch of CSS and PHP magic. It's a way of bringing the beauty of our handmade pottery to your fingertips, beyond just our physical store.<br>
                 Behind the scenes, the custom PHP features ensure that your shopping experience is smooth sailing. And the look and feel of our site? Well, it's like stepping into our actual store, with every detail reflecting the heart and soul of Møllegaardkeramik.<br>
-                I'll also sprinkled some special CSS touches to make sure the pottery shines bright on your screen, just like it does in person. And hey, we've even made sure Google knows we're here, so finding us online is a breeze.</p>
-                <a class="links" target="_blank" href="https://www.moellegaardkeramik.dk/">Live site</a>
-                <br>
+                I'll also sprinkled some special CSS touches to make sure the pottery shines bright on your screen, just like it does in person. And hey, we've even made sure Google knows we're here, so finding us online is a breeze.</p><br>
+                <a class="links" target="_blank" href="https://www.moellegaardkeramik.dk/">Live site <img src="img/linkout.svg" class="icons" alt="icon"></a>
+                <br><br>
             </div>
 
             <!--

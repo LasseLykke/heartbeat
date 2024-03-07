@@ -51,18 +51,16 @@ include 'header.php';
                     <a class="links" target="_blank" href="https://github.com/LasseLykke/Donnes">Github Repo<img src="img/github.svg" class="icons" alt="icon"></a>
                     <br><br>
 
+                <h3 class="projectName">Møllegaardkeramik.dk</h3>
+                <p>Møllegaardkeramik's online ecommerce is a virtual gallery crafted with WordPress, CSS, and PHP. It brings handmade pottery to your fingertips, extending beyond the physical store.<br> Custom PHP and CSS features ensure smooth shopping, while the site's look and feel reflect the store's essence. </p><br>
+                <a class="links" target="_blank" href="https://www.moellegaardkeramik.dk/">Live site <img src="img/linkout.svg" class="icons" alt="icon"></a>
+                <br><br>
+
                 <h3 class="projectName">Salongitte.dk</h3>
                 <p>Salon Gitte's website has been crafted using HTML and SASS. When my friend, a hairdresser, needed an update to her website, I took the opportunity to assist.<br>
                 The primary objective for the website was to be static, requiring no frequent updates, as her clients primarily engage with her business through Facebook. The website serves as a point of reference, displaying crucial information such as Salon Gitte's opening hours and providing a simple and accessible way for potential clients to get in touch.<br>
                 In addition to the static content, I optimized the meta-tags to enhance Salon Gitte's visibility on Google, ensuring that her business stands out online and attracts more potential clients.</p><br>
                 <a class="links" target="_blank" href="http://www.salongitte.dk/">Live site<img src="img/linkout.svg" class="icons" alt="icon"></a>
-                <br><br>
-
-                <h3 class="projectName">Møllegaardkeramik.dk</h3>
-                <p>Møllegaardkeramik's online shop is like a virtual gallery, made using WordPress with a personal touch of CSS and PHP magic. It's a way of bringing the beauty of our handmade pottery to your fingertips, beyond just our physical store.<br>
-                Behind the scenes, the custom PHP features ensure that your shopping experience is smooth sailing. And the look and feel of our site? Well, it's like stepping into our actual store, with every detail reflecting the heart and soul of Møllegaardkeramik.<br>
-                I'll also sprinkled some special CSS touches to make sure the pottery shines bright on your screen, just like it does in person. And hey, we've even made sure Google knows we're here, so finding us online is a breeze.</p><br>
-                <a class="links" target="_blank" href="https://www.moellegaardkeramik.dk/">Live site <img src="img/linkout.svg" class="icons" alt="icon"></a>
                 <br><br>
             </div>
 

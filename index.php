@@ -64,13 +64,16 @@ include 'header.php';
                 <br><br>
             </div>
 
-            <!--
+            
             <div class="connectWrapper">
-                <br> <!-- FJERN DENNE MED EN PADDING ISTEDET!-->
-                <!--
+                
                 <h1>Let's connect!</h1><br>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quibusdam eos quia labore, corporis atque possimus in officiis odit ipsa.</p>
-            </div> -->
+                <p>Do you have a cool project to build?<br>
+                Feel free to reach out if you're in a need of a Developer. I'm always open for a conversation<br></p>
+                <a class="social" target="_blank" href="https://github.com/LasseLykke"><img src="img/github.svg" class="socialIcons" alt="socialIcon"></a>
+                <a href="mailto:hireme@lasselykke.com"><img src="img/mail.png" class="socialIcons" alt="socialIcon"></a>
+                <a class="social" target="_blank" href="https://instagram.com/lasselearnstocode"><img src="img/instagram.png" class="socialIcons" alt="socialIcon"></a>
+            </div> 
         </div>
     </body>
 </html>

@@ -12,7 +12,8 @@
 }
 
 .connectWrapper {
-  background-color: pink;
+  padding-top: 50px;
+  padding-bottom: 40px;
 }
 
  .links {
@@ -36,6 +37,21 @@
   margin-left: 5px;
   color: pink;
   
+ }
+
+ .social {
+  display: inline-block;
+ }
+
+ .socialIcons {
+  height: 30px;
+  width: 30px;
+  margin: 15px 10px 0px 0px;
+  transition: 250ms ease-in-out;
+ }
+
+ .socialIcons:hover {
+  transform: translateY(0.2em);
  }
 
 /* HEARTBEAT LOGIN */

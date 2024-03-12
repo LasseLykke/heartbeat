@@ -6,7 +6,6 @@
   padding-top: 100px;
 }
 
-
 .splashContent {
   min-height: calc(35vh);
 }
@@ -16,43 +15,42 @@
   padding-bottom: 40px;
 }
 
- .links {
+.links {
   border: 1px solid var(--grey);
   color: var(--black);
   padding: 5px 10px;
   text-decoration: none;
   display: inline-block;
- }
+}
 
- .links:hover {
+.links:hover {
   border: 1px solid var(--black);
   color: var(--feat);
   transition: 500ms;
- }
+}
 
- .icons {
+.icons {
   height: 20px;
   width: 20px;
   vertical-align: middle;
   margin-left: 5px;
   color: pink;
-  
- }
+}
 
- .social {
+.social {
   display: inline-block;
- }
+}
 
- .socialIcons {
+.socialIcons {
   height: 30px;
   width: 30px;
   margin: 15px 10px 0px 0px;
   transition: 250ms ease-in-out;
- }
+}
 
- .socialIcons:hover {
+.socialIcons:hover {
   transform: translateY(0.2em);
- }
+}
 
 /* HEARTBEAT LOGIN */
 .loginWrapper {
@@ -78,49 +76,50 @@
 @keyframes pulse {
   from {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
     -webkit-transform-origin: center center;
-            transform-origin: center center;
+    transform-origin: center center;
     -webkit-animation-timing-function: ease-out;
-            animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
   }
   10% {
     -webkit-transform: scale(0.91);
-            transform: scale(0.91);
+    transform: scale(0.91);
     -webkit-animation-timing-function: ease-in;
-            animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
   }
   17% {
     -webkit-transform: scale(0.98);
-            transform: scale(0.98);
+    transform: scale(0.98);
     -webkit-animation-timing-function: ease-out;
-            animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
   }
   33% {
     -webkit-transform: scale(0.87);
-            transform: scale(0.87);
+    transform: scale(0.87);
     -webkit-animation-timing-function: ease-in;
-            animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
   }
   45% {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
     -webkit-animation-timing-function: ease-out;
-            animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
   }
 }
-
 
 .loginarea {
   background-color: var(--dark);
   display: inline-block;
 }
 
-.user-name, .user-pass  {
+.user-name,
+.user-pass {
   display: inline-block;
 }
 
-.user-name input, .user-pass input {
+.user-name input,
+.user-pass input {
   cursor: text;
   padding: 5px 0;
   color: var(--grey);
@@ -131,11 +130,13 @@
   outline: none;
   background: transparent;
 }
-.user-name input:hover, .user-pass input:hover {
+.user-name input:hover,
+.user-pass input:hover {
   border-bottom: 0.5px solid var(--feat);
 }
 
-.user-name label, .user-pass label {
+.user-name label,
+.user-pass label {
   display: none;
 }
 
@@ -173,7 +174,6 @@
   align-items: center;
   margin-top: 10px;
   margin-bottom: 10px;
-
 }
 
 /* FORMS */
@@ -192,18 +192,45 @@
   margin-top: 40px;
 }
 
-.painDate, .painState, .painLevel, .painType, .painKillers, .painDuration, .painWorkout, .painNotes, .workoutDate, .workoutCykel,
-.workoutPulldown, .workoutRygbøjning, .workoutAbs, .workoutBrystpres, .workoutLegpress, .workoutLegcurl, .workoutLegextension, .workoutBiceps,
-.workoutButtups, .workoutPullups, .workoutLøb, .workoutRyst, .workoutMusik, .workoutVandOgVægt, .workoutBemærkning, .dailyJob, .dailyAktivitet, .dailyAktivitetNotes {
+.painDate,
+.painState,
+.painLevel,
+.painType,
+.painKillers,
+.painDuration,
+.painWorkout,
+.painNotes,
+.workoutDate,
+.workoutCykel,
+.workoutPulldown,
+.workoutRygbøjning,
+.workoutAbs,
+.workoutBrystpres,
+.workoutLegpress,
+.workoutLegcurl,
+.workoutLegextension,
+.workoutBiceps,
+.workoutButtups,
+.workoutPullups,
+.workoutLøb,
+.workoutRyst,
+.workoutMusik,
+.workoutVandOgVægt,
+.workoutBemærkning,
+.dailyJob,
+.dailyAktivitet,
+.dailyAktivitetNotes {
   padding: 10px 0px 10px 0px;
   text-align: left;
 }
 
-.painNotes label, .dailyAktivitetNotes label {
+.painNotes label,
+.dailyAktivitetNotes label {
   display: block;
 }
 
-.painDate input, .painDuration input {
+.painDate input,
+.painDuration input {
   outline: 0.5px solid var(--grey-l);
   border: none;
   border-radius: 4px;
@@ -215,7 +242,13 @@ input:focus {
   border: none;
 }
 
-.painState input, .painLevel input, .painType input, .painKillers input, .painWorkout input, .dailyJob input, .dailyAktivitet input {
+.painState input,
+.painLevel input,
+.painType input,
+.painKillers input,
+.painWorkout input,
+.dailyJob input,
+.dailyAktivitet input {
   display: inline-block;
 }
 
@@ -228,12 +261,9 @@ textarea {
   outline: none;
 }
 
-
 .painState input[type="radio"] {
   accent-color: var(--dark);
 }
-
-
 
 .workoutMusik input[type="radio"] {
   display: inline;
@@ -243,7 +273,6 @@ textarea {
 .workoutBemærkning label {
   display: block;
 }
-
 
 /* DATA UDTRÆK */
 .dataWrapper {
@@ -262,32 +291,73 @@ textarea {
 }
 /*Single page udtræk*/
 
+/*TEST AF MODUL*/
 
+/* Style the button that is used to open and close the collapsible content */
+.collapsible {
+  background-color: #22d834;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
 
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active,
+.collapsible:hover {
+  background-color: #ccc;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  margin-bottom: 10px;
+}
+
+.collapsible:after {
+  content: "\02795"; /* Unicode character for "plus" sign (+) */
+  font-size: 13px;
+  color: white;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
 
 /* BUTTONS & CARTS */
 
 .loginBtn {
-    display: flex;
-    margin: 0 auto;
-    padding: 5px 15px;
-    border: 1px solid var(--grey);
-    border-radius: 2px;
-    background-color: var(--dark);
-    color: var(--grey);
-    transition: 250ms;
-    transition-timing-function: ease-in-out;
-    font-family: 'Mulish' sans-serif;
-    font-size: 11px;
-    letter-spacing: 2px;
-    font-weight: 400;
-    text-transform: uppercase;
+  display: flex;
+  margin: 0 auto;
+  padding: 5px 15px;
+  border: 1px solid var(--grey);
+  border-radius: 2px;
+  background-color: var(--dark);
+  color: var(--grey);
+  transition: 250ms;
+  transition-timing-function: ease-in-out;
+  font-family: "Mulish" sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 400;
+  text-transform: uppercase;
 }
 
 .loginBtn:hover {
-    background-color: var(--grey);
-    color: var(--dark);
-    border: 1px solid var(--grey);
+  background-color: var(--grey);
+  color: var(--dark);
+  border: 1px solid var(--grey);
 }
 
 .formBtn {
@@ -300,14 +370,14 @@ textarea {
 }
 
 .submit {
-    background-color: var(--feat);
-    color: var(--grey);
-    border: none;
-    border-radius: 3px;
-    padding: 15px 30px;
-    margin-top: 10px;
-    text-transform: uppercase;
-    font-weight: 700;
+  background-color: var(--feat);
+  color: var(--grey);
+  border: none;
+  border-radius: 3px;
+  padding: 15px 30px;
+  margin-top: 10px;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
 .signOut {
@@ -325,7 +395,6 @@ textarea {
   transition: 200ms linear;
 }
 
-
 /* Cart -> viser datapoints*/
 .cart-xs {
   background-color: var(--white);
@@ -336,7 +405,7 @@ textarea {
   max-width: 250px;
   max-height: 150px;
   min-height: 100px;
-  border-radius:15px;
+  border-radius: 15px;
   text-align: left;
   padding: 10px;
   margin-right: 50px;
@@ -356,7 +425,7 @@ textarea {
   width: 300px;
   max-height: 150px;
   min-height: 100px;
-  border-radius:15px;
+  border-radius: 15px;
   text-align: left;
   padding: 10px;
   margin-top: 20px;
@@ -365,9 +434,9 @@ textarea {
 
 /* Cart header navn*/
 .cartheader {
-  font-size: 0.90rem;
+  font-size: 0.9rem;
   font-weight: 700;
-  text-transform:none;
+  text-transform: none;
 }
 
 /* Cart anchor/button */
@@ -392,164 +461,161 @@ textarea {
   color: var(--dark);
 }
 
-
-
-
 /* SUCCESS */
 .success-wrapper {
-	background-color: var(--grey);
-	height: 100vh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+  background-color: var(--grey);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /*SUCCESS ANIMATION */
 .success-checkmark {
-	height: 200px;
-	width: 200px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	
+  height: 200px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .success-checkmark .check-icon {
-	width: 80px;
-	height: 80px;
-	position: relative;
-	border-radius: 50%;
-	box-sizing: content-box;
-	border: 4px solid #4CAF50;
+  width: 80px;
+  height: 80px;
+  position: relative;
+  border-radius: 50%;
+  box-sizing: content-box;
+  border: 4px solid #4caf50;
+}
+.success-checkmark .check-icon::before {
+  top: 3px;
+  left: -2px;
+  width: 30px;
+  transform-origin: 100% 50%;
+  border-radius: 100px 0 0 100px;
+}
+.success-checkmark .check-icon::after {
+  top: 0;
+  left: 30px;
+  width: 60px;
+  transform-origin: 0 50%;
+  border-radius: 0 100px 100px 0;
+  animation: rotate-circle 4.25s ease-in;
+}
+.success-checkmark .check-icon::before,
+.success-checkmark .check-icon::after {
+  content: "";
+  height: 100px;
+  position: absolute;
+  background: var(--grey);
+  transform: rotate(-45deg);
+}
+.success-checkmark .check-icon .icon-line {
+  height: 5px;
+  background-color: #4caf50;
+  display: block;
+  border-radius: 2px;
+  position: absolute;
+  z-index: 10;
+}
+.success-checkmark .check-icon .icon-line.line-tip {
+  top: 46px;
+  left: 14px;
+  width: 25px;
+  transform: rotate(45deg);
+  animation: icon-line-tip 0.75s;
+}
+.success-checkmark .check-icon .icon-line.line-long {
+  top: 38px;
+  right: 8px;
+  width: 47px;
+  transform: rotate(-45deg);
+  animation: icon-line-long 0.75s;
+}
+.success-checkmark .check-icon .icon-circle {
+  top: -4px;
+  left: -4px;
+  z-index: 10;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  position: absolute;
+  box-sizing: content-box;
+  border: 4px solid rgba(76, 175, 80, 0.5);
+}
+.success-checkmark .check-icon .icon-fix {
+  top: 8px;
+  width: 5px;
+  left: 26px;
+  z-index: 1;
+  height: 85px;
+  position: absolute;
+  transform: rotate(-45deg);
+  background-color: var(--grey);
+}
+
+@keyframes rotate-circle {
+  0% {
+    transform: rotate(-45deg);
   }
-  .success-checkmark .check-icon::before {
-	top: 3px;
-	left: -2px;
-	width: 30px;
-	transform-origin: 100% 50%;
-	border-radius: 100px 0 0 100px;
+  5% {
+    transform: rotate(-45deg);
   }
-  .success-checkmark .check-icon::after {
-	top: 0;
-	left: 30px;
-	width: 60px;
-	transform-origin: 0 50%;
-	border-radius: 0 100px 100px 0;
-	animation: rotate-circle 4.25s ease-in;
+  12% {
+    transform: rotate(-405deg);
   }
-  .success-checkmark .check-icon::before, .success-checkmark .check-icon::after {
-	content: "";
-	height: 100px;
-	position: absolute;
-	background: var(--grey);
-	transform: rotate(-45deg);
+  100% {
+    transform: rotate(-405deg);
   }
-  .success-checkmark .check-icon .icon-line {
-	height: 5px;
-	background-color: #4CAF50;
-	display: block;
-	border-radius: 2px;
-	position: absolute;
-	z-index: 10;
+}
+@keyframes icon-line-tip {
+  0% {
+    width: 0;
+    left: 1px;
+    top: 19px;
   }
-  .success-checkmark .check-icon .icon-line.line-tip {
-	top: 46px;
-	left: 14px;
-	width: 25px;
-	transform: rotate(45deg);
-	animation: icon-line-tip 0.75s;
+  54% {
+    width: 0;
+    left: 1px;
+    top: 19px;
   }
-  .success-checkmark .check-icon .icon-line.line-long {
-	top: 38px;
-	right: 8px;
-	width: 47px;
-	transform: rotate(-45deg);
-	animation: icon-line-long 0.75s;
+  70% {
+    width: 50px;
+    left: -8px;
+    top: 37px;
   }
-  .success-checkmark .check-icon .icon-circle {
-	top: -4px;
-	left: -4px;
-	z-index: 10;
-	width: 80px;
-	height: 80px;
-	border-radius: 50%;
-	position: absolute;
-	box-sizing: content-box;
-	border: 4px solid rgba(76, 175, 80, 0.5);
+  84% {
+    width: 17px;
+    left: 21px;
+    top: 48px;
   }
-  .success-checkmark .check-icon .icon-fix {
-	top: 8px;
-	width: 5px;
-	left: 26px;
-	z-index: 1;
-	height: 85px;
-	position: absolute;
-	transform: rotate(-45deg);
-	background-color: var(--grey);
+  100% {
+    width: 25px;
+    left: 14px;
+    top: 45px;
   }
-  
-  @keyframes rotate-circle {
-	0% {
-	  transform: rotate(-45deg);
-	}
-	5% {
-	  transform: rotate(-45deg);
-	}
-	12% {
-	  transform: rotate(-405deg);
-	}
-	100% {
-	  transform: rotate(-405deg);
-	}
+}
+@keyframes icon-line-long {
+  0% {
+    width: 0;
+    right: 46px;
+    top: 54px;
   }
-  @keyframes icon-line-tip {
-	0% {
-	  width: 0;
-	  left: 1px;
-	  top: 19px;
-	}
-	54% {
-	  width: 0;
-	  left: 1px;
-	  top: 19px;
-	}
-	70% {
-	  width: 50px;
-	  left: -8px;
-	  top: 37px;
-	}
-	84% {
-	  width: 17px;
-	  left: 21px;
-	  top: 48px;
-	}
-	100% {
-	  width: 25px;
-	  left: 14px;
-	  top: 45px;
-	}
+  65% {
+    width: 0;
+    right: 46px;
+    top: 54px;
   }
-  @keyframes icon-line-long {
-	0% {
-	  width: 0;
-	  right: 46px;
-	  top: 54px;
-	}
-	65% {
-	  width: 0;
-	  right: 46px;
-	  top: 54px;
-	}
-	84% {
-	  width: 55px;
-	  right: 0px;
-	  top: 35px;
-	}
-	100% {
-	  width: 47px;
-	  right: 8px;
-	  top: 38px;
-	}
+  84% {
+    width: 55px;
+    right: 0px;
+    top: 35px;
   }
+  100% {
+    width: 47px;
+    right: 8px;
+    top: 38px;
+  }
+}

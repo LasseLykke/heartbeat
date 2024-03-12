@@ -26,53 +26,77 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
                 <?php
 
-                $sql = "SELECT painDates, painState, painLevel, painType, painKillers, painDuration, painWorkout, painNotes FROM pain WHERE painState = 'Ja'";
+$sql = "SELECT DISTINCT painDates FROM pain WHERE painState = 'Ja' ORDER BY painDates DESC";
+$result = mysqli_query($conn, $sql);
+$queryResult = mysqli_num_rows($result);
 
-                $result = mysqli_query($conn, $sql);
-                $queryResult = mysqli_num_rows($result);
+// Output the count of results
+echo '<div class="resultat">';
+echo "Der er " . $queryResult . " hovedepiner logget";
+echo '</div>';
 
-                echo '<table>
-                        <tr>
-                        <th> Dato </th>
-                        <th> Sværhedsgrad </th>
-                        <th> Type </th>
-                        <th> Varighed </th>
-                        <th> Ekstra Medicin </th>
-                        <th> Trænet dagen før </th>
-                        <th> Bemærkning </th>
-                        </tr>
-                        ';
-                ?>
+if ($queryResult > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $painDate = $row["painDates"];
 
-                <!-- Viser hvor mange resultater der er. -->
-                <div class="resultat">
-                    <?php echo "Der er " . $queryResult . " hovedepiner logget"; ?>
-                </div>
+        // Output a collapsible button for each date
+        echo '<button type="button" class="collapsible">' . $painDate . '</button>';
+        echo '<div class="content">';
+        
+        // Retrieve data for the current date
+        $dateQuery = "SELECT * FROM pain WHERE painDates = '$painDate'";
+        $dateResult = mysqli_query($conn, $dateQuery);
 
-                <?php
-                if ($queryResult > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo '<tr> 
-                        <td>' . $row["painDates"] . '</td>
-                        <td>' . $row["painLevel"] . '</td>
-                        <td> ' . $row["painType"] . '</td> 
-                        <td> ' . $row["painDuration"] . '</td> 
-                        <td> ' . $row["painKillers"] . '</td> 
-                        <td> ' . $row["painWorkout"] . '</td> 
-                        <td> ' . $row["painNotes"] . '</td>
-                        </tr>';
-                    }
-                    echo '</table>';
-                }
+        echo '<table>
+                <tr>
+                <th> Sværhedsgrad </th>
+                <th> Type </th>
+                <th> Varighed </th>
+                <th> Ekstra Medicin </th>
+                <th> Trænet dagen før </th>
+                <th> Bemærkning </th>
+                </tr>';
 
-
-                mysqli_free_result($result);
-
-                // Lukker forbindelsen.
-                mysqli_close($conn);
+        while ($dataRow = mysqli_fetch_assoc($dateResult)) {
+            // Output the table row for each data point
+            echo '<tr> 
+                    <td>' . $dataRow["painLevel"] . '</td>
+                    <td>' . $dataRow["painType"] . '</td> 
+                    <td>' . $dataRow["painDuration"] . '</td> 
+                    <td>' . $dataRow["painKillers"] . '</td> 
+                    <td>' . $dataRow["painWorkout"] . '</td> 
+                    <td>' . $dataRow["painNotes"] . '</td>
+                </tr>';
+        }
+        echo '</table></div>';
+    }
 }
+}
+
+mysqli_free_result($result);
+
+// Close the database connection
+mysqli_close($conn);
 ?>
-</div>
+
+        </div>
+
+        <script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
+}
+</script>
 </body>
 
 </html>

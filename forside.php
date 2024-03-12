@@ -39,7 +39,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         $sql1 = "SELECT COUNT(workoutID) AS totalWorkouts FROM workout";
         $result1 = $conn->query($sql1);
 
-        $sql2 = "SELECT COUNT(*) AS num_rows FROM pain WHERE painState = 'Ja'";
+        $sql2 = "SELECT COUNT(DISTINCT painDates) AS num_rows FROM pain WHERE painState = 'Ja'";
         $result2 = $conn->query($sql2);
         ?>
     

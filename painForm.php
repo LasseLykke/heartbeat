@@ -8,7 +8,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $painDates = htmlspecialchars($_POST["dato"]);
+    $painDate = date("d:m:y", strtotime(htmlspecialchars($_POST["dato"])));
     $painState = htmlspecialchars($_POST["painState"]);
     $painLevel = htmlspecialchars($_POST["painLevel"]);
     $painType = htmlspecialchars($_POST["painType"]);

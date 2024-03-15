@@ -295,32 +295,44 @@ textarea {
 
 /* Style the button that is used to open and close the collapsible content */
 .collapsible {
+  border: none;
   cursor: pointer;
   padding: 18px;
   width: 100%;
-  border: 1px solid var(--dark);
   background-color: white;
   text-align: left;
   outline: none;
   font-size: 15px;
-  margin-bottom: 10px;
+  /*margin-bottom: 10px;*/
+  border-left: 1px solid var(--dark);
+  border-right: 1px solid var(--dark);
+  border-top: 1px solid var(--dark);
+  border-bottom: 1px solid var(--dark);
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active,
-.collapsible:hover {
-  background-color: var(--feat);
-  color: var(--white);
+.active {
+  outline: none;
+  color: var(--dark);
+  border: none;
+  border-left: 1px solid var(--dark);
+  border-right: 1px solid var(--dark);
+  border-top: 1px solid var(--dark);
 }
 
 /* Style the collapsible content. Note: hidden by default */
 .content {
+  border: none;
+  outline: none;
   padding: 0 18px;
   background-color: white;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
   margin-bottom: 10px;
+  border-left: 1px solid var(--dark);
+  border-right: 1px solid var(--dark);
+  border-bottom: 1px solid var(--dark);
 }
 
 .collapsible:after {

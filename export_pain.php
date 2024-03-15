@@ -37,7 +37,7 @@ echo '</div>';
 
 if ($queryResult > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-        $painDate = $row["painDates"];
+        $painDate = date("d/m Y", strtotime($row["painDates"])); // Ændret formatet på datoen her
         $painType = $row["painType"];
 
         // Output a collapsible button for each date
@@ -47,7 +47,7 @@ if ($queryResult > 0) {
         // Retrieve data for the current date using prepared statement
         $dateQuery = "SELECT * FROM pain WHERE painDates = ?";
         $stmt = mysqli_prepare($conn, $dateQuery);
-        mysqli_stmt_bind_param($stmt, "s", $painDate);
+        mysqli_stmt_bind_param($stmt, "s", $row["painDates"]); // Brug oprindeligt datoformat i query
         mysqli_stmt_execute($stmt);
         $dateResult = mysqli_stmt_get_result($stmt);
 

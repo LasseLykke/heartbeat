@@ -67,7 +67,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
             <div class="cart-xs">
                 <h3 class="cartheader">Hovedpiner</h3>
-                <a href="painForm.php"><button class="cartBtn">
+                <a href="export_pain.php"><button class="cartBtn">
                 <h1 class="cartNumber">
                     <?php 
                     if ($result2->num_rows > 0) {
@@ -87,7 +87,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             </div>
         </div>
 
-<!-- TEST AF LARGE CART -->
+<!-- TEST AF LARGE CART 
         <div class="cartWrapper">
             <div class="cart-s">
             <h3 class="cartheader">Hovedpiner</h3>
@@ -97,13 +97,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </h1>
                 </button></a>
             </div>
-        </div>
+        </div> -->
 
-        </div>
-    </div>
+        </div> 
+    </div> 
         <div class="footer">
             <a href="logout.php"><button class="signOut" alt="LogOut">Log ud</button></a>
-                </div>
+                </div> 
         </div>
 </body>
 

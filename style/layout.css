@@ -373,12 +373,26 @@ textarea {
 }
 
 .formBtn {
-  background-color: var(--dark);
-  color: var(--grey);
+  background-color: var(--white);
+  box-shadow: var(--b-shadow-xs);
+  color: var(--dark);
+
   border: none;
-  border-radius: 3px;
-  padding: 10px 20px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  max-width: 250px;
+  max-height: 150px;
+  min-height: 100px;
+  border-radius: 15px;
+  text-align: left;
+  padding: 10px;
+  margin-right: 50px;
   font-weight: 700;
+}
+
+.formBtn:hover {
+  box-shadow: var(--b-shadow-s);
+  transition: 300ms ease-in-out;
 }
 
 .submit {

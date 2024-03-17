@@ -347,6 +347,23 @@ textarea {
   content: "\2796"; /* Unicode character for "minus" sign (-) */
 }
 
+.rowData {
+  display: flex;
+  flex-direction: column;
+  margin-inline: auto;
+}
+
+.dataCell {
+  text-align: right;
+  padding-left: 60px;
+}
+
+.dataNotes {
+  text-align: left;
+  max-width: 40ch;
+  padding-top: 5px;
+}
+
 /* BUTTONS & CARTS */
 
 .loginBtn {

@@ -51,29 +51,45 @@ if ($queryResult > 0) {
         mysqli_stmt_execute($stmt);
         $dateResult = mysqli_stmt_get_result($stmt);
 
-        echo '<table>
-                <tr>
-                <th> Sværhedsgrad </th>
-                <th> Varighed </th>
-                <th> Ekstra Medicin </th>
-                <th> Trænet dagen før </th>
-                <th> Bemærkning </th>
-                </tr>';
+        echo '<table class="rowData">';
 
         while ($dataRow = mysqli_fetch_assoc($dateResult)) {
             // Output the table row for each data point
-            echo '<tr> 
-                    <td>' . $dataRow["painLevel"] . '</td>
-                    <td>' . $dataRow["painDuration"] . '</td> 
-                    <td>' . $dataRow["painKillers"] . '</td>
-                    <td>' . $dataRow["painWorkout"] . '</td> 
-                    <td>' . $dataRow["painNotes"] . '</td>
-                </tr>';
+            echo '<tr>';
+            echo '<td><strong>Sværhedsgrad:</strong></td>';
+            echo '<td class="dataCell">' . $dataRow["painLevel"] . '</td>';
+            echo '</tr>';
+        
+            echo '<tr>';
+            echo '<td><strong>Varighed:</strong></td>';
+            echo '<td class="dataCell">' . $dataRow["painDuration"] . '</td>';
+            echo '</tr>';
+        
+            echo '<tr>';
+            echo '<td><strong>Ekstra Medicin:</strong></td>';
+            echo '<td class="dataCell">' . $dataRow["painKillers"] . '</td>';
+            echo '</tr>';
+        
+            echo '<tr>';
+            echo '<td><strong>Trænet dagen før:</strong></td>';
+            echo '<td class="dataCell">' . $dataRow["painWorkout"] . '</td>';
+            echo '</tr>';
+        
+            // Row for Bemærkning
+            echo '<tr>';
+            echo '<td><strong>Bemærkning:</strong></td>';
+            echo '</tr>';
+
+            // Row for Bemærkning's data
+            echo '<tr>';
+            echo '<td class="dataNotes">' . $dataRow["painNotes"] . '</td>';
+            echo '</tr>';
         }
+        
         echo '</table></div>';
+        
     }
 }
-
 }
 
 mysqli_free_result($result);

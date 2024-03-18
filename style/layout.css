@@ -294,7 +294,7 @@ textarea {
 
 /*Single page udtræk*/
 
-/* Style the button that is used to open and close the collapsible content */
+/* Style af knap som bliver brugt til at åbne og lukke content*/
 .collapsible {
   border: none;
   cursor: pointer;
@@ -312,7 +312,8 @@ textarea {
   border-bottom: 1px solid var(--dark);
 }
 
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+
+/* Tilføjer baggrundsfarve til knappen +/- bliver loaded med JS */
 .active {
   outline: none;
   color: var(--dark);
@@ -322,7 +323,7 @@ textarea {
   border-top: 1px solid var(--dark);
 }
 
-/* Style the collapsible content. Note: hidden by default */
+/* Style af det samklaplige indhold. Collapsed som standard */
 .content {
   border: none;
   outline: none;
@@ -338,7 +339,7 @@ textarea {
 }
 
 .collapsible:after {
-  content: "\02795"; /* Unicode character for "plus" sign (+) */
+  content: "\02795"; /* Unicode character for "plus" tegn (+) */
   font-size: 13px;
   color: white;
   float: right;
@@ -346,7 +347,7 @@ textarea {
 }
 
 .active:after {
-  content: "\2796"; /* Unicode character for "minus" sign (-) */
+  content: "\2796"; /* Unicode character for "minus" tegn (-) */
 }
 
 .rowData {

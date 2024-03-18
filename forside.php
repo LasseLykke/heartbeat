@@ -28,7 +28,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 ?> 👋🏻</h1>
         </div>
         <div class="formContainer">
-            <h2 class="formHeader">Input:</h2>
+            <h2 class="formHeader"></h2>
             <a href="daily.php"><button class="formBtn">Daglig log</button></a>
             <a href="træningsForm.php"><button class="formBtn">Workout's</button></a>
         </div>
@@ -43,7 +43,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         $result2 = $conn->query($sql2);
         ?>
     
-        <h2 class="formHeader">Data Summary:</h2>
+        <h2 class="formHeader">Summary:</h2>
         
         <div class="cartWrapper">
             <div class="cart-xs">

@@ -166,6 +166,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+  margin-top: 10px;
 }
 
 .footer {
@@ -303,6 +304,7 @@ textarea {
   text-align: left;
   outline: none;
   font-size: 15px;
+  color: var(--dark);
   /*margin-bottom: 10px;*/
   border-left: 1px solid var(--dark);
   border-right: 1px solid var(--dark);
@@ -404,7 +406,7 @@ textarea {
   text-align: left;
   padding: 10px;
   margin-right: 50px;
-  font-weight: 700;
+  font-weight: 1000;
 }
 
 .formBtn:hover {

@@ -367,6 +367,16 @@ textarea {
   padding-top: 5px;
 }
 
+.dataWorkouts {
+  text-align: left;
+  padding-top: 3px;
+}
+
+td.dataWorkouts {
+  display: inline-block;
+  margin-right: 30px;
+}
+
 /* BUTTONS & CARTS */
 
 .loginBtn {

@@ -48,7 +48,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <div class="cartWrapper">
             <div class="cart-xs">
                 <h3 class="cartheader">Workouts</h3>
-                <a href="træningsForm.php"><button class="cartBtn">
+                <a href="export_workout.php"><button class="cartBtn">
                 <h1 class="cartNumber">
                     <?php 
                     if ($result1->num_rows > 0) {

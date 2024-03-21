@@ -365,6 +365,7 @@ textarea {
   text-align: left;
   max-width: 40ch;
   padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .dataWorkouts {

@@ -74,9 +74,156 @@ if ($queryResult > 0) {
              echo '<td class="dataWorkouts">' . $dataRow["pulldownRep"] . ' ' . 'Rep' . '</td>';
              echo '<td class="dataWorkouts">' . $dataRow["pulldownKilo"] . ' ' . 'Kilo' . '</td>';
              echo '</tr>';
-        
+
+             // Row for Rygbøjning
+             echo '<tr>';
+             echo '<td><strong>Rygbøjning:</strong></td>';
+             echo '</tr>';
+ 
+             echo '<tr>';
+             echo '<td class="dataWorkouts">' . $dataRow["rygbøjningRep"] . ' ' . 'Rep' . '</td>';
+             echo '<td class="dataWorkouts">' . $dataRow["rygbøjningKilo"] . ' ' . 'Kilo' . '</td>';
+             echo '</tr>';
+
+            // Row for Abchrunch
+            echo '<tr>';
+            echo '<td><strong>Ab Crunch:</strong></td>';
+            echo '</tr>';
+  
+            echo '<tr>';
+            echo '<td class="dataWorkouts">' . $dataRow["abcrunchRep"] . ' ' . 'Rep' . '</td>';
+            echo '<td class="dataWorkouts">' . $dataRow["abcrunchKilo"] . ' ' . 'Kilo' . '</td>';
+            echo '</tr>';
+
+            // Row for Brystpres
+            echo '<tr>';
+            echo '<td><strong>Brystpres:</strong></td>';
+            echo '</tr>';
+  
+            echo '<tr>';
+            echo '<td class="dataWorkouts">' . $dataRow["brystpresRep"] . ' ' . 'Rep' . '</td>';
+            echo '<td class="dataWorkouts">' . $dataRow["brystpresKilo"] . ' ' . 'Kilo' . '</td>';
+            echo '</tr>';
+
+            // Row for Leg press
+            echo '<tr>';
+            echo '<td><strong>Legpres:</strong></td>';
+            echo '</tr>';
+  
+            echo '<tr>';
+            echo '<td class="dataWorkouts">' . $dataRow["legpressRep"] . ' ' . 'Rep' . '</td>';
+            echo '<td class="dataWorkouts">' . $dataRow["legpressKilo"] . ' ' . 'Kilo' . '</td>';
+            echo '</tr>';
+
+            // Row for Leg curl
+            echo '<tr>';
+            echo '<td><strong>Legcurl:</strong></td>';
+            echo '</tr>';
+  
+            echo '<tr>';
+            echo '<td class="dataWorkouts">' . $dataRow["legcurlRep"] . ' ' . 'Rep' . '</td>';
+            echo '<td class="dataWorkouts">' . $dataRow["legcurlKilo"] . ' ' . 'Kilo' . '</td>';
+            echo '</tr>';
+
+            // Row for Leg extension
+            echo '<tr>';
+            echo '<td><strong>Legextension:</strong></td>';
+            echo '</tr>';
+  
+            echo '<tr>';
+            echo '<td class="dataWorkouts">' . $dataRow["legextensionRep"] . ' ' . 'Rep' . '</td>';
+            echo '<td class="dataWorkouts">' . $dataRow["legextensionKilo"] . ' ' . 'Kilo' . '</td>';
+            echo '</tr>';
+
+            // Row for Biceps
+            echo '<tr>';
+            echo '<td><strong>Biceps:</strong></td>';
+            echo '</tr>';
+  
+            echo '<tr>';
+            echo '<td class="dataWorkouts">' . $dataRow["bicepsRep"] . ' ' . 'Rep' . '</td>';
+            echo '<td class="dataWorkouts">' . $dataRow["bicepsKilo"] . ' ' . 'Kilo' . '</td>';
+            echo '</tr>';
+
+            // Row for ButtUps
+            echo '<tr>';
+            echo '<td><strong>ButtUps:</strong></td>';
+            echo '</tr>';
+  
+            echo '<tr>';
+            echo '<td class="dataWorkouts">' . $dataRow["buttupsRep"] . ' ' . 'Rep' . '</td>';
+            echo '</tr>';
+
+            // Row for PullUps
+            echo '<tr>';
+            echo '<td><strong>PullUps:</strong></td>';
+            echo '</tr>';
+  
+            echo '<tr>';
+            echo '<td class="dataWorkouts">' . $dataRow["pullupsRep"] . ' ' . 'Rep' . '</td>';
+            echo '<td class="dataWorkouts">' . $dataRow["pullupsKilo"] . ' ' . 'Kilo' . '</td>';
+            echo '</tr>';
+
+            // Row for Løb
+            echo '<tr>';
+            echo '<td><strong>Løb:</strong></td>';
+            echo '</tr>';
+
+            echo '<tr>';
+            echo '<td class="dataWorkouts">' . $dataRow["løbTid"] . 'min' . '</td>';
+            echo '<td class="dataWorkouts">' . 'Niveau' . ' ' . $dataRow["løbBelastning"] . '</td>';
+            echo '</tr>';
+
+            // Row for Rystemaskinen
+            echo '<tr>';
+            echo '<td><strong>Rystemaskine:</strong></td>';
+            echo '</tr>';
+
+            echo '<tr>';
+            echo '<td class="dataWorkouts">' . $dataRow["rystemaskineTid"] . 'min' . '</td>';
+            echo '</tr>';
+
+            // Row for Musik
+            echo '<tr>';
+            echo '<td><strong>Musik:</strong></td>';
+            echo '</tr>';
+
+            // Row for Musik data
+            echo '<tr>';
+            echo '<td class="dataNotes">' . $dataRow["musik"] . '</td>';
+            echo '</tr>';
+
+            // Row for Vand
+            echo '<tr>';
+            echo '<td><strong>Vand:</strong></td>';
+            echo '</tr>';
+
+            // Row for Vand data
+            echo '<tr>';
+            echo '<td class="dataNotes">' . $dataRow["vand"] . ' liter ' .  '</td>';
+            echo '</tr>';
+
+            // Row for Vægt
+            echo '<tr>';
+            echo '<td><strong>Vægt:</strong></td>';
+            echo '</tr>';
+
+            // Row for Vægt data
+            echo '<tr>';
+            echo '<td class="dataNotes">' . $dataRow["vægt"] . ' kilo ' .  '</td>';
+            echo '</tr>';
+
+            // Row for Workout varighed
+            echo '<tr>';
+            echo '<td><strong>Varighed:</strong></td>';
+            echo '</tr>';
+
+            // Row for Workout Varighed data
+            echo '<tr>';
+            echo '<td class="dataNotes">' . $dataRow["workoutVarighed"] . ' min ' .  '</td>';
+            echo '</tr>';
             
-        
+
             // Row for Skade Bemærkning
             echo '<tr>';
             echo '<td><strong>Skadet:</strong></td>';

@@ -87,17 +87,16 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             </div>
         </div>
 
-<!-- TEST AF LARGE CART 
-        <div class="cartWrapper">
-            <div class="cart-s">
-            <h3 class="cartheader">Hovedpiner</h3>
-                <a href="export_pain.php"><button class="cartBtn">
+<!-- TEST AF LARGE CART -->
+            <div class="cartWrapper">
+            <div class="cart-xs">
+                <h3 class="cartheader">Alle statestikker</h3>
+                <a href="dataOverview.php"><button class="cartBtn">
                 <h1 class="cartNumber">
-                    
+                
                 </h1>
                 </button></a>
             </div>
-        </div> -->
 
         </div> 
     </div> 

@@ -30,6 +30,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
         $sql2 = "SELECT COUNT(DISTINCT painDates) AS num_rows FROM pain WHERE painState = 'Ja'";
         $result2 = $conn->query($sql2);
+
+        $sql3 = "SELECT cykelTid, cykelBelastning FROM workout ORDER BY workoutID DESC LIMIT 1;";
+        $result3 = $conn->query($sql3);
+
         ?>
     
         <h2 class="dataOverview">Smerter:</h2>
@@ -84,11 +88,23 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <div class="cart-xs">
                 <h3 class="cartheader">Cykling</h3>
                 <a href="export_workout.php"><button class="cartBtn">
-                <h1 class="cartNumber">
+                <div class="dataNumber">
                     
-                <!-- Indsæt PHP med antal cyklet minutter ialt -->
+                <?php 
+                    if ($result3->num_rows > 0) {
+                        $row3 = $result3->fetch_assoc();
+                        $cykelTid = $row3['cykelTid'];
+                        $cykelBelastning = $row3['cykelBelastning'];
+                    
+                        // Display the cykelTid and cykelBelastning
+                        echo "<div id='latest-workout'>";
+                        echo "<p>cykelTid: " . $cykelTid . "</p>";
+                        echo "<p>cykelBelastning: " . $cykelBelastning . "</p>";
+                        echo "</div>";
+                    }
+                    ?>
 
-                </h1>
+                </div>
                 </button></a>
             </div>
 
@@ -305,7 +321,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <!-- WO: Vægt -->
         <!-- WO: Varighed -->
         <!-- WO: Skader -->
-        <!-- WO: Bemærkninger -->
+        <!-- WO: Bemærkninger - Er ikke sikker på denne skal med, er ikke taget med for nu. -->
 
 </body>
 

@@ -378,6 +378,7 @@ td.dataWorkouts {
   margin-right: 30px;
 }
 
+
 /* BUTTONS & CARTS */
 
 .loginBtn {
@@ -516,6 +517,12 @@ td.dataWorkouts {
   margin-left: 25px;
   font-size: 2.3em;
   color: var(--dark);
+}
+
+.dataNumber {
+  font-size: 1em;
+  text-decoration: none;
+  background-color: pink;
 }
 
 /* SUCCESS */

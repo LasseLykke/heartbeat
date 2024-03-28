@@ -504,6 +504,7 @@ td.dataWorkouts {
   justify-content: center;
   border: none;
   background-color: transparent;
+  text-decoration: none;
 }
 
 /* Cart datapoint */
@@ -519,10 +520,18 @@ td.dataWorkouts {
   color: var(--dark);
 }
 
+
 .dataNumber {
   font-size: 1em;
   text-decoration: none;
-  background-color: pink;
+  text-align: left;
+  text-decoration-line: none;
+  margin-top: 3px;
+}
+
+.dataNumberText {
+  text-decoration: none;
+  margin-bottom: 2px;
 }
 
 /* SUCCESS */

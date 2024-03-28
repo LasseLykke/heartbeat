@@ -34,6 +34,18 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         $sql3 = "SELECT cykelTid, cykelBelastning FROM workout ORDER BY workoutID DESC LIMIT 1;";
         $result3 = $conn->query($sql3);
 
+        $sql4 = "SELECT pulldownRep, pulldownKilo FROM workout ORDER BY workoutID DESC LIMIT 1;";
+        $result4 = $conn->query($sql4);
+
+        $sql5 = "SELECT rygbøjningRep, rygbøjningKilo FROM workout ORDER BY workoutID DESC LIMIT 1;";
+        $result5 = $conn->query($sql5);
+
+        $sql6 = "SELECT abcrunchRep, abcrunchKilo FROM workout ORDER BY workoutID DESC LIMIT 1;";
+        $result6 = $conn->query($sql6);
+
+        $sql7 = "SELECT brystpresRep, brystpresKilo FROM workout ORDER BY workoutID DESC LIMIT 1;";
+        $result7 = $conn->query($sql7);
+
         ?>
     
         <h2 class="dataOverview">Smerter:</h2>
@@ -87,7 +99,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <div class="cartWrapper">
             <div class="cart-xs">
                 <h3 class="cartheader">Cykling</h3>
-                <a href="export_workout.php"><button class="cartBtn">
+                <a class="dataNumberText" href="export_workout.php"><button class="cartBtn">
                 <div class="dataNumber">
                     
                 <?php 
@@ -96,10 +108,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         $cykelTid = $row3['cykelTid'];
                         $cykelBelastning = $row3['cykelBelastning'];
                     
-                        // Display the cykelTid and cykelBelastning
+                        // Display data
                         echo "<div id='latest-workout'>";
-                        echo "<p>cykelTid: " . $cykelTid . "</p>";
-                        echo "<p>cykelBelastning: " . $cykelBelastning . "</p>";
+                        echo "<p class='dataNumberText'> Seneste data " . "</p>";
+                        echo "<p class='dataNumberText'> Tid: " . $cykelTid . "</p>";
+                        echo "<p class='dataNumberText'>Belastning " . $cykelBelastning . "</p>";
                         echo "</div>";
                     }
                     ?>
@@ -110,60 +123,104 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
             <div class="cart-xs">
                 <h3 class="cartheader">Pulldowns</h3>
-                <a href="export_pain.php"><button class="cartBtn">
-                <h1 class="cartNumber">
+                <a class="dataNumberText" href="export_workout.php"><button class="cartBtn">
+                <div class="dataNumber">
                     
+                <?php 
+                    if ($result4->num_rows > 0) {
+                        $row3 = $result4->fetch_assoc();
+                        $pulldownRep = $row3['pulldownRep'];
+                        $pulldownKilo = $row3['pulldownKilo'];
                     
-                </h1>
+                        // Display data
+                        echo "<div id='latest-workout'>";
+                        echo "<p class='dataNumberText'> Seneste data " . "</p>";
+                        echo "<p class='dataNumberText'> Rep: " . $pulldownRep . "</p>";
+                        echo "<p class='dataNumberText'>Kilo " . $pulldownKilo . "</p>";
+                        echo "</div>";
+                    }
+                    ?>
+
+                </div>
+                </button></a>
+            </div>
+                </div>
+
+        <div class="cartWrapper">
+        <div class="cart-xs">
+                <h3 class="cartheader">Rygbøjninger</h3>
+                <a class="dataNumberText" href="export_workout.php"><button class="cartBtn">
+                <div class="dataNumber">
+                    
+                <?php 
+                    if ($result5->num_rows > 0) {
+                        $row3 = $result5->fetch_assoc();
+                        $rygbøjningRep = $row3['rygbøjningRep'];
+                        $rygbøjningKilo = $row3['rygbøjningKilo'];
+                    
+                        // Display data
+                        echo "<div id='latest-workout'>";
+                        echo "<p class='dataNumberText'> Seneste data " . "</p>";
+                        echo "<p class='dataNumberText'> Rep: " . $rygbøjningRep . "</p>";
+                        echo "<p class='dataNumberText'>Kilo " . $rygbøjningKilo . "</p>";
+                        echo "</div>";
+                    }
+                    ?>
+
+                </div>
+                </button></a>
+            </div>
+
+        <div class="cart-xs">
+                <h3 class="cartheader">Abs</h3>
+                <a class="dataNumberText" href="export_workout.php"><button class="cartBtn">
+                <div class="dataNumber">
+                    
+                <?php 
+                    if ($result6->num_rows > 0) {
+                        $row3 = $result6->fetch_assoc();
+                        $abcrunchRep = $row3['abcrunchRep'];
+                        $abcrunchKilo = $row3['abcrunchKilo'];
+                    
+                        // Display data
+                        echo "<div id='latest-workout'>";
+                        echo "<p class='dataNumberText'> Seneste data " . "</p>";
+                        echo "<p class='dataNumberText'> Rep: " . $abcrunchRep . "</p>";
+                        echo "<p class='dataNumberText'>Kilo " . $abcrunchKilo . "</p>";
+                        echo "</div>";
+                    }
+                    ?>
+
+                </div>
                 </button></a>
             </div>
         </div>
 
         <div class="cartWrapper">
-            <div class="cart-xs">
-                <h3 class="cartheader">Rygbøjning</h3>
-                <a href="export_workout.php"><button class="cartBtn">
-                <h1 class="cartNumber">
-                    
-                    
-                </h1>
-                </button></a>
-            </div>
-
-            <div class="cart-xs">
-                <h3 class="cartheader">Abcrunch</h3>
-                <a href="export_pain.php"><button class="cartBtn">
-                <h1 class="cartNumber">
-                    
-                    
-                </h1>
-                </button></a>
-            </div>
-        </div>
-
-        <div class="cartWrapper">
-            <div class="cart-xs">
+        <div class="cart-xs">
                 <h3 class="cartheader">Brystpres</h3>
-                <a href="export_workout.php"><button class="cartBtn">
-                <h1 class="cartNumber">
-                   
-                   
-                </h1>
+                <a class="dataNumberText" href="export_workout.php"><button class="cartBtn">
+                <div class="dataNumber">
+                    
+                <?php 
+                    if ($result7->num_rows > 0) {
+                        $row3 = $result7->fetch_assoc();
+                        $brystpresRep = $row3['brystpresRep'];
+                        $brystpresKilo = $row3['brystpresKilo'];
+                    
+                        // Display data
+                        echo "<div id='latest-workout'>";
+                        echo "<p class='dataNumberText'> Seneste data " . "</p>";
+                        echo "<p class='dataNumberText'> Rep: " . $brystpresRep . "</p>";
+                        echo "<p class='dataNumberText'>Kilo " . $brystpresKilo . "</p>";
+                        echo "</div>";
+                    }
+                    ?>
+
+                </div>
                 </button></a>
             </div>
 
-            <div class="cart-xs">
-                <h3 class="cartheader">Legpress</h3>
-                <a href="export_pain.php"><button class="cartBtn">
-                <h1 class="cartNumber">
-                    
-                    
-                </h1>
-                </button></a>
-            </div>
-        </div>
-
-        <div class="cartWrapper">
             <div class="cart-xs">
                 <h3 class="cartheader">LegCurls</h3>
                 <a href="export_workout.php"><button class="cartBtn">

@@ -26,6 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $legextensionKilo = isset($_POST["legextensionKilo"]) ? intval($_POST["legextensionKilo"]) : 0;
     $bicepsRep = isset($_POST["bicepsRep"]) ? intval($_POST["bicepsRep"]) : 0;
     $bicepsKilo = isset($_POST["bicepsKilo"]) ? intval($_POST["bicepsKilo"]) : 0;
+    $neckRep = isset($_POST["neckRep"]) ? intval($_POST["neckRep"]) : 0;
+    $neckKilo = isset($_POST["neckKilo"]) ? intval($_POST["neckKilo"]) : 0;
     $buttupsRep = isset($_POST["buttupsRep"]) ? intval($_POST["buttupsRep"]) : 0;
     $pullupsRep = isset($_POST["pullupsRep"]) ? intval($_POST["pullupsRep"]) : 0;
     $pullupsKilo = isset($_POST["pullupsKilo"]) ? intval($_POST["pullupsKilo"]) : 0;
@@ -47,9 +49,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $sql = "INSERT INTO workout 
     (workoutDates, workoutSkade, cykelTid, cykelBelastning, pulldownRep, pulldownKilo, rygbøjningRep, rygbøjningKilo, abcrunchRep,
-     abcrunchKilo, brystpresRep, brystpresKilo, legpressRep, legpressKilo, legcurlRep, legcurlKilo, legextensionRep, legextensionKilo, bicepsRep, bicepsKilo, buttupsRep, pullupsRep, pullupsKilo, 
+     abcrunchKilo, brystpresRep, brystpresKilo, legpressRep, legpressKilo, legcurlRep, legcurlKilo, legextensionRep, legextensionKilo, bicepsRep, bicepsKilo, neckRep, neckKilo, buttupsRep, pullupsRep, pullupsKilo, 
      løbTid, løbBelastning, rystemaskineTid, musik, vand, vægt, workoutVarighed, bemærkning) 
-     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     $stmt = $mysqli->prepare($sql);
 
@@ -57,8 +59,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Error: " . $mysqli->error);
     }
 
-    $stmt->bind_param("sssssssssssssssssssssssssssssss", $workoutDates, $workoutSkade, $cykelTid, $cykelBelastning, $pulldownRep, $pulldownKilo, $rygbøjningRep, $rygbøjningKilo, $abcrunchRep, $abcrunchKilo, 
-    $brystpresRep, $brystpresKilo, $legpressRep, $legpressKilo, $legcurlRep, $legcurlKilo, $legextensionRep, $legextensionKilo, $bicepsRep, $bicepsKilo, $buttupsRep, $pullupsRep, $pullupsKilo, 
+    $stmt->bind_param("sssssssssssssssssssssssssssssssss", $workoutDates, $workoutSkade, $cykelTid, $cykelBelastning, $pulldownRep, $pulldownKilo, $rygbøjningRep, $rygbøjningKilo, $abcrunchRep, $abcrunchKilo, 
+    $brystpresRep, $brystpresKilo, $legpressRep, $legpressKilo, $legcurlRep, $legcurlKilo, $legextensionRep, $legextensionKilo, $bicepsRep, $neckRep, $neckKilo, $bicepsKilo, $buttupsRep, $pullupsRep, $pullupsKilo, 
     $løbTid, $løbBelastning, $rystemaskineTid, $musik, $vand, $vægt, $workoutVarighed, $bemærkning);
     $stmt->execute();
 
@@ -206,6 +208,16 @@ ob_end_flush();
 
                 <label for="bicepsKilo"></label>
                 <input type="text" id="bicepsKilo" name="bicepsKilo" placeholder="Kilo">
+                </div>
+
+                <!-- NECK PRESS --> 
+                <div class="workoutBiceps">
+                    <h3>Neck Press:</h3>
+                <label for="neckRep"></label>
+                <input type="number" id="neckRep" name="neckRep" placeholder="Rep">
+
+                <label for="neckKilo"></label>
+                <input type="text" id="neckKilo" name="neckKilo" placeholder="Kilo">
                 </div>
 
                 <!-- BUTTUPS --> 

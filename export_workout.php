@@ -145,6 +145,16 @@ if ($queryResult > 0) {
             echo '<td class="dataWorkouts">' . $dataRow["bicepsKilo"] . ' ' . 'Kilo' . '</td>';
             echo '</tr>';
 
+             // Row for NECKPRESS
+             echo '<tr>';
+             echo '<td><strong>Neck press:</strong></td>';
+             echo '</tr>';
+   
+             echo '<tr>';
+             echo '<td class="dataWorkouts">' . $dataRow["neckRep"] . ' ' . 'Rep' . '</td>';
+             echo '<td class="dataWorkouts">' . $dataRow["neckKilo"] . ' ' . 'Kilo' . '</td>';
+             echo '</tr>';
+
             // Row for ButtUps
             echo '<tr>';
             echo '<td><strong>ButtUps:</strong></td>';

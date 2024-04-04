@@ -539,30 +539,12 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 </div>
 
 
-
+        <!-- MANGLER DISSE QUERIES -->
         <!-- Hovedpiner (Laves som dato oversigt graf.) -->
         <!-- Hovedpiner med træning dagen før -->
         <!-- Hovedpiner hvor det er spænding -->
         <!-- Hovedpiner varighed  -->
-        <!-- WO: Cykel -->
-        <!-- WO: Pulldowns -->
-        <!-- WO: Rygbøjninger -->
-        <!-- WO: Abs -->
-        <!-- WO: Brystpres -->
-        <!-- WO: Legpres -->
-        <!-- WO: LegCurls -->
-        <!-- WO: LegExtension -->
-        <!-- WO: Biceps -->
-        <!-- WO: Buttups -->
-        <!-- WO: Pulldowns -->
-        <!-- WO: Løb -->
-        <!-- WO: Rystemaskine -->
-        <!-- WO: Musik -->
-        <!-- WO: Vand -->
-        <!-- WO: Vægt -->
-        <!-- WO: Varighed -->
-        <!-- WO: Skader -->
-        <!-- WO: Bemærkninger - Er ikke sikker på denne skal med, er ikke taget med for nu. -->
+
 <br>
 </body>
 

@@ -87,7 +87,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             </div>
         </div>
 
-<!-- TEST AF LARGE CART -->
+<!-- TEST AF LARGE CART. -->
             <div class="cartWrapper">
             <div class="cart-xs">
                 <h3 class="cartheader">Alle statestikker</h3>

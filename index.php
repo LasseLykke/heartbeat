@@ -33,16 +33,10 @@ include 'header.php';
                     Developed using PHP and backed by MySQL, it offers a tailored solution for individual needs. 
                     By meticulously recording my training progress and headache occurrences within this private platform, I can analyze potential correlations and gain insights into my health and fitness journey. 
                     This personalized approach ensures confidentiality and security, as the data is solely accessible to me. 
-                    With Project Heartbeat, I have a powerful tool at my disposal to monitor and manage your well-being effectively.</p><br>
+                    With Project Heartbeat, I have a powerful tool at my disposal to monitor and manage my well-being effectively.</p><br>
                     <a class="links" target="_blank" href="https://github.com/LasseLykke/heartbeat">Github Repo<img src="img/github.svg" class="icons" alt="icon"></a>
                     <br><br>
 
-                <h3 class="projectName">Holmfoto.dk</h3>
-                <p>I have recently completed the development of an e-commerce website utilizing WordPress as the platform and incorporating custom CSS & PHP for tailored design elements. 
-                    The motivation behind this project stemmed from the need to establish a strong online presence for the business. 
-                    By venturing into the digital realm, we aimed to broaden the companys market reach and enhance accessibility to it's products and services.</p><br>
-                    <a class="links" target="_blank" href="https://www.holmfoto.dk">Live site<img src="img/linkout.svg" class="icons" alt="icon"></a>
-                    <br><br>
 
                 <h3 class="projectName">Donnés</h3>
                 <p>Donnés is a customer management program designed to run locally on a LAMP STACK server.<br>

@@ -17,6 +17,16 @@
     --b-shadow-xs: 0px 3px 9px -4px rgba(0,0,0,0.21);
     --b-shadow-s: 0px 3px 18px -4px rgba(0,0,0,0.24);
 
+    /* NYE farve variabler*/
+
+    --white: #ffffff;
+    --grey: #C0C0C0;
+    --dark: #191A19;
+    --black: #000000;
+    --feat: #EA0300;
+
+
+
 }
 
 body {

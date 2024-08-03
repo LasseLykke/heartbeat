@@ -54,7 +54,7 @@
 
 /* HEARTBEAT LOGIN */
 .loginWrapper {
-  background-color: var(--dark);
+  background-color: var(--white);
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -109,7 +109,7 @@
 }
 
 .loginarea {
-  background-color: var(--dark);
+  background-color: var(--white);
   display: inline-block;
 }
 
@@ -122,7 +122,7 @@
 .user-pass input {
   cursor: text;
   padding: 5px 0;
-  color: var(--grey);
+  color: var(--dark);
   margin-bottom: 30px;
   border: none;
   border-bottom: 0.5px solid var(--grey);
@@ -132,7 +132,7 @@
 }
 .user-name input:hover,
 .user-pass input:hover {
-  border-bottom: 0.5px solid var(--feat);
+  border-bottom: 0.5px solid var(--black);
 }
 
 .user-name label,
@@ -385,9 +385,9 @@ td.dataWorkouts {
   display: flex;
   margin: 0 auto;
   padding: 5px 15px;
-  border: 1px solid var(--grey);
+  border: 1px solid var(--white);
   border-radius: 2px;
-  background-color: var(--dark);
+  background-color: var(--black);
   color: var(--grey);
   transition: 250ms;
   transition-timing-function: ease-in-out;
@@ -399,9 +399,9 @@ td.dataWorkouts {
 }
 
 .loginBtn:hover {
-  background-color: var(--grey);
-  color: var(--dark);
-  border: 1px solid var(--grey);
+  background-color: var(--dark);
+  color: var(--white);
+  border: 1px solid var(--white);
 }
 
 .formBtn {

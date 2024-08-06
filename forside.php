@@ -18,15 +18,16 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     </head>
 
     <body>
-    <nav>
-        <div class="menu-toggle" id="menu-toggle">
-            &#9776; <!-- Unicode for hamburger icon -->
-        </div>
-        <ul class="nav-links" id="nav-links">
-            <li><a href="forside.php">Forside</a></li>
-            <li><a href="#about">Statestikker</a></li>
-            <li><a href="logout.php">Log ud</></li>
-        </ul>
+        <nav>
+    <button class="hamburger">
+        <div class="bar"></div>
+    </button>
+
+    <nav class="mobile-nav">
+        <a href="#">Forside</a>
+        <a href="#">Statestik</a>
+        <a href="logout.php">Log ud</a>
+    </nav>
     </nav>
     <div class="forsideWrapper">
         <div class="hello">

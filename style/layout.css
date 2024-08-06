@@ -166,9 +166,10 @@
   z-index: 101;
 }
 
-.hamburger, .hamburger .bar {
+.hamburger {
   position: relative;
-  right: -80%;
+  right: -85%;
+  margin-top: 20px;
 }
 
 .hamburger.is-active:before {

@@ -53,7 +53,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         $result2 = $conn->query($sql2);
         ?>
     
-        <h2 class="formHeader">Summary:</h2>
+    <!--
+         <h2 class="formHeader">Summary:</h2>
         
         <div class="cartWrapper">
             <div class="cart-xs">
@@ -97,7 +98,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             </div>
         </div>
 
-<!-- TEST AF LARGE CART. -->
+<!-- TEST AF LARGE CART. 
             <div class="cartWrapper">
             <div class="cart-xs">
                 <h3 class="cartheader">Alle statestikker</h3>
@@ -108,7 +109,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </button></a>
             </div>
 
-        </div> 
+        </div> -->
     </div>
 
         <script src="script.js"></script>

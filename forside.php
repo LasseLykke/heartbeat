@@ -24,7 +24,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     </button>
 
     <nav class="mobile-nav">
-        <a href="#">Forside</a>
+        <a href="forside.php">Forside</a>
         <a href="#">Statestik</a>
         <a href="logout.php">Log ud</a>
     </nav>

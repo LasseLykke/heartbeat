@@ -15,6 +15,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <meta http-equiv="refresh" content="1500;url=logout.php" />
         <title>HEARTBEAT || FORSIDE</title>
         <link rel="shortcut icon" href="" type="image/x-icon"/>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js inkludering -->
     </head>
 
     <body>
@@ -53,64 +54,71 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         $result2 = $conn->query($sql2);
         ?>
     
-    <!--
-         <h2 class="formHeader">Summary:</h2>
-        
-        <div class="cartWrapper">
-            <div class="cart-xs">
-                <h3 class="cartheader">Workouts</h3>
-                <a href="export_workout.php"><button class="cartBtn">
-                <h1 class="cartNumber">
-                    <?php 
-                    if ($result1->num_rows > 0) {
-                        $row1 = $result1->fetch_assoc();
-                        $totalWorkouts = $row1["totalWorkouts"];
-                        echo "<div id='cartBtn'>";
-                        echo "<h3>" . $totalWorkouts . "</h3>";
-                        echo "</div>";
-                    } else {
-                        echo "0";
-                    }
-                    ?>
-                </h1>
-                </button></a>
-            </div>
+   
+    </div>
 
-            <div class="cart-xs">
-                <h3 class="cartheader">Hovedpiner</h3>
-                <a href="export_pain.php"><button class="cartBtn">
-                <h1 class="cartNumber">
-                    <?php 
-                    if ($result2->num_rows > 0) {
-                        $row2 = $result2->fetch_assoc();
-                        $count = $row2['num_rows'];
-                    
-                        // Display the count
-                        echo "<div id='cart-xs'>";
-                        echo "<h3>" . $count . "</h3>";
-                        echo "</div>";
-                    } else {
-                        echo "Ingen resultater fundet";
-                    }
-                    ?>
-                </h1>
-                </button></a>
-            </div>
+    <div class="frontpage-charts">
+            <canvas id="workoutScatterChart"></canvas>
         </div>
 
-<!-- TEST AF LARGE CART. 
-            <div class="cartWrapper">
-            <div class="cart-xs">
-                <h3 class="cartheader">Alle statestikker</h3>
-                <a href="dataOverview.php"><button class="cartBtn">
-                <h1 class="cartNumber">
-                
-                </h1>
-                </button></a>
-            </div>
+        <script>
+            // PHP til at hente data fra SQL
+            <?php
+            $sql = "SELECT workoutDate, COUNT(workoutID) AS workoutCount FROM workout GROUP BY workoutDate ORDER BY workoutDate ASC";
+            $result = $conn->query($sql);
 
-        </div> -->
-    </div>
+            $data = [];
+            while($row = $result->fetch_assoc()) {
+                $data[] = [
+                    'x' => $row['workoutDate'],
+                    'y' => $row['workoutCount']
+                ];
+            }
+            ?>
+            
+            // Konverterer PHP data til JavaScript
+            const workoutData = <?php echo json_encode($data); ?>;
+
+            const ctx = document.getElementById('workoutScatterChart').getContext('2d');
+            const workoutScatterChart = new Chart(ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Workouts Over Time',
+                        data: workoutData,
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1,
+                        pointRadius: 5
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            type: 'time',
+                            time: {
+                                unit: 'day',
+                                tooltipFormat: 'MMM DD, YYYY',
+                                displayFormats: {
+                                    day: 'MMM DD'
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Date'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Number of Workouts'
+                            },
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
 
         <script src="script.js"></script>
 </body>

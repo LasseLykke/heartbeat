@@ -11,32 +11,28 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <html>
 
     <head>
-        <!-- Logger ud efter 15min -->
-        <meta http-equiv="refresh" content="1500;url=logout.php" />
-        <title>HEARTBEAT || FORSIDE</title>
-        <link rel="shortcut icon" href="" type="image/x-icon"/>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js inkludering -->
-    </head>
+    <!-- Logger ud efter 15min -->
+    <meta http-equiv="refresh" content="1500;url=logout.php" />
+    <title>HEARTBEAT || FORSIDE</title>
+    <link rel="shortcut icon" href="" type="image/x-icon"/>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js inkludering -->
+</head>
 
-    <body>
-        <nav>
-    <button class="hamburger">
-        <div class="bar"></div>
-    </button>
+<body>
+    <nav>
+        <button class="hamburger">
+            <div class="bar"></div>
+        </button>
 
-    <nav class="mobile-nav">
-        <a href="forside.php">Forside</a>
-        <a href="#">Statestik</a>
-        <a href="logout.php">Log ud</a>
-    </nav>
+        <nav class="mobile-nav">
+            <a href="forside.php">Forside</a>
+            <a href="#">Statestik</a>
+            <a href="logout.php">Log ud</a>
+        </nav>
     </nav>
     <div class="forsideWrapper">
         <div class="hello">
-            <h1>Hej 
-                <?php
-                /* Trækker login bruger ind*/
-                echo $_SESSION['name'];
-                ?> 👋🏻</h1>
+            <h1>Hej <?php echo $_SESSION['name']; ?> 👋🏻</h1>
         </div>
         <div class="formContainer">
             <h2 class="formHeader"></h2>
@@ -44,20 +40,17 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <a href="træningsForm.php"><button class="formBtn">Workout's</button></a>
         </div>
         
-        
         <div class="dataContainer">
-        <?php 
-        $sql1 = "SELECT COUNT(workoutID) AS totalWorkouts FROM workout";
-        $result1 = $conn->query($sql1);
+            <?php 
+            $sql1 = "SELECT COUNT(workoutID) AS totalWorkouts FROM workout";
+            $result1 = $conn->query($sql1);
 
-        $sql2 = "SELECT COUNT(DISTINCT painDates) AS num_rows FROM pain WHERE painState = 'Ja'";
-        $result2 = $conn->query($sql2);
-        ?>
-    
-   
-    </div>
+            $sql2 = "SELECT COUNT(DISTINCT painDates) AS num_rows FROM pain WHERE painState = 'Ja'";
+            $result2 = $conn->query($sql2);
+            ?>
+        </div>
 
-    <div class="frontpage-charts">
+        <div class="frontpage-charts">
             <canvas id="workoutScatterChart"></canvas>
         </div>
 
@@ -120,6 +113,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             });
         </script>
 
+        <!-- Inkluder dit hamburger-menu script -->
         <script src="script.js"></script>
 </body>
 

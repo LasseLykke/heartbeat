@@ -16,6 +16,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <title>HEARTBEAT || FORSIDE</title>
     <link rel="shortcut icon" href="" type="image/x-icon"/>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js inkludering -->
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.0"></script>
+
 </head>
 
 <body>
@@ -50,70 +53,33 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             ?>
         </div>
 
-        <div class="frontpage-charts">
-            <canvas id="workoutScatterChart"></canvas>
-        </div>
 
-        <script>
-            // PHP til at hente data fra SQL
-            <?php
-            $sql = "SELECT workoutDate, COUNT(workoutID) AS workoutCount FROM workout GROUP BY workoutDate ORDER BY workoutDate ASC";
-            $result = $conn->query($sql);
+           <div class="frontpage-charts">
+           <canvas id="workoutScatterChart"></canvas>
+       <?php
+           $sql = "SELECT workoutDates FROM workout";
+$result = $conn->query($sql);
 
-            $data = [];
-            while($row = $result->fetch_assoc()) {
-                $data[] = [
-                    'x' => $row['workoutDate'],
-                    'y' => $row['workoutCount']
-                ];
-            }
-            ?>
-            
-            // Konverterer PHP data til JavaScript
-            const workoutData = <?php echo json_encode($data); ?>;
+$data = [];
 
-            const ctx = document.getElementById('workoutScatterChart').getContext('2d');
-            const workoutScatterChart = new Chart(ctx, {
-                type: 'scatter',
-                data: {
-                    datasets: [{
-                        label: 'Workouts Over Time',
-                        data: workoutData,
-                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1,
-                        pointRadius: 5
-                    }]
-                },
-                options: {
-                    scales: {
-                        x: {
-                            type: 'time',
-                            time: {
-                                unit: 'day',
-                                tooltipFormat: 'MMM DD, YYYY',
-                                displayFormats: {
-                                    day: 'MMM DD'
-                                }
-                            },
-                            title: {
-                                display: true,
-                                text: 'Date'
-                            }
-                        },
-                        y: {
-                            title: {
-                                display: true,
-                                text: 'Number of Workouts'
-                            },
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        </script>
+// Behandler workoutDates-resultaterne
+while($row = $result->fetch_assoc()) {
+    $data[] = [
+        'x' => $row['workoutDates'], // Sætter datoen som x-værdi
+        'y' => 1 // En konstant værdi for hver dato, da vi ikke har et andet parameter her
+    ];
+}
+?>
+           <script>
+               // Genererer JavaScript-variabel fra PHP-data
+               const workoutData = <?php echo json_encode($data); ?>;
+           </script>
+       </div>       
 
-        <!-- Inkluder dit hamburger-menu script -->
+</div>
+
+
+
         <script src="script.js"></script>
 </body>
 

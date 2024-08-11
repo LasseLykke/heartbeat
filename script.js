@@ -21,7 +21,7 @@ window.onload = function () {
                 borderColor: '#EA0300',
                 borderWidth: 1,
                 borderRadius: 2,
-                barThickness: 20
+                barThickness: 2
             },
             {
                 label: 'Pain Episodes Over Time',
@@ -30,7 +30,7 @@ window.onload = function () {
                 borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1,
                 borderRadius: 2,
-                barThickness: 20
+                barThickness: 2
             }]
         },
         options: {
@@ -38,15 +38,15 @@ window.onload = function () {
                 x: {
                     type: 'time',
                     time: {
-                        unit: 'day',
-                        tooltipFormat: 'MMM DD, YYYY',
+                        unit: 'month',
+                        tooltipFormat: 'MMM DD',
                         displayFormats: {
                             day: 'MMM DD'
                         }
                     },
                     title: {
                         display: true,
-                        text: 'Date'
+                        text: 'month'
                     }
                 },
                 y: {
@@ -55,7 +55,7 @@ window.onload = function () {
                         text: 'Number of Events'
                     },
                     beginAtZero: true,
-                    suggestedMax: 1
+                    suggestedMax: 10
                 }
             },
             plugins: {

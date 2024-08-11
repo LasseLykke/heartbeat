@@ -29,7 +29,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
         <nav class="mobile-nav">
             <a href="forside.php">Forside</a>
-            <a href="#">Statestik</a>
+            <a href="dataOverview.php">Statestik</a>
             <a href="logout.php">Log ud</a>
         </nav>
     </nav>
@@ -56,38 +56,47 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
            <div class="frontpage-charts">
            <canvas id="workoutScatterChart"></canvas>
-       <?php
-           $sql = "SELECT workoutDates FROM workout";
-        $result = $conn->query($sql);
+           <?php
+// Forespørgsel for at hente antal workouts pr. måned
+$sql = "SELECT DATE_FORMAT(workoutDates, '%Y-%m') AS month, COUNT(*) AS workoutCount 
+        FROM workout 
+        GROUP BY month 
+        ORDER BY month ASC";
+$result = $conn->query($sql);
 
-        $data = [];
+$workoutData = [];
 
-        // Behandler workoutDates-resultaterne
-        while($row = $result->fetch_assoc()) {
-        $data[] = [
-        'x' => $row['workoutDates'], // Sætter datoen som x-værdi
-        'y' => 1 // En konstant værdi for hver dato, da vi ikke har et andet parameter her
+while($row = $result->fetch_assoc()) {
+    $workoutData[] = [
+        'x' => $row['month'],  // Gruppér datoerne pr. måned
+        'y' => $row['workoutCount']  // Antallet af workouts i den måned
     ];
-// Behandler PAIN data
-            // Forespørgsel til at hente alle datoer, hvor painState = 'Ja'
-$sql2 = "SELECT DISTINCT painDates FROM pain WHERE painState = 'Ja'";
+}
+
+// Forespørgsel for at hente antal pain episodes pr. måned
+$sql2 = "SELECT DATE_FORMAT(painDates, '%Y-%m') AS month, COUNT(*) AS painCount 
+         FROM pain 
+         WHERE painState = 'Ja' 
+         GROUP BY month 
+         ORDER BY month ASC";
 $result2 = $conn->query($sql2);
 
-$data = [];
+$painData = [];
 
-// Behandler painDates-resultaterne
 while($row2 = $result2->fetch_assoc()) {
-    $data[] = [
-        'x' => $row2['painDates'], // Sætter datoen som x-værdi
-        'y' => 1 // En konstant værdi for hver dato
+    $painData[] = [
+        'x' => $row2['month'],  // Gruppér datoerne pr. måned
+        'y' => $row2['painCount']  // Antallet af pain episodes i den måned
     ];
-}}
+}
 ?>
-           <script>
-               // Genererer JavaScript-variabel fra PHP-data
-               const workoutData = <?php echo json_encode($data); ?>;
-               const painData = <?php echo json_encode($data); ?>;
-           </script>
+
+<script>
+// Genererer JavaScript-variabler fra PHP-data
+const workoutData = <?php echo json_encode($workoutData); ?>;
+const painData = <?php echo json_encode($painData); ?>;
+</script>
+
        </div>       
 
 </div>

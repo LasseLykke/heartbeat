@@ -15,47 +15,50 @@ window.onload = function () {
         type: 'bar', 
         data: {
             datasets: [{
-                label: 'Workouts Over Time',
-                data: workoutData,  // Data fra din tidligere kode
-                backgroundColor: 'var(--dark)',  // Skiftet til variabel farve
-                borderColor: '#EA0300',
+                label: 'Workouts',
+                data: workoutData,  // Aggregated workout data by month
+                backgroundColor: '#C0C0C0',
+                borderColor: 'var(--grey)',
                 borderWidth: 1,
                 borderRadius: 2,
-                barThickness: 2
+                barThickness: 15,
+                maxBarThickness: 10
             },
             {
-                label: 'Pain Episodes Over Time',
-                data: painData,  
-                backgroundColor: 'rgba(255, 99, 132, 0.6)',  // Farve til det nye datasæt
-                borderColor: 'rgba(255, 99, 132, 1)',
+                label: 'Hovedpiner',
+                data: painData,  // Aggregated pain data by month
+                backgroundColor: 'var(--feat)',
+                borderColor: 'var(--grey)',
                 borderWidth: 1,
                 borderRadius: 2,
-                barThickness: 2
+                barThickness: 15,
+                maxBarThickness: 10
             }]
         },
         options: {
+            responsive: true,
             scales: {
                 x: {
                     type: 'time',
                     time: {
-                        unit: 'month',
-                        tooltipFormat: 'MMM DD',
+                        unit: 'month',  // Gruppér dataene efter måned
+                        tooltipFormat: 'MMM YYYY',
                         displayFormats: {
-                            day: 'MMM DD'
+                            month: 'MMM YYYY'
                         }
                     },
                     title: {
                         display: true,
-                        text: 'month'
+                        text: ''
                     }
                 },
                 y: {
                     title: {
                         display: true,
-                        text: 'Number of Events'
+                        text: ''
                     },
                     beginAtZero: true,
-                    suggestedMax: 10
+                    suggestedMax: 30
                 }
             },
             plugins: {
@@ -63,7 +66,7 @@ window.onload = function () {
                     callbacks: {
                         label: function(context) {
                             let label = context.dataset.label || '';
-    
+        
                             if (label) {
                                 label += ': ';
                             }
@@ -77,4 +80,5 @@ window.onload = function () {
             }
         }
     });
+    
 }

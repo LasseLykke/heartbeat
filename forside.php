@@ -58,21 +58,35 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
            <canvas id="workoutScatterChart"></canvas>
        <?php
            $sql = "SELECT workoutDates FROM workout";
-$result = $conn->query($sql);
+        $result = $conn->query($sql);
 
-$data = [];
+        $data = [];
 
-// Behandler workoutDates-resultaterne
-while($row = $result->fetch_assoc()) {
-    $data[] = [
+        // Behandler workoutDates-resultaterne
+        while($row = $result->fetch_assoc()) {
+        $data[] = [
         'x' => $row['workoutDates'], // Sætter datoen som x-værdi
         'y' => 1 // En konstant værdi for hver dato, da vi ikke har et andet parameter her
     ];
-}
+// Behandler PAIN data
+            // Forespørgsel til at hente alle datoer, hvor painState = 'Ja'
+$sql2 = "SELECT DISTINCT painDates FROM pain WHERE painState = 'Ja'";
+$result2 = $conn->query($sql2);
+
+$data = [];
+
+// Behandler painDates-resultaterne
+while($row2 = $result2->fetch_assoc()) {
+    $data[] = [
+        'x' => $row2['painDates'], // Sætter datoen som x-værdi
+        'y' => 1 // En konstant værdi for hver dato
+    ];
+}}
 ?>
            <script>
                // Genererer JavaScript-variabel fra PHP-data
                const workoutData = <?php echo json_encode($data); ?>;
+               const painData = <?php echo json_encode($data); ?>;
            </script>
        </div>       
 

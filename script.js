@@ -11,23 +11,26 @@ window.onload = function () {
 
 
     const ctx = document.getElementById('workoutScatterChart').getContext('2d');
-    const workoutScatterChart = new Chart(ctx, {
-        type: 'scatter',
+    const workoutBarChart = new Chart(ctx, {
+        type: 'bar', 
         data: {
             datasets: [{
                 label: 'Workouts Over Time',
-                data: workoutData,
-                backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                borderColor: 'rgba(75, 192, 192, 1)',
+                data: workoutData,  // Data fra din tidligere kode
+                backgroundColor: 'var(--dark)',  // Skiftet til variabel farve
+                borderColor: '#EA0300',
                 borderWidth: 1,
-                pointRadius: 6,
-                pointBackgroundColor: 'rgba(255, 99, 132, 1)',
-                //pointBorderColor: 'rgba(54, 162, 235, 1)',
-                pointBorderWidth: 2,
-                pointHoverRadius: 8,
-                pointHoverBackgroundColor: 'rgba(255, 206, 86, 1)',
-                pointHoverBorderColor: 'rgba(75, 192, 192, 1)',
-                pointHoverBorderWidth: 3
+                borderRadius: 2,
+                barThickness: 20
+            },
+            {
+                label: 'Pain Episodes Over Time',
+                data: painData,  
+                backgroundColor: 'rgba(255, 99, 132, 0.6)',  // Farve til det nye datasæt
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1,
+                borderRadius: 2,
+                barThickness: 20
             }]
         },
         options: {
@@ -49,12 +52,26 @@ window.onload = function () {
                 y: {
                     title: {
                         display: true,
-                        text: 'Workout Presence'
+                        text: 'Number of Events'
                     },
-                    ticks: {
-                        display: false, // Skjuler y-aksen, da værdien altid er 1
-                        beginAtZero: true,
-                        suggestedMax: 2
+                    beginAtZero: true,
+                    suggestedMax: 1
+                }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+    
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed.y !== null) {
+                                label += context.parsed.y;
+                            }
+                            return label;
+                        }
                     }
                 }
             }

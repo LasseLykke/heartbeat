@@ -251,8 +251,20 @@
 
 /* CHARTS */
 .frontpage-charts {
-  padding-right: 30px;
+  max-width: 385px; /* Fast bredde på containeren */
+  overflow-x: scroll; /* Tillader horisontal scrolling */
+  border: 1px solid #ccc; /* Eventuelt tilføje en kant for at visualisere containeren */
 }
+
+.chart-container {
+  width: 1200px; /* Bredde på den indre container, der indeholder grafen */
+}
+
+#workoutScatterChart {
+  width: 100%; /* Fylder hele den indre container */
+  height: 300px; /* Juster til en passende højde */
+}
+
 
 /* FORMS */
 /* PAIN FORM */

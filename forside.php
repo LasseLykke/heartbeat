@@ -54,8 +54,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         </div>
 
 
-           <div class="frontpage-charts">
-           <canvas id="workoutScatterChart"></canvas>
+        <div class="frontpage-charts">
+         <div class="chart-container">
+        <canvas id="workoutScatterChart"></canvas>
            <?php
 // Forespørgsel for at hente antal workouts pr. måned
 $sql = "SELECT DATE_FORMAT(workoutDates, '%Y-%m') AS month, COUNT(*) AS workoutCount 
@@ -96,7 +97,7 @@ while($row2 = $result2->fetch_assoc()) {
 const workoutData = <?php echo json_encode($workoutData); ?>;
 const painData = <?php echo json_encode($painData); ?>;
 </script>
-
+</div>
        </div>       
 
 </div>

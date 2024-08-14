@@ -7,29 +7,30 @@ window.onload = function () {
         mobile_menu.classList.toggle('is-active');
     });
 
-
-
-
     const ctx = document.getElementById('workoutScatterChart').getContext('2d');
+
+    // Få den nuværende dato
+    const today = moment();
+
     const workoutBarChart = new Chart(ctx, {
-        type: 'bar', 
+        type: 'bar',
         data: {
             datasets: [{
                 label: 'Workouts',
-                data: workoutData,  // Aggregated workout data by month
-                backgroundColor: '#C0C0C0',
-                borderColor: 'var(--grey)',
-                borderWidth: 1,
+                data: workoutData,
+                backgroundColor: '#EA0300',
+                borderColor: '#191A19',
+                borderWidth: 0.1,
                 borderRadius: 2,
                 barThickness: 15,
                 maxBarThickness: 10
             },
             {
                 label: 'Hovedpiner',
-                data: painData,  // Aggregated pain data by month
-                backgroundColor: 'var(--feat)',
-                borderColor: 'var(--grey)',
-                borderWidth: 1,
+                data: painData,
+                backgroundColor: '#191A19',
+                borderColor: '#EA0300',
+                borderWidth: 0.1,
                 borderRadius: 2,
                 barThickness: 15,
                 maxBarThickness: 10
@@ -37,26 +38,25 @@ window.onload = function () {
         },
         options: {
             responsive: true,
+            maintainAspectRatio: true,
+            aspectRatio: 4,
             scales: {
                 x: {
                     type: 'time',
                     time: {
-                        unit: 'month',  // Gruppér dataene efter måned
+                        unit: 'month',
                         tooltipFormat: 'MMM YYYY',
                         displayFormats: {
                             month: 'MMM YYYY'
                         }
                     },
-                    title: {
-                        display: true,
-                        text: ''
+                    min: moment(workoutData[0].x).toDate(),
+                    max: moment(workoutData[workoutData.length - 1].x).toDate(),
+                    ticks: {
+                        source: 'auto',
                     }
                 },
                 y: {
-                    title: {
-                        display: true,
-                        text: ''
-                    },
                     beginAtZero: true,
                     suggestedMax: 30
                 }
@@ -66,7 +66,6 @@ window.onload = function () {
                     callbacks: {
                         label: function(context) {
                             let label = context.dataset.label || '';
-        
                             if (label) {
                                 label += ': ';
                             }
@@ -80,5 +79,17 @@ window.onload = function () {
             }
         }
     });
-    
+
+    // Initial scroll to the current month
+    setTimeout(function() {
+        const frontpageCharts = document.querySelector('.frontpage-charts');
+        const totalMonths = workoutData.length;
+        const currentMonthIndex = workoutData.findIndex(d => d.x.startsWith(today.format('YYYY-MM')));
+
+        // Beregn scroll-position
+        const scrollPosition = (frontpageCharts.scrollWidth / totalMonths) * currentMonthIndex;
+
+        // Juster scroll-position
+        frontpageCharts.scrollLeft = scrollPosition - (frontpageCharts.clientWidth / 2);
+    }, 100);  // Giver grafen tid til at loade før scroll
 }

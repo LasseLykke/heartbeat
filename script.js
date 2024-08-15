@@ -37,6 +37,7 @@ window.onload = function () {
             }]
         },
         options: {
+            
             responsive: true,
             maintainAspectRatio: true,
             aspectRatio: 4,

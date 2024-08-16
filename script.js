@@ -23,20 +23,29 @@ window.onload = function () {
                 data: workoutData,
                 backgroundColor: '#EA0300',
                 borderColor: '#191A19',
-                borderWidth: 0.5,
+                borderWidth: 0.1,
                 borderRadius: 2,
-                barThickness: 15,
-                maxBarThickness: 10
+                barThickness: 20,
+                maxBarThickness: 25
             },
+{
+                label: '', // SPACING HACK - adds spacing between bars.
+                borderColor: '#191A19',
+                borderWidth: 0.1,
+                borderRadius: 2,
+                barThickness: 20,
+                maxBarThickness: 25
+            },
+            
             {
                 label: 'Hovedpiner',
                 data: painData,
                 backgroundColor: '#191A19',
                 borderColor: '#191A19',
-                borderWidth: 0.5,
+                borderWidth: 0.1,
                 borderRadius: 2,
-                barThickness: 15,
-                maxBarThickness: 10
+                barThickness: 20,
+                maxBarThickness: 25
             }]
         },
         options: {
@@ -62,12 +71,12 @@ window.onload = function () {
                 },
                 y: {
                     beginAtZero: true,
-                    suggestedMax: 30
+                    suggestedMax: 20
                 }
             },
             plugins: {
                 legend: {
-                    position: '',
+                    position: '', //indsæt possion for labels 
                     labels: {
                       padding: 20,
                       font: {

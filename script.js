@@ -28,7 +28,7 @@ window.onload = function () {
                 barThickness: 20,
                 maxBarThickness: 25
             },
-{
+            {
                 label: '', // SPACING HACK - adds spacing between bars.
                 borderColor: '#191A19',
                 borderWidth: 0.1,

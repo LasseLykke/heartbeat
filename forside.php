@@ -56,7 +56,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
         <div class="frontpage-charts">
          <div class="chart-container">
-        <canvas id="workoutScatterChart"></canvas>
+        <canvas id="workoutBarChart"></canvas>
            <?php
 // Forespørgsel for at hente antal workouts pr. måned
 $sql = "SELECT DATE_FORMAT(workoutDates, '%Y-%m') AS month, COUNT(*) AS workoutCount 

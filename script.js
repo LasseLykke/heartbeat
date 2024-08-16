@@ -7,8 +7,11 @@ window.onload = function () {
         mobile_menu.classList.toggle('is-active');
     });
 
-    const ctx = document.getElementById('workoutScatterChart').getContext('2d');
+    
 
+    const ctx = document.getElementById('workoutBarChart').getContext('2d');
+    
+   
     // Få den nuværende dato
     const today = moment();
 
@@ -20,7 +23,7 @@ window.onload = function () {
                 data: workoutData,
                 backgroundColor: '#EA0300',
                 borderColor: '#191A19',
-                borderWidth: 0.1,
+                borderWidth: 0.5,
                 borderRadius: 2,
                 barThickness: 15,
                 maxBarThickness: 10
@@ -29,15 +32,15 @@ window.onload = function () {
                 label: 'Hovedpiner',
                 data: painData,
                 backgroundColor: '#191A19',
-                borderColor: '#EA0300',
-                borderWidth: 0.1,
+                borderColor: '#191A19',
+                borderWidth: 0.5,
                 borderRadius: 2,
                 barThickness: 15,
                 maxBarThickness: 10
             }]
         },
         options: {
-            
+            backgroundColor: '#EA0300',
             responsive: true,
             maintainAspectRatio: true,
             aspectRatio: 4,
@@ -63,6 +66,13 @@ window.onload = function () {
                 }
             },
             plugins: {
+                legend: {
+                    position: '',
+                    labels: {
+                      padding: 20,
+                      font: {
+                        size: 12
+                      }}},
                 tooltip: {
                     callbacks: {
                         label: function(context) {
@@ -77,7 +87,7 @@ window.onload = function () {
                         }
                     }
                 }
-            }
+            }, 
         }
     });
 

@@ -33,80 +33,80 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <a href="logout.php">Log ud</a>
         </nav>
     </nav>
+    
     <div class="forsideWrapper">
-        <div class="hello">
-            <h1>Hej <?php echo $_SESSION['name']; ?> 👋🏻</h1>
-        </div>
-        <div class="formContainer">
-            <h2 class="formHeader"></h2>
-            <a href="daily.php"><button class="formBtn">Daglig log</button></a>
-            <a href="træningsForm.php"><button class="formBtn">Workout's</button></a>
-        </div>
-        
-        <div class="dataContainer">
-            <?php 
-            $sql1 = "SELECT COUNT(workoutID) AS totalWorkouts FROM workout";
-            $result1 = $conn->query($sql1);
+            <div class="hello">
+                <h1>Hej <?php echo $_SESSION['name']; ?> 👋🏻</h1>
+            </div>
+            <div class="formContainer">
+                <h2 class="formHeader"></h2>
+                <a href="daily.php"><button class="formBtn">Daglig log</button></a>
+                <a href="træningsForm.php"><button class="formBtn">Workout's</button></a>
+            </div>
+            
+            <div class="dataContainer">
+                <?php 
+                $sql1 = "SELECT COUNT(workoutID) AS totalWorkouts FROM workout";
+                $result1 = $conn->query($sql1);
 
-            $sql2 = "SELECT COUNT(DISTINCT painDates) AS num_rows FROM pain WHERE painState = 'Ja'";
-            $result2 = $conn->query($sql2);
-            ?>
-        </div>
+                $sql2 = "SELECT COUNT(DISTINCT painDates) AS num_rows FROM pain WHERE painState = 'Ja'";
+                $result2 = $conn->query($sql2);
+                ?>
+            </div>
 
 
         <div class="frontpage-charts">
-         <div class="chart-container">
-        <canvas id="workoutBarChart"></canvas>
-           <?php
-// Forespørgsel for at hente antal workouts pr. måned
-$sql = "SELECT DATE_FORMAT(workoutDates, '%Y-%m') AS month, COUNT(*) AS workoutCount 
-        FROM workout 
-        GROUP BY month 
-        ORDER BY month ASC";
-$result = $conn->query($sql);
+            <div class="chart-container">
+            <canvas id="workoutBarChart"></canvas>
+        <?php
+            // Forespørgsel for at hente antal workouts pr. måned
+            $sql = "SELECT DATE_FORMAT(workoutDates, '%Y-%m') AS month, COUNT(*) AS workoutCount 
+            FROM workout 
+            GROUP BY month 
+            ORDER BY month ASC";
+            $result = $conn->query($sql);
 
-$workoutData = [];
+            $workoutData = [];
 
-while($row = $result->fetch_assoc()) {
-    $workoutData[] = [
-        'x' => $row['month'],  // Gruppér datoerne pr. måned
-        'y' => $row['workoutCount']  // Antallet af workouts i den måned
-    ];
-}
+            while($row = $result->fetch_assoc()) {
+            $workoutData[] = [
+            'x' => $row['month'],  // Gruppér datoerne pr. måned
+            'y' => $row['workoutCount']  // Antallet af workouts i den måned
+            ];
+            }
 
-// Forespørgsel for at hente antal pain episodes pr. måned
-$sql2 = "SELECT DATE_FORMAT(painDates, '%Y-%m') AS month, COUNT(*) AS painCount 
-         FROM pain 
-         WHERE painState = 'Ja' 
-         GROUP BY month 
-         ORDER BY month ASC";
-$result2 = $conn->query($sql2);
+            // Forespørgsel for at hente antal pain episodes pr. måned
+            $sql2 = "SELECT DATE_FORMAT(painDates, '%Y-%m') AS month, COUNT(*) AS painCount 
+            FROM pain 
+            WHERE painState = 'Ja' 
+            GROUP BY month 
+            ORDER BY month ASC";
+            $result2 = $conn->query($sql2);
 
-$painData = [];
+            $painData = [];
 
-while($row2 = $result2->fetch_assoc()) {
-    $painData[] = [
-        'x' => $row2['month'],  // Gruppér datoerne pr. måned
-        'y' => $row2['painCount']  // Antallet af pain episodes i den måned
-    ];
-}
-?>
+            while($row2 = $result2->fetch_assoc()) {
+            $painData[] = [
+            'x' => $row2['month'],  // Gruppér datoerne pr. måned
+            'y' => $row2['painCount']  // Antallet af pain episodes i den måned
+            ];
+            }
+        ?>
 
-<script>
-// Genererer JavaScript-variabler fra PHP-data
-const workoutData = <?php echo json_encode($workoutData); ?>;
-const painData = <?php echo json_encode($painData); ?>;
-</script>
+        <script>
+        // Genererer JavaScript-variabler fra PHP-data
+        const workoutData = <?php echo json_encode($workoutData); ?>;
+        const painData = <?php echo json_encode($painData); ?>;
+        </script>
+        </div>
+    </div>       
 </div>
-       </div>       
-
-</div>
 
 
 
-        <script src="script.js"></script>
+    <script src="script.js"></script>
+
 </body>
-
 </html>
 
 <?php

@@ -42,10 +42,11 @@ label {
     color: var(--dark);
     text-transform: uppercase;
     text-align: center;
-    letter-spacing: 5px;
-    font-size: 16px;
+    letter-spacing: 1px;
+    font-size: clamp(2rem, 0.2rem + 10vw, 3rem);
     padding-bottom: 40px;
     font-weight: 1000;
+    font-family: 'Mulish', sans-serif;
 }
 
 .formHeader {

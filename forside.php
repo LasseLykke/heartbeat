@@ -22,7 +22,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 </head>
 
 <body>
-    <nav>
+    <header>
         <button class="hamburger">
             <div class="bar"></div>
         </button>
@@ -32,29 +32,21 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <a href="dataOverview.php">Statestik</a>
             <a href="logout.php">Log ud</a>
         </nav>
-    </nav>
+    </header>
     
-    <div class="forsideWrapper">
-            <div class="hello">
-                <h1>Hej <?php echo $_SESSION['name']; ?> 👋🏻</h1>
-            </div>
+    <!-- INPUT SECTION -->
+    <div class="wrapper">
+        <section class="hbInput">
+            <h1>Hej <?php echo $_SESSION['name']; ?> 👋🏻</h1>
             <div class="formContainer">
-                <h2 class="formHeader"></h2>
                 <a href="daily.php"><button class="formBtn">Daglig log</button></a>
                 <a href="træningsForm.php"><button class="formBtn">Workout's</button></a>
-            </div>
-            
-            <div class="dataContainer">
-                <?php 
-                $sql1 = "SELECT COUNT(workoutID) AS totalWorkouts FROM workout";
-                $result1 = $conn->query($sql1);
-
-                $sql2 = "SELECT COUNT(DISTINCT painDates) AS num_rows FROM pain WHERE painState = 'Ja'";
-                $result2 = $conn->query($sql2);
-                ?>
-            </div>
+                </div>
+        </section>
 
 
+
+<!-- CHARTS.JS GRAF -->
         <div class="frontpage-charts">
             <div class="chart-container">
             <canvas id="workoutBarChart"></canvas>
@@ -92,6 +84,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             ];
             }
         ?>
+        </div> <!-- Afslutter wrapper -->
 
         <script>
         // Genererer JavaScript-variabler fra PHP-data

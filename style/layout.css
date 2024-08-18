@@ -219,7 +219,7 @@
   margin-inline: auto;
   margin-top: 20px;
   padding-top: 100px;
-  min-height: 90vh;
+  height: 100dvh;
   border-radius: 10px;
   box-shadow: var(--b-shadow-xs);
 }

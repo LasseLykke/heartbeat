@@ -92,7 +92,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         const painData = <?php echo json_encode($painData); ?>;
         </script>
         </div>
-    </div>       
+    </div>     <!-- afslutning af wrapper -->
 </div>
 
 

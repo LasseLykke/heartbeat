@@ -214,47 +214,33 @@
 .wrapper {
   max-width: 600px;
   margin: 0 auto;
-  padding: 1.5rem;
-  background-color: lightgray;
+  /*padding: 1.5rem;*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }
 
-
-/* GAMMEL CSS ER IGANG MED AT BLIVE ÆNDRET 
-.forsideWrapper {
-  background-color: var(--white);
-  max-width: 45rem;
-  margin-inline: auto;
-  padding-top: 6em;
-  border-radius: 10px;
-
+.hbInput {
+  max-width: 600px;
+  padding: 20px;
 }
 
-.formContainer {
-  text-align: left;
-  padding: 30px;
-}
-
-.dataContainer {
-  text-align: left;
-  padding: 30px;
-}
-
-.cartWrapper {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  margin-top: 10px;
-}
-
-*/
 
 
 /* CHARTS */
 .frontpage-charts {
-  max-width: 385px; /* Fast bredde på containeren */
+  max-width: 600px; /* Fast bredde på containeren */
   overflow-x: scroll; /* Tillader horisontal scrolling */
   border: none;
   box-shadow: var(--b-shadow-xs);
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: 380px) {
+  .frontpage-charts {
+    max-width: 383px;
+  }
 }
 
 .chart-container {
@@ -512,8 +498,8 @@ td.dataWorkouts {
   border-radius: 15px;
   text-align: left;
   padding: 10px;
-  margin-right: 50px;
   font-weight: 1000;
+  margin: 20px;
 }
 
 .formBtn:hover {

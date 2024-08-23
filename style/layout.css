@@ -214,7 +214,6 @@
 .wrapper {
   max-width: 600px;
   margin: 0 auto;
-  /*padding: 1.5rem;*/
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -499,7 +498,7 @@ td.dataWorkouts {
   text-align: left;
   padding: 10px;
   font-weight: 1000;
-  margin: 20px;
+  margin: 25px;
 }
 
 .formBtn:hover {

@@ -15,9 +15,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <meta http-equiv="refresh" content="1500;url=logout.php" />
     <title>HEARTBEAT || FORSIDE</title>
     <link rel="shortcut icon" href="" type="image/x-icon"/>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js inkludering -->
-    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.0"></script>
+    
 
 </head>
 

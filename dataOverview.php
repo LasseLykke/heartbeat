@@ -11,11 +11,29 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <html>
 
     <head>
+         <!-- Logger ud efter 15min -->
+        <meta http-equiv="refresh" content="1500;url=logout.php" />
         <title>H E A R T B E A T || D A T A </title>
+        <link rel="shortcut icon" href="" type="image/x-icon"/>
 
     </head>
 
     <body>
+        <header>
+            <button class="hamburger">
+                <div class="bar"></div>
+            </button>
+
+            <nav class="mobile-nav">
+                <a href="forside.php">Forside</a>
+                <a href="dataOverview.php">Statestik</a>
+                <a href="logout.php">Log ud</a>
+            </nav>
+        </header>
+
+
+
+
         <div class="dataWrapper">
             <div class="dataHeader">
                 <h1>Dataoversigt:</h1><br>
@@ -546,6 +564,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <!-- Hovedpiner varighed  -->
 
 <br>
+
+<script src="script.js"></script>
 </body>
 
 </html>

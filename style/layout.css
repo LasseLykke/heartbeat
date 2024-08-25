@@ -615,7 +615,7 @@ td.dataWorkouts {
 
 /* SUCCESS */
 .success-wrapper {
-  background-color: var(--grey);
+  background-color: var(--white);
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -661,7 +661,7 @@ td.dataWorkouts {
   content: "";
   height: 100px;
   position: absolute;
-  background: var(--grey);
+  background: var(--white);
   transform: rotate(-45deg);
 }
 .success-checkmark .check-icon .icon-line {
@@ -705,7 +705,7 @@ td.dataWorkouts {
   height: 85px;
   position: absolute;
   transform: rotate(-45deg);
-  background-color: var(--grey);
+  background-color: var(--white);
 }
 
 @keyframes rotate-circle {

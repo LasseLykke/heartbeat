@@ -18,4 +18,9 @@ include 'connection.php';
     <meta name="keywords" content="Privat database for loggin workout and other stuff" />
     <meta name="description" content="Privat database for loggin workout and other stuff" />
     <meta name="author" content="Lasse Lykke @ Lasselykke.com" />
+
+    <!-- JS SCRIPT's -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js inkludering -->
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.0"></script>
 </head>

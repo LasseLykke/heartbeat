@@ -220,7 +220,8 @@
   text-align: center;
 }
 
-.hbInput {
+/* SECTION CLASS - adds padding so its dosen't conflict with hamburger */
+.hbHeader {
   max-width: 600px;
   padding: 20px;
 }
@@ -483,6 +484,45 @@ td.dataWorkouts {
   border: 1px solid var(--white);
 }
 
+.dataCart {
+  background-color: var(--white);
+  box-shadow: var(--b-shadow-xs);
+  color: var(--dark);
+
+  border: none;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  max-width: 250px;
+  max-height: 150px;
+  min-height: 100px;
+  border-radius: 15px;
+  text-align: left;
+  padding: 10px;
+  font-weight: 1000;
+  margin: 25px;
+}
+
+.dataBtn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.dataIcon {
+  max-width: 20px;
+  max-height: 20px;
+  min-width: 10px;
+  min-height: 10px;
+  display: inline-block;
+}
+
+.dataBtnInfo {
+  display: inline-block
+}
+
 .formBtn {
   background-color: var(--white);
   box-shadow: var(--b-shadow-xs);
@@ -576,7 +616,7 @@ td.dataWorkouts {
   text-transform: none;
 }
 
-/* Cart anchor/button */
+/* Cart anchor/button SKAL SLETTES */
 .cartBtn {
   display: flex;
   flex-direction: column;

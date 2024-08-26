@@ -34,8 +34,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     
     <!-- INPUT SECTION -->
     <div class="wrapper">
-        <section class="hbInput">
-            <h1 class="hello">Hej <?php echo $_SESSION['name']; ?> 👋🏻</h1>
+        <section class="hbHeader">
+            <h1 class="headerText">Hej <?php echo $_SESSION['name']; ?> 👋🏻</h1>
             <div class="formContainer">
                 <a href="daily.php"><button class="formBtn">Daglig log</button></a>
                 <a href="træningsForm.php"><button class="formBtn">Workout's</button></a>

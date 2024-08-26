@@ -38,7 +38,7 @@ label {
     padding-right: 10px;
 }
 
-.hello {
+.headerText {
     color: var(--dark);
     text-transform: uppercase;
     text-align: center;

@@ -65,6 +65,25 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         $result18 = $conn->query($sql18);
 ?>
 
+<!-- SKAL SAMLES! -->
+<?PHP 
+// Hent den sidste træningsdato og varighed
+$sql = "SELECT workoutDates, workoutVarighed FROM workout ORDER BY workoutDates DESC LIMIT 1";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $lastWorkoutDate = $row['workoutDates'];
+    $lastWorkoutDuration = $row['workoutVarighed'];
+} else {
+    $lastWorkoutDate = "Ingen data";
+    $lastWorkoutDuration = "Ingen data";
+}
+
+$conn->close();
+?>
+
+
     <!DOCTYPE html>
     <html>
 
@@ -100,15 +119,33 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <section class="data">
             <div class="dataCart">
             <a href="export_workout.php"><button class="dataBtn">
-                <img src="./img/workout.png" class="dataIcon" alt="workout icon">
-                <span class="dataBtnInfo">TEST</span>
-                <h3 class="dataBtnInfo">Workout's</h3>
-                <p class="dataBtnInfo">DATO</p>
-                <p class="dataBtnInfo">TID</p>
+                <div class="dataCartHeader">
+                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                    <h3>Workout's</h3>
+                </div>
+                <div class="dataCartInfo">
+                <p class="dataBtnInfo">DATO <?php echo $lastWorkoutDate; ?></p>
+                <p class="dataBtnInfo">TID <?php echo $lastWorkoutDuration; ?>min</p>
+                <br>
                 <p class="dataBtnInfo">Se mere -></p>
+                </div>
             </button></a>
             </div>
             
+            <div class="dataCart">
+            <a href="export_workout.php"><button class="dataBtn">
+                <div class="dataCartHeader">
+                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                    <h3>Pain</h3>
+                </div>
+                <div class="dataCartInfo">
+                <p class="dataBtnInfo">DATO <?php echo $lastWorkoutDate; ?></p>
+                <p class="dataBtnInfo">TID <?php echo $lastWorkoutDuration; ?>min</p>
+                <br>
+                <p class="dataBtnInfo">Se mere -></p>
+                </div>
+            </button></a>
+            </div>
 <!--
             <a href="painform.php"><button class="dataBtn">
                 <h3>Hovedpine</h3>

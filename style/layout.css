@@ -226,6 +226,12 @@
   padding: 20px;
 }
 
+/*SECTION CLASS - Made sure to display dataCarts sideByside */
+.data {
+  display: flex;
+}
+
+
 
 
 /* CHARTS */
@@ -484,21 +490,21 @@ td.dataWorkouts {
   border: 1px solid var(--white);
 }
 
+
 .dataCart {
   background-color: var(--white);
   box-shadow: var(--b-shadow-xs);
   color: var(--dark);
-
   border: none;
   font-size: 0.9rem;
   text-transform: uppercase;
-  max-width: 250px;
+  max-width: 170px;
   max-height: 150px;
+  min-width: 150px;
   min-height: 100px;
   border-radius: 15px;
   text-align: left;
   padding: 10px;
-  font-weight: 1000;
   margin: 25px;
 }
 
@@ -511,17 +517,25 @@ td.dataWorkouts {
   text-decoration: none;
 }
 
+.dataCartHeader {
+  display: flex;
+  align-items: center;
+}
+
 .dataIcon {
   max-width: 20px;
   max-height: 20px;
   min-width: 10px;
   min-height: 10px;
+  margin-right: 10px;
   display: inline-block;
 }
 
-.dataBtnInfo {
-  display: inline-block
+.dataCartInfo {
+  text-align: center;
+  margin: 0 auto;
 }
+
 
 .formBtn {
   background-color: var(--white);

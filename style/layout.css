@@ -228,7 +228,8 @@
 
 /*SECTION CLASS - Made sure to display dataCarts sideByside */
 .data {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 
@@ -467,6 +468,21 @@ td.dataWorkouts {
 
 /* BUTTONS & CARTS */
 
+.primBtn {
+  background-color: var(--dark);
+  color: var(--white);
+  margin: 14px 0px;
+  padding: 5px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.primBtn:hover {
+  box-shadow: var(--b-shadow-s);
+  transition: 200ms ease-in-out;
+}
+
 .loginBtn {
   display: flex;
   margin: 0 auto;
@@ -514,6 +530,10 @@ td.dataWorkouts {
   text-align: center; 
 }
 
+.dataCart > a {
+  color: inherit;
+}
+
 .dataBtn {
   display: flex;
   flex-direction: column;
@@ -537,15 +557,19 @@ td.dataWorkouts {
   display: inline-block;
 }
 
+
 .dataCartInfo {
-    padding-top: 10px;
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: center; 
-    width: 100%;
-    flex-grow: 1; 
-  
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-grow: 1;
+}
+
+ .dataBtnInfo {
+  display: inline-block;
 }
 
 

@@ -11,7 +11,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 <!-- Import of datapoints from db -->
 <?php 
        
-       $sqls = [
+   $sqls = [
         "SELECT COUNT(DISTINCT painDates) AS num_rows FROM pain WHERE painState = 'Ja'",
         "SELECT cykelTid, cykelBelastning FROM workout ORDER BY workoutID DESC LIMIT 1",
         "SELECT pulldownRep, pulldownKilo FROM workout ORDER BY workoutID DESC LIMIT 1",
@@ -28,10 +28,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         "SELECT rystemaskineTid FROM workout ORDER BY workoutID DESC LIMIT 1",
         "SELECT buttupsRep FROM workout ORDER BY workoutID DESC LIMIT 1",
         "SELECT vand FROM workout ORDER BY workoutID DESC LIMIT 1",
-        "SELECT workoutDates, workoutVarighed FROM workout ORDER BY workoutDates DESC LIMIT 1" 
+        "SELECT workoutDates, workoutVarighed FROM workout ORDER BY workoutDates DESC LIMIT 1",
+        "SELECT painDates, painDuration FROM pain ORDER BY painDates DESC LIMIT 1"
     ];
     
-    // Eksekver forespørgslerne og gem resultaterne
     $results = [];
     foreach ($sqls as $key => $sql) {
         $result = $conn->query($sql);
@@ -42,8 +42,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         }
     }
     
-    // Ekstraktion af resultater
     $num_rows = $results[0]['num_rows'] ?? "Ingen data";
+
     
     $cykelTid = $results[1]['cykelTid'] ?? "Ingen data";
     $cykelBelastning = $results[1]['cykelBelastning'] ?? "Ingen data";
@@ -89,10 +89,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     
     $lastWorkoutDate = $results[16]['workoutDates'] ?? "Ingen data";
     $lastWorkoutDuration = $results[16]['workoutVarighed'] ?? "Ingen data";
+
+    $painDates = $results[17]['painDates'] ?? "Ingen data";
+    $painDuration = $results[17]['painDuration'] ?? "Ingen data";
     
-    // Luk forbindelse til databasen
+    // Close Connection
     $conn->close();
-    ?>
+?>
 
 
     <!DOCTYPE html>
@@ -129,163 +132,275 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
         <section class="data">
             <div class="dataCart">
-            <a href="export_workout.php"><button class="dataBtn">
+            <a href="export_workout.php">
+                <div class="dataBtn">
                 <div class="dataCartHeader">
                     <img src="./img/workout.png" class="dataIcon" alt="workout icon">
-                    <h3>Workout's</h3>
+                    <h3>Workout</h3>
                 </div>
-                <div class="dataCartInfo">
-                <p class="dataBtnInfo"><?php echo date('d/m/y', strtotime($lastWorkoutDate)); ?></p>
-
-                <p class="dataBtnInfo"><?php echo $lastWorkoutDuration; ?>min</p>
-                <br>
-                <p class="dataBtnInfo">Se mere -></p>
-                </div>
-            </button></a>
+                    <div class="dataCartInfo">
+                        <div class="inline">
+                    <p class="dataBtnInfo"><?php echo date('d/m', strtotime($lastWorkoutDate)); ?> |</p>
+                    <p class="dataBtnInfo"><?php echo $lastWorkoutDuration; ?>min</p>
+                    <br>
+                    <button class="primBtn">Se mere</button>
+                </div></div>
+                </div></a>
             </div>
-            
+
             <div class="dataCart">
-            <a href="export_workout.php"><button class="dataBtn">
+            <a href="export_workout.php">
+                <div class="dataBtn">
                 <div class="dataCartHeader">
-                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                    <img src="./img/headache.png" class="dataIcon" alt="workout icon">
                     <h3>Pain</h3>
                 </div>
-                <div class="dataCartInfo">
-                <p class="dataBtnInfo"><?php echo date('d/m/y', strtotime($lastWorkoutDate)); ?></p>
-                <p class="dataBtnInfo"><?php echo $lastWorkoutDuration; ?>timer</p>
-                <br>
-                <p class="dataBtnInfo">Se mere -></p>
-                </div>
-            </button></a>
+                    <div class="dataCartInfo">
+                        <div class="inline">
+                    <p class="dataBtnInfo"><?php echo date('d/m', strtotime($painDates)); ?> |</p>
+                    <p class="dataBtnInfo"><?php echo $painDuration; ?>t</p>
+                    <br>
+                    <button class="primBtn">Se mere</button>
+                </div></div>
+                </div></a>
             </div>
-<!--
-            <a href="painform.php"><button class="dataBtn">
-                <h3>Hovedpine</h3>
-                <p>DATO</p>
-                <p>TID</p>
-                <p>Se mere -></p>
-            </button></a>
 
             <div class="dataCart">
-            <a href="export_workout.php"><button class="dataBtn">
-                <h3>Cykling</h3>
-                <p>DATO</p>
-                <p>TID</p>
-                <p>Se mere -></p>
-            </button></a>
-
-
-            <a href="painform.php"><button class="dataBtn">
-                <h3>Pulldown's</h3>
-                <p>DATO</p>
-                <p>TID</p>
-                <p>Se mere -></p>
-            </button></a>
-
-            <div class="dataCart">
-            <a href="export_workout.php"><button class="dataBtn">
-                <h3>Rygbøjning</h3>
-                <p>DATO</p>
-                <p>TID</p>
-                <p>Se mere -></p>
-            </button></a>
-
-            <a href="painform.php"><button class="dataBtn">
-                <h3>Ab Crunchs</h3>
-                <p>DATO</p>
-                <p>TID</p>
-                <p>Se mere -></p>
-            </button></a>
+            <a href="export_workout.php">
+                <div class="dataBtn">
+                <div class="dataCartHeader">
+                    <img src="./img/cykel.png" class="dataIcon" alt="workout icon">
+                    <h3>Cykling</h3>
+                </div>
+                    <div class="dataCartInfo">
+                        <div class="inline">
+                    <p class="dataBtnInfo"><?php echo $cykelBelastning; ?> |</p>
+                    <p class="dataBtnInfo"><?php echo $cykelTid; ?>min</p>
+                    <br>
+                    <button class="primBtn">Se mere</button>
+                </div></div>
+                </div></a>
+            </div>
 
             <div class="dataCart">
-            <a href="export_workout.php"><button class="dataBtn">
-                <h3>Brystpres</h3>
-                <p>DATO</p>
-                <p>TID</p>
-                <p>Se mere -></p>
-            </button></a>
-
-            <a href="painform.php"><button class="dataBtn">
-                <h3>Benpres</h3>
-                <p>DATO</p>
-                <p>TID</p>
-                <p>Se mere -></p>
-            </button></a>
-
-            <div class="dataCart">
-            <a href="export_workout.php"><button class="dataBtn">
-                <h3>Leg Curls</h3>
-                <p>DATO</p>
-                <p>TID</p>
-                <p>Se mere -></p>
-            </button></a>
-
-            <a href="painform.php"><button class="dataBtn">
-                <h3>Leg Extension</h3>
-                <p>DATO</p>
-                <p>TID</p>
-                <p>Se mere -></p>
-            </button></a>
+            <a href="export_workout.php">
+                <div class="dataBtn">
+                <div class="dataCartHeader">
+                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                    <h3>PullDown</h3>
+                </div>
+                    <div class="dataCartInfo">
+                        <div class="inline">
+                    <p class="dataBtnInfo"><?php echo $pulldownKilo; ?>kg |</p>
+                    <p class="dataBtnInfo"><?php echo $pulldownRep; ?>rep</p>
+                    <br>
+                    <button class="primBtn">Se mere</button>
+                </div></div>
+                </div></a>
+            </div>
 
             <div class="dataCart">
-            <a href="export_workout.php"><button class="dataBtn">
-                <h3>Biceps</h3>
-                <p>DATO</p>
-                <p>TID</p>
-                <p>Se mere -></p>
-            </button></a>
-
-            <a href="painform.php"><button class="dataBtn">
-                <h3>Neckpress</h3>
-                <p>DATO</p>
-                <p>TID</p>
-                <p>Se mere -></p>
-            </button></a>
-
-            <div class="dataCart">
-            <a href="export_workout.php"><button class="dataBtn">
-                <h3>PullUps</h3>
-                <p>DATO</p>
-                <p>TID</p>
-                <p>Se mere -></p>
-            </button></a>
-
-            <a href="painform.php"><button class="dataBtn">
-                <h3>Løb</h3>
-                <p>DATO</p>
-                <p>TID</p>
-                <p>Se mere -></p>
-            </button></a>
+            <a href="export_workout.php">
+                <div class="dataBtn">
+                <div class="dataCartHeader">
+                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                    <h3>Rygbøjning</h3>
+                </div>
+                    <div class="dataCartInfo">
+                        <div class="inline">
+                        <p class="dataBtnInfo"><?php echo $rygbøjningKilo; ?>kg |</p>
+                    <p class="dataBtnInfo"><?php echo $rygbøjningRep; ?>rep</p>
+                    <br>
+                    <button class="primBtn">Se mere</button>
+                </div></div>
+                </div></a>
+            </div>
 
             <div class="dataCart">
-            <a href="export_workout.php"><button class="dataBtn">
-                <h3>Rystemaskine</h3>
-                <p>DATO</p>
-                <p>TID</p>
-                <p>Se mere -></p>
-            </button></a>
-
-            <a href="painform.php"><button class="dataBtn">
-                <h3>ButtUps</h3>
-                <p>DATO</p>
-                <p>TID</p>
-                <p>Se mere -></p>
-            </button></a>
+            <a href="export_workout.php">
+                <div class="dataBtn">
+                <div class="dataCartHeader">
+                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                    <h3>Abchrunch</h3>
+                </div>
+                    <div class="dataCartInfo">
+                        <div class="inline">
+                        <p class="dataBtnInfo"><?php echo $abcrunchKilo; ?>kg |</p>
+                    <p class="dataBtnInfo"><?php echo $abcrunchRep; ?>rep</p>
+                    <br>
+                    <button class="primBtn">Se mere</button>
+                </div></div>
+                </div></a>
+            </div>
 
             <div class="dataCart">
-            <a href="export_workout.php"><button class="dataBtn">
-                <h3>Vand</h3>
-                <p>DATO</p>
-                <p>TID</p>
-                <p>Se mere -></p>
-            </button></a>
+            <a href="export_workout.php">
+                <div class="dataBtn">
+                <div class="dataCartHeader">
+                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                    <h3>Brystpres</h3>
+                </div>
+                    <div class="dataCartInfo">
+                        <div class="inline">
+                        <p class="dataBtnInfo"><?php echo $brystpresKilo; ?>kg |</p>
+                    <p class="dataBtnInfo"><?php echo $brystpresRep; ?>rep</p>
+                    <br>
+                    <button class="primBtn">Se mere</button>
+                </div></div>
+                </div></a>
+            </div>
 
-            <a href="painform.php"><button class="dataBtn">
-                <h3>Varighed</h3>
-                <p>DATO</p>
-                <p>TID</p>
-                <p>Se mere -></p>
-            </button></a> -->
+            <div class="dataCart">
+            <a href="export_workout.php">
+                <div class="dataBtn">
+                <div class="dataCartHeader">
+                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                    <h3>Legpres</h3>
+                </div>
+                    <div class="dataCartInfo">
+                        <div class="inline">
+                        <p class="dataBtnInfo"><?php echo $legpressKilo; ?>kg |</p>
+                    <p class="dataBtnInfo"><?php echo $legpressRep; ?>rep</p>
+                    <br>
+                    <button class="primBtn">Se mere</button>
+                </div></div>
+                </div></a>
+            </div>
+
+            <div class="dataCart">
+            <a href="export_workout.php">
+                <div class="dataBtn">
+                <div class="dataCartHeader">
+                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                    <h3>Legcurl</h3>
+                </div>
+                    <div class="dataCartInfo">
+                        <div class="inline">
+                        <p class="dataBtnInfo"><?php echo $legcurlKilo; ?>kg |</p>
+                    <p class="dataBtnInfo"><?php echo $legcurlRep; ?>rep</p>
+                    <br>
+                    <button class="primBtn">Se mere</button>
+                </div></div>
+                </div></a>
+            </div>
+
+            <div class="dataCart">
+            <a href="export_workout.php">
+                <div class="dataBtn">
+                <div class="dataCartHeader">
+                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                    <h3>Legextension</h3>
+                </div>
+                    <div class="dataCartInfo">
+                        <div class="inline">
+                        <p class="dataBtnInfo"><?php echo $legextensionKilo; ?>kg |</p>
+                    <p class="dataBtnInfo"><?php echo $legextensionRep; ?>rep</p>
+                    <br>
+                    <button class="primBtn">Se mere</button>
+                </div></div>
+                </div></a>
+            </div>
+
+            <div class="dataCart">
+            <a href="export_workout.php">
+                <div class="dataBtn">
+                <div class="dataCartHeader">
+                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                    <h3>Bicpes</h3>
+                </div>
+                    <div class="dataCartInfo">
+                        <div class="inline">
+                    <p class="dataBtnInfo"><?php echo $bicepsKilo; ?>kg |</p>
+                    <p class="dataBtnInfo"><?php echo $bicepsRep; ?>rep</p>
+                    <br>
+                    <button class="primBtn">Se mere</button>
+                </div></div>
+                </div></a>
+            </div>
+
+            <div class="dataCart">
+            <a href="export_workout.php">
+                <div class="dataBtn">
+                <div class="dataCartHeader">
+                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                    <h3>Neckpres</h3>
+                </div>
+                    <div class="dataCartInfo">
+                        <div class="inline">
+                        <p class="dataBtnInfo"><?php echo $neckKilo; ?>kg |</p>
+                    <p class="dataBtnInfo"><?php echo $neckRep; ?>rep</p>
+                    <br>
+                    <button class="primBtn">Se mere</button>
+                </div></div>
+                </div></a>
+            </div>
+            
+
+            <div class="dataCart">
+            <a href="export_workout.php">
+                <div class="dataBtn">
+                <div class="dataCartHeader">
+                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                    <h3>Buttups</h3>
+                </div>
+                    <div class="dataCartInfo">
+                        <div class="inline">
+                        <p class="dataBtnInfo"><?php echo $buttupsRep; ?>rep</p>
+                    <br>
+                    <button class="primBtn">Se mere</button>
+                </div></div>
+                </div></a>
+            </div>
+
+            <div class="dataCart">
+            <a href="export_workout.php">
+                <div class="dataBtn">
+                <div class="dataCartHeader">
+                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                    <h3>Pullups</h3>
+                </div>
+                    <div class="dataCartInfo">
+                        <div class="inline">
+                        <p class="dataBtnInfo"><?php echo $pullupsKilo; ?>kg |</p>
+                    <p class="dataBtnInfo"><?php echo $pullupsRep; ?>rep</p>
+                    <br>
+                    <button class="primBtn">Se mere</button>
+                </div></div>
+                </div></a>
+            </div>
+
+            <div class="dataCart">
+            <a href="export_workout.php">
+                <div class="dataBtn">
+                <div class="dataCartHeader">
+                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                    <h3>Løb</h3>
+                </div>
+                    <div class="dataCartInfo">
+                        <div class="inline">
+                        <p class="dataBtnInfo"><?php echo $løbBelastning; ?>kg |</p>
+                    <p class="dataBtnInfo"><?php echo $løbTid; ?>t</p>
+                    <br>
+                    <button class="primBtn">Se mere</button>
+                </div></div>
+                </div></a>
+            </div>
+
+            <div class="dataCart">
+            <a href="export_workout.php">
+                <div class="dataBtn">
+                <div class="dataCartHeader">
+                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                    <h3>Rystemaskine</h3>
+                </div>
+                    <div class="dataCartInfo">
+                        <div class="inline">
+                        <p class="dataBtnInfo"><?php echo $rystemaskineTid; ?>t </p>
+                    <br>
+                    <button class="primBtn">Se mere</button>
+                </div></div>
+                </div></a>
+            </div>
 
         </section>
        </div>

@@ -10,78 +10,89 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
 <!-- Import of datapoints from db -->
 <?php 
-        $sql1 = "SELECT COUNT(workoutID) AS totalWorkouts FROM workout";
-        $result1 = $conn->query($sql1);
-
-        $sql2 = "SELECT COUNT(DISTINCT painDates) AS num_rows FROM pain WHERE painState = 'Ja'";
-        $result2 = $conn->query($sql2);
-
-        $sql3 = "SELECT cykelTid, cykelBelastning FROM workout ORDER BY workoutID DESC LIMIT 1;";
-        $result3 = $conn->query($sql3);
-
-        $sql4 = "SELECT pulldownRep, pulldownKilo FROM workout ORDER BY workoutID DESC LIMIT 1;";
-        $result4 = $conn->query($sql4);
-
-        $sql5 = "SELECT rygbøjningRep, rygbøjningKilo FROM workout ORDER BY workoutID DESC LIMIT 1;";
-        $result5 = $conn->query($sql5);
-
-        $sql6 = "SELECT abcrunchRep, abcrunchKilo FROM workout ORDER BY workoutID DESC LIMIT 1;";
-        $result6 = $conn->query($sql6);
-
-        $sql7 = "SELECT brystpresRep, brystpresKilo FROM workout ORDER BY workoutID DESC LIMIT 1;";
-        $result7 = $conn->query($sql7);
-
-        $sql8 = "SELECT legpressRep, legpressKilo FROM workout ORDER BY workoutID DESC LIMIT 1;";
-        $result8 = $conn->query($sql8);
-
-        $sql9 = "SELECT legcurlRep, legcurlKilo FROM workout ORDER BY workoutID DESC LIMIT 1;";
-        $result9 = $conn->query($sql9);
-
-        $sql10 = "SELECT legextensionRep, legextensionKilo FROM workout ORDER BY workoutID DESC LIMIT 1;";
-        $result10 = $conn->query($sql10);
-
-        $sql11 = "SELECT bicepsRep, bicepsKilo FROM workout ORDER BY workoutID DESC LIMIT 1;";
-        $result11 = $conn->query($sql11);
-
-        $sql12 = "SELECT neckRep, neckKilo FROM workout ORDER BY workoutID DESC LIMIT 1;";
-        $result12 = $conn->query($sql12);
-
-        $sql13 = "SELECT pullupsRep, pullupsKilo FROM workout ORDER BY workoutID DESC LIMIT 1;";
-        $result13 = $conn->query($sql13);
-
-        $sql14 = "SELECT løbTid, løbBelastning  FROM workout ORDER BY workoutID DESC LIMIT 1;";
-        $result14 = $conn->query($sql14);
-
-        $sql15 = "SELECT rystemaskineTid FROM workout ORDER BY workoutID DESC LIMIT 1;";
-        $result15 = $conn->query($sql15);
-
-        $sql16 = "SELECT buttupsRep FROM workout ORDER BY workoutID DESC LIMIT 1;";
-        $result16 = $conn->query($sql16);
-
-        $sql17 = "SELECT vand FROM workout ORDER BY workoutID DESC LIMIT 1;";
-        $result17 = $conn->query($sql17);
-
-        $sql18 = "SELECT workoutVarighed FROM workout ORDER BY workoutID DESC LIMIT 1;";
-        $result18 = $conn->query($sql18);
-?>
-
-<!-- SKAL SAMLES! -->
-<?PHP 
-// Hent den sidste træningsdato og varighed
-$sql = "SELECT workoutDates, workoutVarighed FROM workout ORDER BY workoutDates DESC LIMIT 1";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $lastWorkoutDate = $row['workoutDates'];
-    $lastWorkoutDuration = $row['workoutVarighed'];
-} else {
-    $lastWorkoutDate = "Ingen data";
-    $lastWorkoutDuration = "Ingen data";
-}
-
-$conn->close();
-?>
+       
+       $sqls = [
+        "SELECT COUNT(DISTINCT painDates) AS num_rows FROM pain WHERE painState = 'Ja'",
+        "SELECT cykelTid, cykelBelastning FROM workout ORDER BY workoutID DESC LIMIT 1",
+        "SELECT pulldownRep, pulldownKilo FROM workout ORDER BY workoutID DESC LIMIT 1",
+        "SELECT rygbøjningRep, rygbøjningKilo FROM workout ORDER BY workoutID DESC LIMIT 1",
+        "SELECT abcrunchRep, abcrunchKilo FROM workout ORDER BY workoutID DESC LIMIT 1",
+        "SELECT brystpresRep, brystpresKilo FROM workout ORDER BY workoutID DESC LIMIT 1",
+        "SELECT legpressRep, legpressKilo FROM workout ORDER BY workoutID DESC LIMIT 1",
+        "SELECT legcurlRep, legcurlKilo FROM workout ORDER BY workoutID DESC LIMIT 1",
+        "SELECT legextensionRep, legextensionKilo FROM workout ORDER BY workoutID DESC LIMIT 1",
+        "SELECT bicepsRep, bicepsKilo FROM workout ORDER BY workoutID DESC LIMIT 1",
+        "SELECT neckRep, neckKilo FROM workout ORDER BY workoutID DESC LIMIT 1",
+        "SELECT pullupsRep, pullupsKilo FROM workout ORDER BY workoutID DESC LIMIT 1",
+        "SELECT løbTid, løbBelastning FROM workout ORDER BY workoutID DESC LIMIT 1",
+        "SELECT rystemaskineTid FROM workout ORDER BY workoutID DESC LIMIT 1",
+        "SELECT buttupsRep FROM workout ORDER BY workoutID DESC LIMIT 1",
+        "SELECT vand FROM workout ORDER BY workoutID DESC LIMIT 1",
+        "SELECT workoutDates, workoutVarighed FROM workout ORDER BY workoutDates DESC LIMIT 1" 
+    ];
+    
+    // Eksekver forespørgslerne og gem resultaterne
+    $results = [];
+    foreach ($sqls as $key => $sql) {
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            $results[$key] = $result->fetch_assoc();
+        } else {
+            $results[$key] = null;
+        }
+    }
+    
+    // Ekstraktion af resultater
+    $num_rows = $results[0]['num_rows'] ?? "Ingen data";
+    
+    $cykelTid = $results[1]['cykelTid'] ?? "Ingen data";
+    $cykelBelastning = $results[1]['cykelBelastning'] ?? "Ingen data";
+    
+    $pulldownRep = $results[2]['pulldownRep'] ?? "Ingen data";
+    $pulldownKilo = $results[2]['pulldownKilo'] ?? "Ingen data";
+    
+    $rygbøjningRep = $results[3]['rygbøjningRep'] ?? "Ingen data";
+    $rygbøjningKilo = $results[3]['rygbøjningKilo'] ?? "Ingen data";
+    
+    $abcrunchRep = $results[4]['abcrunchRep'] ?? "Ingen data";
+    $abcrunchKilo = $results[4]['abcrunchKilo'] ?? "Ingen data";
+    
+    $brystpresRep = $results[5]['brystpresRep'] ?? "Ingen data";
+    $brystpresKilo = $results[5]['brystpresKilo'] ?? "Ingen data";
+    
+    $legpressRep = $results[6]['legpressRep'] ?? "Ingen data";
+    $legpressKilo = $results[6]['legpressKilo'] ?? "Ingen data";
+    
+    $legcurlRep = $results[7]['legcurlRep'] ?? "Ingen data";
+    $legcurlKilo = $results[7]['legcurlKilo'] ?? "Ingen data";
+    
+    $legextensionRep = $results[8]['legextensionRep'] ?? "Ingen data";
+    $legextensionKilo = $results[8]['legextensionKilo'] ?? "Ingen data";
+    
+    $bicepsRep = $results[9]['bicepsRep'] ?? "Ingen data";
+    $bicepsKilo = $results[9]['bicepsKilo'] ?? "Ingen data";
+    
+    $neckRep = $results[10]['neckRep'] ?? "Ingen data";
+    $neckKilo = $results[10]['neckKilo'] ?? "Ingen data";
+    
+    $pullupsRep = $results[11]['pullupsRep'] ?? "Ingen data";
+    $pullupsKilo = $results[11]['pullupsKilo'] ?? "Ingen data";
+    
+    $løbTid = $results[12]['løbTid'] ?? "Ingen data";
+    $løbBelastning = $results[12]['løbBelastning'] ?? "Ingen data";
+    
+    $rystemaskineTid = $results[13]['rystemaskineTid'] ?? "Ingen data";
+    
+    $buttupsRep = $results[14]['buttupsRep'] ?? "Ingen data";
+    
+    $vand = $results[15]['vand'] ?? "Ingen data";
+    
+    $lastWorkoutDate = $results[16]['workoutDates'] ?? "Ingen data";
+    $lastWorkoutDuration = $results[16]['workoutVarighed'] ?? "Ingen data";
+    
+    // Luk forbindelse til databasen
+    $conn->close();
+    ?>
 
 
     <!DOCTYPE html>
@@ -124,8 +135,9 @@ $conn->close();
                     <h3>Workout's</h3>
                 </div>
                 <div class="dataCartInfo">
-                <p class="dataBtnInfo">DATO <?php echo $lastWorkoutDate; ?></p>
-                <p class="dataBtnInfo">TID <?php echo $lastWorkoutDuration; ?>min</p>
+                <p class="dataBtnInfo"><?php echo date('d/m/y', strtotime($lastWorkoutDate)); ?></p>
+
+                <p class="dataBtnInfo"><?php echo $lastWorkoutDuration; ?>min</p>
                 <br>
                 <p class="dataBtnInfo">Se mere -></p>
                 </div>
@@ -139,8 +151,8 @@ $conn->close();
                     <h3>Pain</h3>
                 </div>
                 <div class="dataCartInfo">
-                <p class="dataBtnInfo">DATO <?php echo $lastWorkoutDate; ?></p>
-                <p class="dataBtnInfo">TID <?php echo $lastWorkoutDuration; ?>min</p>
+                <p class="dataBtnInfo"><?php echo date('d/m/y', strtotime($lastWorkoutDate)); ?></p>
+                <p class="dataBtnInfo"><?php echo $lastWorkoutDuration; ?>timer</p>
                 <br>
                 <p class="dataBtnInfo">Se mere -></p>
                 </div>

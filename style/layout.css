@@ -506,6 +506,12 @@ td.dataWorkouts {
   text-align: left;
   padding: 10px;
   margin: 25px;
+/*Getting sub div to center inside cart*/
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  align-items: center; 
+  text-align: center; 
 }
 
 .dataBtn {
@@ -532,8 +538,14 @@ td.dataWorkouts {
 }
 
 .dataCartInfo {
-  text-align: center;
-  margin: 0 auto;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    width: 100%;
+    flex-grow: 1; 
+  
 }
 
 

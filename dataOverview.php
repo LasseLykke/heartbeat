@@ -28,6 +28,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         "SELECT rystemaskineTid FROM workout ORDER BY workoutID DESC LIMIT 1",
         "SELECT buttupsRep FROM workout ORDER BY workoutID DESC LIMIT 1",
         "SELECT vand FROM workout ORDER BY workoutID DESC LIMIT 1",
+        "SELECT vægt FROM workout ORDER BY workoutID DESC LIMIT 1",
         "SELECT workoutDates, workoutVarighed FROM workout ORDER BY workoutDates DESC LIMIT 1",
         "SELECT painDates, painDuration FROM pain ORDER BY painDates DESC LIMIT 1"
     ];
@@ -87,11 +88,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     
     $vand = $results[15]['vand'] ?? "Ingen data";
     
-    $lastWorkoutDate = $results[16]['workoutDates'] ?? "Ingen data";
-    $lastWorkoutDuration = $results[16]['workoutVarighed'] ?? "Ingen data";
+    $vægt = $results[16]['vægt'] ?? "Ingen data";
+    
+    $lastWorkoutDate = $results[17]['workoutDates'] ?? "Ingen data";
+    $lastWorkoutDuration = $results[17]['workoutVarighed'] ?? "Ingen data";
 
-    $painDates = $results[17]['painDates'] ?? "Ingen data";
-    $painDuration = $results[17]['painDuration'] ?? "Ingen data";
+    $painDates = $results[18]['painDates'] ?? "Ingen data";
+    $painDuration = $results[18]['painDuration'] ?? "Ingen data";
     
     // Close Connection
     $conn->close();
@@ -186,7 +189,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <a href="export_workout.php">
                 <div class="dataBtn">
                 <div class="dataCartHeader">
-                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                    <img src="./img/pullupdown.png" class="dataIcon" alt="workout icon">
                     <h3>PullDown</h3>
                 </div>
                     <div class="dataCartInfo">
@@ -203,7 +206,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <a href="export_workout.php">
                 <div class="dataBtn">
                 <div class="dataCartHeader">
-                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                    <img src="./img/ryg.png" class="dataIcon" alt="workout icon">
                     <h3>Rygbøjning</h3>
                 </div>
                     <div class="dataCartInfo">
@@ -220,7 +223,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <a href="export_workout.php">
                 <div class="dataBtn">
                 <div class="dataCartHeader">
-                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                    <img src="./img/abs.png" class="dataIcon" alt="workout icon">
                     <h3>Abchrunch</h3>
                 </div>
                     <div class="dataCartInfo">
@@ -237,7 +240,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <a href="export_workout.php">
                 <div class="dataBtn">
                 <div class="dataCartHeader">
-                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                    <img src="./img/brystpres.png" class="dataIcon" alt="workout icon">
                     <h3>Brystpres</h3>
                 </div>
                     <div class="dataCartInfo">
@@ -254,7 +257,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <a href="export_workout.php">
                 <div class="dataBtn">
                 <div class="dataCartHeader">
-                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                    <img src="./img/legpress.png" class="dataIcon" alt="workout icon">
                     <h3>Legpres</h3>
                 </div>
                     <div class="dataCartInfo">
@@ -271,8 +274,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <a href="export_workout.php">
                 <div class="dataBtn">
                 <div class="dataCartHeader">
-                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
-                    <h3>Legcurl</h3>
+                    <img src="./img/legpress.png" class="dataIcon" alt="workout icon">
+                    <h3>Curl</h3>
                 </div>
                     <div class="dataCartInfo">
                         <div class="inline">
@@ -288,8 +291,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <a href="export_workout.php">
                 <div class="dataBtn">
                 <div class="dataCartHeader">
-                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
-                    <h3>Legextension</h3>
+                    <img src="./img/legpress.png" class="dataIcon" alt="workout icon">
+                    <h3>Extension</h3>
                 </div>
                     <div class="dataCartInfo">
                         <div class="inline">
@@ -305,7 +308,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <a href="export_workout.php">
                 <div class="dataBtn">
                 <div class="dataCartHeader">
-                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                    <img src="./img/biceps.png" class="dataIcon" alt="workout icon">
                     <h3>Bicpes</h3>
                 </div>
                     <div class="dataCartInfo">
@@ -322,7 +325,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <a href="export_workout.php">
                 <div class="dataBtn">
                 <div class="dataCartHeader">
-                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                    <img src="./img/brystpres.png" class="dataIcon" alt="workout icon">
                     <h3>Neckpres</h3>
                 </div>
                     <div class="dataCartInfo">
@@ -340,7 +343,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <a href="export_workout.php">
                 <div class="dataBtn">
                 <div class="dataCartHeader">
-                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                    <img src="./img/buttups.png" class="dataIcon" alt="workout icon">
                     <h3>Buttups</h3>
                 </div>
                     <div class="dataCartInfo">
@@ -356,7 +359,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <a href="export_workout.php">
                 <div class="dataBtn">
                 <div class="dataCartHeader">
-                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                    <img src="./img/pullupdown.png" class="dataIcon" alt="workout icon">
                     <h3>Pullups</h3>
                 </div>
                     <div class="dataCartInfo">
@@ -373,13 +376,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <a href="export_workout.php">
                 <div class="dataBtn">
                 <div class="dataCartHeader">
-                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                    <img src="./img/løb.png" class="dataIcon" alt="workout icon">
                     <h3>Løb</h3>
                 </div>
                     <div class="dataCartInfo">
                         <div class="inline">
                         <p class="dataBtnInfo"><?php echo $løbBelastning; ?>kg |</p>
-                    <p class="dataBtnInfo"><?php echo $løbTid; ?>t</p>
+                    <p class="dataBtnInfo"><?php echo $løbTid; ?>min</p>
                     <br>
                     <button class="primBtn">Se mere</button>
                 </div></div>
@@ -390,12 +393,44 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <a href="export_workout.php">
                 <div class="dataBtn">
                 <div class="dataCartHeader">
-                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
-                    <h3>Rystemaskine</h3>
+                    <img src="./img/ryste.png" class="dataIcon" alt="workout icon">
+                    <h3>Ryst</h3>
                 </div>
                     <div class="dataCartInfo">
                         <div class="inline">
-                        <p class="dataBtnInfo"><?php echo $rystemaskineTid; ?>t </p>
+                        <p class="dataBtnInfo"><?php echo $rystemaskineTid; ?>min </p>
+                    <br>
+                    <button class="primBtn">Se mere</button>
+                </div></div>
+                </div></a>
+            </div>
+
+            <div class="dataCart">
+            <a href="export_workout.php">
+                <div class="dataBtn">
+                <div class="dataCartHeader">
+                    <img src="./img/vand.png" class="dataIcon" alt="workout icon">
+                    <h3>Vand</h3>
+                </div>
+                    <div class="dataCartInfo">
+                        <div class="inline">
+                        <p class="dataBtnInfo"><?php echo $vand; ?> liter</p>
+                    <br>
+                    <button class="primBtn">Se mere</button>
+                </div></div>
+                </div></a>
+            </div>
+
+            <div class="dataCart">
+            <a href="export_workout.php">
+                <div class="dataBtn">
+                <div class="dataCartHeader">
+                    <img src="./img/vægt.png" class="dataIcon" alt="workout icon">
+                    <h3>Vægt</h3>
+                </div>
+                    <div class="dataCartInfo">
+                        <div class="inline">
+                        <p class="dataBtnInfo"><?php echo $vægt; ?>kg </p>
                     <br>
                     <button class="primBtn">Se mere</button>
                 </div></div>

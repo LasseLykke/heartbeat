@@ -135,7 +135,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
         <section class="data">
             <div class="dataCart">
-            <a href="export_workout.php">
+            <a href="./export/workout.php">
                 <div class="dataBtn">
                 <div class="dataCartHeader">
                     <img src="./img/workout.png" class="dataIcon" alt="workout icon">

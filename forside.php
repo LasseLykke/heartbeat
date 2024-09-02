@@ -29,6 +29,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <a href="forside.php">Forside</a>
             <a href="dataOverview.php">Statestik</a>
             <a href="logout.php">Log ud</a>
+            <a href="importCykel.php">TEST</a>
+            <a href="importAbs.php">TEST ABS</a>
         </nav>
     </header>
     

@@ -112,4 +112,6 @@ window.onload = function () {
         // Juster scroll-position
         frontpageCharts.scrollLeft = scrollPosition - (frontpageCharts.clientWidth / 2);
     }, 100);  // Giver grafen tid til at loade før scroll
+
+    
 }

@@ -265,9 +265,22 @@ canvas {
 
 
 /* FORMS */
+
+/* WORKOUT FORM */
+.workoutForm {
+  margin: 0 auto;
+}
+
+.workoutAbs input {
+  border: 1px solid var(--grey);
+  padding: 6px;
+  display: inline-block;
+}
+
+
 /* PAIN FORM */
 
-.formWrapper {
+/*.formWrapper {
   background-color: var(--white);
   box-shadow: var(--b-shadow-xs);
   border-radius: 10px;
@@ -278,7 +291,7 @@ canvas {
   margin-left: auto;
   margin-right: auto;
   margin-top: 40px;
-}
+}*/
 
 .painDate,
 .painState,
@@ -310,6 +323,15 @@ canvas {
 .dailyAktivitetNotes {
   padding: 10px 0px 10px 0px;
   text-align: left;
+}
+
+.workoutMusik input[type="radio"] {
+  display: inline;
+  margin-right: 3px;
+}
+
+.workoutBemærkning label {
+  display: block;
 }
 
 .painNotes label,
@@ -353,14 +375,6 @@ textarea {
   accent-color: var(--dark);
 }
 
-.workoutMusik input[type="radio"] {
-  display: inline;
-  margin-right: 3px;
-}
-
-.workoutBemærkning label {
-  display: block;
-}
 
 /* DATA UDTRÆK */
 .dataWrapper {
@@ -598,13 +612,14 @@ td.dataWorkouts {
 
 .submit {
   background-color: var(--feat);
-  color: var(--grey);
+  color: var(--white);
   border: none;
   border-radius: 3px;
   padding: 15px 30px;
   margin-top: 10px;
   text-transform: uppercase;
   font-weight: 700;
+  margin-top: 30px;
 }
 
 .signOut {

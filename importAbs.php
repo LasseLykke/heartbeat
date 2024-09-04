@@ -4,9 +4,6 @@ session_start();
 
 include 'header.php';
 
-// Sørg for at du har en aktiv databaseforbindelse her
-// $mysqli = new mysqli("host", "user", "password", "database");
-
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -60,7 +57,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             $mysqli->close();
 
             // Gå tilbage til bekræftelsessiden
-            header("Location: success.php");
+            header("Location: successWorkout.php");
             exit();
         } catch (Exception $e) {
             // Rul tilbage ved fejl
@@ -96,18 +93,50 @@ ob_end_flush();
     } 
 ?>
 
+<header>
+        <button class="hamburger">
+            <div class="bar"></div>
+        </button>
+
+        <nav class="mobile-nav">
+            <a href="forside.php">Forside</a>
+            <a href="dataOverview.php">Statestik</a>
+            <a href="workoutforms.php">Workout Forms</a>
+            <a href="logout.php">Log ud</a>
+            <a href="importCykel.php">TEST</a>
+            <a href="importAbs.php">TEST ABS</a>
+        </nav>
+    </header>
+
+    <div class="wrapper">
+        <section class="hbHeader">
+                <h1 class="headerText">Abcrunch</h1>
+            </section>
+            <form class="workoutForm" action="" method="POST">
+
+            <section class="workoutAbs">
+                <label for="absRep"></label>
+                <input type="number" id="absRep" name="absRep" placeholder="Rep:">
+
+                <label for="absKilo"></label>
+                <input type="number" id="absKilo" name="absKilo" placeholder="Kilo:">
+            </section>
+
+            <section>
+                <button class="submit">Gem</button>
+            </section>
+    </div>
+<!--
 <div class="formWrapper">
     <form class="træningsForm" action="" method="POST">
         <h1>Trænings log</h1>
 
-        <!-- DATE -->
+        <!-- DATE 
         <div class="workoutDate">
             <h3>Dato:</h3>
             <label for="workoutDates"></label>
             <input type="date" id="workoutDates" name="dato">
-        </div>
-
-        <!-- CYKEL -->
+        </div> 
         <div class="workoutCykel">
             <h3>Cykling:</h3>
             <label for="absRep"></label>
@@ -119,7 +148,9 @@ ob_end_flush();
 
         <button class="submit">Gem</button>
     </form>
-</div>
+</div> -->
 
+
+<script src="script.js"></script>
 </body>
 </html>

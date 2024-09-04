@@ -4,8 +4,6 @@ session_start();
 
 include 'header.php';
 
-// Sørg for at du har en aktiv databaseforbindelse her
-// $mysqli = new mysqli("host", "user", "password", "database");
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 

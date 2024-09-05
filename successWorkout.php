@@ -25,7 +25,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <div class="icon-fix"></div>
     </div>
         </div>
-    <a href="forside.php"> <button class="successBtn">Tilbage til forsiden</button></a>
+    <a href="workoutforms.php"> <button class="successBtn">Tilbage til workouts</button></a>
     </div>
 
     <script>

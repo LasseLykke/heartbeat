@@ -9,8 +9,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Hent og rens input
         $workoutDate = htmlspecialchars($_POST["dato"]);
-        $cykelTid = isset($_POST["cykelTid"]) ? intval($_POST["cykelTid"]) : 0;
-        $cykelBelastning = isset($_POST["cykelBelastning"]) ? intval($_POST["cykelBelastning"]) : 0;
+        $bemærkning = isset($_POST["bemærkning"]) ? htmlspecialchars($_POST["bemærkning"]) : '';
 
         // Hvis workoutDate er tom, brug den aktuelle dato
         if (empty($workoutDate)) {
@@ -39,14 +38,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             $stmt->close();
 
             // Indsæt i woCykel med det hentede sessionID som FK
-            $sql = "INSERT INTO woCykel (sessionID, cykelTid, cykelBelastning) VALUES (?, ?, ?)";
+            $sql = "INSERT INTO woBemærkning (sessionID, bemærkning) VALUES (?, ?)";
             $stmt = $mysqli->prepare($sql);
 
             if ($stmt === false) {
                 throw new Exception($mysqli->error);
             }
 
-            $stmt->bind_param("iii", $sessionID, $cykelTid, $cykelBelastning);
+            $stmt->bind_param("is", $sessionID, $bemærkning);
             $stmt->execute();
 
             // Commit transaktionen
@@ -81,7 +80,7 @@ ob_end_flush();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Logger ud efter halvanden time -->
     <meta http-equiv="refresh" content="5400;url=logout.php" />
-    <title>H E A R T B E A T || Cykling </title>
+    <title>H E A R T B E A T || Bemærkning </title>
 </head>
 <body>
 
@@ -108,16 +107,13 @@ ob_end_flush();
 
     <div class="wrapper">
         <section class="hbHeader">
-                <h1 class="headerText">Cykling</h1>
+                <h1 class="headerText">Bemærkning</h1>
             </section>
             <form class="workoutForm" action="" method="POST">
 
             <section class="workoutlabel">
-                <label for="cykelTid"></label>
-                <input type="number" id="cykelTid" name="cykelTid" placeholder="Tid:" required>
-
-                <label for="cykelBelastning"></label>
-                <input type="number" id="cykelBelastning" name="cykelBelastning" placeholder="Belastning:"required>
+                <label for="varighed"></label>
+                <textarea id="bemærkning" placeholder="Indsæt bemærkning" name="bemærkning"></textarea>
             </section>
 
             <section>

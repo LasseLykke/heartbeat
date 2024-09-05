@@ -271,27 +271,20 @@ canvas {
   margin: 0 auto;
 }
 
-.workoutAbs input {
+
+.workoutlabel input {
   border: 1px solid var(--grey);
   padding: 6px;
   display: inline-block;
 }
 
+.workoutlabel input:focus {
+  border: 1px solid var(--dark);
+}
+
 
 /* PAIN FORM */
 
-/*.formWrapper {
-  background-color: var(--white);
-  box-shadow: var(--b-shadow-xs);
-  border-radius: 10px;
-  min-height: 90vh;
-  width: 600px;
-  max-width: 90%;
-  padding: 30px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 40px;
-}*/
 
 .painDate,
 .painState,
@@ -348,9 +341,9 @@ canvas {
   margin-top: 5px;
   display: block;
 }
-input:focus {
+/*input:focus {
   border: none;
-}
+}*/
 
 .painState input,
 .painLevel input,

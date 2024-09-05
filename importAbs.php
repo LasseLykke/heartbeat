@@ -81,7 +81,7 @@ ob_end_flush();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Logger ud efter halvanden time -->
     <meta http-equiv="refresh" content="5400;url=logout.php" />
-    <title>H E A R T B E A T || Cykling </title>
+    <title>H E A R T B E A T || Abs </title>
 </head>
 <body>
 
@@ -103,8 +103,6 @@ ob_end_flush();
             <a href="dataOverview.php">Statestik</a>
             <a href="workoutforms.php">Workout Forms</a>
             <a href="logout.php">Log ud</a>
-            <a href="importCykel.php">TEST</a>
-            <a href="importAbs.php">TEST ABS</a>
         </nav>
     </header>
 
@@ -114,41 +112,18 @@ ob_end_flush();
             </section>
             <form class="workoutForm" action="" method="POST">
 
-            <section class="workoutAbs">
+            <section class="workoutlabel">
                 <label for="absRep"></label>
-                <input type="number" id="absRep" name="absRep" placeholder="Rep:">
+                <input type="number" id="absRep" name="absRep" placeholder="Rep:" required>
 
                 <label for="absKilo"></label>
-                <input type="number" id="absKilo" name="absKilo" placeholder="Kilo:">
+                <input type="number" id="absKilo" name="absKilo" placeholder="Kilo:"required>
             </section>
 
             <section>
                 <button class="submit">Gem</button>
             </section>
     </div>
-<!--
-<div class="formWrapper">
-    <form class="træningsForm" action="" method="POST">
-        <h1>Trænings log</h1>
-
-        <!-- DATE 
-        <div class="workoutDate">
-            <h3>Dato:</h3>
-            <label for="workoutDates"></label>
-            <input type="date" id="workoutDates" name="dato">
-        </div> 
-        <div class="workoutCykel">
-            <h3>Cykling:</h3>
-            <label for="absRep"></label>
-            <input type="number" id="absRep" name="absRep" placeholder="Rep:">
-
-            <label for="absKilo"></label>
-            <input type="number" id="absKilo" name="absKilo" placeholder="Kilo">
-        </div>
-
-        <button class="submit">Gem</button>
-    </form>
-</div> -->
 
 
 <script src="script.js"></script>

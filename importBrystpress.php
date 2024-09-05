@@ -10,7 +10,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         // Hent og rens input
         $workoutDate = htmlspecialchars($_POST["dato"]);
         $brystpressRep = isset($_POST["brystpressRep"]) ? intval($_POST["brystpressRep"]) : 0;
-        $brystpressKilo = isset($_POST["brystpressKilo"]) ? intval($_POST["brystpressKilo"]) : 0;;
+        $brystpressKilo = isset($_POST["brystpressKilo"]) ? floatval($_POST["brystpressKilo"]) : 0.0;
+
 
         // Hvis workoutDate er tom, brug den aktuelle dato
         if (empty($workoutDate)) {
@@ -46,7 +47,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 throw new Exception($mysqli->error);
             }
 
-            $stmt->bind_param("iii", $sessionID, $brystpressRep, $brystpressKilo);
+            $stmt->bind_param("iid", $sessionID, $brystpressRep, $brystpressKilo);
             $stmt->execute();
 
             // Commit transaktionen
@@ -117,7 +118,8 @@ ob_end_flush();
                 <input type="number" id="brystpressRep" name="brystpressRep" placeholder="Rep:" required>
 
                 <label for="brystpressKilo"></label>
-                <input type="text" id="brystpressKilo" name="brystpressKilo" placeholder="Kilo:"required>
+                <input type="number" id="brystpressKilo" name="brystpressKilo" placeholder="Kilo:" required>
+
             </section>
 
             <section>

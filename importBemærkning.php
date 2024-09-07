@@ -113,7 +113,7 @@ ob_end_flush();
 
             <section class="workoutlabel">
                 <label for="varighed"></label>
-                <textarea id="bemærkning" placeholder="Indsæt bemærkning" name="bemærkning"></textarea>
+                <textarea id="bemærkning" placeholder="Indsæt bemærkning, evt skader" name="bemærkning"></textarea>
             </section>
 
             <section>

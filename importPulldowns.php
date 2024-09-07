@@ -10,7 +10,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         // Hent og rens input
         $workoutDate = htmlspecialchars($_POST["dato"]);
         $pulldownRep = isset($_POST["pulldownRep"]) ? intval($_POST["pulldownRep"]) : 0;
-        $pulldownKilo = isset($_POST["pulldownKilo"]) ? intval($_POST["pulldownKilo"]) : 0;
+        $pulldownKilo = isset($_POST["pulldownKilo"]) ? str_replace(',', '.', $_POST["pulldownKilo"]) : 0.0;
+        $pulldownKilo = floatval($pulldownKilo);
+        $pulldownKilo = number_format($pulldownKilo, 1);
 
         // Hvis workoutDate er tom, brug den aktuelle dato
         if (empty($workoutDate)) {

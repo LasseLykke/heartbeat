@@ -10,7 +10,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         // Hent og rens input
         $workoutDate = htmlspecialchars($_POST["dato"]);
         $neckpressRep = isset($_POST["neckpressRep"]) ? intval($_POST["neckpressRep"]) : 0;
-        $neckpressKilo = isset($_POST["neckpressKilo"]) ? intval($_POST["neckpressKilo"]) : 0;
+        $neckpressKilo = isset($_POST["neckpressKilo"]) ? str_replace(',', '.', $_POST["neckpressKilo"]) : 0.0;
+        $neckpressKilo = floatval($neckpressKilo);
+        $neckpressKilo = number_format($neckpressKilo, 1);
 
         // Hvis workoutDate er tom, brug den aktuelle dato
         if (empty($workoutDate)) {

@@ -10,7 +10,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         // Hent og rens input
         $workoutDate = htmlspecialchars($_POST["dato"]);
         $legpressRep = isset($_POST["legpressRep"]) ? intval($_POST["legpressRep"]) : 0;
-        $legpressKilo = isset($_POST["legpressKilo"]) ? intval($_POST["legpressKilo"]) : 0;
+        $legpressKilo = isset($_POST["legpressKilo"]) ? str_replace(',', '.', $_POST["legpressKilo"]) : 0.0;
+        $legpressKilo = floatval($legpressKilo);
+        $legpressKilo = number_format($legpressKilo, 1);
 
         // Hvis workoutDate er tom, brug den aktuelle dato
         if (empty($workoutDate)) {

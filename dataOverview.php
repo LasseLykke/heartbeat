@@ -133,7 +133,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <h1 class="headerText">Statestik</h1>
         </section>
 
-        <
+        
 
         <section class="data">
             <div class="dataCart">

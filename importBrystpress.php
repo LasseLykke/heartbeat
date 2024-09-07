@@ -10,7 +10,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         // Hent og rens input
         $workoutDate = htmlspecialchars($_POST["dato"]);
         $brystpressRep = isset($_POST["brystpressRep"]) ? intval($_POST["brystpressRep"]) : 0;
-        $brystpressKilo = isset($_POST["brystpressKilo"]) ? floatval($_POST["brystpressKilo"]) : 0.0;
+        $brystpressKilo = isset($_POST["brystpressKilo"]) ? str_replace(',', '.', $_POST["brystpressKilo"]) : 0.0;
+        $brystpressKilo = floatval($brystpressKilo);
+        $brystpressKilo = number_format($brystpressKilo, 1);
+
 
 
         // Hvis workoutDate er tom, brug den aktuelle dato
@@ -118,7 +121,7 @@ ob_end_flush();
                 <input type="number" id="brystpressRep" name="brystpressRep" placeholder="Rep:" required>
 
                 <label for="brystpressKilo"></label>
-                <input type="number" id="brystpressKilo" name="brystpressKilo" placeholder="Kilo:" required>
+                <input type="text" id="brystpressKilo" name="brystpressKilo" placeholder="Kilo:" required>
 
             </section>
 

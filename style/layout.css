@@ -579,6 +579,31 @@ td.dataWorkouts {
   display: inline-block;
 }
 
+.dataCartLarge {
+  background-color: var(--white);
+  box-shadow: var(--b-shadow-xs);
+  color: var(--dark);
+  border: none;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  max-width: 270px;
+  max-height: 250px;
+  min-width: 250px;
+  min-height: 100px;
+  border-radius: 15px;
+  text-align: left;
+  padding: 10px;
+  margin: 15px;
+/*Getting sub div to center inside cart*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center; 
+  text-align: center; 
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
 
 .formBtn {
   background-color: var(--white);

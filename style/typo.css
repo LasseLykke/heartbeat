@@ -12,6 +12,7 @@ h1 {
 h2 {
     text-transform: uppercase;
     color: var(--dark);
+    font-weight: 1000;
 }
 
 h3 {

@@ -38,6 +38,7 @@ ob_end_flush();
             <nav class="mobile-nav">
                 <a href="forside.php">Forside</a>
                 <a href="dataOverview.php">Statestik</a>
+                <a href="workoutforms.php">Workout Forms</a>
                 <a href="logout.php">Log ud</a>
             </nav>
         </header>

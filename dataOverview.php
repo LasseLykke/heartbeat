@@ -13,24 +13,28 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
        
    $sqls = [
         "SELECT COUNT(DISTINCT painDates) AS num_rows FROM pain WHERE painState = 'Ja'",
-        "SELECT cykelTid, cykelBelastning FROM workout ORDER BY workoutID DESC LIMIT 1",
-        "SELECT pulldownRep, pulldownKilo FROM workout ORDER BY workoutID DESC LIMIT 1",
-        "SELECT rygbøjningRep, rygbøjningKilo FROM workout ORDER BY workoutID DESC LIMIT 1",
-        "SELECT abcrunchRep, abcrunchKilo FROM workout ORDER BY workoutID DESC LIMIT 1",
-        "SELECT brystpresRep, brystpresKilo FROM workout ORDER BY workoutID DESC LIMIT 1",
-        "SELECT legpressRep, legpressKilo FROM workout ORDER BY workoutID DESC LIMIT 1",
-        "SELECT legcurlRep, legcurlKilo FROM workout ORDER BY workoutID DESC LIMIT 1",
-        "SELECT legextensionRep, legextensionKilo FROM workout ORDER BY workoutID DESC LIMIT 1",
-        "SELECT bicepsRep, bicepsKilo FROM workout ORDER BY workoutID DESC LIMIT 1",
-        "SELECT neckRep, neckKilo FROM workout ORDER BY workoutID DESC LIMIT 1",
-        "SELECT pullupsRep, pullupsKilo FROM workout ORDER BY workoutID DESC LIMIT 1",
-        "SELECT løbTid, løbBelastning FROM workout ORDER BY workoutID DESC LIMIT 1",
-        "SELECT rystemaskineTid FROM workout ORDER BY workoutID DESC LIMIT 1",
-        "SELECT buttupsRep FROM workout ORDER BY workoutID DESC LIMIT 1",
-        "SELECT vand FROM workout ORDER BY workoutID DESC LIMIT 1",
-        "SELECT vægt FROM workout ORDER BY workoutID DESC LIMIT 1",
-        "SELECT workoutDates, workoutVarighed FROM workout ORDER BY workoutDates DESC LIMIT 1",
-        "SELECT painDates, painDuration FROM pain ORDER BY painDates DESC LIMIT 1"
+        "SELECT cykelTid, cykelBelastning FROM woCykel ORDER BY cykelID DESC LIMIT 1",
+        "SELECT pulldownRep, pulldownKilo FROM woPulldown ORDER BY pulldownID DESC LIMIT 1",
+        "SELECT rygRep, rygKilo FROM woRyg ORDER BY rygID DESC LIMIT 1",
+        "SELECT absRep, absKilo FROM woAbs ORDER BY absID DESC LIMIT 1",
+        "SELECT brystpressRep, brystpressKilo FROM woBrystpress ORDER BY brystpressID DESC LIMIT 1",
+        "SELECT legpressRep, legpressKilo FROM woLegpress ORDER BY legpressID DESC LIMIT 1",
+        "SELECT legcurlRep, legcurlKilo FROM woLegcurl ORDER BY legcurlID DESC LIMIT 1",
+        "SELECT legextensionRep, legextensionKilo FROM woExtension ORDER BY legextensionID DESC LIMIT 1",
+        "SELECT bicepsRep, bicepsKilo FROM woBiceps ORDER BY bicepsID DESC LIMIT 1",
+        "SELECT neckpressRep, neckpressKilo FROM woNeck ORDER BY neckpressID DESC LIMIT 1",
+        "SELECT pullupsRep, pullupsKilo FROM woPullups ORDER BY pullupsID DESC LIMIT 1",
+        "SELECT løbTid, løbBelastning FROM woLøb ORDER BY løbID DESC LIMIT 1",
+        "SELECT rystTid FROM woRyst ORDER BY rystID DESC LIMIT 1",
+        "SELECT buttupsRep FROM woButtups ORDER BY buttupsID DESC LIMIT 1",
+        "SELECT vand FROM woVand ORDER BY vandID DESC LIMIT 1",
+        "SELECT vægt FROM woVægt ORDER BY vægtID DESC LIMIT 1",
+        "SELECT painDates, painDuration FROM pain ORDER BY painDates DESC LIMIT 1",
+        "SELECT woVarighed.varighed, workoutSession.sessionDate 
+            FROM woVarighed 
+            JOIN workoutSession ON woVarighed.sessionID = workoutSession.sessionID 
+            ORDER BY woVarighed.varighedID DESC LIMIT 1"
+        
     ];
     
     $results = [];
@@ -52,14 +56,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     $pulldownRep = $results[2]['pulldownRep'] ?? "Ingen data";
     $pulldownKilo = $results[2]['pulldownKilo'] ?? "Ingen data";
     
-    $rygbøjningRep = $results[3]['rygbøjningRep'] ?? "Ingen data";
-    $rygbøjningKilo = $results[3]['rygbøjningKilo'] ?? "Ingen data";
+    $rygRep = $results[3]['rygRep'] ?? "Ingen data";
+    $rygKilo = $results[3]['rygKilo'] ?? "Ingen data";
     
-    $abcrunchRep = $results[4]['abcrunchRep'] ?? "Ingen data";
-    $abcrunchKilo = $results[4]['abcrunchKilo'] ?? "Ingen data";
+    $absRep = $results[4]['absRep'] ?? "Ingen data";
+    $absKilo = $results[4]['absKilo'] ?? "Ingen data";
     
-    $brystpresRep = $results[5]['brystpresRep'] ?? "Ingen data";
-    $brystpresKilo = $results[5]['brystpresKilo'] ?? "Ingen data";
+    $brystpressRep = $results[5]['brystpressRep'] ?? "Ingen data";
+    $brystpressKilo = $results[5]['brystpressKilo'] ?? "Ingen data";
     
     $legpressRep = $results[6]['legpressRep'] ?? "Ingen data";
     $legpressKilo = $results[6]['legpressKilo'] ?? "Ingen data";
@@ -73,8 +77,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     $bicepsRep = $results[9]['bicepsRep'] ?? "Ingen data";
     $bicepsKilo = $results[9]['bicepsKilo'] ?? "Ingen data";
     
-    $neckRep = $results[10]['neckRep'] ?? "Ingen data";
-    $neckKilo = $results[10]['neckKilo'] ?? "Ingen data";
+    $neckpressRep = $results[10]['neckpressRep'] ?? "Ingen data";
+    $neckpressKilo = $results[10]['neckpressKilo'] ?? "Ingen data";
     
     $pullupsRep = $results[11]['pullupsRep'] ?? "Ingen data";
     $pullupsKilo = $results[11]['pullupsKilo'] ?? "Ingen data";
@@ -82,19 +86,22 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     $løbTid = $results[12]['løbTid'] ?? "Ingen data";
     $løbBelastning = $results[12]['løbBelastning'] ?? "Ingen data";
     
-    $rystemaskineTid = $results[13]['rystemaskineTid'] ?? "Ingen data";
+    $rystTid = $results[13]['rystTid'] ?? "Ingen data";
     
     $buttupsRep = $results[14]['buttupsRep'] ?? "Ingen data";
     
     $vand = $results[15]['vand'] ?? "Ingen data";
     
     $vægt = $results[16]['vægt'] ?? "Ingen data";
-    
-    $lastWorkoutDate = $results[17]['workoutDates'] ?? "Ingen data";
-    $lastWorkoutDuration = $results[17]['workoutVarighed'] ?? "Ingen data";
 
-    $painDates = $results[18]['painDates'] ?? "Ingen data";
-    $painDuration = $results[18]['painDuration'] ?? "Ingen data";
+    $painDates = $results[17]['painDates'] ?? "Ingen data";
+    $painDuration = $results[17]['painDuration'] ?? "Ingen data";
+    
+    $lastWorkoutDate = $results[18]['sessionDate'] ?? "Ingen data";
+    $lastWorkoutDuration = $results[18]['varighed'] ?? "Ingen data";
+    
+
+
     
     // Close Connection
     $conn->close();
@@ -121,6 +128,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <nav class="mobile-nav">
                 <a href="forside.php">Forside</a>
                 <a href="dataOverview.php">Statestik</a>
+                <a href="workoutforms.php">Workout Forms</a>
                 <a href="logout.php">Log ud</a>
             </nav>
         </header>
@@ -136,23 +144,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         
 
         <section class="data">
-            <div class="dataCart">
-            <a href="./export/workout.php">
-                <div class="dataBtn">
-                <div class="dataCartHeader">
-                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
-                    <h3>Workout</h3>
-                </div>
-                    <div class="dataCartInfo">
-                        <div class="inline">
-                    <p class="dataBtnInfo"><?php echo date('d/m', strtotime($lastWorkoutDate)); ?> |</p>
-                    <p class="dataBtnInfo"><?php echo $lastWorkoutDuration; ?>min</p>
-                    <br>
-                    <button class="primBtn">Se mere</button>
-                </div></div>
-                </div></a>
-            </div>
-
             <div class="dataCart">
             <a href="export_workout.php">
                 <div class="dataBtn">
@@ -213,8 +204,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
                     <div class="dataCartInfo">
                         <div class="inline">
-                        <p class="dataBtnInfo"><?php echo $rygbøjningKilo; ?>kg |</p>
-                    <p class="dataBtnInfo"><?php echo $rygbøjningRep; ?>rep</p>
+                        <p class="dataBtnInfo"><?php echo $rygKilo; ?>kg |</p>
+                    <p class="dataBtnInfo"><?php echo $rygRep; ?>rep</p>
                     <br>
                     <button class="primBtn">Se mere</button>
                 </div></div>
@@ -230,8 +221,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
                     <div class="dataCartInfo">
                         <div class="inline">
-                        <p class="dataBtnInfo"><?php echo $abcrunchKilo; ?>kg |</p>
-                    <p class="dataBtnInfo"><?php echo $abcrunchRep; ?>rep</p>
+                        <p class="dataBtnInfo"><?php echo $absKilo; ?>kg |</p>
+                    <p class="dataBtnInfo"><?php echo $absRep; ?>rep</p>
                     <br>
                     <button class="primBtn">Se mere</button>
                 </div></div>
@@ -247,8 +238,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
                     <div class="dataCartInfo">
                         <div class="inline">
-                        <p class="dataBtnInfo"><?php echo $brystpresKilo; ?>kg |</p>
-                    <p class="dataBtnInfo"><?php echo $brystpresRep; ?>rep</p>
+                        <p class="dataBtnInfo"><?php echo $brystpressKilo; ?>kg |</p>
+                    <p class="dataBtnInfo"><?php echo $brystpressRep; ?>rep</p>
                     <br>
                     <button class="primBtn">Se mere</button>
                 </div></div>
@@ -332,8 +323,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
                     <div class="dataCartInfo">
                         <div class="inline">
-                        <p class="dataBtnInfo"><?php echo $neckKilo; ?>kg |</p>
-                    <p class="dataBtnInfo"><?php echo $neckRep; ?>rep</p>
+                        <p class="dataBtnInfo"><?php echo $neckpressKilo; ?>kg |</p>
+                    <p class="dataBtnInfo"><?php echo $neckpressRep; ?>rep</p>
                     <br>
                     <button class="primBtn">Se mere</button>
                 </div></div>
@@ -400,7 +391,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
                     <div class="dataCartInfo">
                         <div class="inline">
-                        <p class="dataBtnInfo"><?php echo $rystemaskineTid; ?>min </p>
+                        <p class="dataBtnInfo"><?php echo $rystTid; ?>min </p>
                     <br>
                     <button class="primBtn">Se mere</button>
                 </div></div>
@@ -433,6 +424,23 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <div class="dataCartInfo">
                         <div class="inline">
                         <p class="dataBtnInfo"><?php echo $vægt; ?>kg </p>
+                    <br>
+                    <button class="primBtn">Se mere</button>
+                </div></div>
+                </div></a>
+            </div>
+
+            <div class="dataCart">
+            <a href="./export/workout.php">
+                <div class="dataBtn">
+                <div class="dataCartHeader">
+                    <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                    <h3>Varighed</h3>
+                </div>
+                    <div class="dataCartInfo">
+                        <div class="inline">
+                    <!--<p class="dataBtnInfo"><?php echo date('d/m', strtotime($lastWorkoutDate)); ?> |</p>-->
+                    <p class="dataBtnInfo"><?php echo $lastWorkoutDuration; ?>min</p>
                     <br>
                     <button class="primBtn">Se mere</button>
                 </div></div>

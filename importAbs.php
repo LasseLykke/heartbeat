@@ -119,7 +119,7 @@ ob_end_flush();
                 <input type="number" id="absRep" name="absRep" placeholder="Rep:" required>
 
                 <label for="absKilo"></label>
-                <input type="number" id="absKilo" name="absKilo" placeholder="Kilo:"required>
+                <input type="text" id="absKilo" name="absKilo" placeholder="Kilo:"required>
             </section>
 
             <section>

@@ -53,8 +53,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <canvas id="workoutBarChart"></canvas>
         <?php
             // Forespørgsel for at hente antal workouts pr. måned
-            $sql = "SELECT DATE_FORMAT(workoutDates, '%Y-%m') AS month, COUNT(*) AS workoutCount 
-            FROM workout 
+            $sql = "SELECT DATE_FORMAT(sessionDate, '%Y-%m') AS month, COUNT(*) AS workoutCount 
+            FROM workoutSession 
             GROUP BY month 
             ORDER BY month ASC";
             $result = $conn->query($sql);

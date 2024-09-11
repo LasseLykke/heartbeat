@@ -9,12 +9,17 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Hent og rens input
         $workoutDate = htmlspecialchars($_POST["dato"]);
-        $varighed = isset($_POST["varighed"]) ? htmlspecialchars($_POST["varighed"]) : '';
+        $varighed = isset($_POST["varighed"]) ? htmlspecialchars($_POST["varighed"]) : 0;
 
         // Hvis workoutDate er tom, brug den aktuelle dato
         if (empty($workoutDate)) {
             $workoutDate = date('Y-m-d'); // Brug kun dato (YYYY-MM-DD)
         }
+
+           // Konverter varighed (minutter) til TIME-format (HH:MM:SS)
+        $hours = floor($varighed / 60);
+        $minutes = $varighed % 60;
+        $timeFormatted = sprintf('%02d:%02d:00', $hours, $minutes);
 
         // Start en transaktion
         $mysqli->begin_transaction();
@@ -45,7 +50,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 throw new Exception($mysqli->error);
             }
 
-            $stmt->bind_param("is", $sessionID, $varighed);
+            $stmt->bind_param("is", $sessionID, $timeFormatted);
             $stmt->execute();
 
             // Commit transaktionen
@@ -113,7 +118,7 @@ ob_end_flush();
 
             <section class="workoutlabel">
                 <label for="varighed"></label>
-                <input type="text" id="varighed" name="varighed" placeholder="Tid i minutter:" required>
+                <input type="number" id="varighed" name="varighed" placeholder="Tid i minutter:" required>
             </section>
 
             <section>

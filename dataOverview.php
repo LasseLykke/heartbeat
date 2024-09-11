@@ -439,8 +439,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
                     <div class="dataCartInfo">
                         <div class="inline">
-                    <!--<p class="dataBtnInfo"><?php echo date('d/m', strtotime($lastWorkoutDate)); ?> |</p>-->
-                    <p class="dataBtnInfo"><?php echo $lastWorkoutDuration; ?>min</p>
+                    <p class="dataBtnInfo"><?php echo $lastWorkoutDuration; ?></p>
                     <br>
                     <button class="primBtn">Se mere</button>
                 </div></div>

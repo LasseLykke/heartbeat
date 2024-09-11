@@ -17,6 +17,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             $workoutDate = date('Y-m-d'); // Brug kun dato (YYYY-MM-DD)
         }
 
+        // Konverter cykelTid (minutter) til TIME-format (HH:MM:SS)
+        $hours = floor($cykelTid / 60);
+        $minutes = $cykelTid % 60;
+        $cykelTidFormatted = sprintf('%02d:%02d:00', $hours, $minutes);
+
         // Start en transaktion
         $mysqli->begin_transaction();
 
@@ -46,7 +51,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 throw new Exception($mysqli->error);
             }
 
-            $stmt->bind_param("iii", $sessionID, $cykelTid, $cykelBelastning);
+            $stmt->bind_param("isi", $sessionID, $cykelTidFormatted, $cykelBelastning);
             $stmt->execute();
 
             // Commit transaktionen

@@ -250,6 +250,20 @@
   }
 }
 
+.export-charts {
+  max-width: 600px; /* Fast bredde på containeren */
+  overflow-x: scroll; /* Tillader horisontal scrolling */
+  border: none;
+  box-shadow: var(--b-shadow-xs);
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: 380px) {
+  .export-charts {
+    max-width: 383px;
+  }
+}
+
 .chart-container {
   width: 1200px; /* Bredde på den indre container, der indeholder grafen */
 }

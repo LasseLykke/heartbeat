@@ -46,48 +46,43 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
             <!-- CHARTS.JS GRAF -->
             <section class="wrapper">
-                <div class="frontpage-charts">
+                <div class="export-charts"> 
                     <div class="chart-container">
                     <canvas id="workoutLineChart"></canvas>
-                    <?php
-    // Forespørgsel for at hente absRep og absKilo fra woAbs og sessionDate fra workoutSession
-    $sql = "SELECT DATE_FORMAT(ws.sessionDate, '%Y-%m-%d') AS date, wa.absRep, wa.absKilo
-            FROM woAbs AS wa
-            INNER JOIN workoutSession AS ws ON wa.sessionID = ws.sessionID
-            ORDER BY date ASC";
-    
-    $result = $conn->query($sql);
+                   
+                <?php
+                // Forespørgsel for at hente absRep og absKilo fra woAbs og sessionDate fra workoutSession
+                    $sql = "SELECT DATE_FORMAT(ws.sessionDate, '%Y-%m-%d') AS date, wa.absRep, wa.absKilo
+                            FROM woAbs AS wa
+                            INNER JOIN workoutSession AS ws ON wa.sessionID = ws.sessionID
+                            ORDER BY date ASC";
+                    
+                        $result = $conn->query($sql);
 
-    $absRepData = [];
-    $absKiloData = [];
+                        $absRepData = [];
+                        $absKiloData = [];
 
-    while($row = $result->fetch_assoc()) {
-        $absRepData[] = [
-            'x' => $row['date'],  // Session dato
-            'y' => $row['absRep']  // Reps for den session
-        ];
-        $absKiloData[] = [
-            'x' => $row['date'],  // Session dato
-            'y' => $row['absKilo']  // Kilo for den session
-        ];
-    }
-?>
-                </div> <!-- Afslutter wrapper -->
+                        while($row = $result->fetch_assoc()) {
+                        $absRepData[] = [
+                            'x' => $row['date'],  // Session dato
+                            'y' => $row['absRep']  // Reps for den session
+                        ];
+                        $absKiloData[] = [
+                            'x' => $row['date'],  // Session dato
+                            'y' => $row['absKilo']  // Kilo for den session
+                        ];
+                    }
+                ?>
+                    </div> <!-- Afslutter wrapper -->
 
                 <script>
                 // Genererer JavaScript-variabler fra PHP-data
-                const absRepData = <?php echo json_encode($absRepData); ?>;
-                const absKiloData = <?php echo json_encode($absKiloData); ?>;
+                    const absRepData = <?php echo json_encode($absRepData); ?>;
+                    const absKiloData = <?php echo json_encode($absKiloData); ?>;
                 </script>
                 </div>
-            </div>     <!-- afslutning af wrapper -->
-            </div>
-        </section>
-
-            
-
-            
-    </div> <!-- wrapper close -->
+    </div>     <!-- afslutning af wrapper -->
+            </section>
 
 
 <script src="script.js"></script>
@@ -101,3 +96,4 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     exit();
 }
 ?>
+

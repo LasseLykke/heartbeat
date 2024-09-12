@@ -116,10 +116,9 @@ window.onload = function () {
     
 }
 
-// NY LINE BAR
-
 const ctx = document.getElementById('workoutLineChart').getContext('2d');
 
+// Opret chart
 const workoutLineChart = new Chart(ctx, {
     type: 'line',
     data: {
@@ -130,7 +129,7 @@ const workoutLineChart = new Chart(ctx, {
             backgroundColor: 'rgba(75, 192, 192, 0.2)',
             borderWidth: 2,
             fill: false,
-            tension: 0.4 // Gør linjen mere smooth
+            tension: 0.4
         },
         {
             label: 'Abs Kilo',
@@ -139,7 +138,7 @@ const workoutLineChart = new Chart(ctx, {
             backgroundColor: 'rgba(153, 102, 255, 0.2)',
             borderWidth: 2,
             fill: false,
-            tension: 0.4 // Gør linjen mere smooth
+            tension: 0.4
         }]
     },
     options: {
@@ -151,20 +150,28 @@ const workoutLineChart = new Chart(ctx, {
                 type: 'time',
                 time: {
                     unit: 'day',
-                    tooltipFormat: 'DD MM',
+                    tooltipFormat: 'DD/MM',
                     displayFormats: {
-                        day: 'DD/MM'
+                        day: 'DD/MM',
+                        suggestedMax: 10
                     }
                 },
-                min: moment(absRepData[0].x).toDate(), // Start fra første dato
-                max: moment(absRepData[absRepData.length - 1].x).toDate(), // Slut ved sidste dato
                 ticks: {
                     source: 'auto',
                 }
             },
             y: {
+                position: 'right',
                 beginAtZero: true,
-                suggestedMax: 100 //Maks load på maskinen.
+                suggestedMax: 100,
+                ticks: {
+                    padding: 10 // Tilføj padding mellem ticks og aksen
+            }
+        }
+        },
+        layout: {
+            padding: {
+                left: 10 // Tilføj ekstra padding på venstre side af grafen
             }
         },
         plugins: {
@@ -195,21 +202,20 @@ const workoutLineChart = new Chart(ctx, {
     }
 });
 
-// Initial scroll to the current day for workoutLineChart
+// Scroll til den seneste dato når grafen er færdig med at loade
 setTimeout(function() {
-    const lineChartContainer = document.querySelector('#workoutLineChart').parentNode; // Forvent at grafen er i dens parent container
-    const totalDays = absRepData.length;
-    const todayStr = today.format('DD-MM'); // Formaterer dagens dato til 'YYYY-MM-DD'
-    
-    // Find indekset for den nuværende dag
-    const currentDayIndex = absRepData.findIndex(d => moment(d.x).format('DD-MM') === todayStr);
+    // Find containeren for grafen (f.eks. chart-container div'en)
+    const chartContainer = document.querySelector('.export-charts');
 
-    // Hvis den nuværende dag ikke findes i dataene, brug den sidste dag
-    const indexToScrollTo = currentDayIndex === -1 ? totalDays - 1 : currentDayIndex;
+    // Beregn total bredde af grafens scrollede område
+    const totalWidth = chartContainer.scrollWidth;
 
-    // Beregn scroll-position for linjegraf
-    const scrollPosition = (chartWidth / totalDays) * indexToScrollTo;
+    // Find indekset for den sidste dato i absRepData
+    const lastIndex = absRepData.length - 1;
 
-    // Juster scroll-position til at centrere den aktuelle dag
-    lineChartContainer.scrollLeft = scrollPosition - (chartContainerWidth / 2);
-}, 100);  // Giver grafen tid til at loade før scroll
+    // Beregn scroll-position
+    const scrollPosition = (totalWidth / absRepData.length) * lastIndex;
+
+    // Scroll containeren til sidste dato med data
+    chartContainer.scrollLeft = scrollPosition - (chartContainer.clientWidth / 2);
+}, 100);  // Vent et øjeblik for at sikre, at grafen er loadet

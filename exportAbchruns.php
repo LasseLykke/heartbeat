@@ -62,27 +62,70 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         $absRepData = [];
                         $absKiloData = [];
 
+                        if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()) {
                         $absRepData[] = [
-                            'x' => $row['date'],  // Session dato
-                            'y' => $row['absRep']  // Reps for den session
+                            'x' => $row['date'], 
+                            'y' => $row['absRep']  
                         ];
                         $absKiloData[] = [
-                            'x' => $row['date'],  // Session dato
-                            'y' => $row['absKilo']  // Kilo for den session
+                            'x' => $row['date'],  
+                            'y' => $row['absKilo']  
                         ];
+                         // Gemmer rækken for senere brug i tabellen
+                        $tableData[] = $row;
+                    }
+                    } else {
+                        echo "<p>Ingen data fundet</p>";
                     }
                 ?>
-                    </div> <!-- Afslutter wrapper -->
+                    </div> <!-- Afslutter graf wrapper -->
 
+
+                
                 <script>
                 // Genererer JavaScript-variabler fra PHP-data
                     const absRepData = <?php echo json_encode($absRepData); ?>;
                     const absKiloData = <?php echo json_encode($absKiloData); ?>;
+
                 </script>
                 </div>
-    </div>     <!-- afslutning af wrapper -->
-            </section>
+
+
+                <?php
+// Sorter $tableData efter dato i DESC (faldende) rækkefølge
+usort($tableData, function ($a, $b) {
+    return strtotime($b['date']) - strtotime($a['date']);
+});
+?>
+                <!-- Collapsible Table Section -->
+                 <div class="TEST">
+<button class="collapsible">Vis Abs Statistik</button>
+<div class="content">
+    <table id="absStatsTable">
+        <thead>
+            <tr>
+                <th>Dato</th>
+                <th>Reps</th>
+                <th>Kilo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            // Loop igennem $tableData for at indsætte data i tabellen
+            foreach ($tableData as $row) {
+                echo "<tr>";
+                echo "<td>{$row['date']}</td>";
+                echo "<td>{$row["absRep"]}</td>";
+                echo "<td>{$row['absKilo']}</td>";
+                echo "</tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
+        </section>
+
 
 
 <script src="script.js"></script>

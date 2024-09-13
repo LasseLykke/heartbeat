@@ -384,7 +384,7 @@ textarea {
 
 
 /* DATA UDTRÆK */
-.dataWrapper {
+.dataTabels {
   background-color: var(--white);
   max-width: 45rem;
   margin-inline: auto;
@@ -420,6 +420,10 @@ textarea {
   border-bottom: 1px solid var(--dark);
 }
 
+.content {
+  background-color: pink;
+}
+
 
 /* Tilføjer baggrundsfarve til knappen +/- bliver loaded med JS */
 .active {
@@ -431,20 +435,6 @@ textarea {
   border-top: 1px solid var(--dark);
 }
 
-/* Style af det samklaplige indhold. Collapsed som standard */
-.content {
-  border: none;
-  outline: none;
-  padding: 0 18px;
-  background-color: white;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-  margin-bottom: 10px;
-  border-left: 1px solid var(--dark);
-  border-right: 1px solid var(--dark);
-  border-bottom: 1px solid var(--dark);
-}
 
 .collapsible:after {
   content: "\02795"; /* Unicode character for "plus" tegn (+) */
@@ -907,4 +897,52 @@ td.dataWorkouts {
     right: 8px;
     top: 38px;
   }
+}
+
+
+
+/*COLLAPS TEST*/
+
+/* Collapsible Button */
+.collapsible {
+  background-color: #f1f1f1;
+  color: black;
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.active, .collapsible:hover {
+  background-color: #ccc;
+}
+
+/* Collapsible Content */
+.content {
+  display: none;
+  overflow: hidden;
+  padding: 0 18px;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+thead {
+  background-color: #f1f1f1;
 }

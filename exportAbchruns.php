@@ -98,32 +98,36 @@ usort($tableData, function ($a, $b) {
     return strtotime($b['date']) - strtotime($a['date']);
 });
 ?>
-                <!-- Collapsible Table Section -->
-                 <div class="TEST">
-<button class="collapsible">Vis Abs Statistik</button>
-<div class="content">
-    <table id="absStatsTable">
-        <thead>
-            <tr>
-                <th>Dato</th>
-                <th>Reps</th>
-                <th>Kilo</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            // Loop igennem $tableData for at indsætte data i tabellen
-            foreach ($tableData as $row) {
-                echo "<tr>";
-                echo "<td>{$row['date']}</td>";
-                echo "<td>{$row["absRep"]}</td>";
-                echo "<td>{$row['absKilo']}</td>";
-                echo "</tr>";
-            }
-            ?>
-        </tbody>
-    </table>
+<!-- Collapsible Table Section -->
+<div class="collapsibleTables">
+    <button class="collapsible">Vis Abs Statistik</button>
+    <div class="content">
+        <table id="absStatsTable">
+            <thead>
+                <tr>
+                    <th>Dato</th>
+                    <th>Reps</th>
+                    <th>Kilo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                // Loop igennem $tableData for at indsætte data i tabellen
+                foreach ($tableData as $row) {
+                    // Formatér datoen korrekt som DD-MM-YY
+                    $formattedDate = date('d-m-y', strtotime($row['date']));
+                    echo "<tr>";
+                    echo "<td>{$formattedDate}</td>";
+                    echo "<td>{$row['absRep']}</td>";
+                    echo "<td>{$row['absKilo']}</td>";
+                    echo "</tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
 </div>
+
         </section>
 
 

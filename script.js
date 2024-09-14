@@ -116,91 +116,98 @@ window.onload = function () {
     
 }
 
-const ctx = document.getElementById('workoutLineChart').getContext('2d');
 
-// Opret chart
-const workoutLineChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        datasets: [{
-            label: 'Abs Reps',
-            data: absRepData,
-            borderColor: 'rgba(75, 192, 192, 1)',
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderWidth: 2,
-            fill: false,
-            tension: 0.4
+
+// ABS GRAF
+
+    // Formaterer datoerne manuelt til DD/MM format
+    const formattedDates = absRepData.map(data => {
+        const date = new Date(data.x); // Opretter dato objekt
+        const day = String(date.getDate()).padStart(2, '0'); // Henter dag med 2 cifre
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Henter måned med 2 cifre (0-indekseret)
+        return `${day}/${month}`; // Returnerer i DD/MM format
+    });
+
+    // Chart.js konfiguration
+    const ctx = document.getElementById('workoutLineChart').getContext('2d');
+    const workoutLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: formattedDates, // Brug de formaterede datoer som labels
+            datasets: [
+                {
+                    label: 'Reps',
+                    data: absRepData.map(data => data.y), // Brug kun y-værdierne (reps)
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    fill: false
+                },
+                {
+                    label: 'Kilo',
+                    data: absKiloData.map(data => data.y), // Brug kun y-værdierne (kilo)
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1,
+                    fill: false
+                }
+            ]
         },
-        {
-            label: 'Abs Kilo',
-            data: absKiloData,
-            borderColor: 'rgba(153, 102, 255, 1)',
-            backgroundColor: 'rgba(153, 102, 255, 0.2)',
-            borderWidth: 2,
-            fill: false,
-            tension: 0.4
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: true,
-        aspectRatio: 4,
-        scales: {
-            x: {
-                type: 'time',
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            aspectRatio: 4,
+            scales: {
+                x: {
+                    type: 'category',
                 time: {
                     unit: 'day',
                     tooltipFormat: 'DD/MM',
                     displayFormats: {
-                        day: 'DD/MM',
-                        suggestedMax: 10
+                        day: 'DD/MM'
+                    }
+                    },
+                    ticks: {
+                        source: 'auto',
                     }
                 },
-                ticks: {
-                    source: 'auto',
-                }
-            },
-            y: {
-                position: 'right',
-                beginAtZero: true,
-                suggestedMax: 100,
-                ticks: {
-                    padding: 10 // Tilføj padding mellem ticks og aksen
-            }
-        }
-        },
-        layout: {
-            padding: {
-                left: 10 // Tilføj ekstra padding på venstre side af grafen
-            }
-        },
-        plugins: {
-            legend: {
-                position: 'top',
-                labels: {
-                    padding: 20,
-                    font: {
-                        size: 12
+                
+                y: {
+                    position: 'right',
+                    beginAtZero: true,
+                    suggestedMax: 100,
+                    title: {
+                        display: true,
                     }
                 }
             },
-            tooltip: {
-                callbacks: {
-                    label: function(context) {
-                        let label = context.dataset.label || '';
-                        if (label) {
-                            label += ': ';
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        padding: 20,
+                        font: {
+                            size: 12
                         }
-                        if (context.parsed.y !== null) {
-                            label += context.parsed.y;
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed.y !== null) {
+                                label += context.parsed.y;
+                            }
+                            return label;
                         }
-                        return label;
                     }
                 }
             }
         }
-    }
-});
+    });
+
 
 // Scroll til den seneste dato når grafen er færdig med at loade
 setTimeout(function() {
@@ -221,7 +228,7 @@ setTimeout(function() {
 }, 100);  // Vent et øjeblik for at sikre, at grafen er loadet
 
 
-
+// Collapsible tables
 document.addEventListener("DOMContentLoaded", function() {
     var coll = document.getElementsByClassName("collapsible");
     for (var i = 0; i < coll.length; i++) {

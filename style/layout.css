@@ -402,6 +402,10 @@ textarea {
 
 /*Single page udtræk*/
 
+.collapsibleTables {
+  margin-bottom: 20px;
+}
+
 /* Style af knap som bliver brugt til at åbne og lukke content*/
 .collapsible {
   border: none;
@@ -418,10 +422,21 @@ textarea {
   border-right: 1px solid var(--dark);
   border-top: 1px solid var(--dark);
   border-bottom: 1px solid var(--dark);
+  margin-top: 20px;
 }
 
+.collapsible:after {
+  content: "\02795"; /* Unicode character for "plus" tegn (+) */
+  font-size: 13px;
+  color: white;
+  float: right;
+  margin-left: 5px;
+}
+
+/* Collapsible Content */
 .content {
-  background-color: pink;
+  display: none;
+  overflow: hidden;
 }
 
 
@@ -436,44 +451,29 @@ textarea {
 }
 
 
-.collapsible:after {
-  content: "\02795"; /* Unicode character for "plus" tegn (+) */
-  font-size: 13px;
-  color: white;
-  float: right;
-  margin-left: 5px;
-}
-
 .active:after {
   content: "\2796"; /* Unicode character for "minus" tegn (-) */
 }
 
-.rowData {
-  display: flex;
-  flex-direction: column;
-  margin-inline: auto;
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.dataCell {
-  text-align: right;
-  padding-left: 60px;
+table, th, td {
+  border: 1px solid var(--grey);
+  color: var(--dark);
 }
 
-.dataNotes {
+th, td {
+  padding: 10px;
   text-align: left;
-  max-width: 40ch;
-  padding-top: 5px;
-  padding-bottom: 5px;
 }
 
-.dataWorkouts {
-  text-align: left;
-  padding-top: 3px;
-}
-
-td.dataWorkouts {
-  display: inline-block;
-  margin-right: 30px;
+thead {
+  background-color: var(--grey-l);
 }
 
 
@@ -901,48 +901,4 @@ td.dataWorkouts {
 
 
 
-/*COLLAPS TEST*/
 
-/* Collapsible Button */
-.collapsible {
-  background-color: #f1f1f1;
-  color: black;
-  cursor: pointer;
-  padding: 10px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 18px;
-  margin-top: 20px;
-}
-
-.active, .collapsible:hover {
-  background-color: #ccc;
-}
-
-/* Collapsible Content */
-.content {
-  display: none;
-  overflow: hidden;
-  padding: 0 18px;
-}
-
-/* Table Styling */
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-table, th, td {
-  border: 1px solid black;
-}
-
-th, td {
-  padding: 10px;
-  text-align: left;
-}
-
-thead {
-  background-color: #f1f1f1;
-}

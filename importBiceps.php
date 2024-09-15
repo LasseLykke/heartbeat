@@ -48,7 +48,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 throw new Exception($mysqli->error);
             }
 
-            $stmt->bind_param("iii", $sessionID, $bicepsRep, $bicepsKilo);
+            $stmt->bind_param("iid", $sessionID, $bicepsRep, $bicepsKilo);
             $stmt->execute();
 
             // Commit transaktionen

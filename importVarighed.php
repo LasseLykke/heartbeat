@@ -16,7 +16,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             $workoutDate = date('Y-m-d'); // Brug kun dato (YYYY-MM-DD)
         }
 
-           // Konverter varighed (minutter) til TIME-format (HH:MM:SS)
+        // Konverter varighed (minutter) til TIME-format (HH:MM:SS)
         $hours = floor($varighed / 60);
         $minutes = $varighed % 60;
         $timeFormatted = sprintf('%02d:%02d:00', $hours, $minutes);
@@ -69,7 +69,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             die("Error: " . $e->getMessage());
         }
 
-        
+
     }
 } else {
     // Hvis brugeren ikke er logget ind, send dem tilbage til login siden
@@ -81,23 +81,25 @@ ob_end_flush();
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Logger ud efter halvanden time -->
     <meta http-equiv="refresh" content="5400;url=logout.php" />
     <title>H E A R T B E A T || Varighed </title>
 </head>
+
 <body>
 
-<?php
+    <?php
     // Viser success eller fejl meddelelse
     if (isset($_SESSION["message"])) {
         echo "<p>{$_SESSION["message"]}</p>";
         unset($_SESSION["message"]);
-    } 
-?>
+    }
+    ?>
 
-<header>
+    <header>
         <button class="hamburger">
             <div class="bar"></div>
         </button>
@@ -112,9 +114,9 @@ ob_end_flush();
 
     <div class="wrapper">
         <section class="hbHeader">
-                <h1 class="headerText">Varighed</h1>
-            </section>
-            <form class="workoutForm" action="" method="POST">
+            <h1 class="headerText">Varighed</h1>
+        </section>
+        <form class="workoutForm" action="" method="POST">
 
             <section class="workoutlabel">
                 <label for="varighed"></label>
@@ -127,6 +129,7 @@ ob_end_flush();
     </div>
 
 
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>

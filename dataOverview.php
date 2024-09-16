@@ -276,7 +276,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
 
                 <div class="dataCart">
-                    <a href="exportLegextension.php">
+                    <a href="exportLegcurl.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
                                 <img src="./img/legpress.png" class="dataIcon" alt="workout icon">
@@ -295,7 +295,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
 
                 <div class="dataCart">
-                    <a href="exportLegcurl.php">
+                    <a href="exportLegextension.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
                                 <img src="./img/legpress.png" class="dataIcon" alt="workout icon">

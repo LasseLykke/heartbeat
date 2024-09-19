@@ -14,7 +14,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Logger ud efter halvanden time -->
         <meta http-equiv="refresh" content="5400;url=logout.php" />
-        <title>H E A R T B E A T || VARIGHED STATS </title>
+        <title>H E A R T B E A T || BUTTUPS STATS </title>
     </head>
 
 
@@ -41,7 +41,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
     <div class="wrapper">
         <section class="hbHeader">
-            <h1 class="headerText">Varighed statestik</h1>
+            <h1 class="headerText">Buttups statestik</h1>
         </section>
 
 
@@ -171,7 +171,7 @@ const workoutLineChart = new Chart(ctx, {
       y: {
         position: "right",
         beginAtZero: true,
-        suggestedMax: 30,
+        suggestedMax: 50,
         title: {
           display: true,
         },

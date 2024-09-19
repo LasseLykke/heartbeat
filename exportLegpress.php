@@ -185,7 +185,7 @@ const workoutLineChart = new Chart(ctx, {
       y: {
         position: "right",
         beginAtZero: true,
-        suggestedMax: 30,
+        suggestedMax: 180,
         title: {
           display: true,
         },

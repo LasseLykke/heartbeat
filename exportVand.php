@@ -141,7 +141,7 @@ const workoutLineChart = new Chart(ctx, {
     labels: formattedDates, // Brug de formaterede datoer som labels
     datasets: [
       {
-        label: "Reps",
+        label: "Liter",
         data: $vandData .map((data) => data.y), // Brug kun y-værdierne (reps)
         borderColor: "rgba(75, 192, 192, 1)",
         borderWidth: 1,
@@ -171,7 +171,7 @@ const workoutLineChart = new Chart(ctx, {
       y: {
         position: "right",
         beginAtZero: true,
-        suggestedMax: 30,
+        suggestedMax: 2,
         title: {
           display: true,
         },

@@ -12,8 +12,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Logger ud efter halvanden time -->
-        <meta http-equiv="refresh" content="5400;url=logout.php" />
+        <!-- Logger ud efter 15min -->
+        <meta http-equiv="refresh" content="1500;url=logout.php" />
         <title>H E A R T B E A T || CYKLING STATS </title>
     </head>
 

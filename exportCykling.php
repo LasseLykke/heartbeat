@@ -105,7 +105,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <div class="collapsibleTables">
                 <button class="collapsible">Vis Statistik</button>
                 <div class="content">
-                    <table id="absStatsTable">
+                    <table id="statsTable">
                         <thead>
                             <tr>
                                 <th>Dato</th>

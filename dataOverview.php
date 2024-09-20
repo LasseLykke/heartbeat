@@ -15,7 +15,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         "SELECT COUNT(DISTINCT painDates) AS num_rows FROM pain WHERE painState = 'Ja'",
         "SELECT cykelTid, cykelBelastning FROM woCykel ORDER BY cykelID DESC LIMIT 1",
         "SELECT pulldownRep, pulldownKilo FROM woPulldown ORDER BY pulldownID DESC LIMIT 1",
-        "SELECT rygRep, rygKilo FROM woRyg ORDER BY rygID DESC LIMIT 1",
+        "SELECT rygRep FROM woRyg ORDER BY rygID DESC LIMIT 1",
         "SELECT absRep, absKilo FROM woAbs ORDER BY absID DESC LIMIT 1",
         "SELECT brystpressRep, brystpressKilo FROM woBrystpress ORDER BY brystpressID DESC LIMIT 1",
         "SELECT legpressRep, legpressKilo FROM woLegpress ORDER BY legpressID DESC LIMIT 1",
@@ -55,7 +55,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     $pulldownKilo = $results[2]['pulldownKilo'] ?? "Ingen data";
 
     $rygRep = $results[3]['rygRep'] ?? "Ingen data";
-    $rygKilo = $results[3]['rygKilo'] ?? "Ingen data";
 
     $absRep = $results[4]['absRep'] ?? "Ingen data";
     $absKilo = $results[4]['absKilo'] ?? "Ingen data";
@@ -208,7 +207,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             </div>
                             <div class="dataCartInfo">
                                 <div class="inline">
-                                    <p class="dataBtnInfo"><?php echo $rygKilo; ?>kg |</p>
                                     <p class="dataBtnInfo"><?php echo $rygRep; ?>rep</p>
                                     <br>
                                     <button class="primBtn">Se mere</button>

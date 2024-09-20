@@ -53,7 +53,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
                     <?php
                     // Forespørgsel for at hente data fra db
-                    $sql = "SELECT DATE_FORMAT(ws.sessionDate, '%Y-%m-%d') AS date, wa.rygRep, wa.rygKilo
+                    $sql = "SELECT DATE_FORMAT(ws.sessionDate, '%Y-%m-%d') AS date, wa.rygRep
                             FROM woRyg AS wa
                             INNER JOIN workoutSession AS ws ON wa.sessionID = ws.sessionID
                             ORDER BY date ASC";
@@ -61,7 +61,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     $result = $conn->query($sql);
 
                     $rygRepData = [];
-                    $rygKiloData = [];
 
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
@@ -69,10 +68,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                 'x' => $row['date'],
                                 'y' => $row['rygRep']
                             ];
-                            $rygKiloData[] = [
-                                'x' => $row['date'],
-                                'y' => $row['rygKilo']
-                            ];
+                            
                             // Gemmer rækken for senere brug i tabellen
                             $tableData[] = $row;
                         }
@@ -87,7 +83,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 <script>
                     // Genererer JavaScript-variabler fra PHP-data
                     const rygRepData = <?php echo json_encode($rygRepData); ?>;
-                    const rygKiloData = <?php echo json_encode($rygKiloData); ?>;
 
                 </script>
             </div>
@@ -103,12 +98,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <div class="collapsibleTables">
                 <button class="collapsible">Vis Statistik</button>
                 <div class="content">
-                    <table id="absStatsTable">
+                    <table id="statsTable">
                         <thead>
                             <tr>
                                 <th>Dato</th>
                                 <th>Reps</th>
-                                <th>Kilo</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -120,7 +114,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                 echo "<tr>";
                                 echo "<td>{$formattedDate}</td>";
                                 echo "<td>{$row['rygRep']}</td>";
-                                echo "<td>{$row['rygKilo']}</td>";
                                 echo "</tr>";
                             }
                             ?>
@@ -151,13 +144,6 @@ const workoutLineChart = new Chart(ctx, {
         label: "Reps",
         data: rygRepData.map((data) => data.y), // Brug kun y-værdierne (reps)
         borderColor: "rgba(75, 192, 192, 1)",
-        borderWidth: 1,
-        fill: false,
-      },
-      {
-        label: "Kilo",
-        data: rygKiloData.map((data) => data.y), // Brug kun y-værdierne (kilo)
-        borderColor: "rgba(153, 102, 255, 1)",
         borderWidth: 1,
         fill: false,
       },

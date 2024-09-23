@@ -66,7 +66,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             while ($row = $result->fetch_assoc()) {
               $vægtData[] = [
                 'x' => $row['date'],
-                'y' => $row['vægt']
+                'y' => floatval ($row['vægt'])
               ];
 
               // Gemmer rækken for senere brug i tabellen

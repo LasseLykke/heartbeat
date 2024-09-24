@@ -71,7 +71,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
               ];
               $absKiloData[] = [
                 'x' => $row['date'],
-                'y' => $row['absKilo']
+                'y' => floatval ($row['absKilo'])
               ];
               // Gemmer rækken for senere brug i tabellen
               $tableData[] = $row;

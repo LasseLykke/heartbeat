@@ -66,7 +66,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             while ($row = $result->fetch_assoc()) {
               $vandData[] = [
                 'x' => $row['date'],
-                'y' => $row['vand']
+                'y' => floatval(str_replace(',', '.', $row['vand']))
               ];
 
               // Gemmer rækken for senere brug i tabellen
@@ -133,96 +133,83 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         return `${day}/${month}`; // Returnerer i DD/MM format
       });
 
-      // Chart.js konfiguration
-      const ctx = document.getElementById("workoutLineChart").getContext("2d");
-      const workoutLineChart = new Chart(ctx, {
-        type: "line",
-        data: {
-          labels: formattedDates, // Brug de formaterede datoer som labels
-          datasets: [
-            {
-              label: "Liter",
-              data: $vandData.map((data) => data.y), // Brug kun y-værdierne (reps)
-              borderColor: "rgba(75, 192, 192, 1)",
-              borderWidth: 1,
-              fill: false,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: true,
-          aspectRatio: 4,
-          scales: {
-            x: {
-              type: "category",
-              time: {
-                unit: "day",
-                tooltipFormat: "DD/MM",
-                displayFormats: {
-                  day: "DD/MM",
-                },
-              },
-              ticks: {
-                source: "auto",
-              },
-            },
-
-            y: {
-              position: "right",
-              beginAtZero: true,
-              suggestedMax: 2,
-              title: {
-                display: true,
-              },
-            },
-          },
-          plugins: {
-            legend: {
-              display: true,
-              position: "top",
-              labels: {
-                padding: 20,
-                font: {
-                  size: 12,
-                },
-              },
-            },
-            tooltip: {
-              callbacks: {
-                label: function (context) {
-                  let label = context.dataset.label || "";
-                  if (label) {
-                    label += ": ";
-                  }
-                  if (context.parsed.y !== null) {
-                    label += context.parsed.y;
-                  }
-                  return label;
-                },
-              },
-            },
-          },
-        },
+      const formattedVandData = $vandData.map((data) => {
+        const parsedValue = parseFloat(data.y); // Konverter til tal
+        return {
+          x: data.x,
+          y: parsedValue, // Brug konverteret værdi
+        };
       });
 
-      // Scroll til den seneste dato når grafen er færdig med at loade
-      setTimeout(function () {
-        // Find containeren for grafen (f.eks. chart-container div'en)
-        const chartContainer = document.querySelector(".export-charts");
+// Chart.js konfiguration
+const ctx = document.getElementById("workoutLineChart").getContext("2d");
+const workoutLineChart = new Chart(ctx, {
+  type: "line",
+  data: {
+    labels: formattedDates, // Brug de formaterede datoer som labels
+    datasets: [
+      {
+        label: "Liter",
+        data: $vandData.map((data) => data.y), // Brug kun y-værdierne (liter)
+        borderColor: "rgba(75, 192, 192, 1)",
+        borderWidth: 1,
+        fill: false,
+      },
+    ],
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: true,
+    aspectRatio: 4,
+    scales: {
+      x: {
+        type: "category",
+        time: {
+          unit: "day",
+          tooltipFormat: "DD/MM",
+          displayFormats: {
+            day: "DD/MM",
+          },
+        },
+        ticks: {
+          source: "auto",
+        },
+      },
 
-        // Beregn total bredde af grafens scrollede område
-        const totalWidth = chartContainer.scrollWidth;
+      y: {
+        position: "right",
+        beginAtZero: true,
+        suggestedMax: 2,
+        title: {
+          display: true,
+        },
+        ticks: {
+          stepSize: 0.1, // Viser trin på 0.1 (0.1, 0.2, 0.3 osv.)
+          callback: function (value) {
+            return value.toFixed(1); // Sikrer, at der vises én decimal
+          },
+        },
+      },
+    },
+  },
+});
+          // Scroll til den seneste dato når grafen er færdig med at loade
+          setTimeout(function() {
+          // Find containeren for grafen (f.eks. chart-container div'en)
+          const chartContainer = document.querySelector(".export-charts");
 
-        // Find indekset for den sidste dato i absRepData
-        const lastIndex = $vandData.length - 1;
+          // Beregn total bredde af grafens scrollede område
+          const totalWidth = chartContainer.scrollWidth;
 
-        // Beregn scroll-position
-        const scrollPosition = (totalWidth / $vandData.length) * lastIndex;
+          // Find indekset for den sidste dato i absRepData
+          const lastIndex = $vandData.length - 1;
 
-        // Scroll containeren til sidste dato med data
-        chartContainer.scrollLeft = scrollPosition - chartContainer.clientWidth / 2;
-      }, 100); // Vent et øjeblik for at sikre, at grafen er loadet
+          // Beregn scroll-position
+          const scrollPosition = (totalWidth / $vandData.length) * lastIndex;
+
+          // Scroll containeren til sidste dato med data
+          chartContainer.scrollLeft = scrollPosition - chartContainer.clientWidth / 2;
+        }, 100); // Vent et øjeblik for at sikre, at grafen er loadet
 
 
     </script>

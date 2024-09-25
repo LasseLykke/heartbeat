@@ -110,7 +110,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
               // Loop igennem $tableData for at indsætte data i tabellen
               foreach ($tableData as $row) {
                 // Formatér datoen korrekt som DD-MM-YY
-                $formattedDate = date('d-m-y', strtotime($row['date']));
+                $formattedDate = date('d-m-Y', strtotime($row['date']));
                 echo "<tr>";
                 echo "<td>{$formattedDate}</td>";
                 echo "<td>{$row['vand']}</td>";
@@ -179,7 +179,7 @@ const workoutLineChart = new Chart(ctx, {
       y: {
         position: "right",
         beginAtZero: true,
-        suggestedMax: 2,
+        suggestedMax: 1.5,
         title: {
           display: true,
         },

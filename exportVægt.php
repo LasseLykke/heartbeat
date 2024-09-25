@@ -66,7 +66,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             while ($row = $result->fetch_assoc()) {
               $vægtData[] = [
                 'x' => $row['date'],
-                'y' => floatval ($row['vægt'])
+                'y' => floatval(str_replace(',', '.', $row['vægt']))
               ];
 
               // Gemmer rækken for senere brug i tabellen
@@ -110,7 +110,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
               // Loop igennem $tableData for at indsætte data i tabellen
               foreach ($tableData as $row) {
                 // Formatér datoen korrekt som DD-MM-YY
-                $formattedDate = date('d-m-y', strtotime($row['date']));
+                $formattedDate = date('d-m-Y', strtotime($row['date']));
                 echo "<tr>";
                 echo "<td>{$formattedDate}</td>";
                 echo "<td>{$row['vægt']}</td>";

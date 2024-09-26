@@ -483,7 +483,7 @@ thead {
   background-color: var(--dark);
   color: var(--white);
   margin: 14px 0px;
-  padding: 5px;
+  padding: 5px 10px;
   border: none;
   border-radius: 2px;
   cursor: pointer;
@@ -633,7 +633,7 @@ thead {
 }
 
 .submit {
-  background-color: var(--feat);
+  background-color: var(--prime);
   color: var(--white);
   border: none;
   border-radius: 3px;
@@ -642,6 +642,7 @@ thead {
   text-transform: uppercase;
   font-weight: 700;
   margin-top: 30px;
+  box-shadow: var(--b-shadow-xs);
 }
 
 .signOut {

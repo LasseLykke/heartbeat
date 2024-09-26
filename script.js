@@ -12,6 +12,16 @@ window.onload = function () {
   // Få den nuværende dato
   const today = moment();
 
+  // Opret en gradient for workoutData
+  const workoutGradient = ctx.createLinearGradient(0, 0, 0, 800);
+  workoutGradient.addColorStop(0, "#FF4F18"); // Start farve
+  workoutGradient.addColorStop(1, "#FFD700"); // Slut farve
+
+  // Opret en gradient for painData - Evt fjern. Mærk efter om sort ikke er bedre her
+  const painGradient = ctx.createLinearGradient(0, 0, 0, 800);
+  painGradient.addColorStop(0, "#00AB91"); // Start farve
+  painGradient.addColorStop(1, "#00796B"); // Slut farve
+
   const workoutBarChart = new Chart(ctx, {
     type: "bar",
     data: {
@@ -19,7 +29,7 @@ window.onload = function () {
         {
           label: "Workouts",
           data: workoutData,
-          backgroundColor: "#EA0300",
+          backgroundColor: workoutGradient,
           borderColor: "#191A19",
           borderWidth: 0.1,
           borderRadius: 2,
@@ -38,7 +48,8 @@ window.onload = function () {
         {
           label: "Hovedpiner",
           data: painData,
-          backgroundColor: "#191A19",
+          backgroundColor: '#191a19',
+          //backgroundColor: painGradient,
           borderColor: "#191A19",
           borderWidth: 0.1,
           borderRadius: 2,
@@ -84,6 +95,7 @@ window.onload = function () {
           },
         },
         tooltip: {
+          displayColors: false, // Fjerner farve for når man hover over.
           callbacks: {
             label: function (context) {
               let label = context.dataset.label || "";
@@ -118,8 +130,6 @@ window.onload = function () {
       scrollPosition - frontpageCharts.clientWidth / 2;
   }, 100); // Giver grafen tid til at loade før scroll
 };
-
-
 
 // Collapsible tables
 document.addEventListener("DOMContentLoaded", function () {

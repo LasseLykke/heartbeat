@@ -17,10 +17,6 @@ window.onload = function () {
   workoutGradient.addColorStop(0, "#FF4F18"); // Start farve
   workoutGradient.addColorStop(1, "#FFD700"); // Slut farve
 
-  // Opret en gradient for painData - Evt fjern. Mærk efter om sort ikke er bedre her
-  const painGradient = ctx.createLinearGradient(0, 0, 0, 800);
-  painGradient.addColorStop(0, "#00AB91"); // Start farve
-  painGradient.addColorStop(1, "#00796B"); // Slut farve
 
   const workoutBarChart = new Chart(ctx, {
     type: "bar",
@@ -48,8 +44,7 @@ window.onload = function () {
         {
           label: "Hovedpiner",
           data: painData,
-          backgroundColor: '#191a19',
-          //backgroundColor: painGradient,
+          backgroundColor: '#B98473',
           borderColor: "#191A19",
           borderWidth: 0.1,
           borderRadius: 2,

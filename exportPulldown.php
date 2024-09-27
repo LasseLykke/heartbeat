@@ -150,7 +150,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             {
               label: "Reps",
               data: pulldownRepData.map((data) => data.y), // Brug kun y-værdierne (reps)
-              borderColor: "rgba(0, 171, 145, 1)",
+              borderColor: "rgba(185, 132 , 115, 1)",
               borderWidth: 1,
               fill: false,
               pointBorderWidth: 3,
@@ -201,7 +201,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             y: {
               position: "right",
               beginAtZero: true,
-              suggestedMax: 103,
+              suggestedMax: 70,
               title: {
                 display: true,
               },

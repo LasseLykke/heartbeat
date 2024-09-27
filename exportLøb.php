@@ -157,16 +157,24 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         {
                             label: "Tid",
                             data: løbTidData.map((data) => data.y), // Brug kun y-værdierne (reps)
-                            borderColor: "rgba(75, 192, 192, 1)",
+                            borderColor: "rgba(185, 132 , 115, 1)",
                             borderWidth: 1,
                             fill: false,
+                            pointBorderWidth: 3,
+                            pointHoverBorderColor: 'rgba(255, 255, 255, 0.2)',
+                            pointHoverBorderWidth: 10,
+                            lineTension: 0.2,
                         },
                         {
                             label: "Belastning",
                             data: løbBelastningData.map((data) => data.y), // Brug kun y-værdierne (kilo)
-                            borderColor: "rgba(153, 102, 255, 1)",
+                            borderColor: "rgba(255, 79, 24, 1)",
                             borderWidth: 1,
                             fill: false,
+                            pointBorderWidth: 3,
+                            pointHoverBorderColor: 'rgba(255, 255, 255, 0.2)',
+                            pointHoverBorderWidth: 10,
+                            lineTension: 0.2,
                         },
                     ],
                 },
@@ -174,6 +182,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     responsive: true,
                     maintainAspectRatio: true,
                     aspectRatio: 4,
+                    elements: {
+                        point: {
+                            radius: 2,
+                            hitRadius: 5,
+                            hoverRadius: 10,
+                        }
+                    },
                     scales: {
                         x: {
                             type: "category",
@@ -211,21 +226,26 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             },
                         },
                         tooltip: {
+                            displayColors: false,
                             callbacks: {
                                 label: function (context) {
-                                    let label = context.dataset.label || "";
+                                    let label = context.dataset.label || '';
                                     if (label) {
-                                        label += ": ";
+                                        label += ': ';
                                     }
-                                    if (context.parsed.y !== null) {
-                                        label += context.parsed.y;
+                                    // Konverter minutter til MM:SS format Og har kun effekt på 'Tid'.
+                                    if (context.dataset.label === "Tid") {
+                                        let totalSeconds = context.raw * 60;  // Konverter tilbage til sekunder
+                                        let minutes = Math.floor(totalSeconds / 60);
+                                        let seconds = totalSeconds % 60;
+                                        label += minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+                                        return label;
                                     }
-                                    return label;
-                                },
-                            },
-                        },
-                    },
-                },
+                                }
+                            }
+                        }
+                    }
+                }
             });
 
             // Scroll til den seneste dato når grafen er færdig med at loade

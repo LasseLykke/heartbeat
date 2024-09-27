@@ -143,9 +143,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             {
               label: "Kilo",
               data: $vægtData.map((data) => data.y), // Brug kun y-værdierne (reps)
-              borderColor: "rgba(75, 192, 192, 1)",
+              borderColor: "rgba(255, 79, 24, 1)",
               borderWidth: 1,
               fill: false,
+              pointBorderWidth: 3,
+              pointHoverBorderColor: 'rgba(255, 255, 255, 0.2)',
+              pointHoverBorderWidth: 10,
+              lineTension: 0.2,
             },
           ],
         },
@@ -153,6 +157,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
           responsive: true,
           maintainAspectRatio: true,
           aspectRatio: 4,
+          elements: {
+              point: {
+                radius: 2,
+                hitRadius: 5,
+                hoverRadius: 10,
+              }
+            },
           scales: {
             x: {
               type: "category",
@@ -161,6 +172,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 tooltipFormat: "DD/MM",
                 displayFormats: {
                   day: "DD/MM",
+                  
                 },
               },
               ticks: {
@@ -179,16 +191,12 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
           },
           plugins: {
             legend: {
-              display: true,
+              display: false,
               position: "top",
-              labels: {
-                padding: 20,
-                font: {
-                  size: 12,
-                },
-              },
             },
+            
             tooltip: {
+              displayColors: false, // Fjerner farve for når man hover over.
               callbacks: {
                 label: function (context) {
                   let label = context.dataset.label || "";
@@ -204,6 +212,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             },
           },
         },
+        
       });
 
       // Scroll til den seneste dato når grafen er færdig med at loade

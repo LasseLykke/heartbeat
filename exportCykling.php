@@ -157,16 +157,24 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         {
                             label: "Tid",
                             data: cykelTidData.map((data) => data.y), // Brug kun y-værdierne (reps)
-                            borderColor: "rgba(75, 192, 192, 1)",
+                            borderColor: "rgba(185, 132 , 115, 1)",
                             borderWidth: 1,
                             fill: false,
+                            pointBorderWidth: 3,
+                            pointHoverBorderColor: 'rgba(255, 255, 255, 0.2)',
+                            pointHoverBorderWidth: 10,
+                            lineTension: 0.2,
                         },
                         {
                             label: "Belastning",
                             data: cykelBelastningData.map((data) => data.y), // Brug kun y-værdierne (kilo)
-                            borderColor: "rgba(153, 102, 255, 1)",
+                            borderColor: "rgba(255, 79, 24, 1)",
                             borderWidth: 1,
                             fill: false,
+                            pointBorderWidth: 3,
+                            pointHoverBorderColor: 'rgba(255, 255, 255, 0.2)',
+                            pointHoverBorderWidth: 10,
+                            lineTension: 0.2,
                         },
                     ],
                 },
@@ -174,6 +182,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     responsive: true,
                     maintainAspectRatio: true,
                     aspectRatio: 4,
+                    elements: {
+                        point: {
+                            radius: 2,
+                            hitRadius: 5,
+                            hoverRadius: 10,
+                        }
+                    },
                     scales: {
                         x: {
                             type: "category",
@@ -211,22 +226,24 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             },
                         },
                         tooltip: {
-                            callbacks: {
-                                label: function (context) {
-                                    let label = context.dataset.label || "";
-                                    if (label) {
-                                        label += ": ";
-                                    }
-                                    if (context.parsed.y !== null) {
-                                        label += context.parsed.y;
-                                    }
-                                    return label;
-                                },
-                            },
-                        },
-                    },
+              displayColors: false, // Fjerner farve for når man hover over.
+              callbacks: {
+                label: function (context) {
+                  let label = context.dataset.label || "";
+                  if (label) {
+                    label += ": ";
+                  }
+                  if (context.parsed.y !== null) {
+                    label += context.parsed.y;
+                  }
+                  return label;
                 },
-            });
+              },
+            },
+          },
+        },
+        
+      });
 
             // Scroll til den seneste dato når grafen er færdig med at loade
             setTimeout(function () {

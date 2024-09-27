@@ -148,9 +148,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         {
                             label: "Tid",
                             data: varighedTidData.map((data) => data.y), // Brug kun y-værdierne (reps)
-                            borderColor: "rgba(75, 192, 192, 1)",
+                            borderColor: "rgba(185, 132 , 115, 1)",
                             borderWidth: 1,
                             fill: false,
+                            pointBorderWidth: 3,
+                            pointHoverBorderColor: 'rgba(255, 255, 255, 0.2)',
+                            pointHoverBorderWidth: 10,
+                            lineTension: 0.2,
                         },
 
                     ],
@@ -159,6 +163,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     responsive: true,
                     maintainAspectRatio: true,
                     aspectRatio: 4,
+                    elements: {
+                        point: {
+                            radius: 2,
+                            hitRadius: 5,
+                            hoverRadius: 10,
+                        }
+                    },
                     scales: {
                         x: {
                             type: "category",
@@ -196,6 +207,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             },
                         },
                         tooltip: {
+                            displayColors: false,
                             callbacks: {
                                 label: function (context) {
                                     let label = context.dataset.label || "";
@@ -205,7 +217,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                     if (context.parsed.y !== null) {
                                         label += context.parsed.y;
                                     }
-                                    return label;
+                                    return label +'min';
                                 },
                             },
                         },

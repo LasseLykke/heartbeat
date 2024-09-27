@@ -141,75 +141,112 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         };
       });
 
-// Chart.js konfiguration
-const ctx = document.getElementById("workoutLineChart").getContext("2d");
-const workoutLineChart = new Chart(ctx, {
-  type: "line",
-  data: {
-    labels: formattedDates, // Brug de formaterede datoer som labels
-    datasets: [
-      {
-        label: "Liter",
-        data: $vandData.map((data) => data.y), // Brug kun y-værdierne (liter)
-        borderColor: "rgba(75, 192, 192, 1)",
-        borderWidth: 1,
-        fill: false,
-      },
-    ],
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: true,
-    aspectRatio: 4,
-    scales: {
-      x: {
-        type: "category",
-        time: {
-          unit: "day",
-          tooltipFormat: "DD/MM",
-          displayFormats: {
-            day: "DD/MM",
+      // Chart.js konfiguration
+      const ctx = document.getElementById("workoutLineChart").getContext("2d");
+      const workoutLineChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: formattedDates, // Brug de formaterede datoer som labels
+          datasets: [
+            {
+              label: "Liter",
+              data: $vandData.map((data) => data.y), // Brug kun y-værdierne (liter)
+              borderColor: "rgba(185, 132 , 115, 1)",
+              borderWidth: 1,
+              fill: false,
+              pointBorderWidth: 3,
+              pointHoverBorderColor: 'rgba(255, 255, 255, 0.2)',
+              pointHoverBorderWidth: 10,
+              lineTension: 0.2,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 4,
+          elements: {
+            point: {
+              radius: 2,
+              hitRadius: 5,
+              hoverRadius: 10,
+            }
+          },
+          scales: {
+            x: {
+              type: "category",
+              time: {
+                unit: "day",
+                tooltipFormat: "DD/MM",
+                displayFormats: {
+                  day: "DD/MM",
+                },
+              },
+              ticks: {
+                source: "auto",
+              },
+            },
+
+
+            y: {
+              position: "right",
+              beginAtZero: true,
+              suggestedMax: 1.5,
+              title: {
+                display: true,
+              },
+
+              ticks: {
+                stepSize: 0.1, // Viser trin på 0.1 (0.1, 0.2, 0.3 osv.)
+                callback: function (value) {
+                  return value.toFixed(1); // Sikrer, at der vises én decimal
+                },
+              },
+            },
+            
+          },
+          plugins: {
+            legend: {
+              display: false,
+              position: "top",
+            },
+            
+            tooltip: {
+              displayColors: false, // Fjerner farve for når man hover over.
+              callbacks: {
+                label: function (context) {
+                  let label = context.dataset.label || "";
+                  if (label) {
+                    label += ": ";
+                  }
+                  if (context.parsed.y !== null) {
+                    label += context.parsed.y;
+                  }
+                  return label;
+                },
+              },
+            },
           },
         },
-        ticks: {
-          source: "auto",
-        },
-      },
+        
+      });
+      // Scroll til den seneste dato når grafen er færdig med at loade
+      setTimeout(function () {
+        // Find containeren for grafen (f.eks. chart-container div'en)
+        const chartContainer = document.querySelector(".export-charts");
 
-      y: {
-        position: "right",
-        beginAtZero: true,
-        suggestedMax: 1.5,
-        title: {
-          display: true,
-        },
-        ticks: {
-          stepSize: 0.1, // Viser trin på 0.1 (0.1, 0.2, 0.3 osv.)
-          callback: function (value) {
-            return value.toFixed(1); // Sikrer, at der vises én decimal
-          },
-        },
-      },
-    },
-  },
-});
-          // Scroll til den seneste dato når grafen er færdig med at loade
-          setTimeout(function() {
-          // Find containeren for grafen (f.eks. chart-container div'en)
-          const chartContainer = document.querySelector(".export-charts");
+        // Beregn total bredde af grafens scrollede område
+        const totalWidth = chartContainer.scrollWidth;
 
-          // Beregn total bredde af grafens scrollede område
-          const totalWidth = chartContainer.scrollWidth;
+        // Find indekset for den sidste dato i absRepData
+        const lastIndex = $vandData.length - 1;
 
-          // Find indekset for den sidste dato i absRepData
-          const lastIndex = $vandData.length - 1;
+        // Beregn scroll-position
+        const scrollPosition = (totalWidth / $vandData.length) * lastIndex;
 
-          // Beregn scroll-position
-          const scrollPosition = (totalWidth / $vandData.length) * lastIndex;
-
-          // Scroll containeren til sidste dato med data
-          chartContainer.scrollLeft = scrollPosition - chartContainer.clientWidth / 2;
-        }, 100); // Vent et øjeblik for at sikre, at grafen er loadet
+        // Scroll containeren til sidste dato med data
+        chartContainer.scrollLeft = scrollPosition - chartContainer.clientWidth / 2;
+      }, 100); // Vent et øjeblik for at sikre, at grafen er loadet
 
 
     </script>

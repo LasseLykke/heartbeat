@@ -201,7 +201,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             y: {
               position: "right",
               beginAtZero: true,
-              suggestedMax: 10,
+              suggestedMax: 50,
               title: {
                 display: true,
               },

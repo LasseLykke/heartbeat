@@ -216,7 +216,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     },
                     plugins: {
                         legend: {
-                            display: true,
+                            display: false,
                             position: "top",
                             labels: {
                                 padding: 20,

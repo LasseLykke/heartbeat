@@ -140,6 +140,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         return `${day}/${month}`; // Returnerer i DD/MM format
       });
 
+      
       // Chart.js konfiguration
       const ctx = document.getElementById("workoutLineChart").getContext("2d");
       const workoutLineChart = new Chart(ctx, {
@@ -158,6 +159,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
               pointHoverBorderWidth: 10,
               lineTension: 0.2,
             },
+            
             {
               label: "Kilo",
               data: pulldownKiloData.map((data) => data.y), // Brug kun y-værdierne (kilo)
@@ -174,7 +176,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         options: {
           responsive: true,
           maintainAspectRatio: true,
-          aspectRatio: 4,
+          aspectRatio: 4, 
           elements: {
               point: {
                 radius: 2,
@@ -190,12 +192,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 tooltipFormat: "DD/MM",
                 displayFormats: {
                   day: "DD/MM",
-                  
                 },
+                
               },
               ticks: {
-                source: "auto",
+                source: 'auto',
+                
               },
+              
             },
 
             y: {

@@ -172,6 +172,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 tooltipFormat: "DD/MM",
                 displayFormats: {
                   day: "DD/MM",
+                  suggestedMax: 4,
                   
                 },
               },

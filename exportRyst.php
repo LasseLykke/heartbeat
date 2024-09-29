@@ -143,7 +143,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             {
               label: "Tid",
               data: $rystTidData.map((data) => data.y), // Brug kun y-værdierne (reps)
-              borderColor: "rgba(185, 132 , 115, 1)",
+              borderColor: "rgba(255, 79, 24, 1)",
               borderWidth: 1,
               fill: false,
               pointBorderWidth: 3,

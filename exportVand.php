@@ -151,7 +151,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             {
               label: "Liter",
               data: $vandData.map((data) => data.y), // Brug kun y-værdierne (liter)
-              borderColor: "rgba(185, 132 , 115, 1)",
+              borderColor: "rgba(255, 79, 24, 1)",
               borderWidth: 1,
               fill: false,
               pointBorderWidth: 3,

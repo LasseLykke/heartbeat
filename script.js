@@ -13,10 +13,14 @@ window.onload = function () {
   const today = moment();
 
   // Opret en gradient for workoutData
-  const workoutGradient = ctx.createLinearGradient(0, 0, 0, 800);
+  const workoutGradient = ctx.createLinearGradient(0, 0, 0, 900);
   workoutGradient.addColorStop(0, "#FF4F18"); // Start farve
   workoutGradient.addColorStop(1, "#FFD700"); // Slut farve
 
+  // Opret en gradient for workoutData
+  const painGradient = ctx.createLinearGradient(0, 0, 0, 400);
+  painGradient.addColorStop(0, "#E0E0E0"); // Start lys farve (næsten hvid)
+  painGradient.addColorStop(1, "#191A19"); // Slut mørk farve
 
   const workoutBarChart = new Chart(ctx, {
     type: "bar",
@@ -44,7 +48,7 @@ window.onload = function () {
         {
           label: "Hovedpiner",
           data: painData,
-          backgroundColor: '#B98473',
+          backgroundColor: painGradient,
           borderColor: "#191A19",
           borderWidth: 0.1,
           borderRadius: 2,

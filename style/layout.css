@@ -195,6 +195,11 @@
   background-color: var(--white);
   padding-top: 120px;
   transition: 0.4s;
+
+  /* Glas-effekt */
+  background-color: rgba(255, 255, 255, 0.7); /* Hvid med gennemsigtighed */
+  backdrop-filter: blur(15px); /* Blur-effekt */
+  -webkit-backdrop-filter: blur(15px); /* For Safari */
 }
 
 .mobile-nav.is-active {
@@ -445,9 +450,9 @@ textarea {
   outline: none;
   color: var(--dark);
   border: none;
-  border-left: 1px solid var(--dark);
-  border-right: 1px solid var(--dark);
-  border-top: 1px solid var(--dark);
+  border-left: 1px solid var(--grey-l);
+  border-right: 1px solid var(--grey-l);
+  border-top: 1px solid var(--grey-l);
 }
 
 
@@ -455,24 +460,28 @@ textarea {
   content: "\2796"; /* Unicode character for "minus" tegn (-) */
 }
 
-
 /* Table Styling */
 table {
   width: 100%;
   border-collapse: collapse;
+  background-color: var(----white);
 }
 
 table, th, td {
-  border: 1px solid var(--grey);
-  color: var(--dark);
+  border: 1px solid var(--grey-l);
 }
 
 th, td {
-  padding: 10px;
+  padding: 15px;
   text-align: left;
+  color: var(--dark);
 }
 
-thead {
+th {
+  font-weight: 500;
+}
+
+tr:hover {
   background-color: var(--grey-l);
 }
 

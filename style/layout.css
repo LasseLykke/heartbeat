@@ -405,7 +405,6 @@ textarea {
 }
 
 
-/*Single page udtræk*/
 
 .collapsibleTables {
   margin-bottom: 20px;
@@ -423,10 +422,10 @@ textarea {
   font-size: 15px;
   color: var(--dark);
   /*margin-bottom: 10px;*/
-  border-left: 1px solid var(--dark);
-  border-right: 1px solid var(--dark);
-  border-top: 1px solid var(--dark);
-  border-bottom: 1px solid var(--dark);
+  border-left: 1px solid var(--grey-l);
+  border-right: 1px solid var(--grey-l);
+  border-top: 1px solid var(--grey-l);
+  border-bottom: 1px solid var(--grey-l);
   margin-top: 20px;
 }
 
@@ -440,10 +439,20 @@ textarea {
 
 /* Collapsible Content */
 .content {
-  display: none;
+  max-height: 0;
+  
   overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease-in; /* Tilføjer en smooth transition */
+  will-change: max-height, opacity; /* Forbedrer performance ved at optimere animationen */
+
 }
 
+
+.content.show {
+  max-height: 500px; /* Sæt en stor værdi afhængigt af, hvor meget indhold du har */
+  opacity: 1;
+}
 
 /* Tilføjer baggrundsfarve til knappen +/- bliver loaded med JS */
 .active {
@@ -467,8 +476,13 @@ table {
   background-color: var(----white);
 }
 
+thead {
+  background-color: var(--grey-l);
+}
+
+
 table, th, td {
-  border: 1px solid var(--grey-l);
+  border-bottom: 1px solid var(--grey);
 }
 
 th, td {

@@ -12,8 +12,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Logger ud efter halvanden time -->
-        <meta http-equiv="refresh" content="5400;url=logout.php" />
+        <!-- Logger ud efter 15min -->
+        <meta http-equiv="refresh" content="1500;url=logout.php" />
         <title>H E A R T B E A T || VARIGHED STATS </title>
     </head>
 
@@ -98,7 +98,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <div class="collapsibleTables">
                 <button class="collapsible">Vis Statistik</button>
                 <div class="content">
-                    <table id="absStatsTable">
+                    <table id="statsTable">
                         <thead>
                             <tr>
                                 <th>Dato</th>
@@ -110,7 +110,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             // Loop igennem $tableData for at indsætte data i tabellen
                             foreach ($tableData as $row) {
                                 // Formatér datoen korrekt som DD-MM-YY
-                                $formattedDate = date('d-m-y', strtotime($row['date']));
+                                $formattedDate = date('d-m-Y', strtotime($row['date']));
 
                                 // Konverter sekunder til minutter og sekunder
                                 $minutes = floor($row['varighedTidInSeconds'] / 60);
@@ -148,17 +148,28 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         {
                             label: "Tid",
                             data: varighedTidData.map((data) => data.y), // Brug kun y-værdierne (reps)
-                            borderColor: "rgba(75, 192, 192, 1)",
+                            borderColor: "rgba(255, 79, 24, 1)",
                             borderWidth: 1,
                             fill: false,
+                            pointBorderWidth: 3,
+                            pointHoverBorderColor: 'rgba(255, 255, 255, 0.2)',
+                            pointHoverBorderWidth: 10,
+                            lineTension: 0.2,
                         },
-                        
+
                     ],
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: true,
                     aspectRatio: 4,
+                    elements: {
+                        point: {
+                            radius: 2,
+                            hitRadius: 5,
+                            hoverRadius: 10,
+                        }
+                    },
                     scales: {
                         x: {
                             type: "category",
@@ -177,7 +188,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         y: {
                             position: "right",
                             beginAtZero: true,
-                            suggestedMax: 60, // Antag at den maksimale tid er 60 minutter, du kan justere efter behov
+                            suggestedMax: 150, // Antag at den maksimale tid er 60 minutter, du kan justere efter behov
                             title: {
                                 display: true,
                                 text: 'Tid (minutter)' // Tilføj en titel til y-aksen
@@ -186,7 +197,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     },
                     plugins: {
                         legend: {
-                            display: true,
+                            display: false,
                             position: "top",
                             labels: {
                                 padding: 20,
@@ -196,6 +207,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             },
                         },
                         tooltip: {
+                            displayColors: false,
                             callbacks: {
                                 label: function (context) {
                                     let label = context.dataset.label || "";
@@ -205,7 +217,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                     if (context.parsed.y !== null) {
                                         label += context.parsed.y;
                                     }
-                                    return label;
+                                    return label +'min';
                                 },
                             },
                         },

@@ -195,6 +195,11 @@
   background-color: var(--white);
   padding-top: 120px;
   transition: 0.4s;
+
+  /* Glas-effekt */
+  background-color: rgba(255, 255, 255, 0.7); /* Hvid med gennemsigtighed */
+  backdrop-filter: blur(15px); /* Blur-effekt */
+  -webkit-backdrop-filter: blur(15px); /* For Safari */
 }
 
 .mobile-nav.is-active {
@@ -400,7 +405,6 @@ textarea {
 }
 
 
-/*Single page udtræk*/
 
 .collapsibleTables {
   margin-bottom: 20px;
@@ -418,10 +422,10 @@ textarea {
   font-size: 15px;
   color: var(--dark);
   /*margin-bottom: 10px;*/
-  border-left: 1px solid var(--dark);
-  border-right: 1px solid var(--dark);
-  border-top: 1px solid var(--dark);
-  border-bottom: 1px solid var(--dark);
+  border-left: 1px solid var(--grey-l);
+  border-right: 1px solid var(--grey-l);
+  border-top: 1px solid var(--grey-l);
+  border-bottom: 1px solid var(--grey-l);
   margin-top: 20px;
 }
 
@@ -435,19 +439,29 @@ textarea {
 
 /* Collapsible Content */
 .content {
-  display: none;
+  max-height: 0;
+  
   overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease-in; /* Tilføjer en smooth transition */
+  will-change: max-height, opacity; /* Forbedrer performance ved at optimere animationen */
+
 }
 
+
+.content.show {
+  max-height: 500px; /* Sæt en stor værdi afhængigt af, hvor meget indhold du har */
+  opacity: 1;
+}
 
 /* Tilføjer baggrundsfarve til knappen +/- bliver loaded med JS */
 .active {
   outline: none;
   color: var(--dark);
   border: none;
-  border-left: 1px solid var(--dark);
-  border-right: 1px solid var(--dark);
-  border-top: 1px solid var(--dark);
+  border-left: 1px solid var(--grey-l);
+  border-right: 1px solid var(--grey-l);
+  border-top: 1px solid var(--grey-l);
 }
 
 
@@ -455,24 +469,33 @@ textarea {
   content: "\2796"; /* Unicode character for "minus" tegn (-) */
 }
 
-
 /* Table Styling */
 table {
   width: 100%;
   border-collapse: collapse;
-}
-
-table, th, td {
-  border: 1px solid var(--grey);
-  color: var(--dark);
-}
-
-th, td {
-  padding: 10px;
-  text-align: left;
+  background-color: var(----white);
 }
 
 thead {
+  background-color: var(--grey-l);
+}
+
+
+table, th, td {
+  border-bottom: 1px solid var(--grey);
+}
+
+th, td {
+  padding: 15px;
+  text-align: left;
+  color: var(--dark);
+}
+
+th {
+  font-weight: 500;
+}
+
+tr:hover {
   background-color: var(--grey-l);
 }
 
@@ -483,7 +506,7 @@ thead {
   background-color: var(--dark);
   color: var(--white);
   margin: 14px 0px;
-  padding: 5px;
+  padding: 5px 10px;
   border: none;
   border-radius: 2px;
   cursor: pointer;
@@ -633,7 +656,7 @@ thead {
 }
 
 .submit {
-  background-color: var(--feat);
+  background-color: var(--prime);
   color: var(--white);
   border: none;
   border-radius: 3px;
@@ -642,6 +665,7 @@ thead {
   text-transform: uppercase;
   font-weight: 700;
   margin-top: 30px;
+  box-shadow: var(--b-shadow-xs);
 }
 
 .signOut {

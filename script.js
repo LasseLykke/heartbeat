@@ -12,6 +12,16 @@ window.onload = function () {
   // Få den nuværende dato
   const today = moment();
 
+  // Opret en gradient for workoutData
+  const workoutGradient = ctx.createLinearGradient(0, 0, 0, 900);
+  workoutGradient.addColorStop(0, "#FF4F18"); // Start farve
+  workoutGradient.addColorStop(1, "#FFD700"); // Slut farve
+
+  // Opret en gradient for workoutData
+  const painGradient = ctx.createLinearGradient(0, 0, 0, 400);
+  painGradient.addColorStop(0, "#E0E0E0"); // Start lys farve (næsten hvid)
+  painGradient.addColorStop(1, "#191A19"); // Slut mørk farve
+
   const workoutBarChart = new Chart(ctx, {
     type: "bar",
     data: {
@@ -19,7 +29,7 @@ window.onload = function () {
         {
           label: "Workouts",
           data: workoutData,
-          backgroundColor: "#EA0300",
+          backgroundColor: workoutGradient,
           borderColor: "#191A19",
           borderWidth: 0.1,
           borderRadius: 2,
@@ -38,7 +48,7 @@ window.onload = function () {
         {
           label: "Hovedpiner",
           data: painData,
-          backgroundColor: "#191A19",
+          backgroundColor: painGradient,
           borderColor: "#191A19",
           borderWidth: 0.1,
           borderRadius: 2,
@@ -84,6 +94,7 @@ window.onload = function () {
           },
         },
         tooltip: {
+          displayColors: false, // Fjerner farve for når man hover over.
           callbacks: {
             label: function (context) {
               let label = context.dataset.label || "";
@@ -119,19 +130,22 @@ window.onload = function () {
   }, 100); // Giver grafen tid til at loade før scroll
 };
 
-
-
 // Collapsible tables
 document.addEventListener("DOMContentLoaded", function () {
   var coll = document.getElementsByClassName("collapsible");
+
   for (var i = 0; i < coll.length; i++) {
     coll[i].addEventListener("click", function () {
       this.classList.toggle("active");
       var content = this.nextElementSibling;
-      if (content.style.display === "block") {
-        content.style.display = "none";
+
+      // Tjek om maxHeight allerede er sat (åben tilstand)
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null; // Luk
+        content.style.opacity = 0; // Fade out
       } else {
-        content.style.display = "block";
+        content.style.maxHeight = content.scrollHeight + "px"; // Åbn
+        content.style.opacity = 1; // Fade in
       }
     });
   }

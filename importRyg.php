@@ -10,9 +10,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         // Hent og rens input
         $workoutDate = htmlspecialchars($_POST["dato"]);
         $rygRep = isset($_POST["rygRep"]) ? intval($_POST["rygRep"]) : 0;
-        $rygKilo = isset($_POST["rygKilo"]) ? str_replace(',', '.', $_POST["rygKilo"]) : 0.0;
-        $rygKilo = floatval($rygKilo);
-        $rygKilo = number_format($rygKilo, 1);
 
         // Hvis workoutDate er tom, brug den aktuelle dato
         if (empty($workoutDate)) {
@@ -41,14 +38,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             $stmt->close();
 
             // Indsæt i woCykel med det hentede sessionID som FK
-            $sql = "INSERT INTO woRyg (sessionID, rygRep, rygKilo) VALUES (?, ?, ?)";
+            $sql = "INSERT INTO woRyg (sessionID, rygRep) VALUES (?, ?)";
             $stmt = $mysqli->prepare($sql);
 
             if ($stmt === false) {
                 throw new Exception($mysqli->error);
             }
 
-            $stmt->bind_param("iid", $sessionID, $rygRep, $rygKilo);
+            $stmt->bind_param("id", $sessionID, $rygRep);
             $stmt->execute();
 
             // Commit transaktionen
@@ -119,9 +116,6 @@ ob_end_flush();
             <section class="workoutlabel">
                 <label for="rygRep"></label>
                 <input type="number" id="rygRep" name="rygRep" placeholder="Rep:" required>
-
-                <label for="rygKilo"></label>
-                <input type="text" id="rygKilo" name="rygKilo" placeholder="Kilo:">
             </section>
 
             <section>

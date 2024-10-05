@@ -10,21 +10,12 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
   <!DOCTYPE html>
   <html>
 
-<<<<<<< HEAD
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Logger ud efter halvanden time -->
-        <meta http-equiv="refresh" content="5400;url=logout.php" />
-        <title>H E A R T B E A T || BUTTUPS STATS </title>
-    </head>
-=======
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Logger ud efter 15min -->
     <meta http-equiv="refresh" content="1500;url=logout.php" />
     <title>H E A R T B E A T || BUTTUPS STATS </title>
   </head>
->>>>>>> main
 
 
   <?php
@@ -48,17 +39,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     </nav>
   </header>
 
-<<<<<<< HEAD
-    <div class="wrapper">
-        <section class="hbHeader">
-            <h1 class="headerText">Buttups statestik</h1>
-        </section>
-=======
   <div class="wrapper">
     <section class="hbHeader">
       <h1 class="headerText">Buttups statestik</h1>
     </section>
->>>>>>> main
 
 
     <!-- CHARTS.JS GRAF -->
@@ -97,110 +81,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
 
         <script>
-<<<<<<< HEAD
-            // Formaterer datoerne manuelt til DD/MM format
-const formattedDates = $buttupsRepData .map((data) => {
-  const date = new Date(data.x); // Opretter dato objekt
-  const day = String(date.getDate()).padStart(2, "0"); // Henter dag med 2 cifre
-  const month = String(date.getMonth() + 1).padStart(2, "0"); // Henter måned med 2 cifre (0-indekseret)
-  return `${day}/${month}`; // Returnerer i DD/MM format
-});
-
-// Chart.js konfiguration
-const ctx = document.getElementById("workoutLineChart").getContext("2d");
-const workoutLineChart = new Chart(ctx, {
-  type: "line",
-  data: {
-    labels: formattedDates, // Brug de formaterede datoer som labels
-    datasets: [
-      {
-        label: "Reps",
-        data: $buttupsRepData .map((data) => data.y), // Brug kun y-værdierne (reps)
-        borderColor: "rgba(75, 192, 192, 1)",
-        borderWidth: 1,
-        fill: false,
-      },
-    ],
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: true,
-    aspectRatio: 4,
-    scales: {
-      x: {
-        type: "category",
-        time: {
-          unit: "day",
-          tooltipFormat: "DD/MM",
-          displayFormats: {
-            day: "DD/MM",
-          },
-        },
-        ticks: {
-          source: "auto",
-        },
-      },
-
-      y: {
-        position: "right",
-        beginAtZero: true,
-        suggestedMax: 50,
-        title: {
-          display: true,
-        },
-      },
-    },
-    plugins: {
-      legend: {
-        display: true,
-        position: "top",
-        labels: {
-          padding: 20,
-          font: {
-            size: 12,
-          },
-        },
-      },
-      tooltip: {
-        callbacks: {
-          label: function (context) {
-            let label = context.dataset.label || "";
-            if (label) {
-              label += ": ";
-            }
-            if (context.parsed.y !== null) {
-              label += context.parsed.y;
-            }
-            return label;
-          },
-        },
-      },
-    },
-  },
-});
-
-// Scroll til den seneste dato når grafen er færdig med at loade
-setTimeout(function () {
-  // Find containeren for grafen (f.eks. chart-container div'en)
-  const chartContainer = document.querySelector(".export-charts");
-
-  // Beregn total bredde af grafens scrollede område
-  const totalWidth = chartContainer.scrollWidth;
-
-  // Find indekset for den sidste dato i absRepData
-  const lastIndex = $buttupsRepData .length - 1;
-
-  // Beregn scroll-position
-  const scrollPosition = (totalWidth / $buttupsRepData .length) * lastIndex;
-
-  // Scroll containeren til sidste dato med data
-  chartContainer.scrollLeft = scrollPosition - chartContainer.clientWidth / 2;
-}, 100); // Vent et øjeblik for at sikre, at grafen er loadet
-
-=======
           // Genererer JavaScript-variabler fra PHP-data
           const $buttupsRepData = <?php echo json_encode($buttupsRepData); ?>;
->>>>>>> main
 
         </script>
       </div>

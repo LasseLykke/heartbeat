@@ -8,47 +8,84 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Hent og rens input
-        $workoutDate = htmlspecialchars($_POST["dato"]);
-        $legcurlRep = isset($_POST["legcurlRep"]) ? intval($_POST["legcurlRep"]) : 0;
-        $legcurlKilo = isset($_POST["legcurlKilo"]) ? str_replace(',', '.', $_POST["legcurlKilo"]) : 0.0;
-        $legcurlKilo = floatval($legcurlKilo);
-        $legcurlKilo = number_format($legcurlKilo, 1);
+        $painDate = htmlspecialchars($_POST["dato"]);
+        $notes = htmlspecialchars($_POST["notes"]);
+        $mentalState = isset($_POST["mentalState"]) ? intval($_POST["mentalState"]) : 0;
+        $atWork = isset($_POST["atWork"]) ? 1 : 0;
 
-        // Hvis workoutDate er tom, brug den aktuelle dato
-        if (empty($workoutDate)) {
-            $workoutDate = date('Y-m-d'); // Brug kun dato (YYYY-MM-DD)
+        // Hovedpine
+        $hasHeadache = isset($_POST["hasHeadache"]) ? 1 : 0;
+        $headacheLevel = isset($_POST["headacheLevel"]) ? intval($_POST["headacheLevel"]) : 0;
+        $headacheType = isset($_POST["headacheType"]) ? $_POST["headacheType"] : '';
+        $headacheDuration = isset($_POST["headacheDuration"]) ? intval($_POST["headacheDuration"]) : 0;
+
+        // Kropssmerter
+        $bodyPainLevel = isset($_POST["bodyPainLevel"]) ? intval($_POST["bodyPainLevel"]) : 0;
+        $bodyPart = htmlspecialchars($_POST["bodyPart"]);
+
+        // Medicin
+        $tookMedication = isset($_POST["tookMedication"]) ? 1 : 0;
+        $medicationAmount = isset($_POST["medicationAmount"]) ? intval($_POST["medicationAmount"]) : 0;
+
+        // Hvis painDate er tom, brug den aktuelle dato
+        if (empty($painDate)) {
+            $painDate = date('Y-m-d'); // Brug kun dato (YYYY-MM-DD)
         }
 
         // Start en transaktion
         $mysqli->begin_transaction();
 
         try {
-            // Først indsæt i workoutSession for at få sessionID
-            $sql = "INSERT INTO workoutSession (sessionDate) VALUES (?)";
+            // Først indsæt i painSession for at få sessionID
+            $sql = "INSERT INTO painSession (sessionDate, notes, mentalState, atWork) VALUES (?, ?, ?, ?)";
             $stmt = $mysqli->prepare($sql);
 
             if ($stmt === false) {
                 throw new Exception($mysqli->error);
             }
 
-            $stmt->bind_param("s", $workoutDate);
+            $stmt->bind_param("sssi", $painDate, $notes, $mentalState, $atWork);
             $stmt->execute();
 
             // Hent det genererede sessionID
             $sessionID = $stmt->insert_id;
 
-            // Luk statement for workoutSession
+            // Luk statement for painSession
             $stmt->close();
 
-            // Indsæt i woCykel med det hentede sessionID som FK
-            $sql = "INSERT INTO woLegcurl (sessionID, legcurlRep, legcurlKilo) VALUES (?, ?, ?)";
+            // Indsæt i headacheLog
+            $sql = "INSERT INTO headacheLog (sessionID, hasHeadache, headacheLevel, headacheType, headacheDuration) VALUES (?, ?, ?, ?, ?)";
             $stmt = $mysqli->prepare($sql);
 
             if ($stmt === false) {
                 throw new Exception($mysqli->error);
             }
 
-            $stmt->bind_param("iid", $sessionID, $legcurlRep, $legcurlKilo);
+            $stmt->bind_param("iiisi", $sessionID, $hasHeadache, $headacheLevel, $headacheType, $headacheDuration);
+            $stmt->execute();
+            $stmt->close();
+
+            // Indsæt i bodyPainLog
+            $sql = "INSERT INTO bodyPainLog (sessionID, bodyPart, painLevel) VALUES (?, ?, ?)";
+            $stmt = $mysqli->prepare($sql);
+
+            if ($stmt === false) {
+                throw new Exception($mysqli->error);
+            }
+
+            $stmt->bind_param("isi", $sessionID, $bodyPart, $bodyPainLevel);
+            $stmt->execute();
+            $stmt->close();
+
+            // Indsæt i medicationLog
+            $sql = "INSERT INTO medicationLog (sessionID, tookMedication, medicationAmount) VALUES (?, ?, ?)";
+            $stmt = $mysqli->prepare($sql);
+
+            if ($stmt === false) {
+                throw new Exception($mysqli->error);
+            }
+
+            $stmt->bind_param("iii", $sessionID, $tookMedication, $medicationAmount);
             $stmt->execute();
 
             // Commit transaktionen
@@ -59,15 +96,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             $mysqli->close();
 
             // Gå tilbage til bekræftelsessiden
-            header("Location: successWorkout.php");
+            header("Location: success.php");
             exit();
         } catch (Exception $e) {
             // Rul tilbage ved fejl
             $mysqli->rollback();
             die("Error: " . $e->getMessage());
         }
-
-
     }
 } else {
     // Hvis brugeren ikke er logget ind, send dem tilbage til login siden
@@ -82,15 +117,13 @@ ob_end_flush();
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Logger ud efter halvanden time -->
-    <meta http-equiv="refresh" content="5400;url=logout.php" />
-    <title>H E A R T B E A T || Legcurl </title>
+    <meta http-equiv="refresh" content="1500;url=logout.php" />
+    <title>Daglig Logging</title>
 </head>
 
 <body>
 
     <?php
-    // Viser success eller fejl meddelelse
     if (isset($_SESSION["message"])) {
         echo "<p>{$_SESSION["message"]}</p>";
         unset($_SESSION["message"]);
@@ -104,31 +137,154 @@ ob_end_flush();
 
         <nav class="mobile-nav">
             <a href="forside.php">Forside</a>
-            <a href="dataOverview.php">Statestik</a>
-            <a href="workoutforms.php">Workout Forms</a>
+            <a href="dataOverview.php">Statistik</a>
             <a href="logout.php">Log ud</a>
         </nav>
     </header>
 
     <div class="wrapper">
         <section class="hbHeader">
-            <h1 class="headerText">Legcurl</h1>
+            <h1 class="headerText">Daily</h1>
         </section>
-        <form class="workoutForm" action="" method="POST">
+        <form class="dailyForm" action="" method="POST">
 
-            <section class="workoutlabel">
-                <label for="legcurlRep"></label>
-                <input type="number" id="legcurlRep" name="legcurlRep" placeholder="Rep:" required>
+            <section class="dailyFormSubPain">
+                <label for="hasHeadache">Har du haft hovedpine?</label>
+                <input type="checkbox" id="hasHeadache" name="hasHeadache">
 
-                <label for="legcurlKilo"></label>
-                <input type="text" id="legcurlKilo" name="legcurlKilo" placeholder="Kilo:" required>
+                <label for="headacheLevel">Sværhedsgrad:</label>
+                <div class="headacheLevelOptions">
+                    <div>
+                        <input type="radio" id="level1" name="headacheLevel" value="1">
+                        <label for="level1">1</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="level2" name="headacheLevel" value="2">
+                        <label for="level2">2</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="level3" name="headacheLevel" value="3">
+                        <label for="level3">3</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="level4" name="headacheLevel" value="4">
+                        <label for="level4">4</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="level5" name="headacheLevel" value="5">
+                        <label for="level5">5</label>
+                    </div>
+                </div>
+
+
+
+                <label for="headacheType"></label>
+                <select id="headacheType" name="headacheType">
+                    <option value="" disabled selected>Vælg type</option>
+                    <option value="Spændings">Spændings</option>
+                    <option value="Migræne">Migræne</option>
+                    <option value="Sygdom">Sygdom</option>
+                    <option value="Andet">Andet</option>
+                </select>
+
+
+                <label for="headacheDuration">Varighed:</label>
+                <input type="number" id="headacheDuration" name="headacheDuration" placeholder="Varighed i minutter">
+            </section>
+
+
+            <hr> <!-- Midlertidig skillelinje -->
+
+
+            <section>
+                <label for="bodyPart">Smerter i kroppen?</label>
+                <input type="text" id="bodyPart" name="bodyPart" placeholder="Hvilken Kropsdel">
+
+                <label for="bodyPainLevel">Sværhedsgrad af smerte:</label>
+                <div class="bodyPainLevelOptions">
+                    <div>
+                        <input type="radio" id="painLevel1" name="bodyPainLevel" value="1">
+                        <label for="painLevel1">1</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="painLevel2" name="bodyPainLevel" value="2">
+                        <label for="painLevel2">2</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="painLevel3" name="bodyPainLevel" value="3">
+                        <label for="painLevel3">3</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="painLevel4" name="bodyPainLevel" value="4">
+                        <label for="painLevel4">4</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="painLevel5" name="bodyPainLevel" value="5">
+                        <label for="painLevel5">5</label>
+                    </div>
+                </div>
+
+            </section>
+
+            <section>
+                <label for="tookMedication">Har du taget ekstra medicin?</label>
+                <input type="checkbox" id="tookMedication" name="tookMedication">
+
+                <label for="medicationAmount">Antal:</label>
+                <input type="number" id="medicationAmount" name="medicationAmount" placeholder="Antal piller">
+            </section>
+
+            <hr> <!-- Midlertidig skillelinje -->
+
+            <section>
+
+                <label for="atWork">Været på arbejde?</label>
+                <input type="checkbox" id="atWork" name="atWork">
+
+                <label for="notes">Bemærkninger:</label>
+                <input type="text" id="notes" name="notes" placeholder="Bemærkninger">
+
+                <label for="mentalState">Mental tilstand:</label>
+                <div class="mentalStateOptions">
+                    <div>
+                        <input type="radio" id="mentalStateNeg3" name="mentalState" value="-3">
+                        <label for="mentalStateNeg3">-3</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="mentalStateNeg2" name="mentalState" value="-2">
+                        <label for="mentalStateNeg2">-2</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="mentalStateNeg1" name="mentalState" value="-1">
+                        <label for="mentalStateNeg1">-1</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="mentalState0" name="mentalState" value="0">
+                        <label for="mentalState0">0</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="mentalStatePos1" name="mentalState" value="1">
+                        <label for="mentalStatePos1">1</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="mentalStatePos2" name="mentalState" value="2">
+                        <label for="mentalStatePos2">2</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="mentalStatePos3" name="mentalState" value="3">
+                        <label for="mentalStatePos3">3</label>
+                    </div>
+                </div>
+
+
             </section>
 
             <section>
                 <button class="submit">Gem</button>
             </section>
-    </div>
 
+        </form>
+    </div>
 
     <script src="script.js"></script>
 </body>

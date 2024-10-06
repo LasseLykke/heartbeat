@@ -9,7 +9,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
 <head>
 <meta charset="UTF-8" />
-<meta http-equiv = "refresh" content = "3; url = https://www.lasselykke.com/forside.php" />
+<meta http-equiv = "refresh" content = "3; url = ./forside.php" />
 
 
     <title>HEARTBEAT || SUCCESS</title>

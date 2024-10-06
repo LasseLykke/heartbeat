@@ -301,8 +301,59 @@ canvas {
   border: 1px solid var(--dark);
 }
 
+/* DAILY FORM */
+.dailyForm {
+  margin: 0 auto;
+}
 
-/* PAIN FORM */
+.dailyFormSubPain {
+  padding-bottom: 20px;
+}
+
+
+select {
+  width: 100%; /* Gør dropdown-menuen fuld bredde */
+  padding: 10px;
+  font-size: 16px; /* Gør teksten større for nemmere tryk */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  appearance: none; /* Fjerner standardstil på nogle browsere */
+  -webkit-appearance: none; /* Fjerner standardstil på iOS Safari */
+  -moz-appearance: none; /* Fjerner standardstil på Firefox */
+}
+
+select:focus {
+  outline: none; /* Fjerner den blå kant på fokus */
+  border-color: #ffb700; /* Ændrer farven på kanten, når den er fokuseret */
+}
+
+@media (max-width: 768px) {
+  select {
+      font-size: 18px; /* Større tekststørrelse på mindre skærme */
+      padding: 12px;
+  }
+}
+
+
+.bodyPainLevelOptions, .headacheLevelOptions, .mentalStateOptions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.bodyPainLevelOptions div, .headacheLevelOptions div,.mentalStateOptions div {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrér radio buttons og labels */
+}
+
+.bodyPainLevelOptions label, .headacheLevelOptions label, .mentalStateOptions label {
+  margin-top: 5px; /* Gør lidt afstand mellem radio button og label */
+}
+
+
+
+/* PAIN FORM OLD */
 
 
 .painDate,
@@ -763,6 +814,8 @@ tr:hover {
   text-decoration: none;
   margin-bottom: 2px;
 }
+
+
 
 /* SUCCESS */
 .success-wrapper {

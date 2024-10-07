@@ -149,137 +149,162 @@ ob_end_flush();
         <form class="dailyForm" action="" method="POST">
 
             <section class="dailyFormSubPain">
-                <label for="hasHeadache">Har du haft hovedpine?</label>
-                <input type="checkbox" id="hasHeadache" name="hasHeadache">
-
-                <label for="headacheLevel">Sværhedsgrad:</label>
-                <div class="headacheLevelOptions">
-                    <div>
-                        <input type="radio" id="level1" name="headacheLevel" value="1">
-                        <label for="level1">1</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="level2" name="headacheLevel" value="2">
-                        <label for="level2">2</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="level3" name="headacheLevel" value="3">
-                        <label for="level3">3</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="level4" name="headacheLevel" value="4">
-                        <label for="level4">4</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="level5" name="headacheLevel" value="5">
-                        <label for="level5">5</label>
+                <div class="hasHeadache">
+                    <label for="hasHeadache">Har du haft hovedpine?</label>
+                    <div class="headacheOptions">
+                        <div>
+                            <input type="radio" id="hasHeadacheYes" name="hasHeadache" value="1">
+                            <label for="hasHeadacheYes">Ja</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="hasHeadacheNo" name="hasHeadache" value="0" checked>
+                            <label for="hasHeadacheNo">Nej</label>
+                        </div>
                     </div>
                 </div>
 
-
-
-                <label for="headacheType"></label>
-                <select id="headacheType" name="headacheType">
-                    <option value="" disabled selected>Vælg type</option>
-                    <option value="Spændings">Spændings</option>
-                    <option value="Migræne">Migræne</option>
-                    <option value="Sygdom">Sygdom</option>
-                    <option value="Andet">Andet</option>
-                </select>
-
-
-                <label for="headacheDuration">Varighed:</label>
-                <input type="number" id="headacheDuration" name="headacheDuration" placeholder="Varighed i minutter">
-            </section>
-
-
-            <hr> <!-- Midlertidig skillelinje -->
-
-
-            <section>
-                <label for="bodyPart">Smerter i kroppen?</label>
-                <input type="text" id="bodyPart" name="bodyPart" placeholder="Hvilken Kropsdel">
-
-                <label for="bodyPainLevel">Sværhedsgrad af smerte:</label>
-                <div class="bodyPainLevelOptions">
-                    <div>
-                        <input type="radio" id="painLevel1" name="bodyPainLevel" value="1">
-                        <label for="painLevel1">1</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="painLevel2" name="bodyPainLevel" value="2">
-                        <label for="painLevel2">2</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="painLevel3" name="bodyPainLevel" value="3">
-                        <label for="painLevel3">3</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="painLevel4" name="bodyPainLevel" value="4">
-                        <label for="painLevel4">4</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="painLevel5" name="bodyPainLevel" value="5">
-                        <label for="painLevel5">5</label>
+                <div class="headacheLevel">
+                    <label for="headacheLevel">Sværhedsgrad:</label>
+                    <div class="headacheLevelOptions">
+                        <div>
+                            <input type="radio" id="level1" name="headacheLevel" value="1">
+                            <label for="level1">1</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="level2" name="headacheLevel" value="2">
+                            <label for="level2">2</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="level3" name="headacheLevel" value="3">
+                            <label for="level3">3</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="level4" name="headacheLevel" value="4">
+                            <label for="level4">4</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="level5" name="headacheLevel" value="5">
+                            <label for="level5">5</label>
+                        </div>
                     </div>
                 </div>
 
-            </section>
-
-            <section>
-                <label for="tookMedication">Har du taget ekstra medicin?</label>
-                <input type="checkbox" id="tookMedication" name="tookMedication">
-
-                <label for="medicationAmount">Antal:</label>
-                <input type="number" id="medicationAmount" name="medicationAmount" placeholder="Antal piller">
-            </section>
-
-            <hr> <!-- Midlertidig skillelinje -->
-
-            <section>
-
-                <label for="atWork">Været på arbejde?</label>
-                <input type="checkbox" id="atWork" name="atWork">
-
-                <label for="notes">Bemærkninger:</label>
-                <input type="text" id="notes" name="notes" placeholder="Bemærkninger">
-
-                <label for="mentalState">Mental tilstand:</label>
-                <div class="mentalStateOptions">
-                    <div>
-                        <input type="radio" id="mentalStateNeg3" name="mentalState" value="-3">
-                        <label for="mentalStateNeg3">-3</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="mentalStateNeg2" name="mentalState" value="-2">
-                        <label for="mentalStateNeg2">-2</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="mentalStateNeg1" name="mentalState" value="-1">
-                        <label for="mentalStateNeg1">-1</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="mentalState0" name="mentalState" value="0">
-                        <label for="mentalState0">0</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="mentalStatePos1" name="mentalState" value="1">
-                        <label for="mentalStatePos1">1</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="mentalStatePos2" name="mentalState" value="2">
-                        <label for="mentalStatePos2">2</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="mentalStatePos3" name="mentalState" value="3">
-                        <label for="mentalStatePos3">3</label>
-                    </div>
+                <div class="headacheType">
+                    <label for="headacheType">Type:</label>
+                    <select id="headacheType" name="headacheType">
+                        <option value="" disabled selected>Vælg type</option>
+                        <option value="Spændings">Spændings</option>
+                        <option value="Migræne">Migræne</option>
+                        <option value="Sygdom">Sygdom</option>
+                        <option value="Andet">Andet</option>
+                    </select>
                 </div>
 
-
+                <div class="headacheDuration">
+                    <label for="headacheDuration"></label>
+                    <input type="number" id="headacheDuration" name="headacheDuration"
+                        placeholder="Varighed i minutter">
+                </div>
             </section>
 
-            <section>
+
+
+            <section class="dailyFormSubBodyPain">
+                <div class="bodyPart">
+                    <label for="bodyPart">Smerter i kroppen?</label>
+                    <input type="text" id="bodyPart" name="bodyPart" placeholder="Hvilken Kropsdel">
+                </div>
+
+                <div class="bodyPainLevel">
+                    <label for="bodyPainLevel">Sværhedsgrad af smerte:</label>
+                    <div class="bodyPainLevelOptions">
+                        <div>
+                            <input type="radio" id="painLevel1" name="bodyPainLevel" value="1">
+                            <label for="painLevel1">1</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="painLevel2" name="bodyPainLevel" value="2">
+                            <label for="painLevel2">2</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="painLevel3" name="bodyPainLevel" value="3">
+                            <label for="painLevel3">3</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="painLevel4" name="bodyPainLevel" value="4">
+                            <label for="painLevel4">4</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="painLevel5" name="bodyPainLevel" value="5">
+                            <label for="painLevel5">5</label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <section class="dailyFormSubMedication">
+                <div class="tookMedication">
+                    <label for="tookMedication">Har du taget ekstra medicin?</label>
+                    <input type="checkbox" id="tookMedication" name="tookMedication">
+                </div>
+
+                <div class="medicationAmount">
+                    <label for="medicationAmount">Antal:</label>
+                    <input type="number" id="medicationAmount" name="medicationAmount" placeholder="Antal piller">
+                </div>
+            </section>
+
+
+
+            <section class="dailyFormSubMentalState">
+                <div class="atWork">
+                    <label for="atWork">Været på arbejde?</label>
+                    <input type="checkbox" id="atWork" name="atWork">
+                </div>
+
+                <div class="notes">
+                    <label for="notes">Bemærkninger:</label>
+                    <input type="text" id="notes" name="notes" placeholder="Bemærkninger">
+                </div>
+
+                <div class="mentalState">
+                    <label for="mentalState">Mental tilstand:</label>
+                    <div class="mentalStateOptions">
+                        <div>
+                            <input type="radio" id="mentalStateNeg3" name="mentalState" value="-3">
+                            <label for="mentalStateNeg3">-3</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="mentalStateNeg2" name="mentalState" value="-2">
+                            <label for="mentalStateNeg2">-2</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="mentalStateNeg1" name="mentalState" value="-1">
+                            <label for="mentalStateNeg1">-1</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="mentalState0" name="mentalState" value="0">
+                            <label for="mentalState0">0</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="mentalStatePos1" name="mentalState" value="1">
+                            <label for="mentalStatePos1">1</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="mentalStatePos2" name="mentalState" value="2">
+                            <label for="mentalStatePos2">2</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="mentalStatePos3" name="mentalState" value="3">
+                            <label for="mentalStatePos3">3</label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dailyFormSubmit">
                 <button class="submit">Gem</button>
             </section>
 

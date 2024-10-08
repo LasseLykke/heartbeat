@@ -14,7 +14,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         $atWork = isset($_POST["atWork"]) ? 1 : 0;
 
         // Hovedpine
-        $hasHeadache = isset($_POST["hasHeadache"]) ? 1 : 0;
+        $hasHeadache = isset($_POST["hasHeadache"]) ? $_POST["hasHeadache"] : 0;
         $headacheLevel = isset($_POST["headacheLevel"]) ? intval($_POST["headacheLevel"]) : 0;
         $headacheType = isset($_POST["headacheType"]) ? $_POST["headacheType"] : '';
         $headacheDuration = isset($_POST["headacheDuration"]) ? intval($_POST["headacheDuration"]) : 0;
@@ -27,10 +27,17 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         $tookMedication = isset($_POST["tookMedication"]) ? 1 : 0;
         $medicationAmount = isset($_POST["medicationAmount"]) ? intval($_POST["medicationAmount"]) : 0;
 
+        // *** START: Midlertidig dato-håndtering ***
         // Hvis painDate er tom, brug den aktuelle dato
         if (empty($painDate)) {
             $painDate = date('Y-m-d'); // Brug kun dato (YYYY-MM-DD)
         }
+
+        // Håndtering af midlertidig dato indtastet af brugeren
+        if (isset($_POST["sessionDate"]) && !empty($_POST["sessionDate"])) {
+            $painDate = $_POST["sessionDate"];  // Brug brugerens indtastede dato
+        }
+        // *** SLUT: Midlertidig dato-håndtering ***
 
         // Start en transaktion
         $mysqli->begin_transaction();
@@ -148,8 +155,15 @@ ob_end_flush();
         </section>
         <form class="dailyForm" action="" method="POST">
 
+            <!-- Midlertidigt input for session dato -->
+            <div class="temporaryDateInput">
+                <label for="sessionDate">Indtast dato (midlertidig):</label>
+                <input type="date" id="sessionDate" name="sessionDate" value="<?php echo date('Y-m-d'); ?>">
+            </div>
+
             <section class="dailyFormSubPain">
                 <div class="hasHeadache">
+                    <h2>Hovedpine</h2>
                     <label for="hasHeadache">Har du haft hovedpine?</label>
                     <div class="headacheOptions">
                         <div>
@@ -203,7 +217,7 @@ ob_end_flush();
                 <div class="headacheDuration">
                     <label for="headacheDuration"></label>
                     <input type="number" id="headacheDuration" name="headacheDuration"
-                        placeholder="Varighed i minutter">
+                        placeholder="Varighed i timer">
                 </div>
             </section>
 
@@ -211,6 +225,7 @@ ob_end_flush();
 
             <section class="dailyFormSubBodyPain">
                 <div class="bodyPart">
+                    <h2>Kropssmerter</h2>
                     <label for="bodyPart">Smerter i kroppen?</label>
                     <input type="text" id="bodyPart" name="bodyPart" placeholder="Hvilken Kropsdel">
                 </div>
@@ -246,13 +261,45 @@ ob_end_flush();
 
             <section class="dailyFormSubMedication">
                 <div class="tookMedication">
-                    <label for="tookMedication">Har du taget ekstra medicin?</label>
-                    <input type="checkbox" id="tookMedication" name="tookMedication">
+                    <h2>Medicin</h2>
+                    <label>Har du taget ekstra medicin?</label>
+                    <div class="medicationOptions">
+                        <label for="tookMedicationYes">
+                            <input type="radio" id="tookMedicationYes" name="tookMedication" value="1">
+                            Ja
+                        </label>
+                        <label for="tookMedicationNo">
+                            <input type="radio" id="tookMedicationNo" name="tookMedication" value="0">
+                            Nej
+                        </label>
+                    </div>
                 </div>
 
+
                 <div class="medicationAmount">
-                    <label for="medicationAmount">Antal:</label>
-                    <input type="number" id="medicationAmount" name="medicationAmount" placeholder="Antal piller">
+                    <label>Antal piller:</label>
+                    <div class="medicationAmountOption">
+                        <label for="medicationAmount1">
+                            <input type="radio" id="medicationAmount1" name="medicationAmount" value="1">
+                            1
+                        </label>
+                        <label for="medicationAmount2">
+                            <input type="radio" id="medicationAmount2" name="medicationAmount" value="2">
+                            2
+                        </label>
+                        <label for="medicationAmount3">
+                            <input type="radio" id="medicationAmount3" name="medicationAmount" value="3">
+                            3
+                        </label>
+                        <label for="medicationAmount4">
+                            <input type="radio" id="medicationAmount4" name="medicationAmount" value="4">
+                            4
+                        </label>
+                        <label for="medicationAmount5">
+                            <input type="radio" id="medicationAmount5" name="medicationAmount" value="5">
+                            5
+                        </label>
+                    </div>
                 </div>
             </section>
 
@@ -260,13 +307,24 @@ ob_end_flush();
 
             <section class="dailyFormSubMentalState">
                 <div class="atWork">
-                    <label for="atWork">Været på arbejde?</label>
-                    <input type="checkbox" id="atWork" name="atWork">
+                    <h2>Hverdag</h2>
+                    <label>Været på arbejde?</label>
+                    <div class="atWorkOptions">
+                        <label for="atWorkYes">
+                            <input type="radio" id="atWorkYes" name="atWork" value="1">
+                            Ja
+                        </label>
+                        <label for="atWorkNo">
+                            <input type="radio" id="atWorkNo" name="atWork" value="0">
+                            Nej
+                        </label>
+                    </div>
                 </div>
+
 
                 <div class="notes">
                     <label for="notes">Bemærkninger:</label>
-                    <input type="text" id="notes" name="notes" placeholder="Bemærkninger">
+                    <input type="text" id="notes" name="notes" placeholder="Bemærkninger.">
                 </div>
 
                 <div class="mentalState">

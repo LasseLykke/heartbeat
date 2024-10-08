@@ -3,6 +3,8 @@
     padding: 0;
     margin: 0;
     font-family: 'Mulish', sans-serif;
+
+    scroll-behavior: smooth;
 }
 
 :root {

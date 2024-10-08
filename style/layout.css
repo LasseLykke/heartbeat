@@ -307,7 +307,13 @@ canvas {
   text-align: center;
 }
 
-.dailyFormSubPain, .dailyFormSubBodyPain, .dailyFormSubMedication, .dailyFormSubMentalState {
+/* Centrer alt indhold i sektionerne */
+.dailyFormSubPain, .dailyFormSubBodyPain, 
+.dailyFormSubMedication, .dailyFormSubMentalState {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center indholdet horisontalt */
+  justify-content: center; /* Center indholdet vertikalt */
   padding: 30px 50px;
   border-radius: 5px;
   box-shadow: var(--b-shadow-xs);
@@ -317,41 +323,72 @@ canvas {
   border: none;
   font-size: 0.9rem;
   border-radius: 15px;
-  padding: 10px;
+  padding: 15px;
   margin: 15px;
 }
 
-.hasHeadache input[type="radio"], .tookMedication input, .atWork input {
-  display: inline-block;
-  accent-color: var(--prime);
-  width: 1.5rem;
-  height: 1.5rem; 
-  margin-left: 10px; /*Adds spacing for label to checkbox*/
-}
-
-.headacheLevel, .headacheType, .headacheDuration, .bodyPainLevel, .medicationAmount, .atWork, .notes, .mentalState {
-  margin-top: 20px;
-}
-
-
-.headacheOptions, .bodyPainLevelOptions, .headacheLevelOptions, .mentalStateOptions {
+/* Centrering af radio-knapper */
+.headacheOptions, .bodyPainLevelOptions, .headacheLevelOptions, 
+.mentalStateOptions, .medicationOptions, .medicationAmountOption, 
+.atWorkOptions {
   display: flex;
+  justify-content: center; /* Placer radio-knapper på samme række */
   gap: 20px;
 }
 
-.headacheOptions div, .bodyPainLevelOptions div, .headacheLevelOptions div,.mentalStateOptions div {
+/* Juster individuelle elementer i radio-knapperne */
+.headacheOptions div, .bodyPainLevelOptions div, .headacheLevelOptions div, 
+.mentalStateOptions div, .medicationOptions div, .medicationAmountOption div, .atWorkOptions div {
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
 }
 
-.headacheOptions label, .bodyPainLevelOptions label, .headacheLevelOptions label, .mentalStateOptions label {
-  margin-top: 5px; 
+.headacheOptions label, .bodyPainLevelOptions label, .headacheLevelOptions label, 
+.mentalStateOptions label, .medicationOptions label, .medicationAmountOption label {
+  margin-top: 5px;
 }
 
-.headacheOptions input, .headacheLevelOptions input[type="radio"] {
+/* Generel styling for radio og checkbox input */
+input[type="radio"], input[type="checkbox"] {
+  width: 2rem;
+  height: 2rem;
   accent-color: var(--prime);
 }
+
+/* Forbedret styling af formular for mindre skærme */
+@media (max-width: 600px) {
+  .dailyFormSubPain, .dailyFormSubBodyPain, .dailyFormSubMedication, .dailyFormSubMentalState {
+    padding: 10px 10px;
+    margin-bottom: 20px;
+  }
+
+  .headacheOptions, .bodyPainLevelOptions, .headacheLevelOptions, .mentalStateOptions, .medicationAmount {
+    gap: 10px; /* Reducer afstand mellem radio-knapper på mindre skærme */
+  }
+}
+
+
+.dailyFormSubPain > *, 
+.dailyFormSubBodyPain > *, 
+.dailyFormSubMedication > *, 
+.dailyFormSubMentalState > * {
+    padding: 10px 0; /* Tilføj 15px padding op og ned */
+}
+
+/*Text input */
+input[type="text"] {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+input[type="number"] {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
 
 /*Fix for submit btn to align center and adds some space under.*/
 .dailyFormSubmit {
@@ -359,22 +396,26 @@ canvas {
   margin-bottom: 20px;
 }
 
-/*TEST*/
-@media (max-width: 600px) {
-  .dailyFormSubPain, .dailyFormSubBodyPain, .dailyFormSubMedication, .dailyFormSubMentalState {
-    padding: 15px 15px;
-    margin: 10px;
-  }
+
+/*MIDLERTIDLIG DATO - SLET NÅR GL. DATA ER OVRE*/
+.temporaryDateInput {
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  margin-bottom: 15px;
 }
 
-input[type="radio"], input[type="checkbox"] {
-  width: 2rem;
-  height: 2rem;
+.temporaryDateInput label {
+  font-weight: bold;
+  margin: 0 auto;
 }
 
-
-
-
+.temporaryDateInput input {
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 0 auto;
+}
 
 
 /* PAIN FORM OLD */

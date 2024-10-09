@@ -32,8 +32,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 <a href="dataOverview.php">Statestik</a>
                 <a href="workoutforms.php">Workout Forms</a>
                 <a href="logout.php">Log ud</a>
-
-                <a href="importDaily.php">DAGLIG TEST</a>
             </nav>
         </header>
 
@@ -42,7 +40,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <section class="hbHeader">
                 <h1 class="headerText">Hej <?php echo $_SESSION['name']; ?> 👋🏻</h1>
                 <div class="formContainer">
-                    <a href="daily.php"><button class="formBtn">Daglig log</button></a>
+                    <a href="importDaily.php"><button class="formBtn">Daglig log</button></a>
                     <a href="workoutforms.php"><button class="formBtn">Workout's</button></a>
                 </div>
             </section>

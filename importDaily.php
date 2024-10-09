@@ -11,7 +11,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         $painDate = htmlspecialchars($_POST["dato"]);
         $notes = htmlspecialchars($_POST["notes"]);
         $mentalState = isset($_POST["mentalState"]) ? intval($_POST["mentalState"]) : 0;
-        $atWork = isset($_POST["atWork"]) ? 1 : 0;
+        $atWork = isset($_POST["atWork"]) ? $_POST["atWork"] : 0;
 
         // Hovedpine
         $hasHeadache = isset($_POST["hasHeadache"]) ? $_POST["hasHeadache"] : 0;

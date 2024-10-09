@@ -20,6 +20,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         $headacheDuration = isset($_POST["headacheDuration"]) ? intval($_POST["headacheDuration"]) : 0;
 
         // Kropssmerter
+        $hasBodyPain = isset($_POST['hasBodyPain']) ? $_POST['hasBodyPain'] : 0;
         $bodyPainLevel = isset($_POST["bodyPainLevel"]) ? intval($_POST["bodyPainLevel"]) : 0;
         $bodyPart = htmlspecialchars($_POST["bodyPart"]);
 
@@ -73,14 +74,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             $stmt->close();
 
             // Indsæt i bodyPainLog
-            $sql = "INSERT INTO bodyPainLog (sessionID, bodyPart, painLevel) VALUES (?, ?, ?)";
+            $sql = "INSERT INTO bodyPainLog (sessionID, hasBodyPain, bodyPart, painLevel) VALUES (?, ?, ?, ?)";
             $stmt = $mysqli->prepare($sql);
 
             if ($stmt === false) {
                 throw new Exception($mysqli->error);
             }
 
-            $stmt->bind_param("isi", $sessionID, $bodyPart, $bodyPainLevel);
+            $stmt->bind_param("iisi", $sessionID, $hasBodyPain, $bodyPart, $bodyPainLevel);
             $stmt->execute();
             $stmt->close();
 
@@ -171,7 +172,7 @@ ob_end_flush();
                             <label for="hasHeadacheYes">Ja</label>
                         </div>
                         <div>
-                            <input type="radio" id="hasHeadacheNo" name="hasHeadache" value="0" checked>
+                            <input type="radio" id="hasHeadacheNo" name="hasHeadache" value="0">
                             <label for="hasHeadacheNo">Nej</label>
                         </div>
                     </div>
@@ -216,8 +217,7 @@ ob_end_flush();
 
                 <div class="headacheDuration">
                     <label for="headacheDuration"></label>
-                    <input type="number" id="headacheDuration" name="headacheDuration"
-                        placeholder="Varighed i timer">
+                    <input type="number" id="headacheDuration" name="headacheDuration" placeholder="Varighed i timer">
                 </div>
             </section>
 
@@ -226,13 +226,28 @@ ob_end_flush();
             <section class="dailyFormSubBodyPain">
                 <div class="bodyPart">
                     <h2>Kropssmerter</h2>
-                    <label for="bodyPart">Smerter i kroppen?</label>
-                    <input type="text" id="bodyPart" name="bodyPart" placeholder="Hvilken Kropsdel">
+                    <label for="hasBodyPain">Har du haft kropssmerter?</label>
+                    <div class="bodyPainOptions">
+                        <div>
+                            <input type="radio" id="hasBodyPainYes" name="hasBodyPain" value="1">
+                            <label for="hasBodyPainYes">Ja</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="hasBodyPainNo" name="hasBodyPain" value="0">
+                            <label for="hasBodyPainNo">Nej</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bodyPartInput">
+                    <label for="bodyPart">Hvilken Kropsdel:</label>
+                    <input type="text" id="bodyPart" name="bodyPart" placeholder="Hvilken kropsdel">
                 </div>
 
                 <div class="bodyPainLevel">
                     <label for="bodyPainLevel">Sværhedsgrad af smerte:</label>
                     <div class="bodyPainLevelOptions">
+                        <!-- Sværhedsgrad (1-5) -->
                         <div>
                             <input type="radio" id="painLevel1" name="bodyPainLevel" value="1">
                             <label for="painLevel1">1</label>

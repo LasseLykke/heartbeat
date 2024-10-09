@@ -328,7 +328,7 @@ canvas {
 }
 
 /* Centrering af radio-knapper */
-.headacheOptions, .bodyPainLevelOptions, .headacheLevelOptions, 
+.headacheOptions, .bodyPainLevelOptions, .headacheLevelOptions, .bodyPainOptions,  
 .mentalStateOptions, .medicationOptions, .medicationAmountOption, 
 .atWorkOptions {
   display: flex;
@@ -337,14 +337,14 @@ canvas {
 }
 
 /* Juster individuelle elementer i radio-knapperne */
-.headacheOptions div, .bodyPainLevelOptions div, .headacheLevelOptions div, 
+.headacheOptions div, .bodyPainLevelOptions div, .headacheLevelOptions div, .bodyPainOptions div, 
 .mentalStateOptions div, .medicationOptions div, .medicationAmountOption div, .atWorkOptions div {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.headacheOptions label, .bodyPainLevelOptions label, .headacheLevelOptions label, 
+.headacheOptions label, .bodyPainLevelOptions label, .headacheLevelOptions label, .bodyPainOptions label,
 .mentalStateOptions label, .medicationOptions label, .medicationAmountOption label {
   margin-top: 5px;
 }
@@ -353,7 +353,7 @@ canvas {
 input[type="radio"], input[type="checkbox"] {
   width: 2rem;
   height: 2rem;
-  accent-color: var(--prime);
+  accent-color: var(--dark);
 }
 
 /* Forbedret styling af formular for mindre skærme */
@@ -376,17 +376,33 @@ input[type="radio"], input[type="checkbox"] {
     padding: 10px 0; /* Tilføj 15px padding op og ned */
 }
 
-/*Text input */
-input[type="text"] {
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
+
 
 input[type="number"] {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
+}
+
+/*styling af bemærknings felt*/
+.notes {
+  margin-top: 20px; /* Giver lidt afstand til andre sektioner */
+  display: flex;
+  flex-direction: column; /* Sørger for at label og input er på hver sin linje */
+  align-items: flex-start; /* Justerer dem til venstre */
+}
+
+.notes label {
+  font-weight: bold; /* Fremhæver label */
+  margin-bottom: 10px; /* Giver lidt luft mellem label og input */
+}
+
+.notes input {
+  width: 100%; /* Gør inputfeltet så bredt som muligt inden for containeren */
+  padding: 10px; /* Giver lidt luft inden i inputfeltet */
+  border: 1px solid #ccc; /* Tilføjer en grå kant */
+  border-radius: 5px; /* Afrunder kanterne */
+  font-size: 1rem; /* Tilpasser tekststørrelsen */
 }
 
 

@@ -413,25 +413,6 @@ input[type="number"] {
 }
 
 
-/*MIDLERTIDLIG DATO - SLET NÅR GL. DATA ER OVRE*/
-.temporaryDateInput {
-  padding: 10px;
-  background-color: #f9f9f9;
-  border-radius: 5px;
-  margin-bottom: 15px;
-}
-
-.temporaryDateInput label {
-  font-weight: bold;
-  margin: 0 auto;
-}
-
-.temporaryDateInput input {
-  border: 1px solid #ccc;
-  padding: 5px;
-  border-radius: 5px;
-  margin: 0 auto;
-}
 
 
 /* PAIN FORM OLD */

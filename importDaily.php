@@ -28,17 +28,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         $tookMedication = isset($_POST["tookMedication"]) ? 1 : 0;
         $medicationAmount = isset($_POST["medicationAmount"]) ? intval($_POST["medicationAmount"]) : 0;
 
-        // *** START: Midlertidig dato-håndtering ***
-        // Hvis painDate er tom, brug den aktuelle dato
-        if (empty($painDate)) {
-            $painDate = date('Y-m-d'); // Brug kun dato (YYYY-MM-DD)
-        }
-
-        // Håndtering af midlertidig dato indtastet af brugeren
-        if (isset($_POST["sessionDate"]) && !empty($_POST["sessionDate"])) {
-            $painDate = $_POST["sessionDate"];  // Brug brugerens indtastede dato
-        }
-        // *** SLUT: Midlertidig dato-håndtering ***
+        
 
         // Start en transaktion
         $mysqli->begin_transaction();
@@ -144,10 +134,11 @@ ob_end_flush();
         </button>
 
         <nav class="mobile-nav">
-            <a href="forside.php">Forside</a>
-            <a href="dataOverview.php">Statistik</a>
-            <a href="logout.php">Log ud</a>
-        </nav>
+                <a href="forside.php">Forside</a>
+                <a href="dataOverview.php">Statestik</a>
+                <a href="workoutforms.php">Workout Forms</a>
+                <a href="logout.php">Log ud</a>
+            </nav>
     </header>
 
     <div class="wrapper">
@@ -155,12 +146,6 @@ ob_end_flush();
             <h1 class="headerText">Daily</h1>
         </section>
         <form class="dailyForm" action="" method="POST">
-
-            <!-- Midlertidigt input for session dato -->
-            <div class="temporaryDateInput">
-                <label for="sessionDate">Indtast dato (midlertidig):</label>
-                <input type="date" id="sessionDate" name="sessionDate" value="<?php echo date('Y-m-d'); ?>">
-            </div>
 
             <section class="dailyFormSubPain">
                 <div class="hasHeadache">

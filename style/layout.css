@@ -155,8 +155,10 @@
   z-index: 100;
 }
 
-.hamburger .bar, .hamburger:after, .hamburger:before {
-  content: '';
+.hamburger .bar,
+.hamburger:after,
+.hamburger:before {
+  content: "";
   display: block;
   width: 100%;
   height: 2px;
@@ -213,8 +215,9 @@
   padding: 12px 16px;
 
   text-decoration: none;
-  color: var(--black)
+  color: var(--black);
 }
+
 
 .wrapper {
   max-width: 600px;
@@ -236,9 +239,6 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
-
-
-
 
 /* CHARTS */
 .frontpage-charts {
@@ -282,14 +282,12 @@ canvas {
   box-shadow: var(--b-shadow-s);
 }
 
-
 /* FORMS */
 
 /* WORKOUT FORM */
 .workoutForm {
   margin: 0 auto;
 }
-
 
 .workoutlabel input {
   border: 1px solid var(--grey);
@@ -308,12 +306,14 @@ canvas {
 }
 
 /* Centrer alt indhold i sektionerne */
-.dailyFormSubPain, .dailyFormSubBodyPain, 
-.dailyFormSubMedication, .dailyFormSubMentalState {
+.dailyFormSubPain,
+.dailyFormSubBodyPain,
+.dailyFormSubMedication,
+.dailyFormSubMentalState {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center indholdet horisontalt */
-  justify-content: center; /* Center indholdet vertikalt */
+  align-items: center; 
+  justify-content: center;
   padding: 30px 50px;
   border-radius: 5px;
   box-shadow: var(--b-shadow-xs);
@@ -328,29 +328,46 @@ canvas {
 }
 
 /* Centrering af radio-knapper */
-.headacheOptions, .bodyPainLevelOptions, .headacheLevelOptions, .bodyPainOptions,  
-.mentalStateOptions, .medicationOptions, .medicationAmountOption, 
+.headacheOptions,
+.bodyPainLevelOptions,
+.headacheLevelOptions,
+.bodyPainOptions,
+.mentalStateOptions,
+.medicationOptions,
+.medicationAmountOption,
 .atWorkOptions {
   display: flex;
-  justify-content: center; /* Placer radio-knapper på samme række */
+  justify-content: center;
   gap: 20px;
 }
 
 /* Juster individuelle elementer i radio-knapperne */
-.headacheOptions div, .bodyPainLevelOptions div, .headacheLevelOptions div, .bodyPainOptions div, 
-.mentalStateOptions div, .medicationOptions div, .medicationAmountOption div, .atWorkOptions div {
+.headacheOptions div,
+.bodyPainLevelOptions div,
+.headacheLevelOptions div,
+.bodyPainOptions div,
+.mentalStateOptions div,
+.medicationOptions div,
+.medicationAmountOption div,
+.atWorkOptions div {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.headacheOptions label, .bodyPainLevelOptions label, .headacheLevelOptions label, .bodyPainOptions label,
-.mentalStateOptions label, .medicationOptions label, .medicationAmountOption label {
+.headacheOptions label,
+.bodyPainLevelOptions label,
+.headacheLevelOptions label,
+.bodyPainOptions label,
+.mentalStateOptions label,
+.medicationOptions label,
+.medicationAmountOption label {
   margin-top: 5px;
 }
 
 /* Generel styling for radio og checkbox input */
-input[type="radio"], input[type="checkbox"] {
+input[type="radio"],
+input[type="checkbox"] {
   width: 2rem;
   height: 2rem;
   accent-color: var(--dark);
@@ -358,25 +375,28 @@ input[type="radio"], input[type="checkbox"] {
 
 /* Forbedret styling af formular for mindre skærme */
 @media (max-width: 600px) {
-  .dailyFormSubPain, .dailyFormSubBodyPain, .dailyFormSubMedication, .dailyFormSubMentalState {
+  .dailyFormSubPain,
+  .dailyFormSubBodyPain,
+  .dailyFormSubMedication,
+  .dailyFormSubMentalState {
     padding: 10px 10px;
     margin-bottom: 20px;
   }
 
-  .headacheOptions, .bodyPainLevelOptions, .headacheLevelOptions, .mentalStateOptions, .medicationAmount {
-    gap: 10px; /* Reducer afstand mellem radio-knapper på mindre skærme */
+  .headacheOptions,
+  .bodyPainLevelOptions,
+  .headacheLevelOptions,
+  .mentalStateOptions,
+  .medicationAmount {
+    gap: 10px;
   }
 }
-
-
-.dailyFormSubPain > *, 
-.dailyFormSubBodyPain > *, 
-.dailyFormSubMedication > *, 
+.dailyFormSubPain > *,
+.dailyFormSubBodyPain > *,
+.dailyFormSubMedication > *,
 .dailyFormSubMentalState > * {
-    padding: 10px 0; /* Tilføj 15px padding op og ned */
+  padding: 10px 0;
 }
-
-
 
 input[type="number"] {
   padding: 10px;
@@ -384,27 +404,24 @@ input[type="number"] {
   border: 1px solid #ccc;
 }
 
-/*styling af bemærknings felt*/
+/*Styling af bemærknings felt*/
 .notes {
-  margin-top: 20px; /* Giver lidt afstand til andre sektioner */
+  margin-top: 20px; 
   display: flex;
-  flex-direction: column; /* Sørger for at label og input er på hver sin linje */
-  align-items: flex-start; /* Justerer dem til venstre */
+  flex-direction: column; 
+  align-items: flex-start; 
 }
-
 .notes label {
-  font-weight: bold; /* Fremhæver label */
-  margin-bottom: 10px; /* Giver lidt luft mellem label og input */
+  font-weight: bold; 
+  margin-bottom: 10px; 
 }
-
 .notes input {
-  width: 100%; /* Gør inputfeltet så bredt som muligt inden for containeren */
-  padding: 10px; /* Giver lidt luft inden i inputfeltet */
-  border: 1px solid #ccc; /* Tilføjer en grå kant */
-  border-radius: 5px; /* Afrunder kanterne */
-  font-size: 1rem; /* Tilpasser tekststørrelsen */
+  width: 100%; 
+  padding: 10px; 
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+  font-size: 1rem;
 }
-
 
 /*Fix for submit btn to align center and adds some space under.*/
 .dailyFormSubmit {
@@ -412,23 +429,7 @@ input[type="number"] {
   margin-bottom: 20px;
 }
 
-
-
-
-/* PAIN FORM OLD */
-
-
-textarea {
-  resize: none;
-  padding: 7px 10px;
-  margin-top: 5px;
-  border-radius: 4px;
-  border-color: var(--grey-l);
-  outline: none;
-}
-
-
-
+/*TABEL STYLING*/
 .collapsibleTables {
   margin-bottom: 20px;
 }
@@ -451,7 +452,6 @@ textarea {
   border-bottom: 1px solid var(--grey-l);
   margin-top: 20px;
 }
-
 .collapsible:after {
   content: "\02795"; /* Unicode character for "plus" tegn (+) */
   font-size: 13px;
@@ -459,24 +459,18 @@ textarea {
   float: right;
   margin-left: 5px;
 }
-
 /* Collapsible Content */
 .content {
   max-height: 0;
-  
   overflow: hidden;
   opacity: 0;
-  transition: max-height 0.3s ease-in; /* Tilføjer en smooth transition */
-  will-change: max-height, opacity; /* Forbedrer performance ved at optimere animationen */
-
+  transition: max-height 0.3s ease-in; 
+  will-change: max-height, opacity;
 }
-
-
 .content.show {
-  max-height: 500px; /* Sæt en stor værdi afhængigt af, hvor meget indhold du har */
+  max-height: 500px;
   opacity: 1;
 }
-
 /* Tilføjer baggrundsfarve til knappen +/- bliver loaded med JS */
 .active {
   outline: none;
@@ -486,8 +480,6 @@ textarea {
   border-right: 1px solid var(--grey-l);
   border-top: 1px solid var(--grey-l);
 }
-
-
 .active:after {
   content: "\2796"; /* Unicode character for "minus" tegn (-) */
 }
@@ -503,12 +495,14 @@ thead {
   background-color: var(--grey-l);
 }
 
-
-table, th, td {
+table,
+th,
+td {
   border-bottom: 1px solid var(--grey);
 }
 
-th, td {
+th,
+td {
   padding: 15px;
   text-align: left;
   color: var(--dark);
@@ -523,8 +517,10 @@ tr:hover {
 }
 
 
+
 /* BUTTONS & CARTS */
 
+/*Bruges til statestik, Se mere knap*/
 .primBtn {
   background-color: var(--dark);
   color: var(--white);
@@ -563,7 +559,8 @@ tr:hover {
   border: 1px solid var(--white);
 }
 
-
+/*Cart for statestik
+Maybe change this for stats?*/
 .dataCart {
   background-color: var(--white);
   box-shadow: var(--b-shadow-xs);
@@ -579,56 +576,22 @@ tr:hover {
   text-align: left;
   padding: 10px;
   margin: 15px;
-/*Getting sub div to center inside cart*/
   display: flex;
   flex-direction: column;
-  justify-content: space-between; 
-  align-items: center; 
-  text-align: center; 
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
 }
 
 .dataCart > a {
   color: inherit;
 }
 
-.dataBtn {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border: none;
-  background-color: transparent;
-  text-decoration: none;
-}
-
-.dataCartHeader {
-  display: flex;
-  align-items: center;
-}
-
-.dataIcon {
-  max-width: 20px;
-  max-height: 20px;
-  min-width: 10px;
-  min-height: 10px;
-  margin-right: 10px;
+.dataBtnInfo {
   display: inline-block;
 }
 
-
-.dataCartInfo {
-  padding-top: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  flex-grow: 1;
-}
-
- .dataBtnInfo {
-  display: inline-block;
-}
-
+/*Cart for workout input*/
 .dataCartLarge {
   background-color: var(--white);
   box-shadow: var(--b-shadow-xs);
@@ -644,17 +607,30 @@ tr:hover {
   text-align: left;
   padding: 10px;
   margin: 15px;
-/*Getting sub div to center inside cart*/
   display: flex;
   flex-direction: column;
-  justify-content: center; 
-  align-items: center; 
-  text-align: center; 
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   margin: 0 auto;
   margin-bottom: 30px;
 }
+/* Cart for workout input */
+.dataCartHeader {
+  display: flex;
+  align-items: center;
+}
+/*Icon for workout input*/
+.dataIcon {
+  max-width: 20px;
+  max-height: 20px;
+  min-width: 10px;
+  min-height: 10px;
+  margin-right: 10px;
+  display: inline-block;
+}
 
-
+/*Cart for form input at forside.php*/
 .formBtn {
   background-color: var(--white);
   box-shadow: var(--b-shadow-xs);
@@ -678,6 +654,7 @@ tr:hover {
   transition: 300ms ease-in-out;
 }
 
+/*Submit btn for forms*/
 .submit {
   background-color: var(--prime);
   color: var(--white);
@@ -691,104 +668,6 @@ tr:hover {
   box-shadow: var(--b-shadow-xs);
 }
 
-.signOut {
-  background-color: var(--dark);
-  color: var(--grey);
-  border: none;
-  border-radius: 3px;
-  padding: 10px 20px;
-}
-
-.signOut:hover {
-  background-color: var(--white);
-  color: var(--dark);
-  border: 1px solid var(--dark);
-  transition: 200ms linear;
-}
-
-/* Cart -> viser datapoints*/
-.cart-xs {
-  background-color: var(--white);
-  box-shadow: var(--b-shadow-xs);
-  color: var(--dark);
-
-  border: none;
-  max-width: 250px;
-  max-height: 150px;
-  min-height: 100px;
-  border-radius: 15px;
-  text-align: left;
-  padding: 10px;
-  margin-right: 50px;
-}
-
-.cart-xs:hover {
-  box-shadow: var(--b-shadow-s);
-  transition: 300ms ease-in-out;
-}
-
-.cart-s {
-  background-color: var(--white);
-  box-shadow: var(--b-shadow-xs);
-  color: var(--dark);
-
-  border: none;
-  width: 300px;
-  max-height: 150px;
-  min-height: 100px;
-  border-radius: 15px;
-  text-align: left;
-  padding: 10px;
-  margin-top: 20px;
-  margin-right: 50px;
-}
-
-/* Cart header navn*/
-.cartheader {
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-transform: none;
-}
-
-/* Cart anchor/button SKAL SLETTES */
-.cartBtn {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border: none;
-  background-color: transparent;
-  text-decoration: none;
-}
-
-/* Cart datapoint */
-.cartNumber {
-  text-align: center;
-  text-transform: uppercase;
-  line-height: 1;
-  letter-spacing: normal;
-  align-items: center;
-  margin-top: 15px;
-  margin-left: 25px;
-  font-size: 2.3em;
-  color: var(--dark);
-}
-
-
-.dataNumber {
-  font-size: 1em;
-  text-decoration: none;
-  text-align: left;
-  text-decoration-line: none;
-  margin-top: 3px;
-}
-
-.dataNumberText {
-  text-decoration: none;
-  margin-bottom: 2px;
-}
-
-
-
 /* SUCCESS */
 .success-wrapper {
   background-color: var(--white);
@@ -798,7 +677,6 @@ tr:hover {
   align-items: center;
   justify-content: center;
 }
-
 /*SUCCESS ANIMATION */
 .success-checkmark {
   height: 200px;
@@ -947,7 +825,3 @@ tr:hover {
     top: 38px;
   }
 }
-
-
-
-

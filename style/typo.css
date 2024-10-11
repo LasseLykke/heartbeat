@@ -8,6 +8,17 @@ h1 {
     /*letter-spacing: -0.06em;
     line-height: 0.3em;*/
 }
+/* Main h1 for heartbeat*/
+.headerText {
+    color: var(--dark);
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 1px;
+    font-size: clamp(36px, 8vw, 75px);
+    padding-bottom: 40px;
+    font-weight: 1000;
+    font-family: system-ui;
+}
 
 h2 {
     text-transform: uppercase;
@@ -29,6 +40,7 @@ label {
     font-size: 0.9rem;
 }
 
+/* Adds color underline for projekt on index */
 .projects {
     margin-top: 20px;
 }
@@ -37,21 +49,6 @@ label {
     margin-bottom: 10px;
     margin-top: 10px;
     padding-right: 10px;
-}
-
-.headerText {
-    color: var(--dark);
-    text-transform: uppercase;
-    text-align: center;
-    letter-spacing: 1px;
-    font-size: clamp(36px, 8vw, 75px);
-    padding-bottom: 40px;
-    font-weight: 1000;
-    font-family: system-ui;
-}
-
-.formHeader {
-    color: var(--dark);
 }
 
 /* LOGIN HEADER */
@@ -64,7 +61,6 @@ label {
     padding-bottom: 40px;
     font-weight: 1000;
 }
-
 .user-name input, .user-pass input {
     font-size: 12px;
     color: var(--dark);

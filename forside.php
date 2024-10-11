@@ -2,7 +2,6 @@
 ob_start();
 session_start();
 
-
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
     include 'header.php';
@@ -15,12 +14,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <meta http-equiv="refresh" content="1500;url=logout.php" />
         <title>HEARTBEAT || FORSIDE</title>
         <link rel="shortcut icon" href="" type="image/x-icon" />
-
-
     </head>
 
     <body>
-
 
         <header>
             <button class="hamburger">
@@ -45,8 +41,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
             </section>
 
-
-
             <!-- CHARTS.JS GRAF -->
             <div class="frontpage-charts">
                 <div class="chart-container">
@@ -54,13 +48,12 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <?php
                     // Forespørgsel for at hente antal workouts pr. måned
                     $sql = "SELECT DATE_FORMAT(sessionDate, '%Y-%m') AS month, COUNT(DISTINCT DATE(sessionDate)) AS workoutCount 
-        FROM workoutSession 
-        GROUP BY month 
-        ORDER BY month ASC";
+                    FROM workoutSession 
+                    GROUP BY month 
+                    ORDER BY month ASC";
                     $result = $conn->query($sql);
 
                     $workoutData = [];
-
                     while ($row = $result->fetch_assoc()) {
                         $workoutData[] = [
                             'x' => $row['month'],  // Gruppér datoerne pr. måned
@@ -68,20 +61,21 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         ];
                     }
 
-                    // Forespørgsel for at hente antal pain episodes pr. måned
-                    $sql2 = "SELECT DATE_FORMAT(painDates, '%Y-%m') AS month, COUNT(*) AS painCount 
-            FROM pain 
-            WHERE painState = 'Ja' 
-            GROUP BY month 
-            ORDER BY month ASC";
+
+                    // Forespørgsel for at hente hovedpine data fra headacheLog og painSession tabellerne
+                    $sql2 = "SELECT DATE_FORMAT(ps.sessionDate, '%Y-%m') AS month, 
+       COUNT(CASE WHEN hasHeadache = 1 THEN 1 END) AS headacheCount
+FROM painSession ps
+INNER JOIN headacheLog hl ON ps.sessionID = hl.sessionID
+GROUP BY month
+ORDER BY month ASC";
                     $result2 = $conn->query($sql2);
 
-                    $painData = [];
-
+                    $headacheData = [];
                     while ($row2 = $result2->fetch_assoc()) {
-                        $painData[] = [
+                        $headacheData[] = [
                             'x' => $row2['month'],  // Gruppér datoerne pr. måned
-                            'y' => $row2['painCount']  // Antallet af pain episodes i den måned
+                            'y' => $row2['headacheCount']  // Antallet af hovedpine episoder i den måned
                         ];
                     }
                     ?>
@@ -90,13 +84,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 <script>
                     // Genererer JavaScript-variabler fra PHP-data
                     const workoutData = <?php echo json_encode($workoutData); ?>;
-                    const painData = <?php echo json_encode($painData); ?>;
+                    const headacheData = <?php echo json_encode($headacheData); ?>; // Tilføj hovedpine data
                 </script>
             </div>
         </div> <!-- afslutning af wrapper -->
         </div>
-
-
 
         <script src="script.js"></script>
 

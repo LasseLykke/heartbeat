@@ -47,7 +47,7 @@ window.onload = function () {
 
         {
           label: "Hovedpiner",
-          data: painData,
+          data: headacheData,
           backgroundColor: painGradient,
           borderColor: "#191A19",
           borderWidth: 0.1,

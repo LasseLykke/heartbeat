@@ -11,24 +11,29 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         $painDate = htmlspecialchars($_POST["dato"]);
         $notes = htmlspecialchars($_POST["notes"]);
         $mentalState = isset($_POST["mentalState"]) ? intval($_POST["mentalState"]) : 0;
-        $atWork = isset($_POST["atWork"]) ? $_POST["atWork"] : 0;
+        $atWork = isset($_POST["atWork"]) ? 1 : 0;
 
         // Hovedpine
-        $hasHeadache = isset($_POST["hasHeadache"]) ? $_POST["hasHeadache"] : 0;
+        $hasHeadache = isset($_POST["hasHeadache"]) ? $_POST["hasHeadache"] : null;
+
         $headacheLevel = isset($_POST["headacheLevel"]) ? intval($_POST["headacheLevel"]) : 0;
         $headacheType = isset($_POST["headacheType"]) ? $_POST["headacheType"] : '';
         $headacheDuration = isset($_POST["headacheDuration"]) ? intval($_POST["headacheDuration"]) : 0;
 
         // Kropssmerter
-        $hasBodyPain = isset($_POST['hasBodyPain']) ? $_POST['hasBodyPain'] : 0;
+        $hasBodyPain = isset($_POST['hasBodyPain']) ? intval($_POST['hasBodyPain']) : 0;
         $bodyPainLevel = isset($_POST["bodyPainLevel"]) ? intval($_POST["bodyPainLevel"]) : 0;
-        $bodyPart = htmlspecialchars($_POST["bodyPart"]);
+        $bodyPart = isset($_POST["bodyPart"]) ? htmlspecialchars($_POST["bodyPart"]) : '';
+
 
         // Medicin
         $tookMedication = isset($_POST["tookMedication"]) ? 1 : 0;
         $medicationAmount = isset($_POST["medicationAmount"]) ? intval($_POST["medicationAmount"]) : 0;
 
-        
+        // Hvis painDate er tom, brug den aktuelle dato
+        if (empty($painDate)) {
+            $painDate = date('Y-m-d'); // Brug kun dato (YYYY-MM-DD)
+        }
 
         // Start en transaktion
         $mysqli->begin_transaction();
@@ -64,14 +69,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             $stmt->close();
 
             // Indsæt i bodyPainLog
-            $sql = "INSERT INTO bodyPainLog (sessionID, hasBodyPain, bodyPart, painLevel) VALUES (?, ?, ?, ?)";
+            $sql = "INSERT INTO bodyPainLog (sessionID, bodyPart, painLevel) VALUES (?, ?, ?)";
             $stmt = $mysqli->prepare($sql);
 
             if ($stmt === false) {
                 throw new Exception($mysqli->error);
             }
 
-            $stmt->bind_param("iisi", $sessionID, $hasBodyPain, $bodyPart, $bodyPainLevel);
+            $stmt->bind_param("isi", $sessionID, $bodyPart, $bodyPainLevel);
             $stmt->execute();
             $stmt->close();
 
@@ -109,7 +114,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 }
 ob_end_flush();
 ?>
-
 <!DOCTYPE html>
 <html>
 
@@ -134,11 +138,10 @@ ob_end_flush();
         </button>
 
         <nav class="mobile-nav">
-                <a href="forside.php">Forside</a>
-                <a href="dataOverview.php">Statestik</a>
-                <a href="workoutforms.php">Workout Forms</a>
-                <a href="logout.php">Log ud</a>
-            </nav>
+            <a href="forside.php">Forside</a>
+            <a href="dataOverview.php">Statistik</a>
+            <a href="logout.php">Log ud</a>
+        </nav>
     </header>
 
     <div class="wrapper">
@@ -223,6 +226,7 @@ ob_end_flush();
                         </div>
                     </div>
                 </div>
+
 
                 <div class="bodyPartInput">
                     <label for="bodyPart">Hvilken Kropsdel:</label>

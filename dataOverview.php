@@ -11,29 +11,31 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <!-- Import of datapoints from db -->
     <?php
 
-    $sqls = [
-        "SELECT COUNT(DISTINCT painDates) AS num_rows FROM pain WHERE painState = 'Ja'",
-        "SELECT cykelTid, cykelBelastning FROM woCykel ORDER BY cykelID DESC LIMIT 1",
-        "SELECT pulldownRep, pulldownKilo FROM woPulldown ORDER BY pulldownID DESC LIMIT 1",
-        "SELECT rygRep FROM woRyg ORDER BY rygID DESC LIMIT 1",
-        "SELECT absRep, absKilo FROM woAbs ORDER BY absID DESC LIMIT 1",
-        "SELECT brystpressRep, brystpressKilo FROM woBrystpress ORDER BY brystpressID DESC LIMIT 1",
-        "SELECT legpressRep, legpressKilo FROM woLegpress ORDER BY legpressID DESC LIMIT 1",
-        "SELECT legcurlRep, legcurlKilo FROM woLegcurl ORDER BY legcurlID DESC LIMIT 1",
-        "SELECT legextensionRep, legextensionKilo FROM woExtension ORDER BY legextensionID DESC LIMIT 1",
-        "SELECT bicepsRep, bicepsKilo FROM woBiceps ORDER BY bicepsID DESC LIMIT 1",
-        "SELECT neckpressRep, neckpressKilo FROM woNeck ORDER BY neckpressID DESC LIMIT 1",
-        "SELECT pullupsRep, pullupsKilo FROM woPullups ORDER BY pullupsID DESC LIMIT 1",
-        "SELECT løbTid, løbBelastning FROM woLøb ORDER BY løbID DESC LIMIT 1",
-        "SELECT rystTid FROM woRyst ORDER BY rystID DESC LIMIT 1",
-        "SELECT buttupsRep FROM woButtups ORDER BY buttupsID DESC LIMIT 1",
-        "SELECT vand FROM woVand ORDER BY vandID DESC LIMIT 1",
-        "SELECT vægt FROM woVægt ORDER BY vægtID DESC LIMIT 1",
-        "SELECT painDates, painDuration FROM pain WHERE painState = 'Ja' ORDER BY painDates DESC LIMIT 1",
-        "SELECT painDates FROM pain ORDER BY painID DESC LIMIT 1",
-        "SELECT varighed FROM woVarighed ORDER BY varighedID DESC LIMIT 1",
-
-    ];
+$sqls = [
+    "SELECT painSession.sessionDate, headacheLog.headacheDuration 
+     FROM painSession 
+     JOIN headacheLog ON painSession.sessionID = headacheLog.sessionID 
+     WHERE headacheLog.hasHeadache = 1 
+     AND headacheLog.headacheDuration  
+     ORDER BY painSession.sessionDate DESC LIMIT 1",
+    "SELECT cykelTid, cykelBelastning FROM woCykel ORDER BY cykelID DESC LIMIT 1",
+    "SELECT pulldownRep, pulldownKilo FROM woPulldown ORDER BY pulldownID DESC LIMIT 1",
+    "SELECT rygRep FROM woRyg ORDER BY rygID DESC LIMIT 1",
+    "SELECT absRep, absKilo FROM woAbs ORDER BY absID DESC LIMIT 1",
+    "SELECT brystpressRep, brystpressKilo FROM woBrystpress ORDER BY brystpressID DESC LIMIT 1",
+    "SELECT legpressRep, legpressKilo FROM woLegpress ORDER BY legpressID DESC LIMIT 1",
+    "SELECT legcurlRep, legcurlKilo FROM woLegcurl ORDER BY legcurlID DESC LIMIT 1",
+    "SELECT legextensionRep, legextensionKilo FROM woExtension ORDER BY legextensionID DESC LIMIT 1",
+    "SELECT bicepsRep, bicepsKilo FROM woBiceps ORDER BY bicepsID DESC LIMIT 1",
+    "SELECT neckpressRep, neckpressKilo FROM woNeck ORDER BY neckpressID DESC LIMIT 1",
+    "SELECT pullupsRep, pullupsKilo FROM woPullups ORDER BY pullupsID DESC LIMIT 1",
+    "SELECT løbTid, løbBelastning FROM woLøb ORDER BY løbID DESC LIMIT 1",
+    "SELECT rystTid FROM woRyst ORDER BY rystID DESC LIMIT 1",
+    "SELECT buttupsRep FROM woButtups ORDER BY buttupsID DESC LIMIT 1",
+    "SELECT vand FROM woVand ORDER BY vandID DESC LIMIT 1",
+    "SELECT vægt FROM woVægt ORDER BY vægtID DESC LIMIT 1",
+    "SELECT varighed FROM woVarighed ORDER BY varighedID DESC LIMIT 1",
+];
 
     $results = [];
     foreach ($sqls as $key => $sql) {
@@ -42,10 +44,12 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             $results[$key] = $result->fetch_assoc();
         } else {
             $results[$key] = null;
-        }
+        }  
     }
 
-    $num_rows = $results[0]['num_rows'] ?? "Ingen data";
+
+    $painDate = $results[0]['sessionDate'] ?? "Ingen data";
+    $headacheDuration = $results[0]['headacheDuration'] ?? "Ingen data";
 
 
     $cykelTid = $results[1]['cykelTid'] ?? "Ingen data";
@@ -91,13 +95,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
     $vægt = $results[16]['vægt'] ?? "Ingen data";
 
-    $painDates = $results[17]['painDates'] ?? "Ingen data";
-    $painDuration = $results[17]['painDuration'] ?? "Ingen data";
-
-    $lastWorkoutDate = $results[18]['sessionDate'] ?? "Ingen data";
-    $lastWorkoutDuration = $results[19]['varighed'] ?? "Ingen data";
-
-
+    $lastWorkoutDate = $results[17]['sessionDate'] ?? "Ingen data";
+    $lastWorkoutDuration = $results[17]['varighed'] ?? "Ingen data";
 
 
     // Close Connection
@@ -146,12 +145,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <div class="dataBtn">
                             <div class="dataCartHeader">
                                 <img src="./img/headache.png" class="dataIcon" alt="workout icon">
-                                <h3>Pain</h3>
+                                <h3>Headache</h3>
                             </div>
                             <div class="dataCartInfo">
                                 <div class="inline">
-                                    <p class="dataBtnInfo"><?php echo date('d/m', strtotime($painDates)); ?> |</p>
-                                    <p class="dataBtnInfo"><?php echo $painDuration; ?>t</p>
+                                    <p class="dataBtnInfo"><?php echo date('d/m', strtotime($painDate)); ?> |</p>
+                                    <p class="dataBtnInfo"><?php echo ($headacheDuration !== "Ingen data") ? $headacheDuration . "t" : "Ingen data"; ?></p>
+
                                     <br>
                                     <button class="primBtn">Se mere</button>
                                 </div>

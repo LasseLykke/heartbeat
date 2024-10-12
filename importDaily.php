@@ -14,11 +14,12 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         $atWork = isset($_POST["atWork"]) ? 1 : 0;
 
         // Hovedpine
-        $hasHeadache = isset($_POST["hasHeadache"]) ? $_POST["hasHeadache"] : null;
+        $hasHeadache = isset($_POST["hasHeadache"]) ? $_POST["hasHeadache"] : 0;
 
         $headacheLevel = isset($_POST["headacheLevel"]) ? intval($_POST["headacheLevel"]) : 0;
         $headacheType = isset($_POST["headacheType"]) ? $_POST["headacheType"] : '';
-        $headacheDuration = isset($_POST["headacheDuration"]) ? intval($_POST["headacheDuration"]) : 0;
+        $headacheDuration = isset($_POST["headacheDuration"]) && is_numeric($_POST["headacheDuration"]) ? $_POST["headacheDuration"] : 0;
+
 
         // Kropssmerter
         $hasBodyPain = isset($_POST['hasBodyPain']) ? intval($_POST['hasBodyPain']) : 0;
@@ -205,7 +206,7 @@ ob_end_flush();
 
                 <div class="headacheDuration">
                     <label for="headacheDuration"></label>
-                    <input type="number" id="headacheDuration" name="headacheDuration" placeholder="Varighed i timer">
+                    <input type="number" name="headacheDuration" step="0.1" placeholder="Varighed i timer">
                 </div>
             </section>
 

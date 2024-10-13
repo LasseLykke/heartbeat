@@ -11,31 +11,36 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <!-- Import of datapoints from db -->
     <?php
 
-$sqls = [
-    "SELECT painSession.sessionDate, headacheLog.headacheDuration 
+    $sqls = [
+        "SELECT painSession.sessionDate, headacheLog.headacheDuration 
      FROM painSession 
      JOIN headacheLog ON painSession.sessionID = headacheLog.sessionID 
      WHERE headacheLog.hasHeadache = 1 
      AND headacheLog.headacheDuration  
      ORDER BY painSession.sessionDate DESC LIMIT 1",
-    "SELECT cykelTid, cykelBelastning FROM woCykel ORDER BY cykelID DESC LIMIT 1",
-    "SELECT pulldownRep, pulldownKilo FROM woPulldown ORDER BY pulldownID DESC LIMIT 1",
-    "SELECT rygRep FROM woRyg ORDER BY rygID DESC LIMIT 1",
-    "SELECT absRep, absKilo FROM woAbs ORDER BY absID DESC LIMIT 1",
-    "SELECT brystpressRep, brystpressKilo FROM woBrystpress ORDER BY brystpressID DESC LIMIT 1",
-    "SELECT legpressRep, legpressKilo FROM woLegpress ORDER BY legpressID DESC LIMIT 1",
-    "SELECT legcurlRep, legcurlKilo FROM woLegcurl ORDER BY legcurlID DESC LIMIT 1",
-    "SELECT legextensionRep, legextensionKilo FROM woExtension ORDER BY legextensionID DESC LIMIT 1",
-    "SELECT bicepsRep, bicepsKilo FROM woBiceps ORDER BY bicepsID DESC LIMIT 1",
-    "SELECT neckpressRep, neckpressKilo FROM woNeck ORDER BY neckpressID DESC LIMIT 1",
-    "SELECT pullupsRep, pullupsKilo FROM woPullups ORDER BY pullupsID DESC LIMIT 1",
-    "SELECT løbTid, løbBelastning FROM woLøb ORDER BY løbID DESC LIMIT 1",
-    "SELECT rystTid FROM woRyst ORDER BY rystID DESC LIMIT 1",
-    "SELECT buttupsRep FROM woButtups ORDER BY buttupsID DESC LIMIT 1",
-    "SELECT vand FROM woVand ORDER BY vandID DESC LIMIT 1",
-    "SELECT vægt FROM woVægt ORDER BY vægtID DESC LIMIT 1",
-    "SELECT varighed FROM woVarighed ORDER BY varighedID DESC LIMIT 1",
-];
+        "SELECT cykelTid, cykelBelastning FROM woCykel ORDER BY cykelID DESC LIMIT 1",
+        "SELECT pulldownRep, pulldownKilo FROM woPulldown ORDER BY pulldownID DESC LIMIT 1",
+        "SELECT rygRep FROM woRyg ORDER BY rygID DESC LIMIT 1",
+        "SELECT absRep, absKilo FROM woAbs ORDER BY absID DESC LIMIT 1",
+        "SELECT brystpressRep, brystpressKilo FROM woBrystpress ORDER BY brystpressID DESC LIMIT 1",
+        "SELECT legpressRep, legpressKilo FROM woLegpress ORDER BY legpressID DESC LIMIT 1",
+        "SELECT legcurlRep, legcurlKilo FROM woLegcurl ORDER BY legcurlID DESC LIMIT 1",
+        "SELECT legextensionRep, legextensionKilo FROM woExtension ORDER BY legextensionID DESC LIMIT 1",
+        "SELECT bicepsRep, bicepsKilo FROM woBiceps ORDER BY bicepsID DESC LIMIT 1",
+        "SELECT neckpressRep, neckpressKilo FROM woNeck ORDER BY neckpressID DESC LIMIT 1",
+        "SELECT pullupsRep, pullupsKilo FROM woPullups ORDER BY pullupsID DESC LIMIT 1",
+        "SELECT løbTid, løbBelastning FROM woLøb ORDER BY løbID DESC LIMIT 1",
+        "SELECT rystTid FROM woRyst ORDER BY rystID DESC LIMIT 1",
+        "SELECT buttupsRep FROM woButtups ORDER BY buttupsID DESC LIMIT 1",
+        "SELECT vand FROM woVand ORDER BY vandID DESC LIMIT 1",
+        "SELECT vægt FROM woVægt ORDER BY vægtID DESC LIMIT 1",
+        "SELECT varighed FROM woVarighed ORDER BY varighedID DESC LIMIT 1",
+        "SELECT ps.sessionDate, bp.painLevel 
+        FROM painSession AS ps 
+        JOIN bodyPainLog AS bp ON ps.sessionID = bp.sessionID 
+        WHERE bp.painLevel > 0 
+        ORDER BY ps.sessionDate DESC LIMIT 1"
+    ];
 
     $results = [];
     foreach ($sqls as $key => $sql) {
@@ -44,7 +49,7 @@ $sqls = [
             $results[$key] = $result->fetch_assoc();
         } else {
             $results[$key] = null;
-        }  
+        }
     }
 
 
@@ -98,6 +103,9 @@ $sqls = [
     $lastWorkoutDate = $results[17]['sessionDate'] ?? "Ingen data";
     $lastWorkoutDuration = $results[17]['varighed'] ?? "Ingen data";
 
+    $bodyPainDate = $results[18]['sessionDate'] ?? "Ingen data";
+    $bodyPainLevel = $results[18]['painLevel'] ?? "Ingen data";
+
 
     // Close Connection
     $conn->close();
@@ -141,16 +149,18 @@ $sqls = [
 
             <section class="data">
                 <div class="dataCart">
-                    <a href="exportPain.php">
+                    <a href="exportHeadache.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
                                 <img src="./img/headache.png" class="dataIcon" alt="workout icon">
-                                <h3>Headache</h3>
+                                <h3>Hovedpine</h3>
                             </div>
                             <div class="dataCartInfo">
                                 <div class="inline">
                                     <p class="dataBtnInfo"><?php echo date('d/m', strtotime($painDate)); ?> |</p>
-                                    <p class="dataBtnInfo"><?php echo ($headacheDuration !== "Ingen data") ? $headacheDuration . "t" : "Ingen data"; ?></p>
+                                    <p class="dataBtnInfo">
+                                        <?php echo ($headacheDuration !== "Ingen data") ? $headacheDuration . "t" : "Ingen data"; ?>
+                                    </p>
 
                                     <br>
                                     <button class="primBtn">Se mere</button>
@@ -471,6 +481,28 @@ $sqls = [
                                 <div class="inline">
                                     <p class="dataBtnInfo"><?php echo $lastWorkoutDuration ?: "Ingen varighed fundet"; ?>
                                     </p>
+                                    <br>
+                                    <button class="primBtn">Se mere</button>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="dataCart">
+                    <a href="exportBodyPain.php">
+                        <div class="dataBtn">
+                            <div class="dataCartHeader">
+                                <img src="./img/headache.png" class="dataIcon" alt="workout icon">
+                                <h3>Bodypain</h3>
+                            </div>
+                            <div class="dataCartInfo">
+                                <div class="inline">
+                                    <p class="dataBtnInfo"><?php echo date('d/m', strtotime($bodyPainDate)); ?> |</p>
+                                    <p class="dataBtnInfo">
+                                        <?php echo ($bodyPainLevel !== "Ingen data") ? $bodyPainLevel : "Ingen data"; ?>
+                                    </p>
+
                                     <br>
                                     <button class="primBtn">Se mere</button>
                                 </div>

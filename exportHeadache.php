@@ -50,9 +50,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <?php
                     // Forespørgsel for at hente data fra db
                     $sql = "SELECT DATE_FORMAT(ps.sessionDate, '%Y-%m-%d') AS date, hl.headacheLevel, hl.headacheDuration, hl.headacheType
-                            FROM headacheLog AS hl
-                            INNER JOIN painSession AS ps ON hl.sessionID = ps.sessionID
-                            ORDER BY date ASC";
+                    FROM headacheLog AS hl
+                    INNER JOIN painSession AS ps ON hl.sessionID = ps.sessionID
+                    WHERE hl.headacheLevel > 0
+                    ORDER BY date ASC";
 
                     $result = $conn->query($sql);
 
@@ -96,29 +97,29 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <thead>
                             <tr>
                                 <th>Dato</th>
-                                <th>Styrke</th>
-                                <th>Timer</th>
+                                <th>Type</th>
+                                <th>Styke</th>
                                 <th>Type</th>
                             </tr>
                         </thead>
                         <tbody>
-    <?php
-    // Loop igennem $tableData for at indsætte data i tabellen
-    foreach ($tableData as $row) {
-        // Tjek om headacheLevel eller headacheDuration er til stede (indikerer hovedpine)
-        if ($row['headacheLevel'] > 0 || $row['headacheDuration'] > 0) {
-            // Formatér datoen korrekt som DD-MM-YY
-            $formattedDate = date('d-m-Y', strtotime($row['date']));
-            echo "<tr>";
-            echo "<td>{$formattedDate}</td>";
-            echo "<td>{$row['headacheType']}</td>";
-            echo "<td>{$row['headacheLevel']}</td>";
-            echo "<td>{$row['headacheDuration']}</td>";
-            echo "</tr>";
-        }
-    }
-    ?>
-</tbody>
+                            <?php
+                            // Loop igennem $tableData for at indsætte data i tabellen
+                            foreach ($tableData as $row) {
+                                // Tjek om headacheLevel eller headacheDuration er til stede (indikerer hovedpine)
+                                if ($row['headacheLevel'] > 0 || $row['headacheDuration'] > 0) {
+                                    // Formatér datoen korrekt som DD-MM-YY
+                                    $formattedDate = date('d-m-Y', strtotime($row['date']));
+                                    echo "<tr>";
+                                    echo "<td>{$formattedDate}</td>";
+                                    echo "<td>{$row['headacheType']}</td>";
+                                    echo "<td>{$row['headacheLevel']}</td>";
+                                    echo "<td>{$row['headacheDuration']}</td>";
+                                    echo "</tr>";
+                                }
+                            }
+                            ?>
+                        </tbody>
 
                     </table>
                 </div>

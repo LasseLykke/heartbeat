@@ -50,16 +50,17 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <?php
                     // Forespørgsel for at hente data fra db
                     $sql = "SELECT DATE_FORMAT(ps.sessionDate, '%Y-%m-%d') AS date, 
-                    hl.headacheLevel, 
-                    hl.headacheDuration, 
-                    hl.headacheType, 
-                    ws.sessionID AS workoutSessionID, 
-                    ws.sessionDate AS workoutDate
-                    FROM headacheLog AS hl
-                    INNER JOIN painSession AS ps ON hl.sessionID = ps.sessionID
-                    LEFT JOIN workoutSession AS ws ON DATE_SUB(ps.sessionDate, INTERVAL 1 DAY) = ws.sessionDate
-                    WHERE hl.headacheLevel > 0
-                    ORDER BY date ASC";
+               hl.headacheLevel, 
+               hl.headacheDuration, 
+               hl.headacheType, 
+               MAX(ws.sessionID) AS workoutSessionID, -- Vælger den seneste træning hvis der er flere
+               MAX(ws.sessionDate) AS workoutDate    -- Vælger den seneste træningsdato
+        FROM headacheLog AS hl
+        INNER JOIN painSession AS ps ON hl.sessionID = ps.sessionID
+        LEFT JOIN workoutSession AS ws ON DATE_SUB(ps.sessionDate, INTERVAL 1 DAY) = ws.sessionDate
+        WHERE hl.headacheLevel > 0
+        GROUP BY ps.sessionDate, hl.headacheLevel, hl.headacheDuration, hl.headacheType
+        ORDER BY date ASC";
 
                     $result = $conn->query($sql);
 

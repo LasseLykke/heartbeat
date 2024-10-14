@@ -23,7 +23,7 @@ window.onload = function () {
   painGradient.addColorStop(1, "#191A19"); // Slut mørk farve
 
   const workoutBarChart = new Chart(ctx, {
-    type: "bar",
+    type: "line",
     data: {
       datasets: [
         {

@@ -49,9 +49,15 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
                     <?php
                     // Forespørgsel for at hente data fra db
-                    $sql = "SELECT DATE_FORMAT(ps.sessionDate, '%Y-%m-%d') AS date, hl.headacheLevel, hl.headacheDuration, hl.headacheType
+                    $sql = "SELECT DATE_FORMAT(ps.sessionDate, '%Y-%m-%d') AS date, 
+                    hl.headacheLevel, 
+                    hl.headacheDuration, 
+                    hl.headacheType, 
+                    ws.sessionID AS workoutSessionID, 
+                    ws.sessionDate AS workoutDate
                     FROM headacheLog AS hl
                     INNER JOIN painSession AS ps ON hl.sessionID = ps.sessionID
+                    LEFT JOIN workoutSession AS ws ON DATE_SUB(ps.sessionDate, INTERVAL 1 DAY) = ws.sessionDate
                     WHERE hl.headacheLevel > 0
                     ORDER BY date ASC";
 
@@ -66,7 +72,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             $headacheData[] = [
                                 'x' => $row['date'],
                                 'level' => $row['headacheLevel'],
-                                'duration' => $row['headacheDuration']
+                                'duration' => $row['headacheDuration'],
+                                'workoutYesterday' => !is_null($row['workoutDate']) ? true : false // Hvis der var træning dagen før
                             ];
                             // Data til tabellen
                             $tableData[] = $row;
@@ -164,7 +171,19 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             pointHoverBorderColor: 'rgba(255, 255, 255, 0.2)',
                             pointHoverBorderWidth: 10,
                             lineTension: 0.2,
+                        },
+                        {
+                            label: "Træning dagen før",
+                            data: headacheData.map((data) => data.workoutYesterday ? 1 : null),
+                            borderColor: "rgba(0,171,145)",
+                            borderWidth: 1,
+                            fill: false,
+                            pointBorderWidth: 3,
+                            pointHoverBorderColor: 'rgba(255, 255, 255, 0.2)',
+                            pointHoverBorderWidth: 10,
+                            lineTension: 0.2,
                         }
+
                     ],
                 },
                 options: {

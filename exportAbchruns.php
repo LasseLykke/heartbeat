@@ -41,7 +41,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
   <div class="wrapper">
     <section class="hbHeader">
-      <h1 class="headerText">Abschruns statestik</h1>
+      <h1 class="headerText">Abschruns</h1>
     </section>
 
 

@@ -38,7 +38,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
     <div class="wrapper">
         <section class="hbHeader">
-            <h1 class="headerText">Kropssmerter Statistik</h1>
+            <h1 class="headerText">Kropssmerter</h1>
         </section>
 
         <!-- CHARTS.JS GRAF -->
@@ -49,11 +49,12 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
                     <?php
                     // Forespørgsel for at hente bodyPain-data fra databasen
-                    $sql = "SELECT DATE_FORMAT(ps.sessionDate, '%Y-%m-%d') AS date, bp.painLevel, bp.bodyPart
-        FROM bodyPainLog AS bp
-        INNER JOIN painSession AS ps ON bp.sessionID = ps.sessionID
-        WHERE bp.painLevel > 0
-        ORDER BY ps.sessionDate ASC";
+                    $sql = "SELECT DATE_FORMAT(ps.sessionDate, '%Y-%m-%d') AS date, bp.painLevel, bp.bodyPart, ml.tookMedication, ml.medicationAmount
+                    FROM bodyPainLog AS bp
+                    INNER JOIN painSession AS ps ON bp.sessionID = ps.sessionID
+                    LEFT JOIN medicationLog AS ml ON ps.sessionID = ml.sessionID
+                    WHERE bp.painLevel > 0
+                    ORDER BY ps.sessionDate ASC";
 
 
                     $result = $conn->query($sql);
@@ -66,6 +67,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                 'x' => $row['date'],
                                 'y' => $row['painLevel'],
                                 'bodyPart' => $row['bodyPart'],
+                                'tookMedication' => $row['tookMedication'],
+                                'medicationAmount' => $row['medicationAmount'],
                             ];
 
                             // Gemmer rækken for senere brug i tabellen
@@ -209,13 +212,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
                                     // Hent bodyPart fra bodyPainData
                                     const bodyPart = bodyPainData[context.dataIndex]?.bodyPart;
-                                    if (bodyPart) {
-                                        // Returner en array med to elementer for at få dem på forskellige linjer
-                                        return [label, `${bodyPart} (Kropsdel)`];
-                                    }
+                                    const tookMedication = bodyPainData[context.dataIndex]?.tookMedication;
+                                    const medicationAmount = bodyPainData[context.dataIndex]?.medicationAmount;
 
-                                    // Returner kun label, hvis bodyPart ikke findes
-                                    return [label];
+                                    let bodyPartLabel = bodyPart ? `Sted: ${bodyPart}` : "";
+                                    let medicationLabel = tookMedication == 1 ? `Medicin: ${medicationAmount}.stk` : "Ingen medicin";
+
+                                    return [label, bodyPartLabel, medicationLabel];
                                 },
                             },
                         },

@@ -38,7 +38,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
     <div class="wrapper">
         <section class="hbHeader">
-            <h1 class="headerText">Hovedpine Statistik</h1>
+            <h1 class="headerText">Hovedpiner</h1>
         </section>
 
         <!-- CHARTS.JS GRAF -->

@@ -39,7 +39,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         FROM painSession AS ps 
         JOIN bodyPainLog AS bp ON ps.sessionID = bp.sessionID 
         WHERE bp.painLevel > 0 
-        ORDER BY ps.sessionDate DESC LIMIT 1"
+        ORDER BY ps.sessionDate DESC LIMIT 1",
+        "SELECT ps.sessionDate, ps.mentalState 
+        FROM painSession AS ps 
+        WHERE ps.mentalState IS NOT NULL 
+        ORDER BY ps.sessionDate DESC LIMIT 1",
     ];
 
     $results = [];
@@ -105,6 +109,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
     $bodyPainDate = $results[18]['sessionDate'] ?? "Ingen data";
     $bodyPainLevel = $results[18]['painLevel'] ?? "Ingen data";
+
+    $mentalStateDate = $results[19]['sessionDate'] ?? "Ingen data";
+    $mentalState = $results[19]['mentalState'] ?? "Ingen data";
 
 
     // Close Connection
@@ -501,6 +508,28 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                     <p class="dataBtnInfo"><?php echo date('d/m', strtotime($bodyPainDate)); ?> |</p>
                                     <p class="dataBtnInfo">
                                         <?php echo ($bodyPainLevel !== "Ingen data") ? $bodyPainLevel : "Ingen data"; ?>
+                                    </p>
+
+                                    <br>
+                                    <button class="primBtn">Se mere</button>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="dataCart">
+                    <a href="exportMentalState.php">
+                        <div class="dataBtn">
+                            <div class="dataCartHeader">
+                                <img src="./img/headache.png" class="dataIcon" alt="workout icon">
+                                <h3>Mental</h3>
+                            </div>
+                            <div class="dataCartInfo">
+                                <div class="inline">
+                                    <p class="dataBtnInfo"><?php echo date('d/m', strtotime($mentalStateDate)); ?> |</p>
+                                    <p class="dataBtnInfo">
+                                        <?php echo ($mentalState !== "Ingen data") ? $mentalState : "Ingen data"; ?>
                                     </p>
 
                                     <br>

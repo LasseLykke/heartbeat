@@ -25,8 +25,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
             <nav class="mobile-nav">
                 <a href="forside.php">Forside</a>
-                <a href="dataOverview.php">Statestik</a>
-                <a href="workoutforms.php">Workout Forms</a>
+                <a href="../export/dataOverview.php">Statestik</a>
+                <a href="../import/workoutforms.php">Workout Forms</a>
                 <a href="logout.php">Log ud</a>
             </nav>
         </header>
@@ -36,8 +36,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <section class="hbHeader">
                 <h1 class="headerText">Hej <?php echo $_SESSION['name']; ?> 👋🏻</h1>
                 <div class="formContainer">
-                    <a href="importDaily.php"><button class="formBtn">Daglig log</button></a>
-                    <a href="workoutforms.php"><button class="formBtn">Workout's</button></a>
+                    <a href="../import/importDaily.php"><button class="formBtn">Daglig log</button></a>
+                    <a href="../import/workoutforms.php"><button class="formBtn">Workout's</button></a>
                 </div>
             </section>
 
@@ -90,7 +90,7 @@ ORDER BY month ASC";
         </div> <!-- afslutning af wrapper -->
         </div>
 
-        <script src="script.js"></script>
+        <script src="./script.js"></script>
 
     </body>
 

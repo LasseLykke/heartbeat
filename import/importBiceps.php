@@ -2,14 +2,17 @@
 ob_start();
 session_start();
 
-include 'header.php';
+include '../header.php';
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Hent og rens input
         $workoutDate = htmlspecialchars($_POST["dato"]);
-        $bemærkning = isset($_POST["bemærkning"]) ? htmlspecialchars($_POST["bemærkning"]) : '';
+        $bicepsRep = isset($_POST["bicepsRep"]) ? intval($_POST["bicepsRep"]) : 0;
+        $bicepsKilo = isset($_POST["bicepsKilo"]) ? str_replace(',', '.', $_POST["bicepsKilo"]) : 0.0;
+        $bicepsKilo = floatval($bicepsKilo);
+        $bicepsKilo = number_format($bicepsKilo, 1);
 
         // Hvis workoutDate er tom, brug den aktuelle dato
         if (empty($workoutDate)) {
@@ -38,14 +41,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             $stmt->close();
 
             // Indsæt i woCykel med det hentede sessionID som FK
-            $sql = "INSERT INTO woBemærkning (sessionID, bemærkning) VALUES (?, ?)";
+            $sql = "INSERT INTO woBiceps (sessionID, bicepsRep, bicepsKilo) VALUES (?, ?, ?)";
             $stmt = $mysqli->prepare($sql);
 
             if ($stmt === false) {
                 throw new Exception($mysqli->error);
             }
 
-            $stmt->bind_param("is", $sessionID, $bemærkning);
+            $stmt->bind_param("iid", $sessionID, $bicepsRep, $bicepsKilo);
             $stmt->execute();
 
             // Commit transaktionen
@@ -64,7 +67,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             die("Error: " . $e->getMessage());
         }
 
-        
+
     }
 } else {
     // Hvis brugeren ikke er logget ind, send dem tilbage til login siden
@@ -76,44 +79,49 @@ ob_end_flush();
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Logger ud efter halvanden time -->
     <meta http-equiv="refresh" content="5400;url=logout.php" />
-    <title>H E A R T B E A T || Bemærkning </title>
+    <title>H E A R T B E A T || Biceps </title>
 </head>
+
 <body>
 
-<?php
+    <?php
     // Viser success eller fejl meddelelse
     if (isset($_SESSION["message"])) {
         echo "<p>{$_SESSION["message"]}</p>";
         unset($_SESSION["message"]);
-    } 
-?>
+    }
+    ?>
 
-<header>
+    <header>
         <button class="hamburger">
             <div class="bar"></div>
         </button>
 
         <nav class="mobile-nav">
             <a href="forside.php">Forside</a>
-            <a href="dataOverview.php">Statestik</a>
-            <a href="workoutforms.php">Workout Forms</a>
+            <a href="../export/dataOverview.php">Statestik</a>
+            <a href="../import/workoutforms.php">Workout Forms</a>
             <a href="logout.php">Log ud</a>
         </nav>
     </header>
 
     <div class="wrapper">
         <section class="hbHeader">
-                <h1 class="headerText">Bemærkning</h1>
-            </section>
-            <form class="workoutForm" action="" method="POST">
+            <h1 class="headerText">Biceps</h1>
+        </section>
+        <form class="workoutForm" action="" method="POST">
 
             <section class="workoutlabel">
-                <label for="varighed"></label>
-                <textarea id="bemærkning" placeholder="Indsæt bemærkning, evt skader" name="bemærkning"></textarea>
+                <label for="bicepsRep"></label>
+                <input type="number" id="bicepsRep" name="bicepsRep" placeholder="Rep:" required>
+
+                <label for="bicepsKilo"></label>
+                <input type="text" id="bicepsKilo" name="bicepsKilo" placeholder="Kilo:" required>
             </section>
 
             <section>
@@ -122,6 +130,7 @@ ob_end_flush();
     </div>
 
 
-<script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
+
 </html>

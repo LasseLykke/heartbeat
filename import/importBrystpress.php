@@ -2,17 +2,20 @@
 ob_start();
 session_start();
 
-include 'header.php';
+
+include '../header.php';
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Hent og rens input
         $workoutDate = htmlspecialchars($_POST["dato"]);
-        $absRep = isset($_POST["absRep"]) ? intval($_POST["absRep"]) : 0;
-        $absKilo = isset($_POST["absKilo"]) ? str_replace(',', '.', $_POST["absKilo"]) : 0.0;
-        $absKilo = floatval($absKilo);
-        $absKilo = number_format($absKilo, 1);
+        $brystpressRep = isset($_POST["brystpressRep"]) ? intval($_POST["brystpressRep"]) : 0;
+        $brystpressKilo = isset($_POST["brystpressKilo"]) ? str_replace(',', '.', $_POST["brystpressKilo"]) : 0.0;
+        $brystpressKilo = floatval($brystpressKilo);
+        $brystpressKilo = number_format($brystpressKilo, 1);
+
+
 
         // Hvis workoutDate er tom, brug den aktuelle dato
         if (empty($workoutDate)) {
@@ -41,14 +44,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             $stmt->close();
 
             // Indsæt i woCykel med det hentede sessionID som FK
-            $sql = "INSERT INTO woAbs (sessionID, absRep, absKilo) VALUES (?, ?, ?)";
+            $sql = "INSERT INTO woBrystpress (sessionID, brystpressRep, brystpressKilo) VALUES (?, ?, ?)";
             $stmt = $mysqli->prepare($sql);
 
             if ($stmt === false) {
                 throw new Exception($mysqli->error);
             }
 
-            $stmt->bind_param("iid", $sessionID, $absRep, $absKilo);
+            $stmt->bind_param("iid", $sessionID, $brystpressRep, $brystpressKilo);
             $stmt->execute();
 
             // Commit transaktionen
@@ -59,7 +62,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             $mysqli->close();
 
             // Gå tilbage til bekræftelsessiden
-            header("Location: successWorkout.php");
+            header("Location: /successWorkout.php");
             exit();
         } catch (Exception $e) {
             // Rul tilbage ved fejl
@@ -71,8 +74,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     }
 } else {
     // Hvis brugeren ikke er logget ind, send dem tilbage til login siden
-    header("Location: index.php");
+    header("Location: /index.php");
     exit();
+
+    
 }
 ob_end_flush();
 ?>
@@ -84,7 +89,7 @@ ob_end_flush();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Logger ud efter halvanden time -->
     <meta http-equiv="refresh" content="5400;url=logout.php" />
-    <title>H E A R T B E A T || Abs </title>
+    <title>H E A R T B E A T || Brystpres </title>
 </head>
 
 <body>
@@ -112,16 +117,17 @@ ob_end_flush();
 
     <div class="wrapper">
         <section class="hbHeader">
-            <h1 class="headerText">Abcrunch</h1>
+            <h1 class="headerText">Brystpres</h1>
         </section>
         <form class="workoutForm" action="" method="POST">
 
             <section class="workoutlabel">
-                <label for="absRep"></label>
-                <input type="number" id="absRep" name="absRep" placeholder="Rep:" required>
+                <label for="brystpressRep"></label>
+                <input type="number" id="brystpressRep" name="brystpressRep" placeholder="Rep:" required>
 
-                <label for="absKilo"></label>
-                <input type="text" id="absKilo" name="absKilo" placeholder="Kilo:" required>
+                <label for="brystpressKilo"></label>
+                <input type="text" id="brystpressKilo" name="brystpressKilo" placeholder="Kilo:" required>
+
             </section>
 
             <section>
@@ -130,7 +136,7 @@ ob_end_flush();
     </div>
 
 
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 
 </html>

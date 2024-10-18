@@ -2,7 +2,7 @@
 ob_start();
 session_start();
 
-include 'header.php';
+include '../header.php';
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
@@ -140,7 +140,7 @@ ob_end_flush();
 
         <nav class="mobile-nav">
             <a href="forside.php">Forside</a>
-            <a href="dataOverview.php">Statistik</a>
+            <a href="../export/dataOverview.php">Statistik</a>
             <a href="logout.php">Log ud</a>
         </nav>
     </header>
@@ -374,7 +374,7 @@ ob_end_flush();
         </form>
     </div>
 
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 
 </html>

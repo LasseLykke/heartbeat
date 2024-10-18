@@ -5,7 +5,7 @@ session_start();
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
-  include 'header.php';
+  include '../header.php';
   ?>
   <!DOCTYPE html>
   <html>
@@ -32,7 +32,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     </button>
 
     <nav class="mobile-nav">
-      <a href="forside.php">Forside</a>
+      <a href="../forside.php">Forside</a>
       <a href="dataOverview.php">Statestik</a>
       <a href="workoutforms.php">Workout Forms</a>
       <a href="logout.php">Log ud</a>
@@ -255,7 +255,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
 
 
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
     </body>
 
   </html>

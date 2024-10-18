@@ -12,9 +12,9 @@ include 'connection.php';
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     <!--sub folders-->
-    <link href="./style/base.css" type="text/css" rel="stylesheet">
-    <link href="./style/layout.css" type="text/css" rel="stylesheet">
-    <link href="./style/typo.css" type="text/css" rel="stylesheet">
+    <link href="../style/base.css" type="text/css" rel="stylesheet">
+    <link href="../style/layout.css" type="text/css" rel="stylesheet">
+    <link href="../style/typo.css" type="text/css" rel="stylesheet">
     <meta name="keywords" content="Privat database for loggin workout and other stuff" />
     <meta name="description" content="Privat database for loggin workout and other stuff" />
     <meta name="author" content="Lasse Lykke @ Lasselykke.com" />

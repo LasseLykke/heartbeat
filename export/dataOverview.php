@@ -4,7 +4,7 @@ session_start();
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
-    include 'header.php';
+    include '../header.php';
     ?>
 
 
@@ -234,7 +234,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
 
                 <div class="dataCart">
-                    <a href="exportAbchruns.php">
+                    
+                        <a href="./export/exportAbchruns.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
                                 <img src="./img/abs.png" class="dataIcon" alt="workout icon">

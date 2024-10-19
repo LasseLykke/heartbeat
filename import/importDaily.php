@@ -100,7 +100,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             $mysqli->close();
 
             // Gå tilbage til bekræftelsessiden
-            header("Location: success.php");
+            header("Location: /success.php");
             exit();
         } catch (Exception $e) {
             // Rul tilbage ved fejl
@@ -110,7 +110,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     }
 } else {
     // Hvis brugeren ikke er logget ind, send dem tilbage til login siden
-    header("Location: index.php");
+    header("Location: /index.php");
     exit();
 }
 ob_end_flush();
@@ -139,9 +139,11 @@ ob_end_flush();
         </button>
 
         <nav class="mobile-nav">
-            <a href="forside.php">Forside</a>
-            <a href="../export/dataOverview.php">Statistik</a>
-            <a href="logout.php">Log ud</a>
+            <a href="../forside.php">Forside</a>
+            <a href="../import/importDaily.php">Daglig</a>
+            <a href="../import/workoutforms.php">Workout</a>
+            <a href="../export/dataOverview.php">Statestik</a>
+            <a href="../logout.php">Log ud</a>
         </nav>
     </header>
 

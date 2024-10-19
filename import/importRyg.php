@@ -2,7 +2,7 @@
 ob_start();
 session_start();
 
-include 'header.php';
+include '../header.php';
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
@@ -56,7 +56,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             $mysqli->close();
 
             // Gå tilbage til bekræftelsessiden
-            header("Location: successWorkout.php");
+            header("Location: /successWorkout.php");
             exit();
         } catch (Exception $e) {
             // Rul tilbage ved fejl
@@ -68,7 +68,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     }
 } else {
     // Hvis brugeren ikke er logget ind, send dem tilbage til login siden
-    header("Location: index.php");
+    header("Location: /index.php");
     exit();
 }
 ob_end_flush();
@@ -100,10 +100,11 @@ ob_end_flush();
         </button>
 
         <nav class="mobile-nav">
-            <a href="forside.php">Forside</a>
-            <a href="dataOverview.php">Statestik</a>
-            <a href="workoutforms.php">Workout Forms</a>
-            <a href="logout.php">Log ud</a>
+            <a href="../forside.php">Forside</a>
+            <a href="../import/importDaily.php">Daglig</a>
+            <a href="../import/workoutforms.php">Workout</a>
+            <a href="../export/dataOverview.php">Statestik</a>
+            <a href="../logout.php">Log ud</a>
         </nav>
     </header>
 
@@ -124,7 +125,7 @@ ob_end_flush();
     </div>
 
 
-    <script src="script.js"></script>
+    <script src=../script.js"></script>
 </body>
 
 </html>

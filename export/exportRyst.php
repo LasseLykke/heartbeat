@@ -5,7 +5,7 @@ session_start();
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
-  include 'header.php';
+  include '../header.php';
   ?>
   <!DOCTYPE html>
   <html>
@@ -32,11 +32,12 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     </button>
 
     <nav class="mobile-nav">
-      <a href="forside.php">Forside</a>
-      <a href="dataOverview.php">Statestik</a>
-      <a href="workoutforms.php">Workout Forms</a>
-      <a href="logout.php">Log ud</a>
-    </nav>
+            <a href="../forside.php">Forside</a>
+            <a href="../import/importDaily.php">Daglig</a>
+            <a href="../import/workoutforms.php">Workout</a>
+            <a href="../export/dataOverview.php">Statestik</a>
+            <a href="../logout.php">Log ud</a>
+        </nav>
   </header>
 
   <div class="wrapper">
@@ -238,7 +239,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
 
 
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
     </body>
 
   </html>
@@ -246,7 +247,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
   <?php
   /* Hvis ikke logget ind bliver man sendt tilbage til login skærm */
 } else {
-  header("Location: index.php");
+  header("Location: /index.php");
   exit();
 }
 ?>

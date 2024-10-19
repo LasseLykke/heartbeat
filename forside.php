@@ -24,11 +24,12 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             </button>
 
             <nav class="mobile-nav">
-                <a href="forside.php">Forside</a>
-                <a href="../export/dataOverview.php">Statestik</a>
-                <a href="../import/workoutforms.php">Workout Forms</a>
-                <a href="logout.php">Log ud</a>
-            </nav>
+            <a href="forside.php">Forside</a>
+            <a href="../import/importDaily.php">Daglig</a>
+            <a href="../import/workoutforms.php">Workout</a>
+            <a href="../export/dataOverview.php">Statestik</a>
+            <a href="logout.php">Log ud</a>
+        </nav>
         </header>
 
         <!-- INPUT SECTION -->

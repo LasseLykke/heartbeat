@@ -137,10 +137,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             </button>
 
             <nav class="mobile-nav">
-                <a href="forside.php">Forside</a>
-                <a href="dataOverview.php">Statestik</a>
-                <a href="workoutforms.php">Workout Forms</a>
-                <a href="logout.php">Log ud</a>
+                <a href=“../forside.php">Forside</a>
+                <a href="../import/importDaily.php">Daglig</a>
+                <a href="../import/workoutforms.php">Workout</a>
+                <a href="../export/dataOverview.php">Statestik</a>
+                <a href="../logout.php">Log ud</a>
             </nav>
         </header>
 
@@ -156,10 +157,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
             <section class="data">
                 <div class="dataCart">
-                    <a href="exportHeadache.php">
+                    <a href="../export/exportHeadache.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
-                                <img src="./img/headache.png" class="dataIcon" alt="workout icon">
+                                <img src="../img/headache.png" class="dataIcon" alt="workout icon">
                                 <h3>Hovedpine</h3>
                             </div>
                             <div class="dataCartInfo">
@@ -178,10 +179,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
 
                 <div class="dataCart">
-                    <a href="exportCykling.php">
+                    <a href="../export/exportCykling.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
-                                <img src="./img/cykel.png" class="dataIcon" alt="workout icon">
+                                <img src="../img/cykel.png" class="dataIcon" alt="workout icon">
                                 <h3>Cykling</h3>
                             </div>
                             <div class="dataCartInfo">
@@ -197,10 +198,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
 
                 <div class="dataCart">
-                    <a href="exportPulldown.php">
+                    <a href="../export/exportPulldown.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
-                                <img src="./img/pullupdown.png" class="dataIcon" alt="workout icon">
+                                <img src="../img/pullupdown.png" class="dataIcon" alt="workout icon">
                                 <h3>PullDown</h3>
                             </div>
                             <div class="dataCartInfo">
@@ -216,10 +217,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
 
                 <div class="dataCart">
-                    <a href="exportRyg.php">
+                    <a href="../export/exportRyg.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
-                                <img src="./img/ryg.png" class="dataIcon" alt="workout icon">
+                                <img src="../img/ryg.png" class="dataIcon" alt="workout icon">
                                 <h3>Rygbøjning</h3>
                             </div>
                             <div class="dataCartInfo">
@@ -234,11 +235,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
 
                 <div class="dataCart">
-                    
-                        <a href="./export/exportAbchruns.php">
+
+                    <a href="../export/exportAbchruns.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
-                                <img src="./img/abs.png" class="dataIcon" alt="workout icon">
+                                <img src="../img/abs.png" class="dataIcon" alt="workout icon">
                                 <h3>Abchrunch</h3>
                             </div>
                             <div class="dataCartInfo">
@@ -254,10 +255,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
 
                 <div class="dataCart">
-                    <a href="exportBrystpres.php">
+                    <a href="../export/exportBrystpres.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
-                                <img src="./img/brystpres.png" class="dataIcon" alt="workout icon">
+                                <img src="../img/brystpres.png" class="dataIcon" alt="workout icon">
                                 <h3>Brystpres</h3>
                             </div>
                             <div class="dataCartInfo">
@@ -273,10 +274,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
 
                 <div class="dataCart">
-                    <a href="exportLegpress.php">
+                    <a href="../export/exportLegpress.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
-                                <img src="./img/legpress.png" class="dataIcon" alt="workout icon">
+                                <img src="../img/legpress.png" class="dataIcon" alt="workout icon">
                                 <h3>Legpres</h3>
                             </div>
                             <div class="dataCartInfo">
@@ -292,10 +293,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
 
                 <div class="dataCart">
-                    <a href="exportLegcurl.php">
+                    <a href="../export/exportLegcurl.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
-                                <img src="./img/legpress.png" class="dataIcon" alt="workout icon">
+                                <img src="../img/legpress.png" class="dataIcon" alt="workout icon">
                                 <h3>Curl</h3>
                             </div>
                             <div class="dataCartInfo">
@@ -311,10 +312,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
 
                 <div class="dataCart">
-                    <a href="exportLegextension.php">
+                    <a href="../export/exportLegextension.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
-                                <img src="./img/legpress.png" class="dataIcon" alt="workout icon">
+                                <img src="../img/legpress.png" class="dataIcon" alt="workout icon">
                                 <h3>Extension</h3>
                             </div>
                             <div class="dataCartInfo">
@@ -330,10 +331,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
 
                 <div class="dataCart">
-                    <a href="exportBiceps.php">
+                    <a href="../export/exportBiceps.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
-                                <img src="./img/biceps.png" class="dataIcon" alt="workout icon">
+                                <img src="../img/biceps.png" class="dataIcon" alt="workout icon">
                                 <h3>Bicpes</h3>
                             </div>
                             <div class="dataCartInfo">
@@ -349,10 +350,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
 
                 <div class="dataCart">
-                    <a href="exportNeckpress.php">
+                    <a href="../export/exportNeckpress.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
-                                <img src="./img/brystpres.png" class="dataIcon" alt="workout icon">
+                                <img src="../img/brystpres.png" class="dataIcon" alt="workout icon">
                                 <h3>Neckpres</h3>
                             </div>
                             <div class="dataCartInfo">
@@ -369,10 +370,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
 
                 <div class="dataCart">
-                    <a href="exportButtups.php">
+                    <a href="../export/exportButtups.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
-                                <img src="./img/buttups.png" class="dataIcon" alt="workout icon">
+                                <img src="../img/buttups.png" class="dataIcon" alt="workout icon">
                                 <h3>Buttups</h3>
                             </div>
                             <div class="dataCartInfo">
@@ -387,10 +388,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
 
                 <div class="dataCart">
-                    <a href="exportPullups.php">
+                    <a href="../export/exportPullups.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
-                                <img src="./img/pullupdown.png" class="dataIcon" alt="workout icon">
+                                <img src="../img/pullupdown.png" class="dataIcon" alt="workout icon">
                                 <h3>Pullups</h3>
                             </div>
                             <div class="dataCartInfo">
@@ -406,10 +407,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
 
                 <div class="dataCart">
-                    <a href="exportLøb.php">
+                    <a href="../export/exportLøb.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
-                                <img src="./img/løb.png" class="dataIcon" alt="workout icon">
+                                <img src="../img/løb.png" class="dataIcon" alt="workout icon">
                                 <h3>Løb</h3>
                             </div>
                             <div class="dataCartInfo">
@@ -425,10 +426,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
 
                 <div class="dataCart">
-                    <a href="exportRyst.php">
+                    <a href="../export/exportRyst.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
-                                <img src="./img/ryste.png" class="dataIcon" alt="workout icon">
+                                <img src="../img/ryste.png" class="dataIcon" alt="workout icon">
                                 <h3>Ryst</h3>
                             </div>
                             <div class="dataCartInfo">
@@ -443,10 +444,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
 
                 <div class="dataCart">
-                    <a href="exportVand.php">
+                    <a href="../export/exportVand.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
-                                <img src="./img/vand.png" class="dataIcon" alt="workout icon">
+                                <img src="../img/vand.png" class="dataIcon" alt="workout icon">
                                 <h3>Vand</h3>
                             </div>
                             <div class="dataCartInfo">
@@ -461,10 +462,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
 
                 <div class="dataCart">
-                    <a href="exportVægt.php">
+                    <a href="../export/exportVægt.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
-                                <img src="./img/vægt.png" class="dataIcon" alt="workout icon">
+                                <img src="../img/vægt.png" class="dataIcon" alt="workout icon">
                                 <h3>Vægt</h3>
                             </div>
                             <div class="dataCartInfo">
@@ -479,10 +480,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
 
                 <div class="dataCart">
-                    <a href="exportVarighed.php">
+                    <a href="../export/exportVarighed.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
-                                <img src="./img/workout.png" class="dataIcon" alt="workout icon">
+                                <img src="../img/workout.png" class="dataIcon" alt="workout icon">
                                 <h3>Varighed</h3>
                             </div>
                             <div class="dataCartInfo">
@@ -498,10 +499,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
 
                 <div class="dataCart">
-                    <a href="exportBodyPain.php">
+                    <a href="../export/exportBodyPain.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
-                                <img src="./img/headache.png" class="dataIcon" alt="workout icon">
+                                <img src="../img/headache.png" class="dataIcon" alt="workout icon">
                                 <h3>Bodypain</h3>
                             </div>
                             <div class="dataCartInfo">
@@ -520,10 +521,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
 
                 <div class="dataCart">
-                    <a href="exportMentalState.php">
+                    <a href="../export/exportMentalState.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
-                                <img src="./img/headache.png" class="dataIcon" alt="workout icon">
+                                <img src="../img/headache.png" class="dataIcon" alt="workout icon">
                                 <h3>Mental</h3>
                             </div>
                             <div class="dataCartInfo">
@@ -544,14 +545,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             </section>
         </div>
 
-        <script src="script.js"></script>
+        <script src="../script.js"></script>
     </body>
 
     </html>
     <?php
     /* Hvis ikke logget ind bliver man sendt tilbage til login skærm */
 } else {
-    header("Location: index.php");
+    header("Location: /index.php");
     exit();
 }
 ?>

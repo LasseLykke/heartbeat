@@ -108,10 +108,11 @@ ob_end_flush();
         </button>
 
         <nav class="mobile-nav">
-            <a href="forside.php">Forside</a>
-            <a href="dataOverview.php">Statestik</a>
-            <a href="workoutforms.php">Workout Forms</a>
-            <a href="logout.php">Log ud</a>
+            <a href="../forside.php">Forside</a>
+            <a href="../import/importDaily.php">Daglig</a>
+            <a href="../import/workoutforms.php">Workout</a>
+            <a href="../export/dataOverview.php">Statestik</a>
+            <a href="../logout.php">Log ud</a>
         </nav>
     </header>
 

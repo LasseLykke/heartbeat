@@ -28,6 +28,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <a href="../import/importDaily.php">Daglig</a>
             <a href="../import/workoutforms.php">Workout</a>
             <a href="../export/dataOverview.php">Statestik</a>
+            <a href="../import/importDuft.php">Duft</a>
             <a href="logout.php">Log ud</a>
         </nav>
         </header>
@@ -65,11 +66,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
                     // Forespørgsel for at hente hovedpine data fra headacheLog og painSession tabellerne
                     $sql2 = "SELECT DATE_FORMAT(ps.sessionDate, '%Y-%m') AS month, 
-       COUNT(CASE WHEN hasHeadache = 1 THEN 1 END) AS headacheCount
-FROM painSession ps
-INNER JOIN headacheLog hl ON ps.sessionID = hl.sessionID
-GROUP BY month
-ORDER BY month ASC";
+                    COUNT(CASE WHEN hasHeadache = 1 THEN 1 END) AS headacheCount
+                    FROM painSession ps
+                    INNER JOIN headacheLog hl ON ps.sessionID = hl.sessionID
+                    GROUP BY month
+                    ORDER BY month ASC";
                     $result2 = $conn->query($sql2);
 
                     $headacheData = [];

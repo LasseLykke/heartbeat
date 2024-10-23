@@ -1,63 +1,96 @@
 <?php
 ob_start();
 session_start();
-
 include '../header.php';
 
-if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Hent og rens input
-        $navn = htmlspecialchars($_POST["navn"]);
-        $fabrikant = htmlspecialchars($_POST["fabrikant"]);
-        $type = htmlspecialchars($_POST["type"]);
-        $milliliter = isset($_POST["milliliter"]) ? str_replace(',', '.', $_POST["milliliter"]) : 0.0;
-        $milliliter = floatval($milliliter);
-        $billede = htmlspecialchars($_POST["billede"]);
-        $fabrikantBeskrivelse = htmlspecialchars($_POST["fabrikantBeskrivelse"]);
-        $egneOrd = htmlspecialchars($_POST["egneOrd"]);
-        $egnetTil = htmlspecialchars($_POST["egnetTil"]);
-        $bedømmelse = intval($_POST["bedømmelse"]);
-        $brugsfrekvens = intval($_POST["brugsfrekvens"]);
-
-        // Start en transaktion
-        $mysqli->begin_transaction();
-
-        try {
-            // Indsæt i perfumeLog tabellen
-            $sql = "INSERT INTO perfumeLog (navn, fabrikant, type, milliliter, billede, fabrikantBeskrivelse, egneOrd, egnetTil, bedømmelse, brugsfrekvens) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            $stmt = $mysqli->prepare($sql);
-
-            if ($stmt === false) {
-                throw new Exception($mysqli->error);
-            }
-
-            $stmt->bind_param("ssssdssssi", $navn, $fabrikant, $type, $milliliter, $billede, $fabrikantBeskrivelse, $egneOrd, $egnetTil, $bedømmelse, $brugsfrekvens);
-            $stmt->execute();
-
-            // Hent det genererede parfumeID
-            $parfumeID = $stmt->insert_id;
-
-            // Luk statement
-            $stmt->close();
-
-            // Commit transaktionen
-            $mysqli->commit();
-
-            // Gå tilbage til bekræftelsessiden
-            header("Location: /successPerfume.php");
-            exit();
-        } catch (Exception $e) {
-            // Rul tilbage ved fejl
-            $mysqli->rollback();
-            die("Error: " . $e->getMessage());
-        }
-    }
-} else {
-    // Hvis brugeren ikke er logget ind, send dem tilbage til login siden
+// Tjek om brugeren er logget ind
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_name'])) {
     header("Location: /index.php");
     exit();
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
+    // Hent og rens input
+    $navn = htmlspecialchars($_POST["navn"]);
+    $fabrikant = htmlspecialchars($_POST["fabrikant"]);
+    $type = htmlspecialchars($_POST["type"]);
+    $milliliter = isset($_POST["milliliter"]) ? str_replace(',', '.', $_POST["milliliter"]) : 0.0;
+    $milliliter = floatval($milliliter);
+    $fabrikantBeskrivelse = htmlspecialchars($_POST["fabrikantBeskrivelse"]);
+    $egneOrd = htmlspecialchars($_POST["egneOrd"]);
+    $egnetTil = htmlspecialchars($_POST["egnetTil"]);
+    $bedømmelse = intval($_POST["bedømmelse"]);
+    $brugsfrekvens = intval($_POST["brugsfrekvens"]);
+
+    // Håndter filupload
+    $file = $_FILES['file'];
+    $fileName = $_FILES['file']['name'];
+    $fileTmpName = $_FILES['file']['tmp_name'];
+    $fileSize = $_FILES['file']['size'];
+    $fileError = $_FILES['file']['error'];
+    $fileType = $_FILES['file']['type'];
+
+    // Tjek filtypen
+    $fileExt = explode('.', $fileName);
+    $fileActualExt = strtolower(end($fileExt));
+    $allowed = array('jpg', 'jpeg', 'png', 'pdf');
+
+    // Standard værdi for billedfil
+    $fileNameNew = null;
+
+    if (in_array($fileActualExt, $allowed)) {
+        if ($fileError === 0) {
+            if ($fileSize < 10000000) {
+                $fileNameNew = uniqid('', true) . "." . $fileActualExt;
+                $fileDestination = '../uploads/' . $fileNameNew;
+                move_uploaded_file($fileTmpName, $fileDestination);
+            } else {
+                $_SESSION['message'] = "Din fil er for stor!";
+                header("Location: /import/importDuft.php?error=filstor");
+                exit();
+            }
+        } else {
+            $_SESSION['message'] = "Der skete en fejl i upload af din fil!";
+            header("Location: /import/importDuft.php?error=uploadfejl");
+            exit();
+        }
+    } else {
+        $_SESSION['message'] = "Kan ikke uploade denne filtype!";
+        header("Location: /import/importDuft.php?error=filtype");
+        exit();
+    }
+
+    // Start en transaktion
+    $mysqli->begin_transaction();
+
+    try {
+        // Indsæt i perfumeLog tabellen
+        $sql = "INSERT INTO perfumeLog (navn, fabrikant, type, milliliter, billede, fabrikantBeskrivelse, egneOrd, egnetTil, bedømmelse, brugsfrekvens) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $mysqli->prepare($sql);
+
+        if ($stmt === false) {
+            throw new Exception($mysqli->error);
+        }
+
+        $stmt->bind_param("ssssdssssi", $navn, $fabrikant, $type, $milliliter, $fileNameNew, $fabrikantBeskrivelse, $egneOrd, $egnetTil, $bedømmelse, $brugsfrekvens);
+        $stmt->execute();
+
+        // Luk statement
+        $stmt->close();
+
+        // Commit transaktionen
+        $mysqli->commit();
+
+        // Gå tilbage til bekræftelsessiden
+        $_SESSION['message'] = "Parfume blev gemt succesfuldt!";
+        header("Location: ../success.php");
+        exit();
+    } catch (Exception $e) {
+        // Rul tilbage ved fejl
+        $mysqli->rollback();
+        die("Error: " . $e->getMessage());
+    }
 }
 ob_end_flush();
 ?>
@@ -71,7 +104,6 @@ ob_end_flush();
 </head>
 
 <body>
-
     <?php
     if (isset($_SESSION["message"])) {
         echo "<p>{$_SESSION["message"]}</p>";
@@ -96,10 +128,9 @@ ob_end_flush();
 
     <div class="wrapper">
         <section class="hbHeader">
-            <h1 class="headerText">Indtast Parfume</h1>
+            <h1 class="headerText">Parfume</h1>
         </section>
-        <form class="perfumeForm" action="" method="POST">
-
+        <form class="perfumeForm" action="importDuft.php" method="POST" enctype="multipart/form-data">
             <section class="formSection">
                 <label for="navn">Parfumens navn:</label>
                 <input type="text" id="navn" name="navn" placeholder="Navn:" required>
@@ -111,15 +142,14 @@ ob_end_flush();
                 <select id="type" name="type" required>
                     <option value="EDT">EDT</option>
                     <option value="EDP">EDP</option>
-                    <option value="Cologne">Cologne</option>
-                    <option value="Parfum">Parfum</option>
+                    <option value="Stick">Stick</option>
                 </select>
 
                 <label for="milliliter">Milliliter:</label>
                 <input type="text" id="milliliter" name="milliliter" placeholder="Flaskestørrelse (ml):">
 
                 <label for="billede">Billede URL:</label>
-                <input type="text" id="billede" name="billede" placeholder="Billede URL:">
+                <input type="file" id="file" name="file" placeholder="Billede URL:" required>
 
                 <label for="fabrikantBeskrivelse">Fabrikantens beskrivelse:</label>
                 <textarea id="fabrikantBeskrivelse" name="fabrikantBeskrivelse" placeholder="Beskrivelse:"></textarea>
@@ -129,12 +159,11 @@ ob_end_flush();
 
                 <label for="egnetTil">Egnet til:</label>
                 <select id="egnetTil" name="egnetTil" required>
-                    <option value="Dag">Dag</option>
-                    <option value="Nat">Nat</option>
+                    <option value="Daglig">Dag</option>
                     <option value="Sommer">Sommer</option>
+                    <option value="Efterår">Efterår</option>
                     <option value="Vinter">Vinter</option>
                     <option value="Fest">Fest</option>
-                    <option value="Arbejdsdag">Arbejdsdag</option>
                 </select>
 
                 <label for="bedømmelse">Bedømmelse (1-5):</label>
@@ -145,8 +174,9 @@ ob_end_flush();
             </section>
 
             <section>
-                <button class="submit">Gem Parfume</button>
+                <button class="submit" name="submit">Gem Parfume</button>
             </section>
+        </form>
     </div>
 
     <script src="../script.js"></script>

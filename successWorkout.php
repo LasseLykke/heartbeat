@@ -9,7 +9,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
 <head>
 <meta charset="UTF-8" />
-<meta http-equiv = "refresh" content = "1.5; url = import/workoutforms.php" />
+<meta http-equiv = "refresh" content = "1.5; url = ../import/workoutforms.php" />
 
 
     <title>HEARTBEAT || SUCCESS</title>
@@ -43,7 +43,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 <?php
 /* Hvis ikke logget ind bliver man sendt tilbage til login skærm */
 } else {
-    header("Location: index.php");
+    header("Location: /index.php");
     exit();
 }
 ?>

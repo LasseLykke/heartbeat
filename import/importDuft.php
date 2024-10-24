@@ -163,7 +163,7 @@ ob_end_flush();
                     <option value="Sommer">Sommer</option>
                     <option value="Efterår">Efterår</option>
                     <option value="Vinter">Vinter</option>
-                    <option value="Fest">Fest</option>
+                    <option value="Fest">Festlige lejligheder</option>
                 </select>
 
                 <label for="bedømmelse">Bedømmelse (1-5):</label>

@@ -18,7 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $milliliter = floatval($milliliter);
     $fabrikantBeskrivelse = htmlspecialchars($_POST["fabrikantBeskrivelse"]);
     $egneOrd = htmlspecialchars($_POST["egneOrd"]);
-    $egnetTil = htmlspecialchars($_POST["egnetTil"]);
+    $egnetTilArray = isset($_POST["egnetTil"]) ? $_POST["egnetTil"] : [];
+    $egnetTil = implode(", ", $egnetTilArray); // Konverter til en streng
     $bedømmelse = intval($_POST["bedømmelse"]);
     $brugsfrekvens = intval($_POST["brugsfrekvens"]);
 
@@ -83,7 +84,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         $mysqli->commit();
 
         // Gå tilbage til bekræftelsessiden
-        $_SESSION['message'] = "Parfume blev gemt succesfuldt!";
         header("Location: ../success.php");
         exit();
     } catch (Exception $e) {
@@ -158,19 +158,19 @@ ob_end_flush();
                 <textarea id="egneOrd" name="egneOrd" placeholder="Dine egne ord om parfumen:"></textarea>
 
                 <label for="egnetTil">Egnet til:</label>
-                <select id="egnetTil" name="egnetTil" required>
-                    <option value="Daglig">Dag</option>
+                <select id="egnetTil" name="egnetTil[]" multiple required>
+                    <option value="Daglig">Daglig</option>
                     <option value="Sommer">Sommer</option>
-                    <option value="Efterår">Efterår</option>
                     <option value="Vinter">Vinter</option>
                     <option value="Fest">Festlige lejligheder</option>
                 </select>
 
+
                 <label for="bedømmelse">Bedømmelse (1-5):</label>
                 <input type="number" id="bedømmelse" name="bedømmelse" min="1" max="5" required>
 
-                <label for="brugsfrekvens">Brugsfrekvens (1-10):</label>
-                <input type="number" id="brugsfrekvens" name="brugsfrekvens" min="1" max="10" required>
+                <label for="brugsfrekvens">Brugsfrekvens (1-24):</label>
+                <input type="number" id="brugsfrekvens" name="brugsfrekvens" min="1" max="24" required>
             </section>
 
             <section>

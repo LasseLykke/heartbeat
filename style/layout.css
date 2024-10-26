@@ -416,7 +416,7 @@ input[type="number"] {
   flex-direction: column; 
   align-items: flex-start; 
 }
-.notes label, .perfumeName label, .perfumeType label, .perfumeImages label, .perfumeData {
+.notes label, .perfumeName label, .perfumeType label, .perfumeImages label, .perfumeData, .perfumeInfo {
   font-weight: bold; 
   margin-bottom: 10px; 
 }
@@ -426,6 +426,17 @@ input[type="number"] {
   border: 1px solid #ccc; 
   border-radius: 5px; 
   font-size: 1rem;
+}
+
+textarea#fabrikantBeskrivelse, textarea#egneOrd {
+  margin-top: 10px;
+  width: 100%; /* Fylder hele bredden af containeren */
+  padding: 12px; /* Lidt ekstra padding for mere plads */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  min-height: 150px; /* Ekstra højde for bedre plads til tekst */
+  resize: vertical; /* Gør det muligt at ændre størrelsen lodret */
 }
 
 /*Fix for submit btn to align center and adds some space under.*/

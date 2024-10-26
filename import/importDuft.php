@@ -171,9 +171,9 @@ ob_end_flush();
                     <label for="fabrikantBeskrivelse">Fabrikantens beskrivelse:</label>
                     <textarea id="fabrikantBeskrivelse" name="fabrikantBeskrivelse"
                         placeholder="Beskrivelse:"></textarea>
-
-                    <label for="egneOrd">Dine egne ord:</label>
-                    <textarea id="egneOrd" name="egneOrd" placeholder="Dine egne ord om parfumen:"></textarea>
+<br>
+                    <label for="egneOrd">Mine egne ord:</label>
+                    <textarea id="egneOrd" name="egneOrd" placeholder="Mine egne ord:"></textarea>
                 </div>
 
                 <div class="perfumeData">
@@ -199,7 +199,7 @@ ob_end_flush();
                     </div>
 
 
-<br>
+                    <br>
                     <label for="bedømmelse">Bedømmelse (1-5):</label>
 
                     <div class="rating-group">
@@ -225,7 +225,7 @@ ob_end_flush();
                         </div>
                     </div>
 
-                    <label for="brugsfrekvens">Brugsfrekvens (1-24):</label>
+                    <label for="brugsfrekvens">Brugsfrekvens (1-24timer):</label>
                     <input type="number" id="brugsfrekvens" name="brugsfrekvens" min="1" max="24" required>
                 </div>
             </section>

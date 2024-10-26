@@ -309,7 +309,12 @@ canvas {
 .dailyFormSubPain,
 .dailyFormSubBodyPain,
 .dailyFormSubMedication,
-.dailyFormSubMentalState {
+.dailyFormSubMentalState,
+.perfumeName,
+.perfumeType,
+.perfumeImages,
+.perfumeInfo,
+.perfumeData {
   display: flex;
   flex-direction: column;
   align-items: center; 
@@ -405,17 +410,17 @@ input[type="number"] {
 }
 
 /*Styling af bemærknings felt*/
-.notes {
+.notes, .perfumeName {
   margin-top: 20px; 
   display: flex;
   flex-direction: column; 
   align-items: flex-start; 
 }
-.notes label {
+.notes label, .perfumeName label, .perfumeType label, .perfumeImages label, .perfumeData {
   font-weight: bold; 
   margin-bottom: 10px; 
 }
-.notes input {
+.notes input, .perfumeName input, .perfumeType input, .perfumeImages input {
   width: 100%; 
   padding: 10px; 
   border: 1px solid #ccc; 
@@ -427,6 +432,46 @@ input[type="number"] {
 .dailyFormSubmit {
   text-align: center;
   margin-bottom: 20px;
+}
+
+/* Perfume form, special*/
+
+.perfumeType {
+  margin-bottom: 20px;
+}
+
+.radio-group, .rating-group {
+  display: flex;
+  gap: 20px; /* Afstand mellem hver radioknap */
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.radio-option, .rating-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.radio-option label, .rating-group label {
+  margin-top: 5px;
+}
+
+.checkbox-group {
+  display: flex;
+  gap: 20px; /* Afstand mellem hver checkboks */
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.checkbox-option {
+  display: flex;
+  flex-direction: column; /* Sætter label under checkboksen */
+  align-items: center;
+}
+
+.checkbox-option label {
+  margin-top: 5px; /* Afstand mellem checkboks og label */
 }
 
 /*TABEL STYLING*/

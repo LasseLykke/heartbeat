@@ -108,7 +108,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                 <th>Dato</th>
                                 <th>Type</th>
                                 <th>Styke</th>
-                                <th>Type</th>
+                                <th>Tid</th>
                             </tr>
                         </thead>
                         <tbody>

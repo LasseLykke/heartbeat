@@ -131,49 +131,107 @@ ob_end_flush();
             <h1 class="headerText">Parfume</h1>
         </section>
         <form class="perfumeForm" action="importDuft.php" method="POST" enctype="multipart/form-data">
-            <section class="formSection">
-                <label for="navn">Parfumens navn:</label>
-                <input type="text" id="navn" name="navn" placeholder="Navn:" required>
 
-                <label for="fabrikant">Fabrikant:</label>
-                <input type="text" id="fabrikant" name="fabrikant" placeholder="Fabrikant:" required>
+            <section class="perfumeForm">
+                <div class="perfumeName">
+                    <label for="navn">Parfumens navn:</label>
+                    <input type="text" id="navn" name="navn" placeholder="Navn:" required>
+                    <br>
+                    <label for="fabrikant">Fabrikant:</label>
+                    <input type="text" id="fabrikant" name="fabrikant" placeholder="Fabrikant:" required>
+                </div>
 
-                <label for="type">Parfumetype:</label>
-                <select id="type" name="type" required>
-                    <option value="EDT">EDT</option>
-                    <option value="EDP">EDP</option>
-                    <option value="Stick">Stick</option>
-                </select>
+                <div class="perfumeType">
+                    <label for="type">Parfumetype:</label><br>
 
-                <label for="milliliter">Milliliter:</label>
-                <input type="text" id="milliliter" name="milliliter" placeholder="Flaskestørrelse (ml):">
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="typeEDT" name="type" value="EDT" required>
+                            <label for="typeEDT">EDT</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="typeEDP" name="type" value="EDP" required>
+                            <label for="typeEDP">EDP</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="typeStick" name="type" value="Stick" required>
+                            <label for="typeStick">Stick</label>
+                        </div>
+                    </div>
 
-                <label for="billede">Billede URL:</label>
-                <input type="file" id="file" name="file" placeholder="Billede URL:" required>
+                    <input type="text" id="milliliter" name="milliliter" placeholder="Flaskestørrelse (ml):">
+                </div>
 
-                <label for="fabrikantBeskrivelse">Fabrikantens beskrivelse:</label>
-                <textarea id="fabrikantBeskrivelse" name="fabrikantBeskrivelse" placeholder="Beskrivelse:"></textarea>
+                <div class="perfumeImages">
+                    <label for="billede">Billede:</label>
+                    <input type="file" id="file" name="file" placeholder="Billede URL:" required>
+                </div>
 
-                <label for="egneOrd">Dine egne ord:</label>
-                <textarea id="egneOrd" name="egneOrd" placeholder="Dine egne ord om parfumen:"></textarea>
+                <div class="perfumeInfo">
+                    <label for="fabrikantBeskrivelse">Fabrikantens beskrivelse:</label>
+                    <textarea id="fabrikantBeskrivelse" name="fabrikantBeskrivelse"
+                        placeholder="Beskrivelse:"></textarea>
 
-                <label for="egnetTil">Egnet til:</label>
-                <select id="egnetTil" name="egnetTil[]" multiple required>
-                    <option value="Daglig">Daglig</option>
-                    <option value="Sommer">Sommer</option>
-                    <option value="Vinter">Vinter</option>
-                    <option value="Fest">Festlige lejligheder</option>
-                </select>
+                    <label for="egneOrd">Dine egne ord:</label>
+                    <textarea id="egneOrd" name="egneOrd" placeholder="Dine egne ord om parfumen:"></textarea>
+                </div>
+
+                <div class="perfumeData">
+                    <label for="egnetTil">Egnet til:</label>
+
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="egnetDaglig" name="egnetTil[]" value="Daglig" required>
+                            <label for="egnetDaglig">Daglig</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="egnetFest" name="egnetTil[]" value="Fest" required>
+                            <label for="egnetFest">Festlig</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="egnetSommer" name="egnetTil[]" value="Sommer" required>
+                            <label for="egnetSommer">Sommer</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="egnetVinter" name="egnetTil[]" value="Vinter" required>
+                            <label for="egnetVinter">Vinter</label>
+                        </div>
+                    </div>
 
 
-                <label for="bedømmelse">Bedømmelse (1-5):</label>
-                <input type="number" id="bedømmelse" name="bedømmelse" min="1" max="5" required>
+<br>
+                    <label for="bedømmelse">Bedømmelse (1-5):</label>
 
-                <label for="brugsfrekvens">Brugsfrekvens (1-24):</label>
-                <input type="number" id="brugsfrekvens" name="brugsfrekvens" min="1" max="24" required>
+                    <div class="rating-group">
+                        <div class="rating-option">
+                            <input type="radio" id="rating1" name="bedømmelse" value="1" required>
+                            <label for="rating1">1</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" id="rating2" name="bedømmelse" value="2" required>
+                            <label for="rating2">2</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" id="rating3" name="bedømmelse" value="3" required>
+                            <label for="rating3">3</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" id="rating4" name="bedømmelse" value="4" required>
+                            <label for="rating4">4</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" id="rating5" name="bedømmelse" value="5" required>
+                            <label for="rating5">5</label>
+                        </div>
+                    </div>
+
+                    <label for="brugsfrekvens">Brugsfrekvens (1-24):</label>
+                    <input type="number" id="brugsfrekvens" name="brugsfrekvens" min="1" max="24" required>
+                </div>
             </section>
 
-            <section>
+
+            <section class="dailyFormSubmit">
                 <button class="submit" name="submit">Gem Parfume</button>
             </section>
         </form>

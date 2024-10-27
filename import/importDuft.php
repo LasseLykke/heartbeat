@@ -23,43 +23,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $bedømmelse = intval($_POST["bedømmelse"]);
     $brugsfrekvens = intval($_POST["brugsfrekvens"]);
 
-    // Håndter filupload
-    $file = $_FILES['file'];
-    $fileName = $_FILES['file']['name'];
-    $fileTmpName = $_FILES['file']['tmp_name'];
-    $fileSize = $_FILES['file']['size'];
-    $fileError = $_FILES['file']['error'];
-    $fileType = $_FILES['file']['type'];
+// Håndter filupload
+$file = $_FILES['file'];
+$fileName = $_FILES['file']['name'];
+$fileTmpName = $_FILES['file']['tmp_name'];
+$fileSize = $_FILES['file']['size'];
+$fileError = $_FILES['file']['error'];
+$fileType = $_FILES['file']['type'];
 
-    // Tjek filtypen
-    $fileExt = explode('.', $fileName);
-    $fileActualExt = strtolower(end($fileExt));
-    $allowed = array('jpg', 'jpeg', 'png', 'pdf');
+// Tjek filtypen
+$fileExt = explode('.', $fileName);
+$fileActualExt = strtolower(end($fileExt));
+$allowed = array('jpg', 'jpeg', 'png');
 
-    // Standard værdi for billedfil
-    $fileNameNew = null;
+// Standard værdi for billedfil
+$fileNameNew = null;
 
-    if (in_array($fileActualExt, $allowed)) {
-        if ($fileError === 0) {
-            if ($fileSize < 10000000) {
-                $fileNameNew = uniqid('', true) . "." . $fileActualExt;
-                $fileDestination = '../uploads/' . $fileNameNew;
-                move_uploaded_file($fileTmpName, $fileDestination);
-            } else {
-                $_SESSION['message'] = "Din fil er for stor!";
-                header("Location: /import/importDuft.php?error=filstor");
-                exit();
-            }
+if (in_array($fileActualExt, $allowed)) {
+    if ($fileError === 0) {
+        if ($fileSize < 10000000) {
+            // Generer et nytt filnavn som fabrikant_navn.jpg
+            $fileNameNew = strtolower(trim($fabrikant)) . "_" . strtolower(trim($navn)) . "." . $fileActualExt;
+            $fileDestination = '../uploads/' . $fileNameNew;
+            move_uploaded_file($fileTmpName, $fileDestination);
         } else {
-            $_SESSION['message'] = "Der skete en fejl i upload af din fil!";
-            header("Location: /import/importDuft.php?error=uploadfejl");
+            $_SESSION['message'] = "Din fil er for stor!";
+            header("Location: /import/importDuft.php?error=filstor");
             exit();
         }
     } else {
-        $_SESSION['message'] = "Kan ikke uploade denne filtype!";
-        header("Location: /import/importDuft.php?error=filtype");
+        $_SESSION['message'] = "Der skete en fejl i upload af din fil!";
+        header("Location: /import/importDuft.php?error=uploadfejl");
         exit();
     }
+} else {
+    $_SESSION['message'] = "Kan ikke uploade denne filtype!";
+    header("Location: /import/importDuft.php?error=filtype");
+    exit();
+}
+
+$counter = 1;
+while (file_exists($fileDestination)) {
+    $fileNameNew = strtolower(trim($fabrikant)) . "_" . strtolower(trim($navn)) . "_" . $counter . "." . $fileActualExt;
+    $fileDestination = '../uploads/' . $fileNameNew;
+    $counter++;
+}
+
 
     // Start en transaktion
     $mysqli->begin_transaction();
@@ -181,19 +190,19 @@ ob_end_flush();
 
                     <div class="checkbox-group">
                         <div class="checkbox-option">
-                            <input type="checkbox" id="egnetDaglig" name="egnetTil[]" value="Daglig" required>
+                            <input type="checkbox" id="egnetDaglig" name="egnetTil[]" value="Daglig">
                             <label for="egnetDaglig">Daglig</label>
                         </div>
                         <div class="checkbox-option">
-                            <input type="checkbox" id="egnetFest" name="egnetTil[]" value="Fest" required>
+                            <input type="checkbox" id="egnetFest" name="egnetTil[]" value="Fest">
                             <label for="egnetFest">Festlig</label>
                         </div>
                         <div class="checkbox-option">
-                            <input type="checkbox" id="egnetSommer" name="egnetTil[]" value="Sommer" required>
+                            <input type="checkbox" id="egnetSommer" name="egnetTil[]" value="Sommer">
                             <label for="egnetSommer">Sommer</label>
                         </div>
                         <div class="checkbox-option">
-                            <input type="checkbox" id="egnetVinter" name="egnetTil[]" value="Vinter" required>
+                            <input type="checkbox" id="egnetVinter" name="egnetTil[]" value="Vinter">
                             <label for="egnetVinter">Vinter</label>
                         </div>
                     </div>

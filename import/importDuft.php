@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $bedømmelse = intval($_POST["bedømmelse"]);
     $brugsfrekvens = intval($_POST["brugsfrekvens"]);
 
-// Håndter filupload
+    // Håndter filupload
 $file = $_FILES['file'];
 $fileName = $_FILES['file']['name'];
 $fileTmpName = $_FILES['file']['tmp_name'];
@@ -42,10 +42,21 @@ $fileNameNew = null;
 if (in_array($fileActualExt, $allowed)) {
     if ($fileError === 0) {
         if ($fileSize < 10000000) {
-            // Generer et nytt filnavn som fabrikant_navn.jpg
+            // Generer et nyt filnavn som fabrikant_navn.jpg
             $fileNameNew = strtolower(trim($fabrikant)) . "_" . strtolower(trim($navn)) . "." . $fileActualExt;
             $fileDestination = '../uploads/' . $fileNameNew;
+
+            // Tjek for eksisterende filer med samme navn
+            $counter = 1;
+            while (file_exists($fileDestination)) {
+                $fileNameNew = strtolower(trim($fabrikant)) . "_" . strtolower(trim($navn)) . "_" . $counter . "." . $fileActualExt;
+                $fileDestination = '../uploads/' . $fileNameNew;
+                $counter++;
+            }
+
+            // Flyt filen til den endelige destination efter at filnavnet er opdateret
             move_uploaded_file($fileTmpName, $fileDestination);
+
         } else {
             $_SESSION['message'] = "Din fil er for stor!";
             header("Location: /import/importDuft.php?error=filstor");
@@ -62,12 +73,6 @@ if (in_array($fileActualExt, $allowed)) {
     exit();
 }
 
-$counter = 1;
-while (file_exists($fileDestination)) {
-    $fileNameNew = strtolower(trim($fabrikant)) . "_" . strtolower(trim($navn)) . "_" . $counter . "." . $fileActualExt;
-    $fileDestination = '../uploads/' . $fileNameNew;
-    $counter++;
-}
 
 
     // Start en transaktion
@@ -83,7 +88,7 @@ while (file_exists($fileDestination)) {
             throw new Exception($mysqli->error);
         }
 
-        $stmt->bind_param("ssssdssssi", $navn, $fabrikant, $type, $milliliter, $fileNameNew, $fabrikantBeskrivelse, $egneOrd, $egnetTil, $bedømmelse, $brugsfrekvens);
+        $stmt->bind_param("sssssssssi", $navn, $fabrikant, $type, $milliliter, $fileNameNew, $fabrikantBeskrivelse, $egneOrd, $egnetTil, $bedømmelse, $brugsfrekvens);
         $stmt->execute();
 
         // Luk statement
@@ -180,7 +185,7 @@ ob_end_flush();
                     <label for="fabrikantBeskrivelse">Fabrikantens beskrivelse:</label>
                     <textarea id="fabrikantBeskrivelse" name="fabrikantBeskrivelse"
                         placeholder="Beskrivelse:"></textarea>
-<br>
+                    <br>
                     <label for="egneOrd">Mine egne ord:</label>
                     <textarea id="egneOrd" name="egneOrd" placeholder="Mine egne ord:"></textarea>
                 </div>

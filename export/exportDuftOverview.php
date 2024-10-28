@@ -10,7 +10,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="refresh" content="1500;url=logout.php" />
-        <title>H E A R T B E A T || HEADACHE PERFUME</title>
+        <title>H E A R T B E A T || PERFUME</title>
     </head>
     <body>
     
@@ -42,20 +42,15 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <div class="INDSÆT DIV CLASS HER SOM PASSER">
         <?php
 // Database-forespørgsel for at hente parfumer
-$sql = "SELECT navn, fabrikant, type, milliliter, egnetTil, bedømmelse, brugsfrekvens, billede FROM perfumeLog ORDER BY fabrikant ASC;";
+$sql = "SELECT navn, fabrikant, type, milliliter, bedømmelse, brugsfrekvens, billede FROM perfumeLog ORDER BY fabrikant DESC;";
 $result = mysqli_query($conn, $sql);
 
 if ($result && mysqli_num_rows($result) > 0) {
     while ($perfume = mysqli_fetch_assoc($result)) {
         echo '<div class="cart">';
         echo '<h3>' . htmlspecialchars($perfume['navn']) . '</h3>';
-        echo '<p>Fabrikant: ' . htmlspecialchars($perfume['fabrikant']) . '</p>';
-        echo '<p>Type: ' . htmlspecialchars($perfume['type']) . '</p>';
-        echo '<p>Milliliter: ' . htmlspecialchars($perfume['milliliter']) . ' ml</p>';
-        echo '<p>Egnet til: ' . htmlspecialchars($perfume['egnetTil']) . '</p>';
-        echo '<p>Bedømmelse: ' . htmlspecialchars($perfume['bedømmelse']) . ' / 10</p>';
-        echo '<p>Brugsfrekvens: ' . htmlspecialchars($perfume['brugsfrekvens']) . ' gange pr. uge</p>';
-
+        echo '<p> ' . htmlspecialchars($perfume['fabrikant']) . '</p>';
+        echo '<br>';
         if (!empty($perfume['billede'])) {
             // Brug det gemte filnavn uden at tilføje '.jpg', da det allerede er en del af filnavnet
             $billedeSti = '../uploads/' . htmlspecialchars($perfume['billede']);
@@ -63,6 +58,12 @@ if ($result && mysqli_num_rows($result) > 0) {
         } else {
             echo '<p>Billede ikke tilgængeligt</p>';
         }
+        echo '<p>Type: ' . htmlspecialchars($perfume['type']) . '</p>';
+        echo '<p> ' . htmlspecialchars($perfume['milliliter']) . ' ml</p>';
+        echo '<p>Holdbarhed: ' . htmlspecialchars($perfume['brugsfrekvens']) . ' timer</p>';
+        echo '<p>Bedømmelse: ' . htmlspecialchars($perfume['bedømmelse']) . ' / 5</p>';
+        echo '<br>';
+        echo '<a href="export/exportSingleDuft.php" class="primBtn">Se mere</a>';
         
         
         echo '</div>';

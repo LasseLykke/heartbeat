@@ -124,7 +124,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
     <head>
         <!-- Logger ud efter 15min -->
-        <meta http-equiv="refresh" content="1500;url=logout.php" />
+        <meta http-equiv="refresh" content="1500;url=../logout.php" />
         <title>H E A R T B E A T || D A T A </title>
         <link rel="shortcut icon" href="" type="image/x-icon" />
 

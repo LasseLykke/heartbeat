@@ -9,7 +9,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="refresh" content="1500;url=logout.php" />
+        <meta http-equiv="refresh" content="1500;url=../logout.php" />
         <title>H E A R T B E A T || PERFUME</title>
     </head>
     <body>

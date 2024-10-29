@@ -120,7 +120,7 @@ ob_end_flush();
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="1500;url=logout.php" />
+    <meta http-equiv="refresh" content="1500;url=../logout.php" />
     <title>Daglig Logging</title>
 </head>
 

@@ -39,10 +39,7 @@ if (isset($_SESSION["message"])) {
 
 <!-- Wrapper til indhold -->
 <div class="wrapper">
-    
-
     <?php
-    // Tjekker om parfumeID er sat og henter data fra databasen
     if (isset($_GET['parfumeID'])) {
         $perfumeId = intval($_GET['parfumeID']); // Konverter ID til heltal for sikkerhed
 
@@ -51,19 +48,35 @@ if (isset($_SESSION["message"])) {
 
         if ($result && mysqli_num_rows($result) > 0) {
             $perfume = mysqli_fetch_assoc($result);
+
+            echo '<div class="product-header">';
             echo '<h1>' . htmlspecialchars($perfume['navn']) . '</h1>';
-            echo '<p>Fabrikant: ' . htmlspecialchars($perfume['fabrikant']) . '</p>';
+            echo '<p class="brand">' . htmlspecialchars($perfume['fabrikant']) . '</p>';
+            echo '</div>';
+
+            echo '<div class="product-content">';
+            if (!empty($perfume['billede'])) {
+                $billedeSti = '../uploads/' . htmlspecialchars($perfume['billede']);
+                echo '<div class="product-image">';
+                echo '<img src="' . $billedeSti . '" alt="' . htmlspecialchars($perfume['navn']) . '">';
+                echo '</div>';
+            } else {
+                echo '<p>Billede ikke tilgængeligt</p>';
+            } echo '</div>';
+
+            echo '<div class="product-details">';
             echo '<p>Type: ' . htmlspecialchars($perfume['type']) . '</p>';
             echo '<p>Størrelse: ' . htmlspecialchars($perfume['milliliter']) . ' ml</p>';
             echo '<p>Holdbarhed: ' . htmlspecialchars($perfume['brugsfrekvens']) . ' timer</p>';
             echo '<p>Bedømmelse: ' . htmlspecialchars($perfume['bedømmelse']) . ' / 5</p>';
+            echo '</div>';
+            echo '</div>';
+            
 
-            if (!empty($perfume['billede'])) {
-                $billedeSti = '../uploads/' . htmlspecialchars($perfume['billede']);
-                echo '<img src="' . $billedeSti . '" alt="' . htmlspecialchars($perfume['navn']) . '">';
-            } else {
-                echo '<p>Billede ikke tilgængeligt</p>';
-            }
+            echo '<div class="product-description">';
+            echo '<p>Fabrikantbeskrivelse: Lorem ipsum...</p>'; // Erstat evt. med beskrivelse fra databasen
+            echo '<p>Mine egne ord: Lorem ipsum...</p>'; // Tilføj brugerens personlige beskrivelse
+            echo '</div>';
         } else {
             echo '<p>Parfume ikke fundet.</p>';
         }
@@ -72,6 +85,7 @@ if (isset($_SESSION["message"])) {
     }
     ?>
 </div>
+
 
 <script src="../script.js"></script>
 </body>

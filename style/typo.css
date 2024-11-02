@@ -32,6 +32,12 @@ h3 {
     display: inline-block;
 }
 
+h4 {
+    font-weight: 1000;
+    text-transform: uppercase;
+    color: var(--black);
+}
+
 p {
     font-weight: 200;
 }

@@ -39,60 +39,63 @@ if (isset($_SESSION["message"])) {
 
 <!-- Wrapper til indhold -->
 <div class="wrapper">
-    <?php
-    if (isset($_GET['parfumeID'])) {
-        $perfumeId = intval($_GET['parfumeID']); // Konverter ID til heltal for sikkerhed
+<?php
+if (isset($_GET['parfumeID'])) {
+    $perfumeId = intval($_GET['parfumeID']); // Konverter ID til heltal for sikkerhed
 
-        $sql = "SELECT navn, fabrikant, type, milliliter, bedømmelse, brugsfrekvens, billede FROM perfumeLog WHERE parfumeID = $perfumeId";
-        $result = mysqli_query($conn, $sql);
+    // Opdater SQL-forespørgslen til at inkludere fabrikantBeskrivelse, egneOrd og egnetTil
+    $sql = "SELECT navn, fabrikant, type, milliliter, bedømmelse, brugsfrekvens, billede, fabrikantBeskrivelse, egneOrd, egnetTil FROM perfumeLog WHERE parfumeID = $perfumeId";
+    $result = mysqli_query($conn, $sql);
 
-        if ($result && mysqli_num_rows($result) > 0) {
-            $perfume = mysqli_fetch_assoc($result);
+    if ($result && mysqli_num_rows($result) > 0) {
+        $perfume = mysqli_fetch_assoc($result);
 
-            echo '<div class="product-header">';
-            echo '<h1>' . htmlspecialchars($perfume['navn']) . '</h1>';
-            echo '<p class="brand">' . htmlspecialchars($perfume['fabrikant']) . '</p>';
-            echo '</div>';
+        echo '<div class="product-header">';
+        echo '<h1>' . htmlspecialchars($perfume['navn']) . '</h1>';
+        echo '<p class="brand">' . htmlspecialchars($perfume['fabrikant']) . '</p>';
+        echo '</div>';
 
-            echo '<div class="product-content">';
-            if (!empty($perfume['billede'])) {
-                $billedeSti = '../uploads/' . htmlspecialchars($perfume['billede']);
-                echo '<div class="product-image">';
-                echo '<img src="' . $billedeSti . '" alt="' . htmlspecialchars($perfume['navn']) . '">';
-                echo '</div>';
-            } else {
-                echo '<p>Billede ikke tilgængeligt</p>';
-            } echo '</div>';
-
-            echo '<div class="product-details">';
-            echo '<p>Type: ' . htmlspecialchars($perfume['type']) . '</p>';
-            echo '<p>Størrelse: ' . htmlspecialchars($perfume['milliliter']) . ' ml</p>';
-            echo '<p>Holdbarhed: ' . htmlspecialchars($perfume['brugsfrekvens']) . ' timer</p>';
-            echo '<p>Bedømmelse: ' . htmlspecialchars($perfume['bedømmelse']) . ' / 5</p>';
-            echo '</div>';
-            echo '</div>';
-            
-
-            echo '<div class="product-description">';
-            echo '<p>Fabrikantbeskrivelse: Lorem ipsum...</p>'; // Erstat evt. med beskrivelse fra databasen
-            echo '<p>Mine egne ord: Lorem ipsum...</p>'; // Tilføj brugerens personlige beskrivelse
+        echo '<div class="product-content">';
+        if (!empty($perfume['billede'])) {
+            $billedeSti = '../uploads/' . htmlspecialchars($perfume['billede']);
+            echo '<div class="product-image">';
+            echo '<img src="' . $billedeSti . '" alt="' . htmlspecialchars($perfume['navn']) . '">';
             echo '</div>';
         } else {
-            echo '<p>Parfume ikke fundet.</p>';
+            echo '<p>Billede ikke tilgængeligt</p>';
         }
-    } else {
-        echo '<p>Ingen parfume valgt.</p>';
-    }
-    ?>
-</div>
+        echo '</div>';
 
+        echo '<div class="product-details">';
+        
+        echo '<div class="detail-item"><h4>Type:</h4><p>' . htmlspecialchars($perfume['type']) . '</p></div>';
+        echo '<div class="detail-item"><h4>Størrelse:</h4><p>' . (int)$perfume['milliliter'] . ' ml</p></div>';
+        echo '<div class="detail-item"><h4>Holdbarhed:</h4><p>' . htmlspecialchars($perfume['brugsfrekvens']) . ' timer</p></div>';
+        echo '<div class="detail-item"><h4>Egnet til:</h4><p>' . htmlspecialchars($perfume['egnetTil']) . '</p></div>';
+        echo '<div class="detail-item"><h4>Bedømmelse:</h4><p>' . htmlspecialchars($perfume['bedømmelse']) . ' / 5</p></div>';
+
+        echo '</div>';
+
+        echo '<div class="product-description">';
+        echo '<h4>Fabrikantbeskrivelse:</h4><p>' . htmlspecialchars($perfume['fabrikantBeskrivelse']) . '</p> <br>';
+        echo '<h4>Mine egne ord:</h4><p>' . htmlspecialchars($perfume['egneOrd']) . '</p></div>';
+        echo '</div>';
+    } else {
+        echo '<p>Parfume ikke fundet.</p>';
+    }
+} else {
+    echo '<p>Ingen parfume valgt.</p>';
+}
+?>
+
+
+</div>
 
 <script src="../script.js"></script>
 </body>
 </html>
 
 <?php
-// Hvis brugeren ikke er logget ind, omdirigeres de til login
 } else {
     header("Location: /index.php");
     exit();

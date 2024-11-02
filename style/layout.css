@@ -608,19 +608,38 @@ tr:hover {
 }
 
 .product-details {
-  margin-top: 15px;
-  font-size: 16px;
-  color: #333;
+  padding: 10px;
+  display: flex;
+  flex-direction: column; /* Lad hvert par stå på en ny linje */
+  gap: 10px; /* Afstand mellem hver detail-item */
 }
 
-.product-details p {
-  margin: 5px 0;
+.detail-item {
+  display: flex; /* Gør <h4> og <p> til en linje */
+  gap: 30px;
 }
+
+.detail-item h4 {
+  margin: 0;
+  width: 100px; /* Kontrol over bredden på h4-teksten */
+  display: flex;
+  align-items: center;
+}
+
+.detail-item p {
+  margin: 0;
+  flex-grow: 1; /* Fyld det resterende rum ved siden af h4 */
+  display: flex;
+  align-items: center;
+}
+
 
 .product-description {
   margin-top: 20px;
-  padding-top: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
   color: #555;
+  text-align: left;
 }
 
 

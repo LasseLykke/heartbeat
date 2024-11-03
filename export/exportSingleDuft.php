@@ -4,6 +4,7 @@ session_start();
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     include '../header.php';
+    require '../navbar.php';
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +13,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="refresh" content="1500;url=../logout.php" />
-    <title>H E A R T B E A T || DUFT</title>
+    <title>H E A R T B E A T || PARFUME FORM</title>
 </head>
 <body>
 
@@ -22,20 +23,6 @@ if (isset($_SESSION["message"])) {
     unset($_SESSION["message"]);
 }
 ?>
-
-<!-- Header med navigation -->
-<header>
-    <button class="hamburger">
-        <div class="bar"></div>
-    </button>
-    <nav class="mobile-nav">
-        <a href="../forside.php">Forside</a>
-        <a href="../import/importDaily.php">Daglig</a>
-        <a href="../import/workoutforms.php">Workout</a>
-        <a href="../export/dataOverview.php">Statistik</a>
-        <a href="../logout.php">Log ud</a>
-    </nav>
-</header>
 
 <!-- Wrapper til indhold -->
 <div class="wrapper">

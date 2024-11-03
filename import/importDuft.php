@@ -2,6 +2,7 @@
 ob_start();
 session_start();
 include '../header.php';
+require '../navbar.php';
 
 // Tjek om brugeren er logget ind
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_name'])) {
@@ -125,21 +126,6 @@ ob_end_flush();
         unset($_SESSION["message"]);
     }
     ?>
-
-    <header>
-        <button class="hamburger">
-            <div class="bar"></div>
-        </button>
-
-        <nav class="mobile-nav">
-            <a href="../forside.php">Forside</a>
-            <a href="../import/importDaily.php">Daglig</a>
-            <a href="../import/workoutforms.php">Workout</a>
-            <a href="../export/dataOverview.php">Statestik</a>
-            <a href="../import/importDuft.php">Duft</a>
-            <a href="../logout.php">Log ud</a>
-        </nav>
-    </header>
 
     <div class="wrapper">
         <section class="hbHeader">

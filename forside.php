@@ -5,6 +5,7 @@ session_start();
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
     include 'header.php';
+    require 'navbar.php';
     ?>
     <!DOCTYPE html>
     <html>
@@ -17,21 +18,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     </head>
 
     <body>
-
-        <header>
-            <button class="hamburger">
-                <div class="bar"></div>
-            </button>
-
-            <nav class="mobile-nav">
-            <a href="forside.php">Forside</a>
-            <a href="../import/importDaily.php">Daglig</a>
-            <a href="../import/workoutforms.php">Workout</a>
-            <a href="../export/dataOverview.php">Statestik</a>
-            <a href="../import/importDuft.php">Duft</a>
-            <a href="logout.php">Log ud</a>
-        </nav>
-        </header>
 
         <!-- INPUT SECTION -->
         <div class="wrapper">

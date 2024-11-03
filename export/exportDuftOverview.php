@@ -4,13 +4,14 @@ session_start();
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     include '../header.php';
+    require '../navbar.php';
     ?>
     <!DOCTYPE html>
     <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="refresh" content="1500;url=../logout.php" />
-        <title>H E A R T B E A T || PERFUME</title>
+        <title>H E A R T B E A T || PARFUMER</title>
     </head>
     <body>
     
@@ -21,28 +22,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     }
     ?>
 
-    <header>
-        <button class="hamburger">
-            <div class="bar"></div>
-        </button>
-
-        <nav class="mobile-nav">
-            <a href="../forside.php">Forside</a>
-            <a href="../import/importDaily.php">Daglig</a>
-            <a href="../import/workoutforms.php">Workout</a>
-            <a href="../export/dataOverview.php">Statistik</a>
-            <a href="../logout.php">Log ud</a>
-        </nav>
-    </header>
-
     <div class="wrapper">
         <section class="hbHeader">
-            <h1 class="headerText">Perfumes</h1>
+            <h1 class="headerText">Parfumer</h1>
         </section>
         <div class="INDSÆT DIV CLASS HER SOM PASSER">
         <?php
 // Database-forespørgsel for at hente parfumer
-$sql = "SELECT parfumeID, navn, fabrikant, type, milliliter, bedømmelse, brugsfrekvens, billede FROM perfumeLog ORDER BY fabrikant DESC;";
+$sql = "SELECT parfumeID, navn, fabrikant, type, milliliter, bedømmelse, brugsfrekvens, billede FROM perfumeLog ORDER BY fabrikant ASC;";
 $result = mysqli_query($conn, $sql);
 
 if ($result && mysqli_num_rows($result) > 0) {
@@ -58,7 +45,7 @@ if ($result && mysqli_num_rows($result) > 0) {
             echo '<p>Billede ikke tilgængeligt</p>';
         }
         echo '<p>Type: ' . htmlspecialchars($perfume['type']) . '</p>';
-        echo '<p>' . htmlspecialchars($perfume['milliliter']) . ' ml</p>';
+        echo '<p>' . (int)$perfume['milliliter'] . ' ml</p>';
         echo '<p>Holdbarhed: ' . htmlspecialchars($perfume['brugsfrekvens']) . ' timer</p>';
         echo '<p>Bedømmelse: ' . htmlspecialchars($perfume['bedømmelse']) . ' / 5</p>';
         echo '<br>';

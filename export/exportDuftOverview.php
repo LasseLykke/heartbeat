@@ -50,7 +50,7 @@ if ($result && mysqli_num_rows($result) > 0) {
         echo '<p>Bedømmelse: ' . htmlspecialchars($perfume['bedømmelse']) . ' / 5</p>';
         echo '<br>';
         echo '<a href="exportSingleDuft.php?parfumeID=' . htmlspecialchars($perfume['parfumeID']) . '" class="primBtn">Se mere</a>';
-
+        echo '<br>';
         echo '</div>';
     }
 } else {

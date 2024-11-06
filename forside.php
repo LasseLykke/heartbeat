@@ -25,7 +25,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 <h1 class="headerText">Hej <?php echo $_SESSION['name']; ?> 👋🏻</h1>
                 <div class="formContainer">
                     <a href="../import/importDaily.php"><button class="formBtn">Daglig log</button></a>
-                    <a href="../import/workoutforms.php"><button class="formBtn">Workout's</button></a>
+                    <a href="../import/workoutforms.php"><button class="formBtn">Workout</button></a>
                 </div>
             </section>
 

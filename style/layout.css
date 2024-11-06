@@ -575,17 +575,22 @@ tr:hover {
 
 /* PERFUME */
 .cart {
-  border: 1px solid #dcdcdc;
-  border-radius: 2px;
+  border-radius: 5px;
   padding: 16px;
   margin: 8px;
-  width: 200px;
+  width: 300px;
+  box-shadow: var(--b-shadow-xs);
   text-align: center;
   display: inline-block;
+  transition: 200ms ease-in-out;
 }
 .cart img {
   width: 100%;
   height: auto;
+}
+
+.cart:hover {
+  box-shadow: var(--b-shadow-s);
 }
 
 .product-header h1 {
@@ -950,4 +955,15 @@ Maybe change this for stats?*/
     right: 8px;
     top: 38px;
   }
+}
+
+
+.slide-out {
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.slide-in {
+  transform: translateX(0);
+  transition: transform 0.5s ease;
 }

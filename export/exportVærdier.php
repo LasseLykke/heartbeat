@@ -13,7 +13,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Logger ud efter 15min -->
         <meta http-equiv="refresh" content="1500;url=../logout.php" />
-        <title>H E A R T B E A T || HEADACHE HEADACHE </title>
+        <title>H E A R T B E A T || HEADACHE VÆRDIER </title>
     </head>
 
     <?php
@@ -145,7 +145,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     labels: formattedDates, // Brug de formaterede datoer som labels
                     datasets: [
                         {
-                            label: "Styrke",
+                            label: "GNS Puls",
                             data: woData.map((data) => data.gnsPuls), // Brug headacheLevel til graf
                             borderColor: "rgba(185, 132 , 115, 1)",
                             borderWidth: 1,
@@ -156,7 +156,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             lineTension: 0.2,
                         },
                         {
-                            label: "Varighed",
+                            label: "Kcal",
                             data: woData.map((data) => data.kcal), // Brug headacheDuration til graf
                             borderColor: "rgba(255, 79, 24, 1)",
                             borderWidth: 1,
@@ -218,8 +218,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                     }
                                     if (context.parsed.y !== null) {
                                         // Hvis dataset er for "Varighed", tilføj "timer"
-                                        if (label === "Varighed: ") {
-                                            label += context.parsed.y + " timer";
+                                        if (label === "Kcal: ") {
+                                            label += context.parsed.y + "";
                                         } else {
                                             label += context.parsed.y;
                                         }

@@ -12,112 +12,115 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <!-- Import of datapoints from db -->
     <?php
 
-    $sqls = [
-        "SELECT painSession.sessionDate, headacheLog.headacheDuration 
-     FROM painSession 
-     JOIN headacheLog ON painSession.sessionID = headacheLog.sessionID 
-     WHERE headacheLog.hasHeadache = 1 
-     AND headacheLog.headacheDuration  
-     ORDER BY painSession.sessionDate DESC LIMIT 1",
-        "SELECT cykelTid, cykelBelastning FROM woCykel ORDER BY cykelID DESC LIMIT 1",
-        "SELECT pulldownRep, pulldownKilo FROM woPulldown ORDER BY pulldownID DESC LIMIT 1",
-        "SELECT rygRep FROM woRyg ORDER BY rygID DESC LIMIT 1",
-        "SELECT absRep, absKilo FROM woAbs ORDER BY absID DESC LIMIT 1",
-        "SELECT brystpressRep, brystpressKilo FROM woBrystpress ORDER BY brystpressID DESC LIMIT 1",
-        "SELECT legpressRep, legpressKilo FROM woLegpress ORDER BY legpressID DESC LIMIT 1",
-        "SELECT legcurlRep, legcurlKilo FROM woLegcurl ORDER BY legcurlID DESC LIMIT 1",
-        "SELECT legextensionRep, legextensionKilo FROM woExtension ORDER BY legextensionID DESC LIMIT 1",
-        "SELECT bicepsRep, bicepsKilo FROM woBiceps ORDER BY bicepsID DESC LIMIT 1",
-        "SELECT neckpressRep, neckpressKilo FROM woNeck ORDER BY neckpressID DESC LIMIT 1",
-        "SELECT pullupsRep, pullupsKilo FROM woPullups ORDER BY pullupsID DESC LIMIT 1",
-        "SELECT løbTid, løbBelastning FROM woLøb ORDER BY løbID DESC LIMIT 1",
-        "SELECT rystTid FROM woRyst ORDER BY rystID DESC LIMIT 1",
-        "SELECT buttupsRep FROM woButtups ORDER BY buttupsID DESC LIMIT 1",
-        "SELECT vand FROM woVand ORDER BY vandID DESC LIMIT 1",
-        "SELECT vægt FROM woVægt ORDER BY vægtID DESC LIMIT 1",
-        "SELECT varighed FROM woVarighed ORDER BY varighedID DESC LIMIT 1",
-        "SELECT ps.sessionDate, bp.painLevel 
-        FROM painSession AS ps 
-        JOIN bodyPainLog AS bp ON ps.sessionID = bp.sessionID 
-        WHERE bp.painLevel > 0 
-        ORDER BY ps.sessionDate DESC LIMIT 1",
-        "SELECT ps.sessionDate, ps.mentalState 
-        FROM painSession AS ps 
-        WHERE ps.mentalState IS NOT NULL 
-        ORDER BY ps.sessionDate DESC LIMIT 1",
-    ];
+$sqls = [
+    "SELECT painSession.sessionDate, headacheLog.headacheDuration 
+ FROM painSession 
+ JOIN headacheLog ON painSession.sessionID = headacheLog.sessionID 
+ WHERE headacheLog.hasHeadache = 1 
+ AND headacheLog.headacheDuration  
+ ORDER BY painSession.sessionDate DESC LIMIT 1",
+    "SELECT cykelTid, cykelBelastning FROM woCykel ORDER BY cykelID DESC LIMIT 1",
+    "SELECT pulldownRep, pulldownKilo FROM woPulldown ORDER BY pulldownID DESC LIMIT 1",
+    "SELECT rygRep FROM woRyg ORDER BY rygID DESC LIMIT 1",
+    "SELECT absRep, absKilo FROM woAbs ORDER BY absID DESC LIMIT 1",
+    "SELECT brystpressRep, brystpressKilo FROM woBrystpress ORDER BY brystpressID DESC LIMIT 1",
+    "SELECT legpressRep, legpressKilo FROM woLegpress ORDER BY legpressID DESC LIMIT 1",
+    "SELECT legcurlRep, legcurlKilo FROM woLegcurl ORDER BY legcurlID DESC LIMIT 1",
+    "SELECT legextensionRep, legextensionKilo FROM woExtension ORDER BY legextensionID DESC LIMIT 1",
+    "SELECT bicepsRep, bicepsKilo FROM woBiceps ORDER BY bicepsID DESC LIMIT 1",
+    "SELECT neckpressRep, neckpressKilo FROM woNeck ORDER BY neckpressID DESC LIMIT 1",
+    "SELECT pullupsRep, pullupsKilo FROM woPullups ORDER BY pullupsID DESC LIMIT 1",
+    "SELECT løbTid, løbBelastning FROM woLøb ORDER BY løbID DESC LIMIT 1",
+    "SELECT rystTid FROM woRyst ORDER BY rystID DESC LIMIT 1",
+    "SELECT buttupsRep FROM woButtups ORDER BY buttupsID DESC LIMIT 1",
+    "SELECT gnsPuls FROM woVærdi ORDER BY værdiID DESC LIMIT 1",
+    "SELECT kcal FROM woVærdi ORDER BY værdiID DESC LIMIT 1",
+    "SELECT vand FROM woVand ORDER BY vandID DESC LIMIT 1",
+    "SELECT vægt FROM woVægt ORDER BY vægtID DESC LIMIT 1",
+    "SELECT varighed FROM woVarighed ORDER BY varighedID DESC LIMIT 1",
+    "SELECT ps.sessionDate, bp.painLevel 
+    FROM painSession AS ps 
+    JOIN bodyPainLog AS bp ON ps.sessionID = bp.sessionID 
+    WHERE bp.painLevel > 0 
+    ORDER BY ps.sessionDate DESC LIMIT 1",
+    "SELECT ps.sessionDate, ps.mentalState 
+    FROM painSession AS ps 
+    WHERE ps.mentalState IS NOT NULL 
+    ORDER BY ps.sessionDate DESC LIMIT 1",
+];
 
-    $results = [];
-    foreach ($sqls as $key => $sql) {
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            $results[$key] = $result->fetch_assoc();
-        } else {
-            $results[$key] = null;
-        }
+$results = [];
+foreach ($sqls as $key => $sql) {
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $results[$key] = $result->fetch_assoc();
+    } else {
+        $results[$key] = null;
     }
+}
 
+$painDate = $results[0]['sessionDate'] ?? "Ingen data";
+$headacheDuration = $results[0]['headacheDuration'] ?? "Ingen data";
 
-    $painDate = $results[0]['sessionDate'] ?? "Ingen data";
-    $headacheDuration = $results[0]['headacheDuration'] ?? "Ingen data";
+$cykelTid = $results[1]['cykelTid'] ?? "Ingen data";
+$cykelBelastning = $results[1]['cykelBelastning'] ?? "Ingen data";
 
+$pulldownRep = $results[2]['pulldownRep'] ?? "Ingen data";
+$pulldownKilo = $results[2]['pulldownKilo'] ?? "Ingen data";
 
-    $cykelTid = $results[1]['cykelTid'] ?? "Ingen data";
-    $cykelBelastning = $results[1]['cykelBelastning'] ?? "Ingen data";
+$rygRep = $results[3]['rygRep'] ?? "Ingen data";
 
-    $pulldownRep = $results[2]['pulldownRep'] ?? "Ingen data";
-    $pulldownKilo = $results[2]['pulldownKilo'] ?? "Ingen data";
+$absRep = $results[4]['absRep'] ?? "Ingen data";
+$absKilo = $results[4]['absKilo'] ?? "Ingen data";
 
-    $rygRep = $results[3]['rygRep'] ?? "Ingen data";
+$brystpressRep = $results[5]['brystpressRep'] ?? "Ingen data";
+$brystpressKilo = $results[5]['brystpressKilo'] ?? "Ingen data";
 
-    $absRep = $results[4]['absRep'] ?? "Ingen data";
-    $absKilo = $results[4]['absKilo'] ?? "Ingen data";
+$legpressRep = $results[6]['legpressRep'] ?? "Ingen data";
+$legpressKilo = $results[6]['legpressKilo'] ?? "Ingen data";
 
-    $brystpressRep = $results[5]['brystpressRep'] ?? "Ingen data";
-    $brystpressKilo = $results[5]['brystpressKilo'] ?? "Ingen data";
+$legcurlRep = $results[7]['legcurlRep'] ?? "Ingen data";
+$legcurlKilo = $results[7]['legcurlKilo'] ?? "Ingen data";
 
-    $legpressRep = $results[6]['legpressRep'] ?? "Ingen data";
-    $legpressKilo = $results[6]['legpressKilo'] ?? "Ingen data";
+$legextensionRep = $results[8]['legextensionRep'] ?? "Ingen data";
+$legextensionKilo = $results[8]['legextensionKilo'] ?? "Ingen data";
 
-    $legcurlRep = $results[7]['legcurlRep'] ?? "Ingen data";
-    $legcurlKilo = $results[7]['legcurlKilo'] ?? "Ingen data";
+$bicepsRep = $results[9]['bicepsRep'] ?? "Ingen data";
+$bicepsKilo = $results[9]['bicepsKilo'] ?? "Ingen data";
 
-    $legextensionRep = $results[8]['legextensionRep'] ?? "Ingen data";
-    $legextensionKilo = $results[8]['legextensionKilo'] ?? "Ingen data";
+$neckpressRep = $results[10]['neckpressRep'] ?? "Ingen data";
+$neckpressKilo = $results[10]['neckpressKilo'] ?? "Ingen data";
 
-    $bicepsRep = $results[9]['bicepsRep'] ?? "Ingen data";
-    $bicepsKilo = $results[9]['bicepsKilo'] ?? "Ingen data";
+$pullupsRep = $results[11]['pullupsRep'] ?? "Ingen data";
+$pullupsKilo = $results[11]['pullupsKilo'] ?? "Ingen data";
 
-    $neckpressRep = $results[10]['neckpressRep'] ?? "Ingen data";
-    $neckpressKilo = $results[10]['neckpressKilo'] ?? "Ingen data";
+$løbTid = $results[12]['løbTid'] ?? "Ingen data";
+$løbBelastning = $results[12]['løbBelastning'] ?? "Ingen data";
 
-    $pullupsRep = $results[11]['pullupsRep'] ?? "Ingen data";
-    $pullupsKilo = $results[11]['pullupsKilo'] ?? "Ingen data";
+$rystTid = $results[13]['rystTid'] ?? "Ingen data";
 
-    $løbTid = $results[12]['løbTid'] ?? "Ingen data";
-    $løbBelastning = $results[12]['løbBelastning'] ?? "Ingen data";
+$buttupsRep = $results[14]['buttupsRep'] ?? "Ingen data";
 
-    $rystTid = $results[13]['rystTid'] ?? "Ingen data";
+$gnsPuls = $results[15]['gnsPuls'] ?? "Ingen data"; 
+$kcal = $results[16]['kcal'] ?? "Ingen data";    
 
-    $buttupsRep = $results[14]['buttupsRep'] ?? "Ingen data";
+$vand = $results[17]['vand'] ?? "Ingen data";
 
-    $vand = $results[15]['vand'] ?? "Ingen data";
+$vægt = $results[18]['vægt'] ?? "Ingen data";
 
-    $vægt = $results[16]['vægt'] ?? "Ingen data";
+$lastWorkoutDate = $results[19]['sessionDate'] ?? "Ingen data";
+$lastWorkoutDuration = $results[19]['varighed'] ?? "Ingen data";
 
-    $lastWorkoutDate = $results[17]['sessionDate'] ?? "Ingen data";
-    $lastWorkoutDuration = $results[17]['varighed'] ?? "Ingen data";
+$bodyPainDate = $results[20]['sessionDate'] ?? "Ingen data";
+$bodyPainLevel = $results[20]['painLevel'] ?? "Ingen data";
 
-    $bodyPainDate = $results[18]['sessionDate'] ?? "Ingen data";
-    $bodyPainLevel = $results[18]['painLevel'] ?? "Ingen data";
+$mentalStateDate = $results[21]['sessionDate'] ?? "Ingen data";
+$mentalState = $results[21]['mentalState'] ?? "Ingen data";
 
-    $mentalStateDate = $results[19]['sessionDate'] ?? "Ingen data";
-    $mentalState = $results[19]['mentalState'] ?? "Ingen data";
+// Close Connection
+$conn->close();
+?>
 
-
-    // Close Connection
-    $conn->close();
-    ?>
 
 
     <!DOCTYPE html>
@@ -372,6 +375,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     </a>
                 </div>
 
+
                 <div class="dataCart">
                     <a href="../export/exportPullups.php">
                         <div class="dataBtn">
@@ -438,6 +442,25 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             <div class="dataCartInfo">
                                 <div class="inline">
                                     <p class="dataBtnInfo"><?php echo $vand; ?> liter</p>
+                                    <br>
+                                    <button class="primBtn">Se mere</button>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="dataCart">
+                    <a href="../export/exportVærdier.php">
+                        <div class="dataBtn">
+                            <div class="dataCartHeader">
+                                <img src="../img/buttups.png" class="dataIcon" alt="workout icon">
+                                <h3>Værdier</h3>
+                            </div>
+                            <div class="dataCartInfo">
+                                <div class="inline">
+                                <p class="dataBtnInfo"><?php echo $gnsPuls; ?>P |</p>
+                                    <p class="dataBtnInfo"><?php echo $kcal; ?>kcal</p>
                                     <br>
                                     <button class="primBtn">Se mere</button>
                                 </div>

@@ -230,6 +230,17 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
 
                 <div class="dataCartLarge">
+                    <a href="importVærdi.php">
+                        <div class="dataBtn">
+                            <div class="dataCartHeader">
+                                <img src="../img/dumbell.png" class="dataIcon" alt="workout icon">
+                                <h2>Værdier</h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="dataCartLarge">
                     <a href="importBemærkning.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">

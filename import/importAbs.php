@@ -102,19 +102,65 @@ ob_end_flush();
         <section class="hbHeader">
             <h1 class="headerText">Abcrunch</h1>
         </section>
-        <form class="workoutForm" action="" method="POST">
 
-            <section class="workoutlabel">
-                <label for="absRep"></label>
-                <input type="number" id="absRep" name="absRep" placeholder="Rep:" required>
+        <section class="lastStats">
+            <?php
+            // Funktion til at hente de sidste data for en given øvelse
+            function getLastExerciseData($conn, $woAbs)
+            {
+                $sql = "SELECT 
+                absRep, 
+                absKilo, 
+                sessionDate
+            FROM 
+                $woAbs
+            JOIN 
+                workoutSession ON $woAbs.sessionID = workoutSession.sessionID
+            WHERE 
+                absID = (SELECT MAX(absID) FROM $woAbs WHERE sessionID = workoutSession.sessionID)
+            ORDER BY 
+                sessionDate DESC
+            LIMIT 1;";
 
-                <label for="absKilo"></label>
-                <input type="text" id="absKilo" name="absKilo" placeholder="Kilo:" required>
-            </section>
+                $result = $conn->query($sql);
 
-            <section>
-                <button class="submit">Gem</button>
-            </section>
+                if ($result->num_rows > 0) {
+                    return $result->fetch_assoc();
+                } else {
+                    return null;
+                }
+            }
+
+            // Eksempel på at hente data for en øvelse
+            $woAbs = "woAbs"; // Skift dette til andre tabeller som "triceps", "legs" osv.
+            $data = getLastExerciseData($conn, $woAbs);
+
+            if ($data) {
+                // Formatér datoen som DD/MM/YYYY
+                $formattedDate = date('d/m/Y', strtotime($data['sessionDate']));
+                echo "<p>Last Session</p>";
+                echo "<p>{$formattedDate}</p>";
+                echo "<p>{$data['absRep']} Rep | {$data['absKilo']} Kilo</p>";
+            } else {
+                echo "<p>Ingen data fundet for $woAbs.</p>";
+            }
+            ?>
+        </section>
+
+
+            <form class="workoutForm" action="" method="POST">
+
+                <section class="workoutlabel">
+                    <label for="absRep"></label>
+                    <input type="number" id="absRep" name="absRep" placeholder="Rep:" required>
+
+                    <label for="absKilo"></label>
+                    <input type="text" id="absKilo" name="absKilo" placeholder="Kilo:" required>
+                </section>
+
+                <section>
+                    <button class="submit">Gem</button>
+                </section>
     </div>
 
 

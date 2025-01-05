@@ -78,7 +78,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     header("Location: /index.php");
     exit();
 
-    
+
 }
 ob_end_flush();
 ?>
@@ -107,6 +107,52 @@ ob_end_flush();
         <section class="hbHeader">
             <h1 class="headerText">Brystpres</h1>
         </section>
+
+        <section class="lastStats">
+            <?php
+            // Funktion til at hente de sidste data for en given øvelse
+            function getLastExerciseData($conn, $woBrystpress)
+            {
+                $sql = "SELECT 
+                brystpressRep, 
+                brystpressKilo, 
+                sessionDate
+            FROM 
+                $woBrystpress
+            JOIN 
+                workoutSession ON $woBrystpress.sessionID = workoutSession.sessionID
+            WHERE 
+                brystpressID = (SELECT MAX(brystpressID) FROM $woBrystpress WHERE sessionID = workoutSession.sessionID)
+            ORDER BY 
+                sessionDate DESC
+            LIMIT 1;";
+
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    return $result->fetch_assoc();
+                } else {
+                    return null;
+                }
+            }
+
+            // Eksempel på at hente data for en øvelse
+            $woBrystpress = "woBrystpress"; // Skift dette til andre tabeller som "triceps", "legs" osv.
+            $data = getLastExerciseData($conn, $woBrystpress);
+
+            if ($data) {
+                // Formatér datoen som DD/MM/YYYY
+                $formattedDate = date('d/m/Y', strtotime($data['sessionDate']));
+                echo "<p>Last Session</p>";
+                echo "<p>{$formattedDate}</p>";
+                echo "<p>{$data['brystpressRep']} Rep | {$data['brystpressKilo']} Kilo</p>";
+            } else {
+                echo "<p>Ingen data fundet for $woBrystpress.</p>";
+            }
+            ?>
+        </section>
+
+
         <form class="workoutForm" action="" method="POST">
 
             <section class="workoutlabel">

@@ -102,6 +102,52 @@ ob_end_flush();
         <section class="hbHeader">
             <h1 class="headerText">Legpress</h1>
         </section>
+
+        <section class="lastStats">
+            <?php
+            // Funktion til at hente de sidste data for en given øvelse
+            function getLastExerciseData($conn, $woLegpress)
+            {
+                $sql = "SELECT 
+                legpressRep, 
+                legpressKilo, 
+                sessionDate
+            FROM 
+                $woLegpress
+            JOIN 
+                workoutSession ON $woLegpress.sessionID = workoutSession.sessionID
+            WHERE 
+                legpressID = (SELECT MAX(legpressID) FROM $woLegpress WHERE sessionID = workoutSession.sessionID)
+            ORDER BY 
+                sessionDate DESC
+            LIMIT 1;";
+
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    return $result->fetch_assoc();
+                } else {
+                    return null;
+                }
+            }
+
+            // Eksempel på at hente data for en øvelse
+            $woLegpress = "woLegpress"; // Skift dette til andre tabeller som "triceps", "legs" osv.
+            $data = getLastExerciseData($conn, $woLegpress);
+
+            if ($data) {
+                // Formatér datoen som DD/MM/YYYY
+                $formattedDate = date('d/m/Y', strtotime($data['sessionDate']));
+                echo "<p>Last Session</p>";
+                echo "<p>{$formattedDate}</p>";
+                echo "<p>{$data['legpressRep']} Rep | {$data['legpressKilo']} Kilo</p>";
+            } else {
+                echo "<p>Ingen data fundet for $woLegpress.</p>";
+            }
+            ?>
+        </section>
+
+
         <form class="workoutForm" action="" method="POST">
 
             <section class="workoutlabel">

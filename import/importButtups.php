@@ -99,6 +99,51 @@ ob_end_flush();
         <section class="hbHeader">
             <h1 class="headerText">Buttups</h1>
         </section>
+
+        <section class="lastStats">
+            <?php
+            // Funktion til at hente de sidste data for en given øvelse
+            function getLastExerciseData($conn, $woButtups)
+            {
+                $sql = "SELECT 
+                buttupsRep, 
+                sessionDate
+            FROM 
+                $woButtups
+            JOIN 
+                workoutSession ON $woButtups.sessionID = workoutSession.sessionID
+            WHERE 
+                buttupsID = (SELECT MAX(buttupsID) FROM $woButtups WHERE sessionID = workoutSession.sessionID)
+            ORDER BY 
+                sessionDate DESC
+            LIMIT 1;";
+
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    return $result->fetch_assoc();
+                } else {
+                    return null;
+                }
+            }
+
+            // Eksempel på at hente data for en øvelse
+            $woButtups = "woButtups"; // Skift dette til andre tabeller som "triceps", "legs" osv.
+            $data = getLastExerciseData($conn, $woButtups);
+
+            if ($data) {
+                // Formatér datoen som DD/MM/YYYY
+                $formattedDate = date('d/m/Y', strtotime($data['sessionDate']));
+                echo "<p>Last Session</p>";
+                echo "<p>{$formattedDate}</p>";
+                echo "<p>{$data['buttupsRep']} Rep </p>";
+            } else {
+                echo "<p>Ingen data fundet for $woButtups.</p>";
+            }
+            ?>
+        </section>
+
+
         <form class="workoutForm" action="" method="POST">
 
             <section class="workoutlabel">
@@ -112,7 +157,7 @@ ob_end_flush();
     </div>
 
 
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 
 </html>

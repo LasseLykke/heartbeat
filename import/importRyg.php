@@ -99,6 +99,52 @@ ob_end_flush();
         <section class="hbHeader">
             <h1 class="headerText">Rygbøjning</h1>
         </section>
+
+
+        <section class="lastStats">
+            <?php
+            // Funktion til at hente de sidste data for en given øvelse
+            function getLastExerciseData($conn, $woRyg)
+            {
+                $sql = "SELECT 
+                rygRep, 
+                sessionDate
+            FROM 
+                $woRyg
+            JOIN 
+                workoutSession ON $woRyg.sessionID = workoutSession.sessionID
+            WHERE 
+                rygID = (SELECT MAX(rygID) FROM $woRyg WHERE sessionID = workoutSession.sessionID)
+            ORDER BY 
+                sessionDate DESC
+            LIMIT 1;";
+
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    return $result->fetch_assoc();
+                } else {
+                    return null;
+                }
+            }
+
+            // Eksempel på at hente data for en øvelse
+            $woRyg = "woRyg"; // Skift dette til andre tabeller som "triceps", "legs" osv.
+            $data = getLastExerciseData($conn, $woRyg);
+
+            if ($data) {
+                // Formatér datoen som DD/MM/YYYY
+                $formattedDate = date('d/m/Y', strtotime($data['sessionDate']));
+                echo "<p>Last Session</p>";
+                echo "<p>{$formattedDate}</p>";
+                echo "<p>{$data['rygRep']} Rep </p>";
+            } else {
+                echo "<p>Ingen data fundet for $woRyg.</p>";
+            }
+            ?>
+        </section>
+
+
         <form class="workoutForm" action="" method="POST">
 
             <section class="workoutlabel">
@@ -112,7 +158,7 @@ ob_end_flush();
     </div>
 
 
-    <script src=../script.js"></script>
+    <script src="../script.js"></script>
 </body>
 
 </html>

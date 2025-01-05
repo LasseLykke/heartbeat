@@ -15,7 +15,7 @@ h1 {
     text-align: center;
     letter-spacing: 1px;
     font-size: clamp(36px, 8vw, 75px);
-    padding-bottom: 40px;
+    padding-bottom: 20px;
     font-weight: 1000;
     font-family: system-ui;
 }

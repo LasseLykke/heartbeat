@@ -234,6 +234,14 @@
   padding: 20px;
 }
 
+.lastStats {
+  padding-bottom: 20px;
+}
+
+.lastStats p {
+  line-height: 1.2rem;
+}
+
 /*SECTION CLASS - Made sure to display dataCarts sideByside */
 .data {
   display: grid;

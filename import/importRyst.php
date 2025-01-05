@@ -99,6 +99,51 @@ ob_end_flush();
         <section class="hbHeader">
             <h1 class="headerText">Rystemaskine</h1>
         </section>
+
+        <section class="lastStats">
+            <?php
+            // Funktion til at hente de sidste data for en given øvelse
+            function getLastExerciseData($conn, $woRyst)
+            {
+                $sql = "SELECT 
+                rystTid, 
+                sessionDate
+            FROM 
+                $woRyst
+            JOIN 
+                workoutSession ON $woRyst.sessionID = workoutSession.sessionID
+            WHERE 
+                rystID = (SELECT MAX(rystID) FROM $woRyst WHERE sessionID = workoutSession.sessionID)
+            ORDER BY 
+                sessionDate DESC
+            LIMIT 1;";
+
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    return $result->fetch_assoc();
+                } else {
+                    return null;
+                }
+            }
+
+            // Eksempel på at hente data for en øvelse
+            $woRyst = "woRyst"; // Skift dette til andre tabeller som "triceps", "legs" osv.
+            $data = getLastExerciseData($conn, $woRyst);
+
+            if ($data) {
+                // Formatér datoen som DD/MM/YYYY
+                $formattedDate = date('d/m/Y', strtotime($data['sessionDate']));
+                echo "<p>Last Session</p>";
+                echo "<p>{$formattedDate}</p>";
+                echo "<p>{$data['rystTid']} Min </p>";
+            } else {
+                echo "<p>Ingen data fundet for $woRyst.</p>";
+            }
+            ?>
+        </section>
+
+
         <form class="workoutForm" action="" method="POST">
 
             <section class="workoutlabel">

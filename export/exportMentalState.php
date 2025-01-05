@@ -13,7 +13,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Logger ud efter 15min -->
         <meta http-equiv="refresh" content="1500;url=../logout.php" />
-        <title>H E A R T B E A T || HEADACHE MENTALSTATE </title>
+        <title>H E A R T B E A T || MENTALSTATE </title>
     </head>
 
     <?php
@@ -36,11 +36,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <canvas id="workoutLineChart"></canvas>
 
                     <?php
-                    // Forespørgsel for at hente fra databasen
                     $sql = "SELECT DATE_FORMAT(ps.sessionDate, '%Y-%m-%d') AS date, ps.mentalState, ps.notes
-                    FROM painSession AS ps
-                    WHERE ps.mentalState IS NOT NULL
-                    ORDER BY ps.sessionDate ASC";
+                   FROM painSession AS ps
+                   WHERE ps.mentalState BETWEEN -3 AND 3
+                   ORDER BY ps.sessionDate ASC";
 
 
                     $result = $conn->query($sql);
@@ -93,15 +92,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             <?php
                             // Loop igennem $tableData for at indsætte data i tabellen
                             foreach ($tableData as $row) {
-                                if ($row['mentalState'] > 0) {
-                                    // Formatér datoen korrekt som DD-MM-YY
-                                    $formattedDate = date('d-m-Y', strtotime($row['date']));
-                                    echo "<tr>";
-                                    echo "<td>{$formattedDate}</td>";
-                                    echo "<td>{$row['mentalState']}</td>";
-                                    echo "<td>{$row['notes']}</td>";
-                                    echo "</tr>";
-                                }
+                                // Fjern begrænsningen på kun positive værdier
+                                $formattedDate = date('d/m-Y', strtotime($row['date']));
+                                echo "<tr>";
+                                echo "<td>{$formattedDate}</td>";
+                                echo "<td>{$row['mentalState']}</td>";
+                                echo "<td>{$row['notes']}</td>";
+                                echo "</tr>";
                             }
                             ?>
                         </tbody>

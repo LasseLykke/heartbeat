@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $egneOrd = htmlspecialchars($_POST["egneOrd"]);
     $egnetTilArray = isset($_POST["egnetTil"]) ? $_POST["egnetTil"] : [];
     $egnetTil = implode(", ", $egnetTilArray); // Konverter til en streng
-    $bedømmelse = intval($_POST["bedømmelse"]);
+    $bedoemmelse = intval($_POST["bedoemmelse"]);
     $brugsfrekvens = intval($_POST["brugsfrekvens"]);
 
     // Håndter filupload
@@ -81,7 +81,7 @@ if (in_array($fileActualExt, $allowed)) {
 
     try {
         // Indsæt i perfumeLog tabellen
-        $sql = "INSERT INTO perfumeLog (navn, fabrikant, type, milliliter, billede, fabrikantBeskrivelse, egneOrd, egnetTil, bedømmelse, brugsfrekvens) 
+        $sql = "INSERT INTO perfumeLog (navn, fabrikant, type, milliliter, billede, fabrikantBeskrivelse, egneOrd, egnetTil, bedoemmelse, brugsfrekvens) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $mysqli->prepare($sql);
 
@@ -89,7 +89,7 @@ if (in_array($fileActualExt, $allowed)) {
             throw new Exception($mysqli->error);
         }
 
-        $stmt->bind_param("sssssssssi", $navn, $fabrikant, $type, $milliliter, $fileNameNew, $fabrikantBeskrivelse, $egneOrd, $egnetTil, $bedømmelse, $brugsfrekvens);
+        $stmt->bind_param("sssssssssi", $navn, $fabrikant, $type, $milliliter, $fileNameNew, $fabrikantBeskrivelse, $egneOrd, $egnetTil, $bedoemmelse, $brugsfrekvens);
         $stmt->execute();
 
         // Luk statement
@@ -201,27 +201,27 @@ ob_end_flush();
 
 
                     <br>
-                    <label for="bedømmelse">Bedømmelse (1-5):</label>
+                    <label for="bedoemmelse">Bedømmelse (1-5):</label>
 
                     <div class="rating-group">
                         <div class="rating-option">
-                            <input type="radio" id="rating1" name="bedømmelse" value="1" required>
+                            <input type="radio" id="rating1" name="bedoemmelse" value="1" required>
                             <label for="rating1">1</label>
                         </div>
                         <div class="rating-option">
-                            <input type="radio" id="rating2" name="bedømmelse" value="2" required>
+                            <input type="radio" id="rating2" name="bedoemmelse" value="2" required>
                             <label for="rating2">2</label>
                         </div>
                         <div class="rating-option">
-                            <input type="radio" id="rating3" name="bedømmelse" value="3" required>
+                            <input type="radio" id="rating3" name="bedoemmelse" value="3" required>
                             <label for="rating3">3</label>
                         </div>
                         <div class="rating-option">
-                            <input type="radio" id="rating4" name="bedømmelse" value="4" required>
+                            <input type="radio" id="rating4" name="bedoemmelse" value="4" required>
                             <label for="rating4">4</label>
                         </div>
                         <div class="rating-option">
-                            <input type="radio" id="rating5" name="bedømmelse" value="5" required>
+                            <input type="radio" id="rating5" name="bedoemmelse" value="5" required>
                             <label for="rating5">5</label>
                         </div>
                     </div>

@@ -42,7 +42,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             wv.gnsPuls, 
             wv.kcal
         FROM workoutSession AS ws
-        INNER JOIN woVærdi AS wv ON ws.sessionID = wv.sessionID
+        INNER JOIN woVaerdi AS wv ON ws.sessionID = wv.sessionID
         WHERE wv.gnsPuls > 0 OR wv.kcal > 0
         ORDER BY ws.sessionDate ASC";
 
@@ -101,7 +101,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             <tr>
                                 <th>Dato</th>
                                 <th>GNS Puls</th>
-                                <th>kcal ialt</th>
+                                <th>KCAL ialt</th>
                             </tr>
                         </thead>
                         <tbody>

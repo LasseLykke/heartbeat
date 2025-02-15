@@ -100,6 +100,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         </thead>
                         <tbody>
                             <?php
+                            function fix_encoding($text) {
+                                // Tjek om teksten er gyldig UTF-8
+                                if (!mb_check_encoding($text, 'UTF-8')) {
+                                    return mb_convert_encoding($text, 'UTF-8', 'ISO-8859-1');
+                                }
+                                return $text;
+                            }
                             // Loop igennem $tableData for at indsætte data i tabellen
                             foreach ($tableData as $row) {
                                 // Tjek om headacheLevel eller headacheDuration er til stede (indikerer hovedpine)
@@ -108,7 +115,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                     $formattedDate = date('d-m-Y', strtotime($row['date']));
                                     echo "<tr>";
                                     echo "<td>{$formattedDate}</td>";
-                                    echo "<td>{$row['headacheType']}</td>";
+                                    echo "<td>" . fix_encoding($row['headacheType']) . "</td>";
                                     echo "<td>{$row['headacheLevel']}</td>";
                                     echo "<td>{$row['headacheDuration']}</td>";
                                     echo "</tr>";

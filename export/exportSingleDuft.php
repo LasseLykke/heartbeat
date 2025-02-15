@@ -5,6 +5,8 @@ session_start();
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     include '../header.php';
     require '../navbar.php';
+
+
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +33,7 @@ if (isset($_GET['parfumeID'])) {
     $perfumeId = intval($_GET['parfumeID']); // Konverter ID til heltal for sikkerhed
 
     // Opdater SQL-forespørgslen til at inkludere fabrikantBeskrivelse, egneOrd og egnetTil
-    $sql = "SELECT navn, fabrikant, type, milliliter, bedømmelse, brugsfrekvens, billede, fabrikantBeskrivelse, egneOrd, egnetTil FROM perfumeLog WHERE parfumeID = $perfumeId";
+    $sql = "SELECT navn, fabrikant, type, milliliter, bedoemmelse, brugsfrekvens, billede, fabrikantBeskrivelse, egneOrd, egnetTil FROM perfumeLog WHERE parfumeID = $perfumeId";
     $result = mysqli_query($conn, $sql);
 
     if ($result && mysqli_num_rows($result) > 0) {
@@ -59,13 +61,21 @@ if (isset($_GET['parfumeID'])) {
         echo '<div class="detail-item"><h4>Størrelse:</h4><p>' . (int)$perfume['milliliter'] . ' ml</p></div>';
         echo '<div class="detail-item"><h4>Holdbarhed:</h4><p>' . htmlspecialchars($perfume['brugsfrekvens']) . ' timer</p></div>';
         echo '<div class="detail-item"><h4>Egnet til:</h4><p>' . htmlspecialchars($perfume['egnetTil']) . '</p></div>';
-        echo '<div class="detail-item"><h4>Bedømmelse:</h4><p>' . htmlspecialchars($perfume['bedømmelse']) . ' / 5</p></div>';
+        echo '<div class="detail-item"><h4>Bedømmelse:</h4><p>' . htmlspecialchars($perfume['bedoemmelse']) . ' / 5</p></div>';
 
         echo '</div>';
 
         echo '<div class="product-description">';
-        echo '<h4>Fabrikantbeskrivelse:</h4><p>' . htmlspecialchars($perfume['fabrikantBeskrivelse']) . '</p> <br>';
-        echo '<h4>Mine egne ord:</h4><p>' . htmlspecialchars($perfume['egneOrd']) . '</p></div>';
+        function fix_encoding($text) {
+            // Tjek om teksten er gyldig UTF-8
+            if (!mb_check_encoding($text, 'UTF-8')) {
+                return mb_convert_encoding($text, 'UTF-8', 'ISO-8859-1');
+            }
+            return $text;
+        }
+        
+        echo '<h4>Fabrikantbeskrivelse:</h4><p>' . fix_encoding($perfume['fabrikantBeskrivelse']) . '</p><br>';
+        echo '<h4>Mine egne ord:</h4><p>' . fix_encoding($perfume['egneOrd']) . '</p>';
         echo '</div>';
     } else {
         echo '<p>Parfume ikke fundet.</p>';
@@ -73,6 +83,7 @@ if (isset($_GET['parfumeID'])) {
 } else {
     echo '<p>Ingen parfume valgt.</p>';
 }
+
 ?>
 
 

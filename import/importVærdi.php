@@ -41,7 +41,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             $stmt->close();
 
             // Indsæt i woCykel med det hentede sessionID som FK
-            $sql = "INSERT INTO woVærdi (sessionID, gnsPuls, kcal) VALUES (?, ?, ?)";
+            $sql = "INSERT INTO woVaerdi (sessionID, gnsPuls, kcal) VALUES (?, ?, ?)";
             $stmt = $mysqli->prepare($sql);
 
             if ($stmt === false) {

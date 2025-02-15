@@ -42,26 +42,26 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <?php
                     // Forespørgsel for at hente data fra db
                     $sql = "SELECT DATE_FORMAT(ws.sessionDate, '%Y-%m-%d') AS date, 
-               TIME_TO_SEC(wa.løbTid) AS løbTidInSeconds, 
-               wa.løbBelastning
-        FROM woLøb AS wa
+               TIME_TO_SEC(wa.loebTid) AS loebTidInSeconds, 
+               wa.loebBelastning
+        FROM woLoeb AS wa
         INNER JOIN workoutSession AS ws ON wa.sessionID = ws.sessionID
         ORDER BY date ASC";
 
                     $result = $conn->query($sql);
 
-                    $løbTidData = [];
-                    $løbBelastningData = [];
+                    $loebTidData = [];
+                    $loebBelastningData = [];
 
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
-                            $løbTidData[] = [
+                            $loebTidData[] = [
                                 'x' => $row['date'],
-                                'y' => $row['løbTidInSeconds'] / 60 // Konverterer sekunder til minutter
+                                'y' => $row['loebTidInSeconds'] / 60 // Konverterer sekunder til minutter
                             ];
-                            $løbBelastningData[] = [
+                            $loebBelastningData[] = [
                                 'x' => $row['date'],
-                                'y' => $row['løbBelastning']
+                                'y' => $row['loebBelastning']
                             ];
                             // Gemmer rækken for senere brug i tabellen
                             $tableData[] = $row;
@@ -76,8 +76,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
                 <script>
                     // Genererer JavaScript-variabler fra PHP-data
-                    const løbTidData = <?php echo json_encode($løbTidData); ?>;
-                    const løbBelastningData = <?php echo json_encode($løbBelastningData); ?>;
+                    const loebTidData = <?php echo json_encode($loebTidData); ?>;
+                    const loebBelastningData = <?php echo json_encode($loebBelastningData); ?>;
 
                 </script>
             </div>
@@ -109,13 +109,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                 $formattedDate = date('d-m-Y', strtotime($row['date']));
 
                                 // Konverter sekunder til minutter og sekunder
-                                $minutes = floor($row['løbTidInSeconds'] / 60);
-                                $seconds = $row['løbTidInSeconds'] % 60;
+                                $minutes = floor($row['loebTidInSeconds'] / 60);
+                                $seconds = $row['loebTidInSeconds'] % 60;
                                 $formattedTime = sprintf('%02d:%02d', $minutes, $seconds);
                                 echo "<tr>";
                                 echo "<td>{$formattedDate}</td>";
                                 echo "<td>{$formattedTime}</td>";
-                                echo "<td>{$row['løbBelastning']}</td>";
+                                echo "<td>{$row['loebBelastning']}</td>";
                                 echo "</tr>";
                             }
                             ?>
@@ -128,7 +128,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
         <script>
             // Formaterer datoerne manuelt til DD/MM format
-            const formattedDates = løbTidData.map((data) => {
+            const formattedDates = loebTidData.map((data) => {
                 const date = new Date(data.x); // Opretter dato objekt
                 const day = String(date.getDate()).padStart(2, "0"); // Henter dag med 2 cifre
                 const month = String(date.getMonth() + 1).padStart(2, "0"); // Henter måned med 2 cifre (0-indekseret)
@@ -144,7 +144,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     datasets: [
                         {
                             label: "Tid",
-                            data: løbTidData.map((data) => data.y), // Brug kun y-værdierne (reps)
+                            data: loebTidData.map((data) => data.y), // Brug kun y-værdierne (reps)
                             borderColor: "rgba(185, 132 , 115, 1)",
                             borderWidth: 1,
                             fill: false,
@@ -155,7 +155,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         },
                         {
                             label: "Belastning",
-                            data: løbBelastningData.map((data) => data.y), // Brug kun y-værdierne (kilo)
+                            data: loebBelastningData.map((data) => data.y), // Brug kun y-værdierne (kilo)
                             borderColor: "rgba(255, 79, 24, 1)",
                             borderWidth: 1,
                             fill: false,
@@ -245,10 +245,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 const totalWidth = chartContainer.scrollWidth;
 
                 // Find indekset for den sidste dato i absRepData
-                const lastIndex = løbTidData.length - 1;
+                const lastIndex = loebTidData.length - 1;
 
                 // Beregn scroll-position
-                const scrollPosition = (totalWidth / løbTidData.length) * lastIndex;
+                const scrollPosition = (totalWidth / loebTidData.length) * lastIndex;
 
                 // Scroll containeren til sidste dato med data
                 chartContainer.scrollLeft = scrollPosition - chartContainer.clientWidth / 2;

@@ -10,7 +10,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Hent og rens input
         $workoutDate = htmlspecialchars($_POST["dato"]);
-        $vægt = isset($_POST["vægt"]) ? htmlspecialchars($_POST["vægt"]) : '';
+        $vægt = isset($_POST["vaegt"]) ? htmlspecialchars($_POST["vaegt"]) : '';
 
         // Hvis workoutDate er tom, brug den aktuelle dato
         if (empty($workoutDate)) {
@@ -39,7 +39,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             $stmt->close();
 
             // Indsæt i woCykel med det hentede sessionID som FK
-            $sql = "INSERT INTO woVægt (sessionID, vægt) VALUES (?, ?)";
+            $sql = "INSERT INTO woVaegt (sessionID, vaegt) VALUES (?, ?)";
             $stmt = $mysqli->prepare($sql);
 
             if ($stmt === false) {
@@ -102,8 +102,8 @@ ob_end_flush();
         <form class="workoutForm" action="" method="POST">
 
             <section class="workoutlabel">
-                <label for="vægt"></label>
-                <input type="text" id="vægt" name="vægt" placeholder="Vægt:" required>
+                <label for="vaegt"></label>
+                <input type="text" id="vaegt" name="vaegt" placeholder="Vægt:" required>
             </section>
 
             <section>

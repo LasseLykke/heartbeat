@@ -41,20 +41,20 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
           <?php
           // Forespørgsel for at hente data fra db
-          $sql = "SELECT DATE_FORMAT(ws.sessionDate, '%Y-%m-%d') AS date, wa.vægt
-                            FROM woVægt AS wa
+          $sql = "SELECT DATE_FORMAT(ws.sessionDate, '%Y-%m-%d') AS date, wa.vaegt
+                            FROM woVaegt AS wa
                             INNER JOIN workoutSession AS ws ON wa.sessionID = ws.sessionID
                             ORDER BY date ASC";
 
           $result = $conn->query($sql);
 
-          $vægtData = [];
+          $vaegtData = [];
 
           if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-              $vægtData[] = [
+              $vaegtData[] = [
                 'x' => $row['date'],
-                'y' => floatval(str_replace(',', '.', $row['vægt']))
+                'y' => floatval(str_replace(',', '.', $row['vaegt']))
               ];
 
               // Gemmer rækken for senere brug i tabellen
@@ -70,7 +70,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
         <script>
           // Genererer JavaScript-variabler fra PHP-data
-          const $vægtData = <?php echo json_encode($vægtData); ?>;
+          const $vaegtData = <?php echo json_encode($vaegtData); ?>;
 
         </script>
       </div>
@@ -101,7 +101,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 $formattedDate = date('d-m-Y', strtotime($row['date']));
                 echo "<tr>";
                 echo "<td>{$formattedDate}</td>";
-                echo "<td>{$row['vægt']}</td>";
+                echo "<td>{$row['vaegt']}</td>";
                 echo "</tr>";
               }
               ?>
@@ -114,7 +114,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
     <script>
       // Formaterer datoerne manuelt til DD/MM format
-      const formattedDates = $vægtData.map((data) => {
+      const formattedDates = $vaegtData.map((data) => {
         const date = new Date(data.x); // Opretter dato objekt
         const day = String(date.getDate()).padStart(2, "0"); // Henter dag med 2 cifre
         const month = String(date.getMonth() + 1).padStart(2, "0"); // Henter måned med 2 cifre (0-indekseret)
@@ -130,7 +130,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
           datasets: [
             {
               label: "Kilo",
-              data: $vægtData.map((data) => data.y), // Brug kun y-værdierne (reps)
+              data: $vaegtData.map((data) => data.y), // Brug kun y-værdierne (reps)
               borderColor: "rgba(255, 79, 24, 1)",
               borderWidth: 1,
               fill: false,
@@ -212,10 +212,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         const totalWidth = chartContainer.scrollWidth;
 
         // Find indekset for den sidste dato i absRepData
-        const lastIndex = $vægtData.length - 1;
+        const lastIndex = $vaegtData.length - 1;
 
         // Beregn scroll-position
-        const scrollPosition = (totalWidth / $vægtData.length) * lastIndex;
+        const scrollPosition = (totalWidth / $vaegtData.length) * lastIndex;
 
         // Scroll containeren til sidste dato med data
         chartContainer.scrollLeft = scrollPosition - chartContainer.clientWidth / 2;

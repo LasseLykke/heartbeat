@@ -51,7 +51,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             $mentalStateData[] = [
                                 'x' => $row['date'],
                                 'y' => $row['mentalState'],
-                                'notes' => $row['notes'],
                             ];
 
                             // Gemmer rækken for senere brug i tabellen
@@ -90,6 +89,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         </thead>
                         <tbody>
                             <?php
+                            function fix_encoding($text) {
+                                // Tjek om teksten er gyldig UTF-8
+                                if (!mb_check_encoding($text, 'UTF-8')) {
+                                    return mb_convert_encoding($text, 'UTF-8', 'ISO-8859-1');
+                                }
+                                return $text;
+                            }
                             // Loop igennem $tableData for at indsætte data i tabellen
                             foreach ($tableData as $row) {
                                 // Fjern begrænsningen på kun positive værdier
@@ -97,7 +103,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                 echo "<tr>";
                                 echo "<td>{$formattedDate}</td>";
                                 echo "<td>{$row['mentalState']}</td>";
-                                echo "<td>{$row['notes']}</td>";
+                                echo "<td>" . fix_encoding($row['notes']) . "</td>";
                                 echo "</tr>";
                             }
                             ?>

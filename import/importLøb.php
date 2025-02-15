@@ -2,6 +2,7 @@
 ob_start();
 session_start();
 
+
 include '../header.php';
 require '../navbar.php';
 
@@ -10,8 +11,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Hent og rens input
         $workoutDate = htmlspecialchars($_POST["dato"]);
-        $løbTid = isset($_POST["løbTid"]) ? intval($_POST["løbTid"]) : 0;
-        $løbBelastning = isset($_POST["løbBelastning"]) ? intval($_POST["løbBelastning"]) : 0;
+        $loebTid = isset($_POST["loebTid"]) ? intval($_POST["loebTid"]) : 0;
+        $loebBelastning = isset($_POST["loebBelastning"]) ? intval($_POST["loebBelastning"]) : 0;
 
         // Hvis workoutDate er tom, brug den aktuelle dato
         if (empty($workoutDate)) {
@@ -40,14 +41,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             $stmt->close();
 
             // Indsæt i woCykel med det hentede sessionID som FK
-            $sql = "INSERT INTO woLøb (sessionID, løbTid, løbBelastning) VALUES (?, ?, ?)";
+            $sql = "INSERT INTO woLoeb (sessionID, loebTid, loebBelastning) VALUES (?, ?, ?)";
             $stmt = $mysqli->prepare($sql);
 
             if ($stmt === false) {
                 throw new Exception($mysqli->error);
             }
 
-            $stmt->bind_param("iii", $sessionID, $løbTid, $løbBelastning);
+            $stmt->bind_param("iii", $sessionID, $loebTid, $loebBelastning);
             $stmt->execute();
 
             // Commit transaktionen
@@ -104,18 +105,18 @@ ob_end_flush();
         <section class="lastStats">
             <?php
             // Funktion til at hente de sidste data for en given øvelse
-            function getLastExerciseData($conn, $woLøb)
+            function getLastExerciseData($conn, $woLoeb)
             {
                 $sql = "SELECT 
-                løbTid, 
-                løbBelastning, 
+                loebTid, 
+                loebBelastning, 
                 sessionDate
             FROM 
-                $woLøb
+                $woLoeb
             JOIN 
-                workoutSession ON $woLøb.sessionID = workoutSession.sessionID
+                workoutSession ON $woLoeb.sessionID = workoutSession.sessionID
             WHERE 
-                løbID = (SELECT MAX(løbID) FROM $woLøb WHERE sessionID = workoutSession.sessionID)
+                loebID = (SELECT MAX(loebID) FROM $woLoeb WHERE sessionID = workoutSession.sessionID)
             ORDER BY 
                 sessionDate DESC
             LIMIT 1;";
@@ -130,15 +131,15 @@ ob_end_flush();
             }
 
             // Eksempel på at hente data for en øvelse
-            $woLøb = "woLøb"; // Skift dette til andre tabeller som "triceps", "legs" osv.
-            $data = getLastExerciseData($conn, $woLøb);
+            $woLoeb = "woLoeb"; // Skift dette til andre tabeller som "triceps", "legs" osv.
+            $data = getLastExerciseData($conn, $woLoeb);
 
             if ($data) {
                 // Formatér datoen som DD/MM/YYYY
                 $formattedDate = date('d/m/Y', strtotime($data['sessionDate']));
                 echo "<p>Last Session</p>";
                 echo "<p>{$formattedDate}</p>";
-                echo "<p>{$data['løbTid']} Min | {$data['løbBelastning']} Belastning</p>";
+                echo "<p>{$data['loebTid']} Min | {$data['loebBelastning']} Belastning</p>";
             } else {
                 echo "<p>Ingen data fundet for $woLøb.</p>";
             }
@@ -149,11 +150,11 @@ ob_end_flush();
         <form class="workoutForm" action="" method="POST">
 
             <section class="workoutlabel">
-                <label for="løbTid"></label>
-                <input type="text" id="løbTid" name="løbTid" placeholder="Tid:" required>
+                <label for="loebTid"></label>
+                <input type="text" id="loebTid" name="loebTid" placeholder="Tid:" required>
 
-                <label for="løbBelastning"></label>
-                <input type="number" id="løbBelastning" name="løbBelastning" placeholder="Belastning:" required>
+                <label for="loebBelastning"></label>
+                <input type="number" id="loebBelastning" name="loebBelastning" placeholder="Belastning:" required>
             </section>
 
             <section>

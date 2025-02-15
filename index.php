@@ -1,5 +1,6 @@
 <?php 
 include 'header.php';
+opcache_reset();
 ?>
 
 <!DOCTYPE html>

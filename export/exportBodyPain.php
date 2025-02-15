@@ -13,7 +13,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Logger ud efter 15min -->
         <meta http-equiv="refresh" content="1500;url=../logout.php" />
-        <title>H E A R T B E A T || HEADACHE BODYPAIN </title>
+        <title>H E A R T B E A T || BODYPAIN </title>
     </head>
 
     <?php
@@ -54,9 +54,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             $bodyPainData[] = [
                                 'x' => $row['date'],
                                 'y' => $row['painLevel'],
-                                'bodyPart' => $row['bodyPart'],
-                                'tookMedication' => $row['tookMedication'],
-                                'medicationAmount' => $row['medicationAmount'],
+
                             ];
 
                             // Gemmer rækken for senere brug i tabellen
@@ -72,6 +70,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 <script>
                     // Genererer JavaScript-variabler fra PHP-data
                     const bodyPainData = <?php echo json_encode($bodyPainData); ?>;
+                    console.log(bodyPainData);
                 </script>
             </div>
 
@@ -95,6 +94,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         </thead>
                         <tbody>
                             <?php
+                            function fix_encoding($text)
+                            {
+                                // Tjek om teksten er gyldig UTF-8
+                                if (!mb_check_encoding($text, 'UTF-8')) {
+                                    return mb_convert_encoding($text, 'UTF-8', 'ISO-8859-1');
+                                }
+                                return $text;
+                            }
                             // Loop igennem $tableData for at indsætte data i tabellen
                             foreach ($tableData as $row) {
                                 if ($row['painLevel'] > 0) {
@@ -102,7 +109,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                     $formattedDate = date('d-m-Y', strtotime($row['date']));
                                     echo "<tr>";
                                     echo "<td>{$formattedDate}</td>";
-                                    echo "<td>{$row['bodyPart']}</td>";
+                                    echo "<td>" . fix_encoding($row['bodyPart']) . "</td>";
                                     echo "<td>{$row['painLevel']}</td>";
                                     echo "</tr>";
                                 }
@@ -224,7 +231,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 chartContainer.scrollLeft = scrollPosition - chartContainer.clientWidth / 2;
             }, 100);
 
+
+
         </script>
+
+
 
         <script src="../script.js"></script>
         </body>

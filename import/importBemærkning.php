@@ -10,7 +10,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Hent og rens input
         $workoutDate = htmlspecialchars($_POST["dato"]);
-        $bemærkning = isset($_POST["bemærkning"]) ? htmlspecialchars($_POST["bemærkning"]) : '';
+        $bemærkning = isset($_POST["bemaerkning"]) ? htmlspecialchars($_POST["bemaerkning"]) : '';
 
         // Hvis workoutDate er tom, brug den aktuelle dato
         if (empty($workoutDate)) {
@@ -39,7 +39,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             $stmt->close();
 
             // Indsæt i woCykel med det hentede sessionID som FK
-            $sql = "INSERT INTO woBemærkning (sessionID, bemærkning) VALUES (?, ?)";
+            $sql = "INSERT INTO woBemaerkning (sessionID, bemaerkning) VALUES (?, ?)";
             $stmt = $mysqli->prepare($sql);
 
             if ($stmt === false) {
@@ -100,8 +100,8 @@ ob_end_flush();
             <form class="workoutForm" action="" method="POST">
 
             <section class="workoutlabel">
-                <label for="varighed"></label>
-                <textarea id="bemærkning" placeholder="Indsæt bemærkning, evt skader" name="bemærkning"></textarea>
+                <label for="bemaerkning"></label>
+                <textarea id="bemaerkning" placeholder="Indsæt bemærkning, evt skader" name="bemaerkning"></textarea>
             </section>
 
             <section>

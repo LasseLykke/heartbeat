@@ -2,11 +2,14 @@
 ob_start();
 session_start();
 
+
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
     include '../header.php';
     require '../navbar.php';
     ?>
+
+    
 
 
     <!-- Import of datapoints from db -->
@@ -30,13 +33,13 @@ $sqls = [
     "SELECT bicepsRep, bicepsKilo FROM woBiceps ORDER BY bicepsID DESC LIMIT 1",
     "SELECT neckpressRep, neckpressKilo FROM woNeck ORDER BY neckpressID DESC LIMIT 1",
     "SELECT pullupsRep, pullupsKilo FROM woPullups ORDER BY pullupsID DESC LIMIT 1",
-    "SELECT løbTid, løbBelastning FROM woLøb ORDER BY løbID DESC LIMIT 1",
+    "SELECT loebTid, loebBelastning FROM woLoeb ORDER BY loebID DESC LIMIT 1",
     "SELECT rystTid FROM woRyst ORDER BY rystID DESC LIMIT 1",
     "SELECT buttupsRep FROM woButtups ORDER BY buttupsID DESC LIMIT 1",
-    "SELECT gnsPuls FROM woVærdi ORDER BY værdiID DESC LIMIT 1",
-    "SELECT kcal FROM woVærdi ORDER BY værdiID DESC LIMIT 1",
+    "SELECT gnsPuls FROM woVaerdi ORDER BY vaerdiID DESC LIMIT 1",
+    "SELECT kcal FROM woVaerdi ORDER BY vaerdiID DESC LIMIT 1",
     "SELECT vand FROM woVand ORDER BY vandID DESC LIMIT 1",
-    "SELECT vægt FROM woVægt ORDER BY vægtID DESC LIMIT 1",
+    "SELECT vaegt FROM woVaegt ORDER BY vaegtID DESC LIMIT 1",
     "SELECT varighed FROM woVarighed ORDER BY varighedID DESC LIMIT 1",
     "SELECT ps.sessionDate, bp.painLevel 
     FROM painSession AS ps 
@@ -94,8 +97,8 @@ $neckpressKilo = $results[10]['neckpressKilo'] ?? "Ingen data";
 $pullupsRep = $results[11]['pullupsRep'] ?? "Ingen data";
 $pullupsKilo = $results[11]['pullupsKilo'] ?? "Ingen data";
 
-$løbTid = $results[12]['løbTid'] ?? "Ingen data";
-$løbBelastning = $results[12]['løbBelastning'] ?? "Ingen data";
+$loebTid = $results[12]['loebTid'] ?? "Ingen data";
+$loebBelastning = $results[12]['loebBelastning'] ?? "Ingen data";
 
 $rystTid = $results[13]['rystTid'] ?? "Ingen data";
 
@@ -106,7 +109,7 @@ $kcal = $results[16]['kcal'] ?? "Ingen data";
 
 $vand = $results[17]['vand'] ?? "Ingen data";
 
-$vægt = $results[18]['vægt'] ?? "Ingen data";
+$vaegt = $results[18]['vaegt'] ?? "Ingen data";
 
 $lastWorkoutDate = $results[19]['sessionDate'] ?? "Ingen data";
 $lastWorkoutDuration = $results[19]['varighed'] ?? "Ingen data";
@@ -404,8 +407,8 @@ $conn->close();
                             </div>
                             <div class="dataCartInfo">
                                 <div class="inline">
-                                    <p class="dataBtnInfo"><?php echo $løbBelastning; ?> |</p>
-                                    <p class="dataBtnInfo"><?php echo $løbTid; ?>min</p>
+                                    <p class="dataBtnInfo"><?php echo $loebBelastning; ?> |</p>
+                                    <p class="dataBtnInfo"><?php echo $loebTid; ?>min</p>
                                     <br>
                                     <button class="primBtn">Se mere</button>
                                 </div>
@@ -478,7 +481,7 @@ $conn->close();
                             </div>
                             <div class="dataCartInfo">
                                 <div class="inline">
-                                    <p class="dataBtnInfo"><?php echo $vægt; ?>kg </p>
+                                    <p class="dataBtnInfo"><?php echo $vaegt; ?>kg </p>
                                     <br>
                                     <button class="primBtn">Se mere</button>
                                 </div>

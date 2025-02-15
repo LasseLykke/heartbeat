@@ -2,6 +2,7 @@
 ob_start();
 session_start();
 
+
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     include '../header.php';
     require '../navbar.php';
@@ -29,7 +30,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <div class="INDSÆT DIV CLASS HER SOM PASSER">
         <?php
 // Database-forespørgsel for at hente parfumer
-$sql = "SELECT parfumeID, navn, fabrikant, type, milliliter, bedømmelse, brugsfrekvens, billede FROM perfumeLog ORDER BY fabrikant ASC;";
+$sql = "SELECT parfumeID, navn, fabrikant, type, milliliter, bedoemmelse, brugsfrekvens, billede FROM perfumeLog ORDER BY fabrikant ASC;";
 $result = mysqli_query($conn, $sql);
 
 if ($result && mysqli_num_rows($result) > 0) {
@@ -47,7 +48,7 @@ if ($result && mysqli_num_rows($result) > 0) {
         echo '<p>Type: ' . htmlspecialchars($perfume['type']) . '</p>';
         echo '<p>' . (int)$perfume['milliliter'] . ' ml</p>';
         echo '<p>Holdbarhed: ' . htmlspecialchars($perfume['brugsfrekvens']) . ' timer</p>';
-        echo '<p>Bedømmelse: ' . htmlspecialchars($perfume['bedømmelse']) . ' / 5</p>';
+        echo '<p>Bedømmelse: ' . htmlspecialchars($perfume['bedoemmelse']) . ' / 5</p>';
         echo '<br>';
         echo '<a href="exportSingleDuft.php?parfumeID=' . htmlspecialchars($perfume['parfumeID']) . '" class="primBtn">Se mere</a>';
         echo '<br>';

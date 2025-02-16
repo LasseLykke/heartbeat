@@ -142,6 +142,17 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
 
                 <div class="dataCartLarge">
+                    <a href="importTriceps.php">
+                        <div class="dataBtn">
+                            <div class="dataCartHeader">
+                                <img src="../img/biceps.png" class="dataIcon" alt="workout icon">
+                                <h2>Triceps</h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="dataCartLarge">
                     <a href="importNeckpress.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">

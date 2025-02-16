@@ -31,6 +31,7 @@ $sqls = [
     "SELECT legcurlRep, legcurlKilo FROM woLegcurl ORDER BY legcurlID DESC LIMIT 1",
     "SELECT legextensionRep, legextensionKilo FROM woExtension ORDER BY legextensionID DESC LIMIT 1",
     "SELECT bicepsRep, bicepsKilo FROM woBiceps ORDER BY bicepsID DESC LIMIT 1",
+    "SELECT tricepsRep, tricepsKilo FROM woTriceps ORDER BY tricepsID DESC LIMIT 1",
     "SELECT neckpressRep, neckpressKilo FROM woNeck ORDER BY neckpressID DESC LIMIT 1",
     "SELECT pullupsRep, pullupsKilo FROM woPullups ORDER BY pullupsID DESC LIMIT 1",
     "SELECT loebTid, loebBelastning FROM woLoeb ORDER BY loebID DESC LIMIT 1",
@@ -91,34 +92,37 @@ $legextensionKilo = $results[8]['legextensionKilo'] ?? "Ingen data";
 $bicepsRep = $results[9]['bicepsRep'] ?? "Ingen data";
 $bicepsKilo = $results[9]['bicepsKilo'] ?? "Ingen data";
 
-$neckpressRep = $results[10]['neckpressRep'] ?? "Ingen data";
-$neckpressKilo = $results[10]['neckpressKilo'] ?? "Ingen data";
+$tricepsRep = $results[10]['tricepsRep'] ?? "Ingen data";
+$tricepsKilo = $results[10]['tricepsKilo'] ?? "Ingen data";
 
-$pullupsRep = $results[11]['pullupsRep'] ?? "Ingen data";
-$pullupsKilo = $results[11]['pullupsKilo'] ?? "Ingen data";
+$neckpressRep = $results[11]['neckpressRep'] ?? "Ingen data";
+$neckpressKilo = $results[11]['neckpressKilo'] ?? "Ingen data";
 
-$loebTid = $results[12]['loebTid'] ?? "Ingen data";
-$loebBelastning = $results[12]['loebBelastning'] ?? "Ingen data";
+$pullupsRep = $results[12]['pullupsRep'] ?? "Ingen data";
+$pullupsKilo = $results[12]['pullupsKilo'] ?? "Ingen data";
 
-$rystTid = $results[13]['rystTid'] ?? "Ingen data";
+$loebTid = $results[13]['loebTid'] ?? "Ingen data";
+$loebBelastning = $results[13]['loebBelastning'] ?? "Ingen data";
 
-$buttupsRep = $results[14]['buttupsRep'] ?? "Ingen data";
+$rystTid = $results[14]['rystTid'] ?? "Ingen data";
 
-$gnsPuls = $results[15]['gnsPuls'] ?? "Ingen data"; 
-$kcal = $results[16]['kcal'] ?? "Ingen data";    
+$buttupsRep = $results[15]['buttupsRep'] ?? "Ingen data";
 
-$vand = $results[17]['vand'] ?? "Ingen data";
+$gnsPuls = $results[16]['gnsPuls'] ?? "Ingen data"; 
+$kcal = $results[17]['kcal'] ?? "Ingen data";    
 
-$vaegt = $results[18]['vaegt'] ?? "Ingen data";
+$vand = $results[18]['vand'] ?? "Ingen data";
 
-$lastWorkoutDate = $results[19]['sessionDate'] ?? "Ingen data";
-$lastWorkoutDuration = $results[19]['varighed'] ?? "Ingen data";
+$vaegt = $results[19]['vaegt'] ?? "Ingen data";
 
-$bodyPainDate = $results[20]['sessionDate'] ?? "Ingen data";
-$bodyPainLevel = $results[20]['painLevel'] ?? "Ingen data";
+$lastWorkoutDate = $results[20]['sessionDate'] ?? "Ingen data";
+$lastWorkoutDuration = $results[20]['varighed'] ?? "Ingen data";
 
-$mentalStateDate = $results[21]['sessionDate'] ?? "Ingen data";
-$mentalState = $results[21]['mentalState'] ?? "Ingen data";
+$bodyPainDate = $results[21]['sessionDate'] ?? "Ingen data";
+$bodyPainLevel = $results[21]['painLevel'] ?? "Ingen data";
+
+$mentalStateDate = $results[22]['sessionDate'] ?? "Ingen data";
+$mentalState = $results[22]['mentalState'] ?? "Ingen data";
 
 // Close Connection
 $conn->close();
@@ -332,6 +336,25 @@ $conn->close();
                                 <div class="inline">
                                     <p class="dataBtnInfo"><?php echo $bicepsKilo; ?>kg |</p>
                                     <p class="dataBtnInfo"><?php echo $bicepsRep; ?>rep</p>
+                                    <br>
+                                    <button class="primBtn">Se mere</button>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="dataCart">
+                    <a href="../export/exportTriceps.php">
+                        <div class="dataBtn">
+                            <div class="dataCartHeader">
+                                <img src="../img/biceps.png" class="dataIcon" alt="workout icon">
+                                <h3>Triceps</h3>
+                            </div>
+                            <div class="dataCartInfo">
+                                <div class="inline">
+                                    <p class="dataBtnInfo"><?php echo $tricepsKilo; ?>kg |</p>
+                                    <p class="dataBtnInfo"><?php echo $tricepsRep; ?>rep</p>
                                     <br>
                                     <button class="primBtn">Se mere</button>
                                 </div>

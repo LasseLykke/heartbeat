@@ -42,7 +42,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             </section>
 
             <section class="workoutData">
-                <div class="dataCartLarge">
+                <div class="dataCartLarge" id="workout-1">
                     <a href="importCykel.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
@@ -53,7 +53,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     </a>
                 </div>
 
-                <div class="dataCartLarge">
+                <div class="dataCartLarge" id="workout-2">
                     <a href="importPulldowns.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
@@ -64,7 +64,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     </a>
                 </div>
 
-                <div class="dataCartLarge">
+                <div class="dataCartLarge" id="workout-3">
                     <a href="importRyg.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
@@ -75,7 +75,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     </a>
                 </div>
 
-                <div class="dataCartLarge">
+                <div class="dataCartLarge" id="workout-4">
                     <a href="importAbs.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
@@ -86,7 +86,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     </a>
                 </div>
 
-                <div class="dataCartLarge">
+                <div class="dataCartLarge" id="workout-5">
                     <a href="importBrystpress.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
@@ -97,7 +97,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     </a>
                 </div>
 
-                <div class="dataCartLarge">
+                <div class="dataCartLarge" id="workout-6">
                     <a href="importLegpress.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
@@ -108,7 +108,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     </a>
                 </div>
 
-                <div class="dataCartLarge">
+                <div class="dataCartLarge" id="workout-7">
                     <a href="importLegcurl.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
@@ -119,7 +119,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     </a>
                 </div>
 
-                <div class="dataCartLarge">
+                <div class="dataCartLarge" id="workout-8">
                     <a href="importLegextension.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
@@ -130,7 +130,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     </a>
                 </div>
 
-                <div class="dataCartLarge">
+                <div class="dataCartLarge" id="workout-9">
                     <a href="importBiceps.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
@@ -141,7 +141,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     </a>
                 </div>
 
-                <div class="dataCartLarge">
+                <div class="dataCartLarge" id="workout-10">
                     <a href="importTriceps.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
@@ -152,7 +152,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     </a>
                 </div>
 
-                <div class="dataCartLarge">
+                <div class="dataCartLarge" id="workout-11">
                     <a href="importNeckpress.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
@@ -163,7 +163,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     </a>
                 </div>
 
-                <div class="dataCartLarge">
+                <div class="dataCartLarge" id="workout-12">
                     <a href="importButtups.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
@@ -174,7 +174,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     </a>
                 </div>
 
-                <div class="dataCartLarge">
+                <div class="dataCartLarge" id="workout-13">
                     <a href="importPullups.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
@@ -185,7 +185,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     </a>
                 </div>
 
-                <div class="dataCartLarge">
+                <div class="dataCartLarge" id="workout-14">
                     <a href="importLøb.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
@@ -196,7 +196,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     </a>
                 </div>
 
-                <div class="dataCartLarge">
+                <div class="dataCartLarge" id="workout-15">
                     <a href="importRyst.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
@@ -207,7 +207,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     </a>
                 </div>
 
-                <div class="dataCartLarge">
+                <div class="dataCartLarge" id="workout-16">
                     <a href="importVand.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
@@ -218,7 +218,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     </a>
                 </div>
 
-                <div class="dataCartLarge">
+                <div class="dataCartLarge" id="workout-17">
                     <a href="importVægt.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
@@ -229,7 +229,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     </a>
                 </div>
 
-                <div class="dataCartLarge">
+                <div class="dataCartLarge" id="workout-18">
                     <a href="importVarighed.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
@@ -240,7 +240,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     </a>
                 </div>
 
-                <div class="dataCartLarge">
+                <div class="dataCartLarge" id="workout-19">
                     <a href="importVærdi.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
@@ -251,7 +251,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     </a>
                 </div>
 
-                <div class="dataCartLarge">
+                <div class="dataCartLarge" id="workout-20">
                     <a href="importBemærkning.php">
                         <div class="dataBtn">
                             <div class="dataCartHeader">
@@ -263,6 +263,22 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
             </section>
 
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    setTimeout(function () {
+                        // Hent workout ID fra URL'en
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const workoutId = urlParams.get("id");
+
+                        if (workoutId) {
+                            const workoutElement = document.getElementById(`workout-${workoutId}`);
+                            if (workoutElement) {
+                                workoutElement.scrollIntoView({ behavior: "smooth", block: "start" });
+                            }
+                        }
+                    }, 500); // 500ms forsinkelse
+                });
+            </script>
 
             <script src="../script.js"></script>
 
